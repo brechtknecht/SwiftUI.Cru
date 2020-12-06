@@ -4,21 +4,25 @@ import SwiftUI
 
 struct SelectionItemView: View {
 
-    @Binding var selection: SelectVenueViewModel.Option
+    @Binding var selection: String
     @State var actionText = "Neuen Veranstalter hinzufügen"
+    
+    @State var options = ["Test 1", "Test 2", "Test 3"]
 
     var body: some View{
         VStack {
             Form {
                 Section(footer: Text("Here is a detailed description of the setting.")) {
-                    ForEach(0 ..< SelectVenueViewModel.Option.allCases.count, id: \.self) { index in
+                    ForEach(0 ..< options.count, id: \.self) { index in
 
                         HStack{
                             Button(action: {
-                                self.selection  = SelectVenueViewModel.Option.allCases[index]
-                            }){Text(SelectVenueViewModel.Option.allCases[index].description)}
+                                self.selection  = options[index]
+                            }){
+                                Text(options[index])
+                            }
                             Spacer()
-                            if ( self.selection  ==  SelectVenueViewModel.Option.allCases[index] ){
+                            if ( self.selection  ==  options[index] ){
                                 Image(systemName: "checkmark")
                             }
                         }

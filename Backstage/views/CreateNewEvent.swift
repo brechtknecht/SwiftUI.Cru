@@ -47,7 +47,7 @@ struct CreateNewEvent: View {
                                             selection: $selectVenueViewModel.selectedOption
                                         )
                         ) {
-                            Text("\(selectVenueViewModel.selectedOption.rawValue)")                            
+                            Text("\(selectVenueViewModel.selectedOption)")                            
                         }
                     }
                     
@@ -87,23 +87,7 @@ struct CreateNewEvent: View {
 }
 
 class SelectVenueViewModel: ObservableObject {
-    @State var options = ["Erster", "Zweiter", "Dritter"]
-    
-    enum Option: String, Identifiable, CaseIterable, CustomStringConvertible {
-        case LausbubenKulturverein
-        case optionTwo
-        case optionThree
-
-        var id: Option {
-            self
-        }
-
-        var description: String {
-            rawValue.prefix(1).uppercased() + rawValue.dropFirst()
-        }
-    }
-
-    @Published var selectedOption: Option = .LausbubenKulturverein {
+    @Published var selectedOption: String = "Veranstaltungsort" {
         didSet {
             print("new option selected: \(selectedOption.description)")
         }
