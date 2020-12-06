@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AAD1257D597F004AB2C4 /* ColorManager.swift */; };
 		99BCF513257D49BF00F2A7BC /* BackstageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF512257D49BF00F2A7BC /* BackstageApp.swift */; };
 		99BCF515257D49BF00F2A7BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF514257D49BF00F2A7BC /* ContentView.swift */; };
 		99BCF517257D49C000F2A7BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99BCF516257D49C000F2A7BC /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9956AAD1257D597F004AB2C4 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		99BCF50F257D49BF00F2A7BC /* Backstage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Backstage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99BCF512257D49BF00F2A7BC /* BackstageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackstageApp.swift; sourceTree = "<group>"; };
 		99BCF514257D49BF00F2A7BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				99BCF516257D49C000F2A7BC /* Assets.xcassets */,
 				99BCF51B257D49C000F2A7BC /* Info.plist */,
 				99BCF518257D49C000F2A7BC /* Preview Content */,
+				9956AAD1257D597F004AB2C4 /* ColorManager.swift */,
 			);
 			path = Backstage;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				99BCF524257D4AA600F2A7BC /* Overview.swift in Sources */,
 				99BCF515257D49BF00F2A7BC /* ContentView.swift in Sources */,
 				99BCF513257D49BF00F2A7BC /* BackstageApp.swift in Sources */,
+				9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */,
 				99BCF52D257D4B4700F2A7BC /* Crew.swift in Sources */,
 				99BCF539257D4FA100F2A7BC /* CreateNewEvent.swift in Sources */,
 			);
