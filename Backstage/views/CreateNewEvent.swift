@@ -91,14 +91,6 @@ struct CreateNewEvent: View {
     }
 }
 
-class SelectVenueViewModel: ObservableObject {
-    @Published var selectedOption: String = "Veranstaltungsort" {
-        didSet {
-            print("new option selected: \(selectedOption.description)")
-        }
-    }
-}
-
 
 struct CreateNewEvent_Previews: PreviewProvider {
     static var previews: some View {

@@ -17,7 +17,7 @@ struct ButtonFullWidth: View {
         }
         .frame(minWidth: 0, maxWidth: .infinity)
         .padding(14)
-        .foregroundColor(.white)
+        .foregroundColor(ColorManager.primaryLight)
         .background(ColorManager.primaryDark)
         .cornerRadius(8)
     }
