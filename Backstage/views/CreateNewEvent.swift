@@ -39,9 +39,15 @@ struct CreateNewEvent: View {
                         .padding(.vertical, 8)
                     }
                     
+                    
+                    // Custom Selection
                     Section(header: Text("Veranstaltungsort")) {
-                        NavigationLink(destination: SelectionItemView(selection: $selectVenueViewModel.selectedOption)) {
-                            Text("Veranstaltungsort")
+                        NavigationLink(destination:
+                                        SelectionItemView(
+                                            selection: $selectVenueViewModel.selectedOption
+                                        )
+                        ) {
+                            Text("\(selectVenueViewModel.selectedOption.rawValue)")                            
                         }
                     }
                     
@@ -81,9 +87,10 @@ struct CreateNewEvent: View {
 }
 
 class SelectVenueViewModel: ObservableObject {
-
+    @State var options = ["Erster", "Zweiter", "Dritter"]
+    
     enum Option: String, Identifiable, CaseIterable, CustomStringConvertible {
-        case optionOne
+        case LausbubenKulturverein
         case optionTwo
         case optionThree
 
@@ -96,7 +103,7 @@ class SelectVenueViewModel: ObservableObject {
         }
     }
 
-    @Published var selectedOption: Option = .optionOne {
+    @Published var selectedOption: Option = .LausbubenKulturverein {
         didSet {
             print("new option selected: \(selectedOption.description)")
         }
