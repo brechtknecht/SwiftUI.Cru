@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AAD1257D597F004AB2C4 /* ColorManager.swift */; };
+		9956AAD5257D59FA004AB2C4 /* ButtonFullWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AAD4257D59FA004AB2C4 /* ButtonFullWidth.swift */; };
+		9956AADB257D7CDB004AB2C4 /* SelectVenueForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AADA257D7CDB004AB2C4 /* SelectVenueForm.swift */; };
 		99BCF513257D49BF00F2A7BC /* BackstageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF512257D49BF00F2A7BC /* BackstageApp.swift */; };
 		99BCF515257D49BF00F2A7BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF514257D49BF00F2A7BC /* ContentView.swift */; };
 		99BCF517257D49C000F2A7BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99BCF516257D49C000F2A7BC /* Assets.xcassets */; };
@@ -22,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		9956AAD1257D597F004AB2C4 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		9956AAD4257D59FA004AB2C4 /* ButtonFullWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFullWidth.swift; sourceTree = "<group>"; };
+		9956AADA257D7CDB004AB2C4 /* SelectVenueForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVenueForm.swift; sourceTree = "<group>"; };
 		99BCF50F257D49BF00F2A7BC /* Backstage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Backstage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99BCF512257D49BF00F2A7BC /* BackstageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackstageApp.swift; sourceTree = "<group>"; };
 		99BCF514257D49BF00F2A7BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -47,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		998FA76F257D89DC000468BE /* forms */ = {
+			isa = PBXGroup;
+			children = (
+				9956AADA257D7CDB004AB2C4 /* SelectVenueForm.swift */,
+			);
+			path = forms;
+			sourceTree = "<group>";
+		};
 		99BCF506257D49BF00F2A7BC = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +101,7 @@
 		99BCF522257D4A8A00F2A7BC /* views */ = {
 			isa = PBXGroup;
 			children = (
+				998FA76F257D89DC000468BE /* forms */,
 				99BCF523257D4AA600F2A7BC /* Overview.swift */,
 				99BCF527257D4B3A00F2A7BC /* Events.swift */,
 				99BCF52C257D4B4700F2A7BC /* Crew.swift */,
@@ -102,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				99BCF531257D4D9B00F2A7BC /* EventList.swift */,
+				9956AAD4257D59FA004AB2C4 /* ButtonFullWidth.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -178,6 +192,8 @@
 				99BCF536257D4E9E00F2A7BC /* EventDetail.swift in Sources */,
 				99BCF532257D4D9B00F2A7BC /* EventList.swift in Sources */,
 				99BCF528257D4B3A00F2A7BC /* Events.swift in Sources */,
+				9956AAD5257D59FA004AB2C4 /* ButtonFullWidth.swift in Sources */,
+				9956AADB257D7CDB004AB2C4 /* SelectVenueForm.swift in Sources */,
 				99BCF524257D4AA600F2A7BC /* Overview.swift in Sources */,
 				99BCF515257D49BF00F2A7BC /* ContentView.swift in Sources */,
 				99BCF513257D49BF00F2A7BC /* BackstageApp.swift in Sources */,

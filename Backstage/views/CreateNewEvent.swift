@@ -15,10 +15,11 @@ struct CreateNewEvent: View {
     @State var eventDate = Date()
     @State var eventType = 0
     
+        
+    @State static var label = "Event hinzufügen"
     
-    var strengths = ["Mild", "Medium", "Mature"]
     
-    @State private var selectedStrength = 0
+    @ObservedObject var selectVenueViewModel = SelectVenueViewModel()
     
     var body: some View {
         NavigationView {
@@ -35,34 +36,33 @@ struct CreateNewEvent: View {
                             Text("Festivalauftritt").tag(1)
                             Text("Tourauftritt").tag(2)
                         }.pickerStyle(SegmentedPickerStyle())
+                        .padding(.vertical, 8)
                     }
                     
                     Section(header: Text("Veranstaltungsort")) {
-                        Section {
-                            Picker(selection: $selectedStrength, label: Text("Venue")) {
-                                ForEach(0 ..< strengths.count) {
-                                    Text(self.strengths[$0])
-                                    
-                                }
-                            }
+                        NavigationLink(destination: SelectionItemView(selection: $selectVenueViewModel.selectedOption)) {
+                            Text("Veranstaltungsort")
                         }
-                        
                     }
+                    
+                    
+                    Section(header: Text("Logistik und Transport")) {
+                        Button(action: {
+                            print("Buttontriggag")
+                        }) {
+                            Text("Fahrzeug auswählen")
+                        }
+                        Button(action: {
+                            print("Buttontriggag")
+                        }) {
+                            Text("Übernachtung auswählen")
+                        }
+                    }
+                    
+                    
                 }
                 Section {
-                    Button(action: {
-                        print("Delete tapped!")
-                    }) {
-                        HStack {
-                            Text("Event Abschließen")
-                                .fontWeight(.semibold)
-                        }
-                        .frame(minWidth: 0, maxWidth: .infinity)
-                        .padding(14)
-                        .foregroundColor(.white)
-                        .background(ColorManager.primaryDark)
-                        .cornerRadius(8)
-                    }
+                    ButtonFullWidth(label: CreateNewEvent.$label)
                 }
                 .padding(8)
             }
@@ -79,6 +79,30 @@ struct CreateNewEvent: View {
         }
     }
 }
+
+class SelectVenueViewModel: ObservableObject {
+
+    enum Option: String, Identifiable, CaseIterable, CustomStringConvertible {
+        case optionOne
+        case optionTwo
+        case optionThree
+
+        var id: Option {
+            self
+        }
+
+        var description: String {
+            rawValue.prefix(1).uppercased() + rawValue.dropFirst()
+        }
+    }
+
+    @Published var selectedOption: Option = .optionOne {
+        didSet {
+            print("new option selected: \(selectedOption.description)")
+        }
+    }
+}
+
 
 struct CreateNewEvent_Previews: PreviewProvider {
     static var previews: some View {
