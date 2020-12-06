@@ -68,7 +68,12 @@ struct CreateNewEvent: View {
                     
                 }
                 Section {
-                    ButtonFullWidth(label: CreateNewEvent.$label)
+                    Button(action: {
+                        print("Delete tapped!")
+                    }) {
+                        ButtonFullWidth(label: CreateNewEvent.$label)
+                    }
+                    
                 }
                 .padding(8)
             }

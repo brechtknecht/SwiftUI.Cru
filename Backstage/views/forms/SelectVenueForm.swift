@@ -37,7 +37,12 @@ struct SelectionItemView: View {
                 }
             }
             Section {
-                ButtonFullWidth(label: $actionText);
+                Button(action: {
+                    print("Ahh Okay!")
+                }) {
+                    ButtonFullWidth(label: $actionText);
+                }
+                
             }
             .padding(.horizontal, 8)
         }
