@@ -26,21 +26,21 @@ struct SelectionItemView: View {
                     footer: Text("Here is a detailed description of the setting.")
                 ) {
         
-                    ForEach(0 ..< store.venues.count) { index in
+                    ForEach(store.venues, id: \.id) { venue in
                         HStack{
                             Button(action: {
                                 // Trigger Controller
-                                self.selection  = store.venues[index].name
+                                self.selection  = venue.name
                                 
                                 // Pop Navigation State
                                 self.mode.wrappedValue.dismiss()
                                 
                                 
                             }){
-                                Text("\(store.venues[index].name)")
+                                Text("\(venue.name)")
                             }
                             Spacer()
-                            if (self.selection  ==  store.venues[index].name){
+                            if (self.selection  ==  venue.name){
                                 Image(systemName: "checkmark")
                             }
                         }

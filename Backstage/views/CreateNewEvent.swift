@@ -10,6 +10,7 @@ import SwiftUI
 struct CreateNewEvent: View {
     
     @Environment(\.presentationMode) var presentationMode
+    @EnvironmentObject var store : VenueStore
     
     @State var eventName = ""
     @State var eventDate = Date()
@@ -17,7 +18,6 @@ struct CreateNewEvent: View {
     
         
     @State static var label = "Event hinzufügen"
-    
     
     @ObservedObject var selectVenueViewModel = SelectVenueViewModel()
     
@@ -40,12 +40,12 @@ struct CreateNewEvent: View {
                     }
                     
                     
-                    // Custom Selection
+                    // Custom Selection scraped from stackoverflow
                     Section(header: Text("Veranstaltungsort")) {
                         NavigationLink(destination:
-                                        SelectionItemView(
-                                            selection: $selectVenueViewModel.selectedOption
-                                        )
+                                SelectionItemView(
+                                    selection: $selectVenueViewModel.selectedOption
+                                )
                         ) {
                             Text("\(selectVenueViewModel.selectedOption)")                            
                         }
