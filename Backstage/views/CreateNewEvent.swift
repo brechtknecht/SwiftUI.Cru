@@ -47,7 +47,14 @@ struct CreateNewEvent: View {
                                     selection: $selectVenueViewModel.selectedOption
                                 )
                         ) {
-                            Text("\(selectVenueViewModel.selectedOption)")                            
+                            VStack (alignment: .leading) {
+                                Text("\(selectVenueViewModel.selectedOption)")
+                                    .foregroundColor(ColorManager.primaryDark)
+        
+//                                Text("\(venue.location) \(venue.district) \(venue.country)")
+//                                    .foregroundColor(ColorManager.primaryDark)
+//                                    .font(.body)
+                            }
                         }
                     }
                     

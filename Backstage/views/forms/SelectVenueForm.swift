@@ -5,10 +5,9 @@ import SwiftUI
 struct SelectionItemView: View {
 
     @Binding var selection: String
+
     
     @State var actionText = "Neuen Veranstalter hinzufügen"
-    
-    @State var options = ["Freddys Rummelbude", "Zirkus Frankenstein", "Marius Olle-GoKartBahn"]
     
     @State var addNewVenue = false
 
@@ -35,9 +34,15 @@ struct SelectionItemView: View {
                                 // Pop Navigation State
                                 self.mode.wrappedValue.dismiss()
                                 
-                                
                             }){
-                                Text("\(venue.name)")
+                                VStack (alignment: .leading) {
+                                    Text("\(venue.name)")
+                                        .foregroundColor(ColorManager.primaryDark)
+            
+                                    Text("\(venue.location) \(venue.district) \(venue.country)")
+                                        .foregroundColor(ColorManager.primaryDark)
+                                        .font(.body)
+                                }
                             }
                             Spacer()
                             if (self.selection  ==  venue.name){
