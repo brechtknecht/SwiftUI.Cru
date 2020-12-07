@@ -30,11 +30,14 @@ struct AddVenueForm: View {
             }
             .navigationTitle("Venue hinzufügen").font(.subheadline)
             .navigationBarItems(trailing:  Button(action: {
-                store.create(name: venueName, location: venueLocation, district: venueDistrict, country: venueCountry)
+                if !venueName.isEmpty {
+                    store.create(name: venueName, location: venueLocation, district: venueDistrict, country: venueCountry)
+                }
+                
                 // Pop Navigation State
                 self.mode.wrappedValue.dismiss()
             }) {
-                Text("Schließen")
+                Text("Fertig")
             })
         }
     }

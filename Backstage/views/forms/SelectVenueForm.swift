@@ -5,7 +5,8 @@ import SwiftUI
 struct SelectionItemView: View {
 
     @Binding var selection: String
-
+    @Binding var location: String
+    @Binding var selectedID: Int
     
     @State var actionText = "Neuen Veranstalter hinzufügen"
     
@@ -31,6 +32,10 @@ struct SelectionItemView: View {
                                 // Trigger Controller
                                 self.selection  = venue.name
                                 
+                                self.location = venue.location + " " + venue.district + ", " + venue.country
+                                
+                                self.selectedID = venue.id
+                                
                                 // Pop Navigation State
                                 self.mode.wrappedValue.dismiss()
                                 
@@ -42,7 +47,7 @@ struct SelectionItemView: View {
                                     Text("\(venue.location) \(venue.district) \(venue.country)")
                                         .foregroundColor(ColorManager.primaryDark)
                                         .font(.body)
-                                }
+                                }.padding(.vertical, 8)
                             }
                             Spacer()
                             if (self.selection  ==  venue.name){
@@ -65,17 +70,9 @@ struct SelectionItemView: View {
             }
             .padding(8)
         }
-
-
     }
 }
 
 
 
-class SelectVenueViewModel: ObservableObject {
-    @Published var selectedOption: String = "Veranstaltungsort" {
-        didSet {
-            print("new option selected: \(selectedOption.description)")
-        }
-    }
-}
+

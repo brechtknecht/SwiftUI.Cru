@@ -74,9 +74,7 @@
 		991E6371257E494500911D17 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				99A965DF257E4D0600B8B2D7 /* VenueDB.swift */,
-				99A965F3257E687100B8B2D7 /* VenueDBKeys.swift */,
-				99A965E2257E4EAF00B8B2D7 /* Venue.swift */,
+				99A965FB257EA57100B8B2D7 /* Venue */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -112,6 +110,16 @@
 				99A965F7257E884B00B8B2D7 /* VenueForm.swift */,
 			);
 			path = viewModels;
+			sourceTree = "<group>";
+		};
+		99A965FB257EA57100B8B2D7 /* Venue */ = {
+			isa = PBXGroup;
+			children = (
+				99A965DF257E4D0600B8B2D7 /* VenueDB.swift */,
+				99A965F3257E687100B8B2D7 /* VenueDBKeys.swift */,
+				99A965E2257E4EAF00B8B2D7 /* Venue.swift */,
+			);
+			path = Venue;
 			sourceTree = "<group>";
 		};
 		99BCF506257D49BF00F2A7BC = {

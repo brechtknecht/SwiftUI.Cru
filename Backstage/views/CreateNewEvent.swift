@@ -16,7 +16,6 @@ struct CreateNewEvent: View {
     @State var eventDate = Date()
     @State var eventType = 0
     
-        
     @State static var label = "Event hinzufügen"
     
     @ObservedObject var selectVenueViewModel = SelectVenueViewModel()
@@ -44,17 +43,19 @@ struct CreateNewEvent: View {
                     Section(header: Text("Veranstaltungsort")) {
                         NavigationLink(destination:
                                 SelectionItemView(
-                                    selection: $selectVenueViewModel.selectedOption
+                                    selection: $selectVenueViewModel.selectedOption,
+                                    location: $selectVenueViewModel.selectedLocation,
+                                    selectedID: $selectVenueViewModel.selectedID
                                 )
                         ) {
                             VStack (alignment: .leading) {
                                 Text("\(selectVenueViewModel.selectedOption)")
                                     .foregroundColor(ColorManager.primaryDark)
         
-//                                Text("\(venue.location) \(venue.district) \(venue.country)")
-//                                    .foregroundColor(ColorManager.primaryDark)
-//                                    .font(.body)
-                            }
+                                Text("\(selectVenueViewModel.selectedLocation)")
+                                    .foregroundColor(ColorManager.primaryDark)
+                                    .font(.body)
+                            }.padding(.vertical, 8)
                         }
                     }
                     
@@ -92,6 +93,26 @@ struct CreateNewEvent: View {
     }
 }
 
+
+class SelectVenueViewModel: ObservableObject {
+        @Published var selectedOption: String = "Veranstaltungsort" {
+            didSet {
+                print("new option selected: \(selectedOption.description)")
+            }
+        }
+    
+        @Published var selectedID: Int = 0 {
+            didSet {
+                print("Venue ID: \(selectedID)")
+            }
+        }
+    
+        @Published var selectedLocation: String = "Bitte auswählen" {
+            didSet {
+                print("new location selected:")
+            }
+        }
+}
 
 struct CreateNewEvent_Previews: PreviewProvider {
     static var previews: some View {
