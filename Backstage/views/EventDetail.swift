@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct EventDetail: View {
+    @EnvironmentObject var eventStore: EventStore
+
+    @Binding var eventID: Int
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("\(eventID)")
+        Text("\(eventStore.findByID(id: eventID).name)")
+        
+        
     }
 }
 
 struct EventDetail_Previews: PreviewProvider {
     static var previews: some View {
-        EventDetail()
+        EventDetail(eventID: .constant(3503817091713033700))
     }
 }

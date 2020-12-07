@@ -99,7 +99,6 @@ struct CreateNewEvent: View {
                     Button(action: {
                         eventStore.create(name: eventName, date: eventDate, venueID: selectVenueViewModel.selectedID)
                         
-                        
                         // Pop View from Navigation View
                         presentationMode.wrappedValue.dismiss()
                         

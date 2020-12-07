@@ -8,9 +8,16 @@
 import SwiftUI
 
 struct EventList: View {
+    
+    @EnvironmentObject var eventStore: EventStore
+    
     var body: some View {
-        NavigationLink(destination: EventDetail()) {
-            Text("Shiny Shiny Winter Show")
+        ForEach(eventStore.events, id: \.id) { event in
+            NavigationLink(destination:
+                EventDetail(eventID: .constant(event.id))
+            ) {
+                Text("\(event.name)")
+            }
         }
     }
 }

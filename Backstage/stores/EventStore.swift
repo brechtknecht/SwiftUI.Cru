@@ -19,6 +19,15 @@ final class EventStore: ObservableObject {
     init(realm: Realm) {
         results = realm.objects(EventDB.self)
     }
+    
+    func findByID (id: Int) -> EventDB! {
+        do {
+            return try Realm().object(ofType: EventDB.self, forPrimaryKey: id)
+        } catch let error {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
 }
 
 // MARK: - CRUD Actions
