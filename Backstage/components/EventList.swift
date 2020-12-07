@@ -12,11 +12,15 @@ struct EventList: View {
     @EnvironmentObject var eventStore: EventStore
     
     var body: some View {
-        ForEach(eventStore.events, id: \.id) { event in
-            NavigationLink(destination:
-                EventDetail(eventID: .constant(event.id))
-            ) {
-                Text("\(event.name)")
+        VStack (alignment: .leading){
+            ForEach(eventStore.events, id: \.id) { event in
+                NavigationLink(destination:
+                    EventDetail(eventID: .constant(event.id))
+                ) {
+                    EventListItem(
+                        eventName: .constant(event.name)
+                    )
+                }
             }
         }
     }
