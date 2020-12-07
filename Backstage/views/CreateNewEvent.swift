@@ -64,21 +64,15 @@ struct CreateNewEvent: View {
                             Text("Übernachtung auswählen")
                         }
                     }
-                    
-                    
                 }
-                Section {
-                    Button(action: {
-                        print("Delete tapped!")
-                    }) {
-                        ButtonFullWidth(label: CreateNewEvent.$label)
-                    }
-                    
-                }
-                .padding(8)
+                
+//                Button(action: {
+//                    print("Delete tapped!")
+//                }) {
+//                    ButtonFullWidth(label: CreateNewEvent.$label)
+//                }
+//                .padding(8)
             }
-            
-            
             .navigationBarTitle("Event erstellen")
             .navigationBarItems(trailing: HStack {
                 Button(action: {

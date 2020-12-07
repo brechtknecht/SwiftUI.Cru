@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var store: VenueStore
+    
     var body: some View {
         TabView {
             VStack {

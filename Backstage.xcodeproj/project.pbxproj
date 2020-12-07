@@ -10,7 +10,15 @@
 		9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AAD1257D597F004AB2C4 /* ColorManager.swift */; };
 		9956AAD5257D59FA004AB2C4 /* ButtonFullWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AAD4257D59FA004AB2C4 /* ButtonFullWidth.swift */; };
 		9956AADB257D7CDB004AB2C4 /* SelectVenueForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AADA257D7CDB004AB2C4 /* SelectVenueForm.swift */; };
+		998DD3E6257E4C5B00E17E8B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 998DD3E5257E4C5B00E17E8B /* Realm */; };
+		998DD3E8257E4C5B00E17E8B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 998DD3E7257E4C5B00E17E8B /* RealmSwift */; };
 		99A01AE2257D9D5F00C9914D /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 99A01AE1257D9D5F00C9914D /* PartialSheet */; };
+		99A965E0257E4D0600B8B2D7 /* VenueDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965DF257E4D0600B8B2D7 /* VenueDB.swift */; };
+		99A965E3257E4EAF00B8B2D7 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965E2257E4EAF00B8B2D7 /* Venue.swift */; };
+		99A965E7257E4FB200B8B2D7 /* VenueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965E6257E4FB200B8B2D7 /* VenueStore.swift */; };
+		99A965EC257E5C0400B8B2D7 /* AddVenueForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965EB257E5C0400B8B2D7 /* AddVenueForm.swift */; };
+		99A965F0257E677900B8B2D7 /* RealmPersistentInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965EF257E677900B8B2D7 /* RealmPersistentInitializer.swift */; };
+		99A965F4257E687100B8B2D7 /* VenueDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965F3257E687100B8B2D7 /* VenueDBKeys.swift */; };
 		99BCF513257D49BF00F2A7BC /* BackstageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF512257D49BF00F2A7BC /* BackstageApp.swift */; };
 		99BCF515257D49BF00F2A7BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF514257D49BF00F2A7BC /* ContentView.swift */; };
 		99BCF517257D49C000F2A7BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99BCF516257D49C000F2A7BC /* Assets.xcassets */; };
@@ -27,6 +35,12 @@
 		9956AAD1257D597F004AB2C4 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		9956AAD4257D59FA004AB2C4 /* ButtonFullWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFullWidth.swift; sourceTree = "<group>"; };
 		9956AADA257D7CDB004AB2C4 /* SelectVenueForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVenueForm.swift; sourceTree = "<group>"; };
+		99A965DF257E4D0600B8B2D7 /* VenueDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDB.swift; sourceTree = "<group>"; };
+		99A965E2257E4EAF00B8B2D7 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
+		99A965E6257E4FB200B8B2D7 /* VenueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueStore.swift; sourceTree = "<group>"; };
+		99A965EB257E5C0400B8B2D7 /* AddVenueForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVenueForm.swift; sourceTree = "<group>"; };
+		99A965EF257E677900B8B2D7 /* RealmPersistentInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPersistentInitializer.swift; sourceTree = "<group>"; };
+		99A965F3257E687100B8B2D7 /* VenueDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDBKeys.swift; sourceTree = "<group>"; };
 		99BCF50F257D49BF00F2A7BC /* Backstage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Backstage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99BCF512257D49BF00F2A7BC /* BackstageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackstageApp.swift; sourceTree = "<group>"; };
 		99BCF514257D49BF00F2A7BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				998DD3E8257E4C5B00E17E8B /* RealmSwift in Frameworks */,
+				998DD3E6257E4C5B00E17E8B /* Realm in Frameworks */,
 				99A01AE2257D9D5F00C9914D /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,12 +69,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		991E6371257E494500911D17 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				99A965DF257E4D0600B8B2D7 /* VenueDB.swift */,
+				99A965F3257E687100B8B2D7 /* VenueDBKeys.swift */,
+				99A965E2257E4EAF00B8B2D7 /* Venue.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		998FA76F257D89DC000468BE /* forms */ = {
 			isa = PBXGroup;
 			children = (
 				9956AADA257D7CDB004AB2C4 /* SelectVenueForm.swift */,
+				99A965EB257E5C0400B8B2D7 /* AddVenueForm.swift */,
 			);
 			path = forms;
+			sourceTree = "<group>";
+		};
+		99A965E5257E4F8300B8B2D7 /* viewModels */ = {
+			isa = PBXGroup;
+			children = (
+				99A965E6257E4FB200B8B2D7 /* VenueStore.swift */,
+			);
+			path = viewModels;
+			sourceTree = "<group>";
+		};
+		99A965EE257E675D00B8B2D7 /* realm */ = {
+			isa = PBXGroup;
+			children = (
+				99A965EF257E677900B8B2D7 /* RealmPersistentInitializer.swift */,
+			);
+			path = realm;
 			sourceTree = "<group>";
 		};
 		99BCF506257D49BF00F2A7BC = {
@@ -80,6 +123,9 @@
 		99BCF511257D49BF00F2A7BC /* Backstage */ = {
 			isa = PBXGroup;
 			children = (
+				99A965EE257E675D00B8B2D7 /* realm */,
+				99A965E5257E4F8300B8B2D7 /* viewModels */,
+				991E6371257E494500911D17 /* models */,
 				99BCF530257D4D8400F2A7BC /* components */,
 				99BCF522257D4A8A00F2A7BC /* views */,
 				99BCF512257D49BF00F2A7BC /* BackstageApp.swift */,
@@ -140,6 +186,8 @@
 			name = Backstage;
 			packageProductDependencies = (
 				99A01AE1257D9D5F00C9914D /* PartialSheet */,
+				998DD3E5257E4C5B00E17E8B /* Realm */,
+				998DD3E7257E4C5B00E17E8B /* RealmSwift */,
 			);
 			productName = Backstage;
 			productReference = 99BCF50F257D49BF00F2A7BC /* Backstage.app */;
@@ -170,6 +218,7 @@
 			mainGroup = 99BCF506257D49BF00F2A7BC;
 			packageReferences = (
 				99A01AE0257D9D5F00C9914D /* XCRemoteSwiftPackageReference "PartialSheet" */,
+				998DD3E4257E4C5B00E17E8B /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = 99BCF510257D49BF00F2A7BC /* Products */;
 			projectDirPath = "";
@@ -199,14 +248,20 @@
 			files = (
 				99BCF536257D4E9E00F2A7BC /* EventDetail.swift in Sources */,
 				99BCF532257D4D9B00F2A7BC /* EventList.swift in Sources */,
+				99A965F0257E677900B8B2D7 /* RealmPersistentInitializer.swift in Sources */,
 				99BCF528257D4B3A00F2A7BC /* Events.swift in Sources */,
 				9956AAD5257D59FA004AB2C4 /* ButtonFullWidth.swift in Sources */,
+				99A965F4257E687100B8B2D7 /* VenueDBKeys.swift in Sources */,
 				9956AADB257D7CDB004AB2C4 /* SelectVenueForm.swift in Sources */,
 				99BCF524257D4AA600F2A7BC /* Overview.swift in Sources */,
 				99BCF515257D49BF00F2A7BC /* ContentView.swift in Sources */,
 				99BCF513257D49BF00F2A7BC /* BackstageApp.swift in Sources */,
+				99A965EC257E5C0400B8B2D7 /* AddVenueForm.swift in Sources */,
 				9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */,
+				99A965E0257E4D0600B8B2D7 /* VenueDB.swift in Sources */,
 				99BCF52D257D4B4700F2A7BC /* Crew.swift in Sources */,
+				99A965E7257E4FB200B8B2D7 /* VenueStore.swift in Sources */,
+				99A965E3257E4EAF00B8B2D7 /* Venue.swift in Sources */,
 				99BCF539257D4FA100F2A7BC /* CreateNewEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,6 +453,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		998DD3E4257E4C5B00E17E8B /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.2.0;
+			};
+		};
 		99A01AE0257D9D5F00C9914D /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
@@ -409,6 +472,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		998DD3E5257E4C5B00E17E8B /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 998DD3E4257E4C5B00E17E8B /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = Realm;
+		};
+		998DD3E7257E4C5B00E17E8B /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 998DD3E4257E4C5B00E17E8B /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			productName = RealmSwift;
+		};
 		99A01AE1257D9D5F00C9914D /* PartialSheet */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 99A01AE0257D9D5F00C9914D /* XCRemoteSwiftPackageReference "PartialSheet" */;
