@@ -46,11 +46,7 @@ extension VenueStore {
         }
     }
     
-    func toggleBought(venue: Venue) {
-        // TODO: Add Realm update code below
-    }
-    
-    func update(venue: Venue) {
+    func update(venueID: Int, venueName: String, venueLocation: String, venueDistrict: String, venueCountry: String) {
         // TODO: Add Realm update code below
         objectWillChange.send()
         
@@ -59,11 +55,11 @@ extension VenueStore {
             try realm.write {
                 realm.create(VenueDB.self,
                 value: [
-                    VenueDBKeys.id.rawValue: venue.id,
-                    VenueDBKeys.name.rawValue: venue.name,
-                    VenueDBKeys.location.rawValue: venue.location,
-                    VenueDBKeys.district.rawValue: venue.district,
-                    VenueDBKeys.country.rawValue: venue.country
+                    VenueDBKeys.id.rawValue: venueID,
+                    VenueDBKeys.name.rawValue: venueName,
+                    VenueDBKeys.location.rawValue: venueLocation,
+                    VenueDBKeys.district.rawValue: venueDistrict,
+                    VenueDBKeys.country.rawValue: venueCountry
                 ],
                 update: .modified)
             }
@@ -75,6 +71,9 @@ extension VenueStore {
     
     func delete(venueID: Int) {
         // TODO: Add Realm delete code below
+        
+        // Delete Function is here (17:33)
+        // https://www.youtube.com/watch?v=x3T_qyU9WhE
     }
 }
 

@@ -13,9 +13,9 @@ struct AddVenueForm: View {
     @State var venueDistrict = ""
     @State var venueCountry = ""
     
-    // Import Store to have access to the Data
-    @EnvironmentObject var store : VenueStore
     
+    @EnvironmentObject var store: VenueStore
+    // Lets the Enviroment pop the Navigation View
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body : some View {

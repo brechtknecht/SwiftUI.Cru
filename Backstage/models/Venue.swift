@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Venue: Identifiable {
+struct Venue: Identifiable, Hashable {
     let id: Int
     let name: String
     let location: String

@@ -5,15 +5,19 @@ import SwiftUI
 struct SelectionItemView: View {
 
     @Binding var selection: String
+    
     @State var actionText = "Neuen Veranstalter hinzufügen"
     
     @State var options = ["Freddys Rummelbude", "Zirkus Frankenstein", "Marius Olle-GoKartBahn"]
     
     @State var addNewVenue = false
+
+    // Import Store to have access to the Data
+    @EnvironmentObject var store : VenueStore
     
     // Used for popping Navigation State
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-
+    
     var body: some View{
         VStack {
             Form {
@@ -21,19 +25,22 @@ struct SelectionItemView: View {
                     header: Text("VERGANENGE VERANSTALTER"),
                     footer: Text("Here is a detailed description of the setting.")
                 ) {
-                    ForEach(0 ..< options.count, id: \.self) { index in
+        
+                    ForEach(0 ..< store.venues.count) { index in
                         HStack{
                             Button(action: {
                                 // Trigger Controller
-                                self.selection  = options[index]
+                                self.selection  = store.venues[index].name
                                 
                                 // Pop Navigation State
                                 self.mode.wrappedValue.dismiss()
+                                
+                                
                             }){
-                                Text(options[index])
+                                Text("\(store.venues[index].name)")
                             }
                             Spacer()
-                            if (self.selection  ==  options[index]){
+                            if (self.selection  ==  store.venues[index].name){
                                 Image(systemName: "checkmark")
                             }
                         }
