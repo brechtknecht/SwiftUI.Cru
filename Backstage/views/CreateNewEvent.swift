@@ -12,6 +12,9 @@ struct CreateNewEvent: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var store : VenueStore
     
+    
+    @EnvironmentObject var eventStore: EventStore
+    
     @State var eventName = ""
     @State var eventDate = Date()
     @State var eventType = 0
@@ -82,15 +85,28 @@ struct CreateNewEvent: View {
 //                .padding(8)
             }
             .navigationBarTitle("Event erstellen")
-            .navigationBarItems(trailing: HStack {
-                Button(action: {
-                    // Pop View from Navigation View
-                    presentationMode.wrappedValue.dismiss()
-                    
-                }) {
-                    Text("Fertig")
-                }
-            })
+            .navigationBarItems(
+                leading: HStack {
+                    Button(action: {
+                        // Pop View from Navigation View
+                        presentationMode.wrappedValue.dismiss()
+                        
+                    }) {
+                        Text("Abbrechen")
+                    }
+                },
+                trailing: HStack {
+                    Button(action: {
+                        eventStore.create(name: eventName, date: eventDate, venueID: selectVenueViewModel.selectedID)
+                        
+                        
+                        // Pop View from Navigation View
+                        presentationMode.wrappedValue.dismiss()
+                        
+                    }) {
+                        Text("Fertig")
+                    }
+                })
         }
     }
 }

@@ -12,7 +12,9 @@ import UIKit
 struct BackstageApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView().environmentObject(VenueStore(realm: RealmPersistent.initializer()))
+            ContentView()
+                .environmentObject(VenueStore(realm: RealmPersistent.initializer()))
+                .environmentObject(EventStore(realm: RealmPersistent.initializer()))
         }
     }
 }
