@@ -84,7 +84,9 @@ struct CreateNewEvent: View {
             .navigationBarTitle("Event erstellen")
             .navigationBarItems(trailing: HStack {
                 Button(action: {
+                    // Pop View from Navigation View
                     presentationMode.wrappedValue.dismiss()
+                    
                 }) {
                     Text("Fertig")
                 }
