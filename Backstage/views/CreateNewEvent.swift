@@ -149,7 +149,6 @@ struct CreateNewEvent: View {
         
         let uuid = UUID()
         
-        
         let documentsPath = Utilities.helpers.getDocumentsDirectory()
         let writePath = documentsPath.appendingPathComponent(uuid.uuidString)
         
@@ -158,7 +157,6 @@ struct CreateNewEvent: View {
         } catch {
             print("Image could not be Saved to Disk")
         }
-        
         
         return uuid
     }
