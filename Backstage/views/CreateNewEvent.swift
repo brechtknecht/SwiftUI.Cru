@@ -8,24 +8,29 @@
 import SwiftUI
 
 struct CreateNewEvent: View {
-    
+    // Navigation Enviroment
     @Environment(\.presentationMode) var presentationMode
+    
+    // Store Enviroment
     @EnvironmentObject var store : VenueStore
-    
-    
     @EnvironmentObject var eventStore: EventStore
     
+    // Reactive Datapoints for the Form
     @State var eventName = ""
     @State var eventDate = Date()
     @State var eventType = 0
-    
     @State static var label = "Event hinzufügen"
     
+    // UI States
+    @State private var image: Image?
+    @State private var showingImagePicker = false
+    @State private var inputImage: UIImage?
+    
+    // Computed Properties
     @ObservedObject var selectVenueViewModel = SelectVenueViewModel()
     
     var body: some View {
         NavigationView {
-            
             VStack {
                 Form {
                     Section(header: Text("Allgemeine Informationen")) {
@@ -41,6 +46,13 @@ struct CreateNewEvent: View {
                         .padding(.vertical, 8)
                     }
                     
+                    Section(header: Text("Veranstaltungsbild")) {
+                        Button(action: {
+                            self.showingImagePicker = true
+                        }) {
+                            Text("Bitte Bild auswählen")
+                        }
+                    }
                     
                     // Custom Selection scraped from stackoverflow
                     Section(header: Text("Veranstaltungsort")) {
@@ -106,7 +118,14 @@ struct CreateNewEvent: View {
                         Text("Fertig")
                     }
                 })
+                .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                    ImagePicker(image: self.$inputImage)
+                }
         }
+    }
+    func loadImage () {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
     }
 }
 
