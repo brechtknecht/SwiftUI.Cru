@@ -19,6 +19,7 @@ struct CreateNewEvent: View {
     @State var eventName = ""
     @State var eventDate = Date()
     @State var eventType = 0
+    @State var eventTime = Date()
     @State static var label = "Event hinzufügen"
     
     // UI States
@@ -35,9 +36,11 @@ struct CreateNewEvent: View {
                 Form {
                     Section(header: Text("Allgemeine Informationen")) {
                         TextField("Name", text: $eventName)
-                        DatePicker(selection: $eventDate, in: ...Date(), displayedComponents: .date) {
+                        DatePicker(selection: $eventDate, in: Date()..., displayedComponents: .date) {
                             Text("Datum")
                         }
+                        DatePicker("Zeit", selection: $eventTime, displayedComponents: .hourAndMinute)
+                        
                         Picker(selection: $eventType, label: Text("What is your favorite color?")) {
                             Text("Clubauftritt").tag(0)
                             Text("Festivalauftritt").tag(1)
@@ -50,7 +53,17 @@ struct CreateNewEvent: View {
                         Button(action: {
                             self.showingImagePicker = true
                         }) {
-                            Text("Bitte Bild auswählen")
+                            VStack {
+                                if image != nil {
+                                    image?
+                                        .resizable()
+                                        .scaledToFit()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(height: 200)
+                                } else {
+                                    Text("Bitte Bild auswählen")
+                                }
+                            }
                         }
                     }
                     
@@ -109,7 +122,9 @@ struct CreateNewEvent: View {
                 },
                 trailing: HStack {
                     Button(action: {
-                        eventStore.create(name: eventName, date: eventDate, venueID: selectVenueViewModel.selectedID)
+                        let imageUUID = saveImageAndCreateUUID();
+
+                        eventStore.create(name: eventName, date: eventDate, venueID: selectVenueViewModel.selectedID, imageUUID: imageUUID.uuidString)
                         
                         // Pop View from Navigation View
                         presentationMode.wrappedValue.dismiss()
@@ -125,8 +140,30 @@ struct CreateNewEvent: View {
     }
     func loadImage () {
         guard let inputImage = inputImage else { return }
+    
         image = Image(uiImage: inputImage)
     }
+    
+    func saveImageAndCreateUUID () -> UUID {
+        let imageData = inputImage?.pngData() as NSData?
+        
+        let uuid = UUID()
+        
+        
+        let documentsPath = Utilities.helpers.getDocumentsDirectory()
+        let writePath = documentsPath.appendingPathComponent(uuid.uuidString)
+        
+        do {
+            try imageData?.write(to: writePath, options: .atomic)
+        } catch {
+            print("Image could not be Saved to Disk")
+        }
+        
+        
+        return uuid
+    }
+    
+    
 }
 
 

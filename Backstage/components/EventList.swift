@@ -15,7 +15,10 @@ struct EventList: View {
         VStack (alignment: .leading){
             ForEach(eventStore.events, id: \.id) { event in
                 NavigationLink(destination:
-                    EventDetail(eventID: .constant(event.id))
+                    EventDetail(
+                        eventID: .constant(event.id),
+                        eventImage: .constant(event.imageUUID)
+                    )
                 ) {
                     EventListItem(
                         eventName: .constant(event.name)

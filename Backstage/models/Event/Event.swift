@@ -6,12 +6,14 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct Event: Identifiable, Hashable {
     let id: Int
     let name: String
     let date: Date
     let venueID: Int
+    let imageUUID: String
 }
 
 extension Event {
@@ -20,5 +22,6 @@ extension Event {
         name = eventDB.name
         date = eventDB.date
         venueID = eventDB.venueID
+        imageUUID = eventDB.imageUUID
     }
 }

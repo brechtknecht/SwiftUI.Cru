@@ -7,6 +7,7 @@
 
 import Foundation
 import RealmSwift
+import SwiftUI
 
 final class EventStore: ObservableObject {
     private var results: Results<EventDB>
@@ -32,25 +33,27 @@ final class EventStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension EventStore {
-    func create(name: String, date: Date, venueID: Int) {
+    func create(name: String, date: Date, venueID: Int, imageUUID: String) {
         
         objectWillChange.send()
-
+        
         do {
-          let realm = try Realm()
-
-          let refDB = EventDB()
-          refDB.id = UUID().hashValue
-          refDB.name = name
-          refDB.date = date
-          refDB.venueID = venueID
-
-          try realm.write {
-            realm.add(refDB)
-          }
+            let realm = try Realm()
+            
+            let refDB = EventDB()
+            refDB.id = UUID().hashValue
+            refDB.name = name
+            refDB.date = date
+            refDB.venueID = venueID
+            refDB.imageUUID = imageUUID
+            
+            
+            try realm.write {
+                realm.add(refDB)
+            }
         } catch let error {
-          // Handle error
-          print(error.localizedDescription)
+            // Handle error
+            print(error.localizedDescription)
         }
     }
     
