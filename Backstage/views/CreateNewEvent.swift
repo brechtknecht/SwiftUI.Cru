@@ -145,7 +145,7 @@ struct CreateNewEvent: View {
     }
     
     func saveImageAndCreateUUID () -> UUID {
-        let imageData = inputImage?.pngData() as NSData?
+        let imageData = inputImage?.png() as NSData?
         
         let uuid = UUID()
         

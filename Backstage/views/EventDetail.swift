@@ -14,14 +14,26 @@ struct EventDetail: View {
     @Binding var eventImage: String
     
     var body: some View {
-        
         let image = Utilities.helpers.loadImageFromUUID(imageUUID: eventImage)
-        Image(uiImage: image)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
         
-        Text("\(eventID)")
-        Text("\(eventStore.findByID(id: eventID).name)")
+        ScrollView {
+            GeometryReader { geometry in
+                Image(uiImage: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY)
+                    .clipped()
+                    .offset(y: -geometry.frame(in: .global).minY)
+            }
+            .frame(height: 400)
+        }
+        .edgesIgnoringSafeArea(.top)
+        VStack {
+            Text("\(eventID)")
+            Text("\(eventStore.findByID(id: eventID).name)")
+        }
+        
+        
     }
 }
 
