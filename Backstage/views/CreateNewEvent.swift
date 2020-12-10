@@ -20,6 +20,7 @@ struct CreateNewEvent: View {
     @State var eventDate = Date()
     @State var eventType = 0
     @State var eventTime = Date()
+    @State var eventFee = ""
     @State static var label = "Event hinzufügen"
     
     // UI States
@@ -100,6 +101,15 @@ struct CreateNewEvent: View {
                             Text("Übernachtung auswählen")
                         }
                     }
+                    
+                    Section (header: Text("Kosten")) {
+                        HStack {
+                            TextField("Honorar", text: $eventFee)
+                                .keyboardType(.numberPad)
+                            Text("€")
+                        }
+                        
+                    }
                 }
                 
 //                Button(action: {
@@ -160,8 +170,6 @@ struct CreateNewEvent: View {
         
         return uuid
     }
-    
-    
 }
 
 

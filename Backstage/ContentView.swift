@@ -26,7 +26,7 @@ struct ContentView: View {
             }
             .tabItem({
                 TabLabel(
-                    imageName: "music.note.house.fill",
+                    imageName: "guitars.fill",
                     label: "Events"
                 )
             })

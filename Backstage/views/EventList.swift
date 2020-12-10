@@ -45,7 +45,6 @@ struct EventList: View {
                     }
                 }
             }
-            .listStyle(GroupedListStyle())
         }
     }
 }
