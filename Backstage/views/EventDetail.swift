@@ -11,10 +11,11 @@ struct EventDetail: View {
     @EnvironmentObject var eventStore: EventStore
 
     @Binding var eventID: Int
-    @Binding var eventImage: String
     
     var body: some View {
-        let image = Utilities.helpers.loadImageFromUUID(imageUUID: eventImage)
+        let currentEvent = eventStore.findByID(id: eventID)
+        
+        let image = Utilities.helpers.loadImageFromUUID(imageUUID: currentEvent?.imageUUID ?? "")
         
         ScrollView {
             GeometryReader { geometry in
@@ -40,8 +41,7 @@ struct EventDetail: View {
 struct EventDetail_Previews: PreviewProvider {
     static var previews: some View {
         EventDetail(
-            eventID: .constant(3503817091713033700),
-            eventImage: .constant("Empty Image")
+            eventID: .constant(3503817091713033700)
         )
     }
 }

@@ -21,8 +21,7 @@ struct EventList: View {
                     
                     NavigationLink(destination:
                         EventDetail(
-                            eventID: .constant(event.id),
-                            eventImage: .constant(event.imageUUID)
+                            eventID: .constant(event.id)
                         )
                     ) {
                         VStack (alignment: .leading){
