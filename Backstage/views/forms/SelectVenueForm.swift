@@ -17,11 +17,11 @@ struct SelectionItemView: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
+        NavigationView {
         VStack {
-            NavigationView {
+            
                 VStack {
                     Form {
-                        
                         Section(
                             header: Text("VERGANENGE VERANSTALTER"),
                             footer: Text("Here is a detailed description of the setting.")
@@ -60,7 +60,6 @@ struct SelectionItemView: View {
                                 )
                             }
                         }
-                        
                     }
                     Spacer()
                     Section {
