@@ -78,11 +78,26 @@ extension VenueStore {
         }
     }
     
-    func delete(venueID: Int) {
-        // TODO: Add Realm delete code below
-        
-        // Delete Function is here (17:33)
-        // https://www.youtube.com/watch?v=x3T_qyU9WhE
-    }
+//    func delete(venueID: Int) {
+//        // TODO: Add Realm delete code below
+//
+//        // Delete Function is here (17:33)
+//        // https://www.youtube.com/watch?v=x3T_qyU9WhE
+//        
+//        objectWillChange.send()
+//
+//        guard let venueDB = results.first(where: { $0.id === venueID }) else {
+//            return
+//        }
+//
+//        do {
+//            let realm = try Realm()
+//            try realm.write {
+//                realm.delete(venueDB)
+//            }
+//        } catch let err {
+//            print(err.localizedDescription)
+//        }
+//    }
 }
 
