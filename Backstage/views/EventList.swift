@@ -15,36 +15,54 @@ struct EventList: View {
     var body: some View {
         VStack (alignment: .leading){
             List {
-                ForEach(eventStore.events, id: \.id) { event in
-                    
-                    let venue = venueStore.findByID(id: event.venueID)
-                    
-                    NavigationLink(destination:
-                        EventDetail(
-                            eventID: .constant(event.id)
-                        )
-                    ) {
-                        VStack (alignment: .leading){
-                            let image = Utilities.helpers.loadImageFromUUID(imageUUID: event.imageUUID)
-                            Image(uiImage: image)
-                                .resizable()
-                                .frame(height: 300)
-                                .padding(8)
-                            
-                            Text(event.name)
-                                .font(.headline)
-                            
-                            // IMPORTANT: Test if venue is nil — prevent crashes from empty data
-                            if venue != nil {
-                                Text("\(venue!.name) " + "\(venue!.location) " + "\(venue!.district), " + "\(venue!.country)")
-                            } else {
-                                Text("Kein Veranstaltungsort angegeben")
+                Section {
+                    ForEach(eventStore.events, id: \.id) { event in
+                        
+                        let venue = venueStore.findByID(id: event.venueID)
+                        
+                        NavigationLink(destination:
+                                        EventDetail(
+                                            eventID: .constant(event.id)
+                                        )
+                        ) {
+                            HStack (alignment: .top) {
+                                let image = Utilities.helpers.loadImageFromUUID(imageUUID: event.imageUUID)
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .frame(width: 150)
+                                    .cornerRadius(4)
+                                    .layoutPriority(0.5)
+    
+                                VStack (alignment: .leading){
+                                    Text(event.name)
+                                        .font(.title3)
+                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                          
+                                    Spacer()
+                                    // IMPORTANT: Test if venue is nil — prevent crashes from empty data
+                                    if venue != nil {
+                                        let text = "\(venue!.name) " + "\(venue!.location) " + "\(venue!.district), " + "\(venue!.country)"
+                                        Text(text)
+                                            .font(.subheadline)
+                                            
+                                            
+                                    } else {
+                                        Text("Kein Veranstaltungsort angegeben")
+                                            .font(.subheadline)
+                                    }
+                                }
+                                .layoutPriority(1.5)
                             }
+                            .frame(height: 150)
                         }
                     }
                 }
+                .padding(.vertical, 8)
             }
+            
         }
+        .listStyle(InsetGroupedListStyle())
+        .environment(\.horizontalSizeClass, .regular)
     }
 }
 
