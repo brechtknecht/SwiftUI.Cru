@@ -36,6 +36,7 @@
 		99BCF532257D4D9B00F2A7BC /* EventList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF531257D4D9B00F2A7BC /* EventList.swift */; };
 		99BCF536257D4E9E00F2A7BC /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF535257D4E9E00F2A7BC /* EventDetail.swift */; };
 		99BCF539257D4FA100F2A7BC /* CreateNewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF538257D4FA100F2A7BC /* CreateNewEvent.swift */; };
+		99C0222D258573720031538C /* CEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C0222C258573720031538C /* CEditButton.swift */; };
 		99F16B172582B6A000F3AB97 /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F16B162582B6A000F3AB97 /* BindingExtension.swift */; };
 		99F3B86D25803BAE00113ADE /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F3B86C25803BAE00113ADE /* Utilities.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		99BCF531257D4D9B00F2A7BC /* EventList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventList.swift; sourceTree = "<group>"; };
 		99BCF535257D4E9E00F2A7BC /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		99BCF538257D4FA100F2A7BC /* CreateNewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEvent.swift; sourceTree = "<group>"; };
+		99C0222C258573720031538C /* CEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEditButton.swift; sourceTree = "<group>"; };
 		99F16B162582B6A000F3AB97 /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
 		99F3B86C25803BAE00113ADE /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +215,7 @@
 			children = (
 				9956AAD4257D59FA004AB2C4 /* ButtonFullWidth.swift */,
 				9941965D257FB3E30090AD0F /* ImagePicker.swift */,
+				99C0222C258573720031538C /* CEditButton.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				99A965FF257EB2A600B8B2D7 /* Event.swift in Sources */,
 				9956AADB257D7CDB004AB2C4 /* SelectVenueForm.swift in Sources */,
 				99F16B172582B6A000F3AB97 /* BindingExtension.swift in Sources */,
+				99C0222D258573720031538C /* CEditButton.swift in Sources */,
 				99BCF524257D4AA600F2A7BC /* Overview.swift in Sources */,
 				99BCF515257D49BF00F2A7BC /* ContentView.swift in Sources */,
 				99BCF513257D49BF00F2A7BC /* BackstageApp.swift in Sources */,

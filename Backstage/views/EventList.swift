@@ -12,6 +12,8 @@ struct EventList: View {
     @EnvironmentObject var eventStore: EventStore
     @EnvironmentObject var venueStore: VenueStore
     
+    @Environment(\.editMode) var editMode
+    
     var body: some View {
         VStack (alignment: .leading){
             List {
@@ -21,9 +23,9 @@ struct EventList: View {
                         let venue = venueStore.findByID(id: event.venueID)
                         
                         NavigationLink(destination:
-                                        EventDetail(
-                                            eventID: .constant(event.id)
-                                        )
+                            EventDetail(
+                                eventID: .constant(event.id)
+                            )
                         ) {
                             HStack (alignment: .top) {
                                 let image = Utilities.helpers.loadImageFromUUID(imageUUID: event.imageUUID)
@@ -54,17 +56,28 @@ struct EventList: View {
                                 .layoutPriority(1.5)
                             }
                             .frame(height: 150)
+                    
                         }
-                    }
+                    }.onDelete(perform: onDelete)
                 }
                 .padding(.vertical, 8)
-            }
+                
+            }.environment(\.editMode, editMode)
             
         }
         .listStyle(InsetGroupedListStyle())
+        
         .environment(\.horizontalSizeClass, .regular)
+        
+    }
+    
+    
+    
+    private func onDelete(offsets: IndexSet) {
+        print("Deletion called")
     }
 }
+
 
 struct EventList_Previews: PreviewProvider {
     static var previews: some View {
