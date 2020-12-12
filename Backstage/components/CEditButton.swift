@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CEditButton: View {
-    
     @Environment(\.editMode) var editMode
     
     private var isEditing : Bool {
@@ -22,7 +21,7 @@ struct CEditButton: View {
             }
         },
         label: {
-            isEditing ? Text("Bearbeiten") : Text("Fertig") 
+            isEditing ? Text("Bearbeiten") : Text("Fertig")
         })
     }
 }

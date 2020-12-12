@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct EventList: View {
     
@@ -18,7 +19,7 @@ struct EventList: View {
         VStack (alignment: .leading){
             List {
                 Section {
-                    ForEach(eventStore.events, id: \.id) { event in
+                    ForEach(eventStore.events, id: \.self.id) { event in
                         
                         let venue = venueStore.findByID(id: event.venueID)
                         
@@ -73,8 +74,8 @@ struct EventList: View {
     
     
     
-    private func onDelete(offsets: IndexSet) {
-        print("Deletion called")
+    private func onDelete(with indexSet: IndexSet) {
+        eventStore.delete(indexSet: indexSet)
     }
 }
 

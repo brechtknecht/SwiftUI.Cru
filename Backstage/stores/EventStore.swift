@@ -57,4 +57,21 @@ extension EventStore {
         }
     }
     
+    
+    
+    func delete(indexSet: IndexSet) {
+        objectWillChange.send()
+        
+        do {
+            let realm = try Realm()
+        
+            indexSet.forEach ({ index in
+                try! realm.write {
+                    realm.delete(self.results[index])
+                }
+            })
+        } catch let err {
+            print(err.localizedDescription)
+        }
+    }
 }
