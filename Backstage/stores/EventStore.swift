@@ -57,8 +57,6 @@ extension EventStore {
         }
     }
     
-    
-    
     func delete(indexSet: IndexSet) {
         objectWillChange.send()
         

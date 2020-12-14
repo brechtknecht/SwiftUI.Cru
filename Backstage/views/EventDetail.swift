@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct EventDetail: View {
-    @EnvironmentObject var eventStore: EventStore
-
     @Binding var eventID: Int
     
+    @EnvironmentObject var eventStore: EventStore
+    
     var body: some View {
-        let currentEvent = eventStore.findByID(id: eventID)
         
-        let image = Utilities.helpers.loadImageFromUUID(imageUUID: currentEvent?.imageUUID ?? "")
+        let eventDetailViewModel = EventDetailViewModel(eventStore: eventStore, eventID: eventID)
         
         ScrollView {
             GeometryReader { geometry in
-                Image(uiImage: image)
+                Image(uiImage: eventDetailViewModel.getEventHeaderImage())
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY)
@@ -31,11 +30,32 @@ struct EventDetail: View {
         .edgesIgnoringSafeArea(.top)
         VStack {
             Text("\(eventID)")
-            Text("\(eventStore.findByID(id: eventID).name)")
+            Text("\(eventDetailViewModel.currentEvent.name)")
         }
-        
-        
     }
+}
+
+class EventDetailViewModel: ObservableObject {
+    
+    let eventID: Int
+    let eventStore: EventStore
+    
+    // Initialization is needed to provide access to event Store methods
+    private var _currentEvent: EventDB!
+    var currentEvent: EventDB {
+        return _currentEvent
+    }
+
+    init(eventStore: EventStore, eventID: Int) {
+        self.eventID = eventID
+        self.eventStore = eventStore
+        self._currentEvent = self.eventStore.findByID(id: eventID)
+    }
+        
+    func getEventHeaderImage () -> UIImage {
+        return Utilities.helpers.loadImageFromUUID(imageUUID: self.currentEvent.imageUUID)
+    }
+    
 }
 
 struct EventDetail_Previews: PreviewProvider {
