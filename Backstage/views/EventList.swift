@@ -16,9 +16,15 @@ struct EventList: View {
     @Environment(\.editMode) var editMode
     
     var body: some View {
+        let viewModel = EventListViewModel()
+        
+        
         VStack (alignment: .leading){
+            Text("Kommende Veranstaltungen")
+                .font(.headline)
+                .padding(.horizontal, 20)
             List {
-                Section {
+                Section (){
                     ForEach(eventStore.events, id: \.self.id) { event in
                         
                         let venue = venueStore.findByID(id: event.venueID)
@@ -41,6 +47,8 @@ struct EventList: View {
                                     Text(event.name)
                                         .font(.title3)
                                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                    Text(viewModel.convertDate(date: event.date))
+                                        .font(.subheadline)
                                           
                                     Spacer()
                                     // IMPORTANT: Test if venue is nil — prevent crashes from empty data
@@ -67,8 +75,7 @@ struct EventList: View {
             }
             .environment(\.editMode, editMode)
         }
-//        .listStyle(InsetGroupedListStyle())
-        .listStyle(InsetListStyle())
+        .listStyle(PlainListStyle())
         .padding(0)
         .environment(\.horizontalSizeClass, .regular)
         
@@ -78,6 +85,21 @@ struct EventList: View {
     private func onDelete(with indexSet: IndexSet) {
         eventStore.delete(indexSet: indexSet)
     }
+}
+
+class EventListViewModel: ObservableObject {
+    
+    init () {
+        
+    }
+    
+    func convertDate (date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd. MMM, yyyy"
+        
+        return formatter.string(from: date)
+    }
+    
 }
 
 
