@@ -27,9 +27,22 @@ struct EventDetail: View {
                         .offset(y: -geometry.frame(in: .global).minY)
                 }
                 .frame(height: 400)
-                Text("\(eventID)")
-                    .font(.title)
+                
+                GeometryReader { geometry in
+                    Rectangle()
+                        .frame(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY)
+                        .clipped()
+                        .offset(y: -geometry.frame(in: .global).minY)
+                        .opacity(0.4)
+                        .foregroundColor(viewModel.generateBackgroundFromImage())
+                }
+                .frame(height: 400)
+                
+                Text("\(viewModel.currentEvent.name)")
+                    .font(.largeTitle)
                     .fontWeight(.bold)
+                    .foregroundColor(Color.white)
+                    
             }
             
         }
@@ -60,6 +73,10 @@ class EventDetailViewModel: ObservableObject {
         
     func getEventHeaderImage () -> UIImage {
         return Utilities.helpers.loadImageFromUUID(imageUUID: self.currentEvent.imageUUID)
+    }
+    
+    func generateBackgroundFromImage () -> Color {
+        return Color(self.getEventHeaderImage().averageColor ?? .clear)
     }
     
 }
