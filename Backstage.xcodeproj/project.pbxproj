@@ -21,7 +21,6 @@
 		99A965EC257E5C0400B8B2D7 /* AddVenueForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965EB257E5C0400B8B2D7 /* AddVenueForm.swift */; };
 		99A965F0257E677900B8B2D7 /* RealmPersistentInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965EF257E677900B8B2D7 /* RealmPersistentInitializer.swift */; };
 		99A965F4257E687100B8B2D7 /* VenueDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965F3257E687100B8B2D7 /* VenueDBKeys.swift */; };
-		99A965F8257E884B00B8B2D7 /* VenueForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965F7257E884B00B8B2D7 /* VenueForm.swift */; };
 		99A965FF257EB2A600B8B2D7 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965FE257EB2A600B8B2D7 /* Event.swift */; };
 		99A96603257EB31600B8B2D7 /* EventDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A96602257EB31600B8B2D7 /* EventDB.swift */; };
 		99A96606257EB48800B8B2D7 /* EventDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A96605257EB48800B8B2D7 /* EventDBKeys.swift */; };
@@ -53,7 +52,6 @@
 		99A965EB257E5C0400B8B2D7 /* AddVenueForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddVenueForm.swift; sourceTree = "<group>"; };
 		99A965EF257E677900B8B2D7 /* RealmPersistentInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmPersistentInitializer.swift; sourceTree = "<group>"; };
 		99A965F3257E687100B8B2D7 /* VenueDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDBKeys.swift; sourceTree = "<group>"; };
-		99A965F7257E884B00B8B2D7 /* VenueForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueForm.swift; sourceTree = "<group>"; };
 		99A965FE257EB2A600B8B2D7 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		99A96602257EB31600B8B2D7 /* EventDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDB.swift; sourceTree = "<group>"; };
 		99A96605257EB48800B8B2D7 /* EventDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDBKeys.swift; sourceTree = "<group>"; };
@@ -124,14 +122,6 @@
 			path = realm;
 			sourceTree = "<group>";
 		};
-		99A965F6257E883900B8B2D7 /* viewModels */ = {
-			isa = PBXGroup;
-			children = (
-				99A965F7257E884B00B8B2D7 /* VenueForm.swift */,
-			);
-			path = viewModels;
-			sourceTree = "<group>";
-		};
 		99A965FB257EA57100B8B2D7 /* Venue */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,7 +162,6 @@
 			isa = PBXGroup;
 			children = (
 				99F3B86B25803B8600113ADE /* utilities */,
-				99A965F6257E883900B8B2D7 /* viewModels */,
 				99A965EE257E675D00B8B2D7 /* realm */,
 				99A965E5257E4F8300B8B2D7 /* stores */,
 				991E6371257E494500911D17 /* models */,
@@ -325,7 +314,6 @@
 				99BCF515257D49BF00F2A7BC /* ContentView.swift in Sources */,
 				99BCF513257D49BF00F2A7BC /* BackstageApp.swift in Sources */,
 				99A965EC257E5C0400B8B2D7 /* AddVenueForm.swift in Sources */,
-				99A965F8257E884B00B8B2D7 /* VenueForm.swift in Sources */,
 				9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */,
 				99A965E0257E4D0600B8B2D7 /* VenueDB.swift in Sources */,
 				99BCF52D257D4B4700F2A7BC /* Crew.swift in Sources */,

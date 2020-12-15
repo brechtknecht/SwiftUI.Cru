@@ -43,6 +43,28 @@ struct AddVenueForm: View {
     }
 }
 
+class AddVenueFormViewModel: ObservableObject {
+    @Published var name = ""
+    @Published var location = ""
+    @Published var district = ""
+    @Published var country = ""
+    
+    var venueItemId: Int?
+    
+    var updating: Bool {
+        venueItemId != nil
+    }
+    
+    init() {}
+    
+    init(_ venue: Venue) {
+        name = venue.name
+        location = venue.location
+        district = venue.district
+        country = venue.country
+    }
+}
+
 struct AddVenueForm_Previews: PreviewProvider {
     static var previews: some View {
         AddVenueForm()
