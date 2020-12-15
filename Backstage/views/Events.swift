@@ -16,11 +16,12 @@ struct Events: View {
     @Environment(\.editMode) var editMode
     
     @EnvironmentObject var eventStore: EventStore
+    @EnvironmentObject var venueStore: VenueStore
     
     var body: some View {
         NavigationView {
             EventList()
-                .environment(\.editMode, editMode)
+            .environment(\.editMode, editMode)
             .navigationBarTitle("Veranstaltungen")
             .navigationBarItems(
                 leading: CEditButton()

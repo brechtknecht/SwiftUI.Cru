@@ -11,14 +11,16 @@ struct SelectionItemView: View {
     @State var addNewVenue = false
     
     // Import Store to have access to the Data
-    @EnvironmentObject var store : VenueStore
+    @EnvironmentObject var venueStore : VenueStore
     
     // Used for popping Navigation State
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
+    @Environment(\.editMode) var editMode
+    
     var body: some View {
         NavigationView {
-        VStack {
+            VStack {
             
                 VStack {
                     Form {
@@ -27,7 +29,7 @@ struct SelectionItemView: View {
                             footer: Text("Here is a detailed description of the setting.")
                         ) {
                             List {
-                                ForEach(store.venues, id: \.id) { venue in
+                                ForEach(venueStore.venues, id: \.id) { venue in
                                     HStack{
                                         Button(action: {
                                             // Trigger Controller
@@ -58,7 +60,7 @@ struct SelectionItemView: View {
                                 }.onDelete(
                                     perform: delete
                                 )
-                            }
+                            }.environment(\.editMode, editMode)
                         }
                     }
                     Spacer()
@@ -72,13 +74,17 @@ struct SelectionItemView: View {
                         }
                     }
                     .padding(8)
-                }.navigationBarItems(trailing: EditButton())
+                }
             }
-        }
+        }.navigationBarItems(
+            trailing: CEditButton()
+                .disabled(venueStore.venues.count == 0)
+        )
+        .environment(\.editMode, editMode)
     }
     
-    func delete(at offsets: IndexSet) {
-        print("Delete Entry")
+    func delete(with indexSet: IndexSet) {
+        venueStore.delete(indexSet: indexSet)
     }
 }
 

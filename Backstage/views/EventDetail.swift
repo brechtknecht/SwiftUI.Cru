@@ -102,14 +102,7 @@ class EventDetailViewModel: ObservableObject {
     }
     
     func getEventHeaderImage() -> UIImage {
-        let image = Utilities.helpers.loadImageFromUUID(imageUUID: self.currentEvent.imageUUID)
-        
-        /// Uses UIImage extension to compress the image, for maximum performance
-        if let imageData = image.jpeg(.lowest) {
-            print(imageData.count)
-        }
-        
-        return image
+        return Utilities.helpers.loadImageFromUUID(imageUUID: self.currentEvent.imageUUID)
     }
     
     func generateBackgroundFromImage () -> Color {
@@ -117,7 +110,7 @@ class EventDetailViewModel: ObservableObject {
     }
     
     func getVenue () -> VenueDB {
-        return venueStore.findByID(id: self.currentEvent.venueID)
+        return venueStore.findByID(id: self.currentEvent.venueID) ?? VenueDB()
     }
     
     func convertDate (date: Date) -> String {

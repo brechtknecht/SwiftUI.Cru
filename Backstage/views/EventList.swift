@@ -53,7 +53,7 @@ struct EventList: View {
                                     Spacer()
                                     // IMPORTANT: Test if venue is nil — prevent crashes from empty data
                                     if venue != nil {
-                                        let text = "\(venue!.name) " + "\(venue!.location) " + "\(venue!.district), " + "\(venue!.country)"
+                                        let text = "\(viewModel.venueString(venue: venue))"
                                         Text(text)
                                             .font(.subheadline)
                                             
@@ -89,8 +89,9 @@ struct EventList: View {
 
 class EventListViewModel: ObservableObject {
     
+    
     init () {
-        
+    
     }
     
     func convertDate (date: Date) -> String {
@@ -98,6 +99,15 @@ class EventListViewModel: ObservableObject {
         formatter.dateFormat = "dd. MMM, yyyy"
         
         return formatter.string(from: date)
+    }
+    
+    func venueString (venue: VenueDB?) -> String {
+        let venueName = venue!.name
+        let venueLocation = venue!.location
+        let venueDistict = venue!.district
+        let venueCountry = venue!.country
+        
+        return venueName + ", " + venueLocation + " — " + venueDistict + " " + venueCountry
     }
     
 }

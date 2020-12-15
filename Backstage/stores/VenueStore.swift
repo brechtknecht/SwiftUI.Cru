@@ -78,24 +78,17 @@ extension VenueStore {
         }
     }
     
-    func delete(venueID: Int) {
-        // TODO: Add Realm delete code below
-
-        // Delete Function is here (17:33)
-        // https://www.youtube.com/watch?v=x3T_qyU9WhE
-        
+    func delete(indexSet: IndexSet) {
         objectWillChange.send()
-
+        
         do {
             let realm = try Realm()
-            
-            let venueRef = realm.objects(VenueDB.self).filter("venueID = %@", venueID).first
-            
-            try realm.write {
-                if let venue = venueRef {
-                    realm.delete(venue)
+        
+            indexSet.forEach ({ index in
+                try! realm.write {
+                    realm.delete(self.results[index])
                 }
-            }
+            })
         } catch let err {
             print(err.localizedDescription)
         }
