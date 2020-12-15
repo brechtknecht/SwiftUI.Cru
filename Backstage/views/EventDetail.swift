@@ -14,23 +14,29 @@ struct EventDetail: View {
     
     var body: some View {
         
-        let eventDetailViewModel = EventDetailViewModel(eventStore: eventStore, eventID: eventID)
+        let viewModel = EventDetailViewModel(eventStore: eventStore, eventID: eventID)
         
         ScrollView {
-            GeometryReader { geometry in
-                Image(uiImage: eventDetailViewModel.getEventHeaderImage())
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY)
-                    .clipped()
-                    .offset(y: -geometry.frame(in: .global).minY)
+            ZStack {
+                GeometryReader { geometry in
+                    Image(uiImage: viewModel.getEventHeaderImage())
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY)
+                        .clipped()
+                        .offset(y: -geometry.frame(in: .global).minY)
+                }
+                .frame(height: 400)
+                Text("\(eventID)")
+                    .font(.title)
+                    .fontWeight(.bold)
             }
-            .frame(height: 400)
+            
         }
         .edgesIgnoringSafeArea(.top)
         VStack {
             Text("\(eventID)")
-            Text("\(eventDetailViewModel.currentEvent.name)")
+            Text("\(viewModel.currentEvent.name)")
         }
     }
 }
