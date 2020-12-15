@@ -28,14 +28,15 @@ struct EventList: View {
                                 eventID: .constant(event.id)
                             )
                         ) {
-                            HStack (alignment: .top) {
+                            HStack (alignment: .top, spacing: 8) {
                                 let image = Utilities.helpers.loadImageFromUUID(imageUUID: event.imageUUID)
                                 Image(uiImage: image)
                                     .resizable()
+                                    .aspectRatio(contentMode: .fill)
                                     .frame(width: 150)
                                     .cornerRadius(4)
-                                    .layoutPriority(0.5)
-    
+                                    .layoutPriority(1)
+                    
                                 VStack (alignment: .leading){
                                     Text(event.name)
                                         .font(.title3)
@@ -54,24 +55,24 @@ struct EventList: View {
                                             .font(.subheadline)
                                     }
                                 }
-                                .layoutPriority(1.5)
+                                .layoutPriority(4)
                             }
-                            .frame(height: 150)
+                            .frame(height: 125)
                     
                         }
                     }.onDelete(perform: onDelete)
                 }
                 .padding(.vertical, 8)
                 
-            }.environment(\.editMode, editMode)
-            
+            }
+            .environment(\.editMode, editMode)
         }
-        .listStyle(InsetGroupedListStyle())
-        
+//        .listStyle(InsetGroupedListStyle())
+        .listStyle(InsetListStyle())
+        .padding(0)
         .environment(\.horizontalSizeClass, .regular)
         
     }
-    
     
     
     private func onDelete(with indexSet: IndexSet) {

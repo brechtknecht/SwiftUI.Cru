@@ -11,70 +11,61 @@ struct EventDetail: View {
     @Binding var eventID: Int
     
     @EnvironmentObject var eventStore: EventStore
+    @EnvironmentObject var venueStore: VenueStore
     
     var body: some View {
         
-        let viewModel = EventDetailViewModel(eventStore: eventStore, eventID: eventID)
+        let viewModel = EventDetailViewModel(eventStore: eventStore, eventID: eventID, venueStore: venueStore)
         
         ScrollView {
-            ZStack {
-                GeometryReader { geometry in
-                    let geometryWidth = geometry.size.width
-                    let geometryHeight = geometry.size.height
-                    let geometryFrame = geometry.frame(in: .global).minY
-                    
-                    ZStack {
-                        Image(uiImage: viewModel.eventImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: geometryWidth, height: geometryHeight + geometryFrame)
-                            .clipped()
-                            .offset(y: -geometryFrame)
-                        Rectangle()
-                            .frame(width: geometryWidth, height: geometryHeight + geometryFrame)
-                            .clipped()
-                            .offset(y: -geometryFrame)
-                            .opacity(0.4)
-                            .foregroundColor(Color.black)
+            VStack {
+                ZStack {
+                    GeometryReader { geometry in
+                        let geometryWidth = geometry.size.width
+                        let geometryHeight = geometry.size.height
+                        let geometryFrame = geometry.frame(in: .global).minY
+                        
+                        ZStack {
+                            Image(uiImage: viewModel.eventImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometryWidth, height: geometryHeight + geometryFrame)
+                                .clipped()
+                                .offset(y: -geometryFrame)
+                            Rectangle()
+                                .frame(width: geometryWidth, height: geometryHeight + geometryFrame)
+                                .clipped()
+                                .offset(y: -geometryFrame)
+                                .opacity(0.6)
+                                .foregroundColor(viewModel.eventImageBackground)
+                        }
+                        
+                    }
+                    .frame(height: 400)
+                    VStack {
+                        Text("\(viewModel.convertDate(date: viewModel.currentEvent.date))" + " — " +  "\(viewModel.getVenue().name)")
+                            .font(.headline)
+                            .foregroundColor(Color.white)
+                        Text("\(viewModel.currentEvent.name)")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color.white)
+                        Text("\(viewModel.getVenue().location)")
+                            .foregroundColor(Color.white)
                     }
                     
-                }
-                .frame(height: 400)
-                
-                
-//                GeometryReader { geometry in
-//                    Image(uiImage: viewModel.getEventHeaderImage())
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-//                        .frame(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY)
-//                        .clipped()
-//                        .offset(y: -geometry.frame(in: .global).minY)
-//                }
-//                .frame(height: 400)
-//
-//                GeometryReader { geometry in
-//                    Rectangle()
-//                        .frame(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY)
-//                        .clipped()
-//                        .offset(y: -geometry.frame(in: .global).minY)
-//                        .opacity(0.4)
-//                        .foregroundColor(viewModel.generateBackgroundFromImage())
-//                }
-//                .frame(height: 400)
-                
-                Text("\(viewModel.currentEvent.name)")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(Color.white)
                     
+                }
+                VStack {
+                    Text("\(eventID)")
+                    Text("\(viewModel.currentEvent.name)")
+                }
+                
             }
             
         }
         .edgesIgnoringSafeArea(.top)
-        VStack {
-            Text("\(eventID)")
-            Text("\(viewModel.currentEvent.name)")
-        }
+        
     }
 }
 
@@ -82,36 +73,58 @@ class EventDetailViewModel: ObservableObject {
     
     let eventID: Int
     let eventStore: EventStore
+    let venueStore: VenueStore
     
     // Initialization is needed to provide access to event Store methods
     private var _currentEvent: EventDB!
     var currentEvent: EventDB {
-        return _currentEvent
+        /// If last remaining Event is deleted reinitialize the eventDB
+        return _currentEvent ?? EventDB.init()
     }
     
     private var _eventImage: UIImage!
     var eventImage: UIImage {
         return _eventImage
     }
-
-    init(eventStore: EventStore, eventID: Int) {
+    
+    private var _eventImageBackground: Color!
+    var eventImageBackground: Color {
+        return _eventImageBackground
+    }
+    
+    init(eventStore: EventStore, eventID: Int, venueStore: VenueStore) {
         self.eventID = eventID
         self.eventStore = eventStore
+        self.venueStore = venueStore
         self._currentEvent = self.eventStore.findByID(id: eventID)
         self._eventImage = self.getEventHeaderImage()
+        self._eventImageBackground = self.generateBackgroundFromImage()
     }
-        
-    func getEventHeaderImage () -> UIImage {
+    
+    func getEventHeaderImage() -> UIImage {
         let image = Utilities.helpers.loadImageFromUUID(imageUUID: self.currentEvent.imageUUID)
+        
+        /// Uses UIImage extension to compress the image, for maximum performance
         if let imageData = image.jpeg(.lowest) {
             print(imageData.count)
         }
-
+        
         return image
     }
     
     func generateBackgroundFromImage () -> Color {
-        return Color(self.getEventHeaderImage().averageColor ?? .clear)
+        return Color(self.eventImage.averageColor ?? .clear)
+    }
+    
+    func getVenue () -> VenueDB {
+        return venueStore.findByID(id: self.currentEvent.venueID)
+    }
+    
+    func convertDate (date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd. MMM, yyyy"
+        
+        return formatter.string(from: date)
     }
     
 }
