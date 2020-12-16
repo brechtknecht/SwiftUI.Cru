@@ -39,9 +39,10 @@ struct EventList: View {
                                 Image(uiImage: image)
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
-                                    .frame(width: 150)
+                                    .frame(width: 150, height: 150)
                                     .cornerRadius(4)
                                     .layoutPriority(1)
+                                    .clipped()
                     
                                 VStack (alignment: .leading){
                                     Text(event.name)
@@ -65,7 +66,7 @@ struct EventList: View {
                                 }
                                 .layoutPriority(4)
                             }
-                            .frame(height: 125)
+                            
                     
                         }
                         .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 7, trailing: 16))

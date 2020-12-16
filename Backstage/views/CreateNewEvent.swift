@@ -50,7 +50,11 @@ struct CreateNewEvent: View {
                         .padding(.vertical, 8)
                     }
                     
-                    Section(header: Text("Veranstaltungsbild")) {
+                    Section(
+                        header: Text("Veranstaltungsbild"),
+                        footer: Text("Wenn du kein Veranstaltungsbild auswählst, bekommst du das Standardbild")
+                                .padding(.vertical, 8)
+                    ) {
                         Button(action: {
                             self.showingImagePicker = true
                         }) {
