@@ -52,20 +52,15 @@ struct EventDetail: View {
                             .foregroundColor(Color.white)
                         Text("\(viewModel.getVenue().location)")
                             .foregroundColor(Color.white)
-                    }
-                    
-                    
+                    }   
                 }
                 VStack {
                     Text("\(eventID)")
                     Text("\(viewModel.currentEvent.name)")
                 }
-                
             }
-            
         }
         .edgesIgnoringSafeArea(.top)
-        
     }
 }
 

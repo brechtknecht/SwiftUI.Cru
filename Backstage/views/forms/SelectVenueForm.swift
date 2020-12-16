@@ -87,7 +87,7 @@ struct SelectionItemView: View {
         venueStore.delete(indexSet: indexSet)
     }
 }
-
+                
 
 struct SelectVenueForm_Previews: PreviewProvider {
     static var previews: some View {

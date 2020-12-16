@@ -68,6 +68,7 @@ struct EventList: View {
                             .frame(height: 125)
                     
                         }
+                        .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 7, trailing: 16))
                     }.onDelete(perform: onDelete)
                 }
                 .padding(.vertical, 8)

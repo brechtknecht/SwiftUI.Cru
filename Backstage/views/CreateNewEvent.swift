@@ -54,19 +54,19 @@ struct CreateNewEvent: View {
                         Button(action: {
                             self.showingImagePicker = true
                         }) {
-                            VStack {
-                                if image != nil {
-                                    image?
-                                        .resizable()
-                                        .scaledToFit()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(height: 200)
-                                } else {
-                                    Text("Bitte Bild auswählen")
-                                }
+                            if image != nil {
+                                image?
+                                    .resizable()
+                                    .scaledToFit()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(height: 250)
+                            } else {
+                                Text("Bitte Bild auswählen")
+                                    .padding(.horizontal, 16)
                             }
                         }
                     }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     
                     // Custom Selection scraped from stackoverflow
                     Section(header: Text("Veranstaltungsort")) {
