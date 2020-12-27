@@ -18,13 +18,12 @@ struct EventList: View {
     var body: some View {
         let viewModel = EventListViewModel()
         
-        
         VStack (alignment: .leading){
             Text("Kommende Veranstaltungen")
                 .font(.headline)
                 .padding(.horizontal, 20)
             List {
-                Section (){
+                Section {
                     ForEach(eventStore.events, id: \.self.id) { event in
                         
                         let venue = venueStore.findByID(id: event.venueID)
@@ -90,8 +89,6 @@ struct EventList: View {
 }
 
 class EventListViewModel: ObservableObject {
-    
-    
     init () {
     
     }
