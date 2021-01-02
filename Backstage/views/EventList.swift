@@ -16,24 +16,21 @@ struct EventList: View {
     @Environment(\.editMode) var editMode
     
     var body: some View {
-        Text("Kommende Veranstaltungen")
-            .font(.headline)
-            .padding(.horizontal, 20)
+        HStack {
+            Text("Kommende Veranstaltungen")
+                .font(.headline)
+                .padding(.horizontal, 20)
+            Spacer()
+        }
         
-        
-            VStack (alignment: .leading){
-                
-                ForEach(eventStore.events, id: \.self.id) { event in
-                    
-                    //  EventListElement(event: event, venue: venueStore.findByID(id: event.venueID))
-                    
-                    EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID))
-                    
-                }
-                .onDelete(perform: onDelete)
-                .padding(.vertical, 8)
-                .environment(\.editMode, editMode)
+        VStack {
+            ForEach(eventStore.events, id: \.self.id) { event in
+                EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID))
             }
+            .onDelete(perform: onDelete)
+            .padding(.vertical, 8)
+            .environment(\.editMode, editMode)
+        }
         
         
         .padding(8)

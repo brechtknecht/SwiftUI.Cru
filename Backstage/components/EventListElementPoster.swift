@@ -16,6 +16,13 @@ struct EventListElementPoster: View {
     
     @EnvironmentObject var eventStore: EventStore
     
+    @Environment(\.editMode) var editMode
+    
+    
+    private var isEditing: Bool {
+        editMode?.wrappedValue.isEditing ?? false
+    }
+    
     var body: some View {
         NavigationLink(destination:
             EventDetail(
@@ -41,6 +48,23 @@ struct EventListElementPoster: View {
                     .frame(width: 400, height: 550)
                     .aspectRatio(1.12, contentMode: .fill)
                     .cornerRadius(4)
+                
+                if (isEditing) {
+                    Button(action: {
+                        print("Delete item")
+                    }) {
+                        withAnimation {
+                            ZStack {
+                                Rectangle()
+                                    .frame(height: 36.0)
+                                    .background(Color.red)
+                                Text("Delete")
+                                    .foregroundColor(.white)
+                            }
+                            
+                        }
+                    }
+                }
                 
                 VStack (alignment: .center){
                     Text(viewModel.convertDate(date: event.date))
