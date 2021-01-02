@@ -11,36 +11,41 @@ struct ContentView: View {
     @EnvironmentObject var store: VenueStore
     
     var body: some View {
-        TabView {
-            VStack {
-                Overview()
-            }
-            .tabItem({
-                TabLabel(
-                    imageName: "music.note.house.fill",
-                    label: "Übersicht"
-                )
-            })
-            VStack {
-                Events()
-            }
-            .tabItem({
-                TabLabel(
-                    imageName: "guitars.fill",
-                    label: "Events"
-                )
-            })
-            VStack {
-                Crew()
-            }
-            .tabItem({
-                TabLabel(
-                    imageName: "person.3.fill",
-                    label: "Crew"
-                )
-            })
-            
-        }
+        
+        
+        // Disabled Tabview During Development
+        
+        Events()
+//        TabView {
+//            VStack {
+//                Overview()
+//            }
+//            .tabItem({
+//                TabLabel(
+//                    imageName: "music.note.house.fill",
+//                    label: "Übersicht"
+//                )
+//            })
+//            VStack {
+//                Events()
+//            }
+//            .tabItem({
+//                TabLabel(
+//                    imageName: "guitars.fill",
+//                    label: "Events"
+//                )
+//            })
+//            VStack {
+//                Crew()
+//            }
+//            .tabItem({
+//                TabLabel(
+//                    imageName: "person.3.fill",
+//                    label: "Crew"
+//                )
+//            })
+//
+//        }
     }
     
     struct TabLabel: View {

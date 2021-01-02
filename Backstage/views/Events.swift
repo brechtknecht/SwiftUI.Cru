@@ -20,7 +20,9 @@ struct Events: View {
     
     var body: some View {
         NavigationView {
-            EventList()
+            ScrollView {
+                EventList()
+            }
             .environment(\.editMode, editMode)
             .navigationBarTitle("Veranstaltungen")
             .navigationBarItems(

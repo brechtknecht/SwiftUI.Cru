@@ -14,6 +14,8 @@ struct EventListElementPoster: View {
     @State var event: Event
     @State var venue: VenueDB
     
+    @EnvironmentObject var eventStore: EventStore
+    
     var body: some View {
         NavigationLink(destination:
             EventDetail(
@@ -28,40 +30,51 @@ struct EventListElementPoster: View {
                     .cornerRadius(4)
                     .aspectRatio(contentMode: .fit)
                     .clipped()
-                Image("EventFrame")
-                    .resizable()
-                    .frame(width: 400, height: 550)
-                    .aspectRatio(1.12, contentMode: .fill)
-                    .cornerRadius(4)
                 Image("PaperTexture")
                     .resizable()
                     .frame(width: 400, height: 550)
                     .aspectRatio(1.12, contentMode: .fill)
                     .cornerRadius(4)
                     .blendMode(.multiply)
-                
-                
-                
+                Image("EventFrame")
+                    .resizable()
+                    .frame(width: 400, height: 550)
+                    .aspectRatio(1.12, contentMode: .fill)
+                    .cornerRadius(4)
                 
                 VStack (alignment: .center){
                     Text(viewModel.convertDate(date: event.date))
-                        .font(.subheadline)
+                        .font(.headline)
                         .foregroundColor(.white)
+                        .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
                     Spacer()
                     Text(event.name)
-                        .font(.title)
+                        .font(.largeTitle)
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
+                        .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
                     Text("Konzert".uppercased())
-                        .font(.subheadline)
+                        .font(.headline)
+                        .fontWeight(.bold)
+                        .tracking(2.54)
                         .foregroundColor(.white)
-                    
+                        .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
+                        .padding(.vertical, 4)
                 }
                 .padding(EdgeInsets(top: 32, leading: 32, bottom: 64, trailing: 32))
-                
-            }.padding(8)
+            }
+            .padding(8)
         }
+        .contextMenu {
+            Button("Delete")  {  deleteEventByID(id: event.id) }
+        }
+    }
+    
+    
+    private func deleteEventByID(id: Int) {
+        print("IndexSet : \(id)")
+        eventStore.deleteWithID(id: id)
     }
 }
 

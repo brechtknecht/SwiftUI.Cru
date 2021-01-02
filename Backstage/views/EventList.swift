@@ -20,7 +20,7 @@ struct EventList: View {
             .font(.headline)
             .padding(.horizontal, 20)
         
-        ScrollView {
+        
             VStack (alignment: .leading){
                 
                 ForEach(eventStore.events, id: \.self.id) { event in
@@ -34,7 +34,7 @@ struct EventList: View {
                 .padding(.vertical, 8)
                 .environment(\.editMode, editMode)
             }
-        }
+        
         
         .padding(8)
         .environment(\.horizontalSizeClass, .regular)

@@ -72,4 +72,23 @@ extension EventStore {
             print(err.localizedDescription)
         }
     }
+    
+    func deleteWithID (id: Int) {
+        objectWillChange.send()
+        
+        do {
+            let realm = try Realm()
+            
+            let object = realm.objects(EventDB.self).filter("id = %@", id).first
+            
+            try! realm.write {
+                if let obj = object {
+                    realm.delete(obj)
+                }
+            }
+        }
+        catch let err {
+            print(err.localizedDescription)
+        }
+    }
 }
