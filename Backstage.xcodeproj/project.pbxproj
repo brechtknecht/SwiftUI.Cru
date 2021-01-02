@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		990301B725A0A7F9004E4BD5 /* EventListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990301B625A0A7F9004E4BD5 /* EventListElement.swift */; };
+		990301BA25A0A82B004E4BD5 /* EventListElementPoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990301B925A0A82B004E4BD5 /* EventListElementPoster.swift */; };
 		993BD7B9257ED2C80014CA4C /* EventListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BD7B8257ED2C80014CA4C /* EventListItem.swift */; };
 		9941965E257FB3E30090AD0F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9941965D257FB3E30090AD0F /* ImagePicker.swift */; };
 		9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AAD1257D597F004AB2C4 /* ColorManager.swift */; };
@@ -41,6 +43,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		990301B625A0A7F9004E4BD5 /* EventListElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListElement.swift; sourceTree = "<group>"; };
+		990301B925A0A82B004E4BD5 /* EventListElementPoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListElementPoster.swift; sourceTree = "<group>"; };
 		993BD7B8257ED2C80014CA4C /* EventListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListItem.swift; sourceTree = "<group>"; };
 		9941965D257FB3E30090AD0F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		9956AAD1257D597F004AB2C4 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
@@ -205,6 +209,8 @@
 				9956AAD4257D59FA004AB2C4 /* ButtonFullWidth.swift */,
 				9941965D257FB3E30090AD0F /* ImagePicker.swift */,
 				99C0222C258573720031538C /* CEditButton.swift */,
+				990301B925A0A82B004E4BD5 /* EventListElementPoster.swift */,
+				990301B625A0A7F9004E4BD5 /* EventListElement.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -306,6 +312,7 @@
 				99BCF528257D4B3A00F2A7BC /* Events.swift in Sources */,
 				9956AAD5257D59FA004AB2C4 /* ButtonFullWidth.swift in Sources */,
 				99A965F4257E687100B8B2D7 /* VenueDBKeys.swift in Sources */,
+				990301BA25A0A82B004E4BD5 /* EventListElementPoster.swift in Sources */,
 				99A965FF257EB2A600B8B2D7 /* Event.swift in Sources */,
 				9956AADB257D7CDB004AB2C4 /* SelectVenueForm.swift in Sources */,
 				99F16B172582B6A000F3AB97 /* BindingExtension.swift in Sources */,
@@ -316,6 +323,7 @@
 				99A965EC257E5C0400B8B2D7 /* AddVenueForm.swift in Sources */,
 				9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */,
 				99A965E0257E4D0600B8B2D7 /* VenueDB.swift in Sources */,
+				990301B725A0A7F9004E4BD5 /* EventListElement.swift in Sources */,
 				99BCF52D257D4B4700F2A7BC /* Crew.swift in Sources */,
 				99A96603257EB31600B8B2D7 /* EventDB.swift in Sources */,
 				99A96609257EB4F900B8B2D7 /* EventStore.swift in Sources */,

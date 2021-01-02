@@ -16,69 +16,27 @@ struct EventList: View {
     @Environment(\.editMode) var editMode
     
     var body: some View {
-        let viewModel = EventListViewModel()
+        Text("Kommende Veranstaltungen")
+            .font(.headline)
+            .padding(.horizontal, 20)
         
-        
-        VStack (alignment: .leading){
-            Text("Kommende Veranstaltungen")
-                .font(.headline)
-                .padding(.horizontal, 20)
-            List {
-                Section (){
-                    ForEach(eventStore.events, id: \.self.id) { event in
-                        
-                        let venue = venueStore.findByID(id: event.venueID)
-                        
-                        NavigationLink(destination:
-                            EventDetail(
-                                eventID: .constant(event.id)
-                            )
-                        ) {
-                            HStack (alignment: .top, spacing: 8) {
-                                let image = Utilities.helpers.loadImageFromUUID(imageUUID: event.imageUUID)
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 150, height: 150)
-                                    .cornerRadius(4)
-                                    .layoutPriority(1)
-                                    .clipped()
-                    
-                                VStack (alignment: .leading){
-                                    Text(event.name)
-                                        .font(.title3)
-                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                    Text(viewModel.convertDate(date: event.date))
-                                        .font(.subheadline)
-                                          
-                                    Spacer()
-                                    // IMPORTANT: Test if venue is nil — prevent crashes from empty data
-                                    if venue != nil {
-                                        let text = "\(viewModel.venueString(venue: venue))"
-                                        Text(text)
-                                            .font(.subheadline)
-                                            
-                                            
-                                    } else {
-                                        Text("Kein Veranstaltungsort angegeben")
-                                            .font(.subheadline)
-                                    }
-                                }
-                                .layoutPriority(4)
-                            }
-                            
-                    
-                        }
-                        .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 7, trailing: 16))
-                    }.onDelete(perform: onDelete)
-                }
-                .padding(.vertical, 8)
+        ScrollView {
+            VStack (alignment: .leading){
                 
+                ForEach(eventStore.events, id: \.self.id) { event in
+                    
+                    //  EventListElement(event: event, venue: venueStore.findByID(id: event.venueID))
+                    
+                    EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID))
+                    
+                }
+                .onDelete(perform: onDelete)
+                .padding(.vertical, 8)
+                .environment(\.editMode, editMode)
             }
-            .environment(\.editMode, editMode)
         }
-        .listStyle(PlainListStyle())
-        .padding(0)
+        
+        .padding(8)
         .environment(\.horizontalSizeClass, .regular)
         
     }
@@ -93,7 +51,7 @@ class EventListViewModel: ObservableObject {
     
     
     init () {
-    
+        
     }
     
     func convertDate (date: Date) -> String {
@@ -113,6 +71,8 @@ class EventListViewModel: ObservableObject {
     }
     
 }
+
+
 
 
 struct EventList_Previews: PreviewProvider {

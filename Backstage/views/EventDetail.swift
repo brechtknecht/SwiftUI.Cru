@@ -50,6 +50,7 @@ struct EventDetail: View {
                             .font(.largeTitle)
                             .fontWeight(.bold)
                             .foregroundColor(Color.white)
+                            .multilineTextAlignment(.center)
                         Text("\(viewModel.getVenue().location)")
                             .foregroundColor(Color.white)
                     }   
