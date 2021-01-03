@@ -19,7 +19,7 @@ struct EventListElement: View {
                 eventID: .constant(event.id)
             )
         ) {
-            HStack (alignment: .top, spacing: 8) {
+            HStack {
                 let image = Utilities.helpers.loadImageFromUUID(imageUUID: event.imageUUID)
                 Image(uiImage: image)
                     .resizable()

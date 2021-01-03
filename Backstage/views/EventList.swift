@@ -22,18 +22,25 @@ struct EventList: View {
                 .padding(.horizontal, 20)
             Spacer()
         }
+        ScrollView(.horizontal,showsIndicators: false) {
+            HStack {
+                ForEach(eventStore.events, id: \.self.id) { event in
+                    EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID))
+                }
+                .onDelete(perform: onDelete)
+                .environment(\.editMode, editMode)
+            }
+        }
+        .padding(.horizontal, 16)
         
         VStack {
             ForEach(eventStore.events, id: \.self.id) { event in
-                EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID))
+                EventListElement(event: event, venue: venueStore.findByID(id: event.venueID))
             }
             .onDelete(perform: onDelete)
-            .padding(.vertical, 8)
             .environment(\.editMode, editMode)
         }
         
-        
-        .padding(8)
         .environment(\.horizontalSizeClass, .regular)
         
     }

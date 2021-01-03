@@ -18,80 +18,126 @@ struct EventListElementPoster: View {
     
     @Environment(\.editMode) var editMode
     
+    let CARD_WIDTH : CGFloat = 350
+    let CARD_HEIGHT : CGFloat = 500
+    
     
     private var isEditing: Bool {
         editMode?.wrappedValue.isEditing ?? false
     }
     
     var body: some View {
-        NavigationLink(destination:
-            EventDetail(
-                eventID: .constant(event.id)
-            )
-        ) {
-            ZStack {
-                let image = Utilities.helpers.loadImageFromUUID(imageUUID: event.imageUUID)
-                Image(uiImage: image)
-                    .resizable()
-                    .frame(width: 400, height: 550)
-                    .cornerRadius(4)
-                    .aspectRatio(contentMode: .fit)
-                    .clipped()
-                Image("PaperTexture")
-                    .resizable()
-                    .frame(width: 400, height: 550)
-                    .aspectRatio(1.12, contentMode: .fill)
-                    .cornerRadius(4)
-                    .blendMode(.multiply)
-                Image("EventFrame")
-                    .resizable()
-                    .frame(width: 400, height: 550)
-                    .aspectRatio(1.12, contentMode: .fill)
-                    .cornerRadius(4)
-                
-                if (isEditing) {
+        VStack {
+            NavigationLink(destination:
+                EventDetail(
+                    eventID: .constant(event.id)
+                )
+            ) {
+                ZStack {
+                    let image = Utilities.helpers.loadImageFromUUID(imageUUID: event.imageUUID)
+                    Image(uiImage: image)
+                        .resizable()
+                        .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
+                        .cornerRadius(4)
+                        .aspectRatio(contentMode: .fit)
+                        .clipped()
+                        .opacity(isEditing ? 0.4 : 1)
+                    Image("PaperTexture")
+                        .resizable()
+                        .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
+                        .aspectRatio(1.12, contentMode: .fill)
+                        .cornerRadius(4)
+                        .blendMode(.multiply)
+                        .opacity(isEditing ? 0.4 : 1)
+                    Image("EventFrame")
+                        .resizable()
+                        .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
+                        .aspectRatio(1.12, contentMode: .fill)
+                        .cornerRadius(4)
+                        .opacity(isEditing ? 0.15 : 1)
+                    
+                    VStack (alignment: .center){
+                        Text(viewModel.convertDate(date: event.date))
+                            .font(.headline)
+                            .foregroundColor(.white)
+                            .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
+                            .frame(width: CARD_WIDTH - 20)
+                        Spacer()
+                        Text(event.name)
+                            .font(.largeTitle)
+                            .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.center)
+                            .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
+                            .frame(width: CARD_WIDTH - 20)
+                        Text("Konzert".uppercased())
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .tracking(2.54)
+                            .foregroundColor(.white)
+                            .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
+                            .padding(.vertical, 4)
+                            .frame(width: CARD_WIDTH - 20)
+                    }
+                    .padding(EdgeInsets(top: 32, leading: 12, bottom: 64, trailing: 12))
+                }
+            }
+            if (isEditing) {
+                HStack {
                     Button(action: {
-                        print("Delete item")
+                        print("Edit Event")
                     }) {
-                        withAnimation {
-                            ZStack {
-                                Rectangle()
-                                    .frame(height: 36.0)
-                                    .background(Color.red)
-                                Text("Delete")
-                                    .foregroundColor(.white)
-                            }
-                            
+                        ZStack {
+                            Rectangle()
+                                .fill(Color(.systemBlue))
+                                .cornerRadius(4)
+                            Text("Bearbeiten")
+                                .frame(width: (CARD_WIDTH / 2) - 4, height: 42)
+                                .foregroundColor(.white)
                         }
+                        
+                    }
+                    Button(action: {
+                        deleteEventByID(id: event.id)
+                    }) {
+                        ZStack {
+                            Rectangle()
+                                .fill(Color(.red))
+                                .cornerRadius(4)
+                            Text("Löschen")
+                                .frame(width: (CARD_WIDTH / 2) - 4, height: 42)
+                                .foregroundColor(.white)
+                        }
+                        
                     }
                 }
-                
-                VStack (alignment: .center){
-                    Text(viewModel.convertDate(date: event.date))
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
-                    Spacer()
-                    Text(event.name)
-                        .font(.largeTitle)
-                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
-                        .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
-                    Text("Konzert".uppercased())
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        .tracking(2.54)
-                        .foregroundColor(.white)
-                        .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
-                        .padding(.vertical, 4)
-                }
-                .padding(EdgeInsets(top: 32, leading: 32, bottom: 64, trailing: 32))
             }
-            .padding(8)
         }
+        .modifier(ToggleEditModeEffect(y: isEditing ? -100 : 0).ignoredByLayout())
         .contextMenu {
-            Button("Delete")  {  deleteEventByID(id: event.id) }
+            Button(action: {
+                deleteEventByID(id: event.id)
+            }) {
+                Text("Löschen")
+                    .foregroundColor(.red)
+                }
+            }
+        }
+    
+    
+    
+    
+    
+    struct ToggleEditModeEffect: GeometryEffect {
+        var y: CGFloat = 0
+        
+        var animatableData: CGFloat {
+            get { y }
+            set { y = newValue }
+        }
+        
+        func effectValue(size: CGSize) -> ProjectionTransform {
+            return ProjectionTransform(CGAffineTransform(translationX: 0, y: y))
         }
     }
     
@@ -101,7 +147,7 @@ struct EventListElementPoster: View {
         eventStore.deleteWithID(id: id)
     }
 }
-
+    
 
 //struct EventListElement_Previews: PreviewProvider {
 //    static var previews: some View {
