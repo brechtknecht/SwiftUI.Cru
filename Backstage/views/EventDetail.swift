@@ -5,6 +5,7 @@
 //  Created by Felix Tesche on 06.12.20.
 //
 
+
 import SwiftUI
 
 struct EventDetail: View {
@@ -56,8 +57,14 @@ struct EventDetail: View {
                     }   
                 }
                 VStack {
-                    Text("\(eventID)")
+//                    Text("\(eventID)")
                     Text("\(viewModel.currentEvent.name)")
+                    
+                    
+                    let adress = "\(viewModel.getVenue().street) \(viewModel.getVenue().location)"
+                    VenueMap(adress: adress)
+                    
+                    Text("Test")
                 }
             }
         }
@@ -89,12 +96,12 @@ class EventDetailViewModel: ObservableObject {
     }
     
     init(eventStore: EventStore, eventID: Int, venueStore: VenueStore) {
-        self.eventID = eventID
-        self.eventStore = eventStore
-        self.venueStore = venueStore
-        self._currentEvent = self.eventStore.findByID(id: eventID)
-        self._eventImage = self.getEventHeaderImage()
-        self._eventImageBackground = self.generateBackgroundFromImage()
+        self.eventID                = eventID
+        self.eventStore             = eventStore
+        self.venueStore             = venueStore
+        self._currentEvent          = self.eventStore.findByID(id: eventID)
+        self._eventImage            = self.getEventHeaderImage()
+        self._eventImageBackground  = self.generateBackgroundFromImage()
     }
     
     func getEventHeaderImage() -> UIImage {
@@ -115,6 +122,8 @@ class EventDetailViewModel: ObservableObject {
         
         return formatter.string(from: date)
     }
+    
+    
     
 }
 

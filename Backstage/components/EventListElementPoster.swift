@@ -113,7 +113,7 @@ struct EventListElementPoster: View {
                 }
             }
         }
-        .modifier(ToggleEditModeEffect(y: isEditing ? -100 : 0).ignoredByLayout())
+        .modifier(ToggleEditModeEffect(y: isEditing ? -10 : 0).ignoredByLayout())
         .contextMenu {
             Button(action: {
                 deleteEventByID(id: event.id)

@@ -46,8 +46,7 @@ extension EventStore {
             refDB.date = date
             refDB.venueID = venueID
             refDB.imageUUID = imageUUID
-            
-            
+
             try realm.write {
                 realm.add(refDB)
             }
@@ -91,4 +90,5 @@ extension EventStore {
             print(err.localizedDescription)
         }
     }
+
 }

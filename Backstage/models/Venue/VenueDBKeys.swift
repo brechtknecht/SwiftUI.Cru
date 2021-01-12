@@ -11,6 +11,6 @@ enum VenueDBKeys: String {
     case id = "id"
     case name = "name"
     case location = "location"
-    case district = "district"
+    case street = "street"
     case country = "country"
 }

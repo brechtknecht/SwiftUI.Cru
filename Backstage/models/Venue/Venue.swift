@@ -6,12 +6,13 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct Venue: Identifiable, Hashable {
     let id: Int
     let name: String
     let location: String
-    let district: String
+    let street: String
     let country: String
 }
 
@@ -20,7 +21,7 @@ extension Venue {
         id = venueDB.id
         name = venueDB.name
         location = venueDB.location
-        district = venueDB.district
+        street = venueDB.street
         country = venueDB.country
     }
 }

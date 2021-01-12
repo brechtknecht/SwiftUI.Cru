@@ -68,7 +68,7 @@ class EventListViewModel: ObservableObject {
     func venueString (venue: VenueDB?) -> String {
         let venueName = venue!.name
         let venueLocation = venue!.location
-        let venueDistict = venue!.district
+        let venueDistict = venue!.street
         let venueCountry = venue!.country
         
         return venueName + ", " + venueLocation + " — " + venueDistict + " " + venueCountry

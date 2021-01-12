@@ -35,7 +35,7 @@ struct SelectionItemView: View {
                                             // Trigger Controller
                                             self.selection  = venue.name
                                             
-                                            self.location = venue.location + " " + venue.district + ", " + venue.country
+                                            self.location = venue.location + " " + venue.street + ", " + venue.country
                                             
                                             self.selectedID = venue.id
                                             
@@ -47,7 +47,7 @@ struct SelectionItemView: View {
                                                 Text("\(venue.name)")
                                                     .foregroundColor(ColorManager.primaryDark)
                                                 
-                                                Text("\(venue.location) \(venue.district) \(venue.country)")
+                                                Text("\(venue.location) \(venue.street) \(venue.country)")
                                                     .foregroundColor(ColorManager.primaryDark)
                                                     .font(.body)
                                             }.padding(.vertical, 8)

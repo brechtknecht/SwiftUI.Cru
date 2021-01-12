@@ -8,6 +8,8 @@
 import Foundation
 import RealmSwift
 
+import CoreLocation
+
 final class VenueStore: ObservableObject {
     private var results: Results<VenueDB>
     
@@ -15,10 +17,14 @@ final class VenueStore: ObservableObject {
         results.map(Venue.init)
     }
     
+    
+    
     // Load Items from the Realm Database
     init(realm: Realm) {
         results = realm.objects(VenueDB.self)
     }
+    
+    
     
     func findByID (id: Int) -> VenueDB! {
         do {
@@ -32,7 +38,7 @@ final class VenueStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension VenueStore {
-    func create(name: String, location: String, district: String, country: String) {
+    func create(name: String, location: String, street: String, country: String) {
         
         objectWillChange.send()
 
@@ -43,9 +49,9 @@ extension VenueStore {
           refDB.id = UUID().hashValue
           refDB.name = name
           refDB.location = location
-          refDB.district = district
+          refDB.street = street
           refDB.country = country
-
+            
           try realm.write {
             realm.add(refDB)
           }
@@ -55,7 +61,7 @@ extension VenueStore {
         }
     }
     
-    func update(venueID: Int, venueName: String, venueLocation: String, venueDistrict: String, venueCountry: String) {
+    func update(venueID: Int, venueName: String, venueLocation: String, venueStreet: String, venueCountry: String) {
         // TODO: Add Realm update code below
         objectWillChange.send()
         
@@ -67,7 +73,7 @@ extension VenueStore {
                     VenueDBKeys.id.rawValue: venueID,
                     VenueDBKeys.name.rawValue: venueName,
                     VenueDBKeys.location.rawValue: venueLocation,
-                    VenueDBKeys.district.rawValue: venueDistrict,
+                    VenueDBKeys.street.rawValue: venueStreet,
                     VenueDBKeys.country.rawValue: venueCountry
                 ],
                 update: .modified)
