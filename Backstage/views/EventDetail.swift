@@ -56,12 +56,27 @@ struct EventDetail: View {
                             .foregroundColor(Color.white)
                     }   
                 }
-                VStack {
+                VStack (alignment: .leading){
 //                    Text("\(eventID)")
-                    Text("\(viewModel.currentEvent.name)")
+//                    Text("\(viewModel.currentEvent.name)")
                     
+                    let adress = "\(viewModel.getVenue().street) \(viewModel.getVenue().location)"
                     
-                    let adress = "\(viewModel.getVenue().location)"
+                    Text("Veranstaltungsort")
+                        .foregroundColor(.gray)
+                        .font(.body)
+                        .textCase(.uppercase)
+                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 0, trailing: 16))
+                    Text("\(viewModel.getVenue().name)")
+                        .foregroundColor(.black)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .padding(EdgeInsets(top: 0, leading: 16, bottom: 4, trailing: 16))
+                    Text("\(adress)")
+                        .foregroundColor(.gray)
+                        .tracking(-0.1)
+                        .textCase(.uppercase)
+                        .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
                     VenueMap(adress: adress)
                     
                     Text("Test")

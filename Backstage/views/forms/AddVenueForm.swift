@@ -25,15 +25,15 @@ struct AddVenueForm: View {
         NavigationView {
             VStack {
                 Form {
-                Section {
+                    Section {
                         TextField("Name", text: $venueName)
                         TextField("Ort",  text: $locationService.queryFragment)
                         if locationService.status == .isSearching {
                             Image(systemName: "clock")
                                 .foregroundColor(Color.gray)
                         }
-//                        TextField("Adresse",    text: $venueStreet)
-//                        TextField("Land",       text: $venueCountry)
+                        //                        TextField("Adresse",    text: $venueStreet)
+                        //                        TextField("Land",       text: $venueCountry)
                     }
                     Section(header: Text("Results")) {
                         List {
@@ -45,14 +45,15 @@ struct AddVenueForm: View {
                                 default: return AnyView(EmptyView())
                                 }
                             }.foregroundColor(Color.gray)
-
+                            
                             ForEach(locationService.searchResults, id: \.self) { completionResult in
                                 // This simply lists the results, use a button in case you'd like to perform an action
                                 // or use a NavigationLink to move to the next view upon selection.
                                 Button(action: {
                                     var result = "\(completionResult.title) \(completionResult.subtitle)"
-            
+                                    
                                     result = result.replacingOccurrences(of: venueName, with: "", options: [.caseInsensitive])
+                                    result = result.trimmingCharacters(in: .whitespaces)
                                     
                                     self.venueLocation = result
                                     locationService.queryFragment = result
@@ -80,9 +81,7 @@ struct AddVenueForm: View {
                 }) {
                     Text("Fertig")
                 })
-                
             }
-            
         }
     }
 }

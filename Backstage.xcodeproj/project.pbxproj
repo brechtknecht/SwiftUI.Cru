@@ -10,6 +10,7 @@
 		990301B725A0A7F9004E4BD5 /* EventListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990301B625A0A7F9004E4BD5 /* EventListElement.swift */; };
 		990301BA25A0A82B004E4BD5 /* EventListElementPoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990301B925A0A82B004E4BD5 /* EventListElementPoster.swift */; };
 		993BD7B9257ED2C80014CA4C /* EventListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BD7B8257ED2C80014CA4C /* EventListItem.swift */; };
+		993EAD3325AE7EC700531A67 /* Paddings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993EAD3225AE7EC700531A67 /* Paddings.swift */; };
 		9941965E257FB3E30090AD0F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9941965D257FB3E30090AD0F /* ImagePicker.swift */; };
 		9951C11F25AE6065001E8F95 /* VenueMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951C11E25AE6065001E8F95 /* VenueMap.swift */; };
 		9951C12225AE6E0D001E8F95 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951C12125AE6E0D001E8F95 /* LocationService.swift */; };
@@ -48,6 +49,7 @@
 		990301B625A0A7F9004E4BD5 /* EventListElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListElement.swift; sourceTree = "<group>"; };
 		990301B925A0A82B004E4BD5 /* EventListElementPoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListElementPoster.swift; sourceTree = "<group>"; };
 		993BD7B8257ED2C80014CA4C /* EventListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListItem.swift; sourceTree = "<group>"; };
+		993EAD3225AE7EC700531A67 /* Paddings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paddings.swift; sourceTree = "<group>"; };
 		9941965D257FB3E30090AD0F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		9951C11E25AE6065001E8F95 /* VenueMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueMap.swift; sourceTree = "<group>"; };
 		9951C12125AE6E0D001E8F95 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				99F3B86C25803BAE00113ADE /* Utilities.swift */,
 				99F16B162582B6A000F3AB97 /* BindingExtension.swift */,
 				9951C12125AE6E0D001E8F95 /* LocationService.swift */,
+				993EAD3225AE7EC700531A67 /* Paddings.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				990301BA25A0A82B004E4BD5 /* EventListElementPoster.swift in Sources */,
 				99A965FF257EB2A600B8B2D7 /* Event.swift in Sources */,
 				9956AADB257D7CDB004AB2C4 /* SelectVenueForm.swift in Sources */,
+				993EAD3325AE7EC700531A67 /* Paddings.swift in Sources */,
 				9951C11F25AE6065001E8F95 /* VenueMap.swift in Sources */,
 				99F16B172582B6A000F3AB97 /* BindingExtension.swift in Sources */,
 				99C0222D258573720031538C /* CEditButton.swift in Sources */,

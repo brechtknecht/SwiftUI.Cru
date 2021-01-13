@@ -33,9 +33,7 @@ struct VenueMap: View {
                 )
             )
         ]
-        
-        Text("\(adress)")
-        
+    
         Map(coordinateRegion: .constant(
                 MKCoordinateRegion (
                     center: CLLocationCoordinate2D(
@@ -53,7 +51,7 @@ struct VenueMap: View {
             }
         .frame(height: 300)
         .cornerRadius(12)
-        .padding(16)
+        .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
     }
     
     
