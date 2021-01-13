@@ -70,7 +70,7 @@ struct SelectionItemView: View {
                         }) {
                             ButtonFullWidth(label: $actionText);
                         }.sheet(isPresented: $addNewVenue) {
-                            AddVenueForm()
+                            AddVenueForm(locationService: LocationService())
                         }
                     }
                     .padding(8)

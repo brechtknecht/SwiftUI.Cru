@@ -61,7 +61,7 @@ struct EventDetail: View {
                     Text("\(viewModel.currentEvent.name)")
                     
                     
-                    let adress = "\(viewModel.getVenue().street) \(viewModel.getVenue().location)"
+                    let adress = "\(viewModel.getVenue().location)"
                     VenueMap(adress: adress)
                     
                     Text("Test")

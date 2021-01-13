@@ -33,15 +33,15 @@ struct EventList: View {
         }
         .padding(.horizontal, 16)
         
-        VStack {
-            ForEach(eventStore.events, id: \.self.id) { event in
-                EventListElement(event: event, venue: venueStore.findByID(id: event.venueID))
-            }
-            .onDelete(perform: onDelete)
-            .environment(\.editMode, editMode)
-        }
-        
-        .environment(\.horizontalSizeClass, .regular)
+//        VStack {
+//            ForEach(eventStore.events, id: \.self.id) { event in
+//                EventListElement(event: event, venue: venueStore.findByID(id: event.venueID))
+//            }
+//            .onDelete(perform: onDelete)
+//            .environment(\.editMode, editMode)
+//        }
+//        
+//        .environment(\.horizontalSizeClass, .regular)
         
     }
     
