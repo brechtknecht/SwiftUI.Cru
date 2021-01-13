@@ -54,7 +54,7 @@ struct EventDetail: View {
                             }
                             
                         }
-                        .frame(height: 400)
+                        .frame(height: 600)
                         VStack {
                             Text("\(viewModel.convertDate(date: viewModel.currentEvent.date))" + " — " +  "\(viewModel.getVenue().name)")
                                 .font(.headline)
