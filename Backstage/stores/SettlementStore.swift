@@ -33,7 +33,7 @@ final class SettlementStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension SettlementStore {
-    func create(name: String, location: String, arrivalDate: Date, departureDate: Date, price: Double, currency: String) {
+    func create(id: Int, name: String, location: String, arrivalDate: Date, departureDate: Date, price: Double, currency: String) {
         
         objectWillChange.send()
         
@@ -41,7 +41,7 @@ extension SettlementStore {
             let realm = try Realm()
             
             let refDB = SettlementDB()
-            refDB.id            = UUID().hashValue
+            refDB.id            = id
             refDB.name          = name
             refDB.location      = location
             refDB.arrivalDate   = arrivalDate

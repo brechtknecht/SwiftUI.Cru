@@ -143,7 +143,8 @@ struct EventDetail: View {
                 case .settlement:
                     AddSettlement(
                         proposedDate: eventStore.findByID(id: eventID)?.date ?? Date(),
-                        locationService: LocationService()
+                        locationService: LocationService(),
+                        eventReference: eventID
                     )
                 case .transport:
                     Text("Transport")

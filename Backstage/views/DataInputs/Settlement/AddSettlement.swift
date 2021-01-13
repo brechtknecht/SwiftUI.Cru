@@ -14,18 +14,22 @@ struct AddSettlement: View {
     @State var settlementDepartureDate  : Date    = Date()
     @State var settlementPrice          : String  = ""
     @State var settlementCurrency       : String  = ""
+    @State var settlementPersons                  = 3
     
     @State var proposedDate             : Date
     
-    @EnvironmentObject var store: SettlementStore
+    @EnvironmentObject var settlementStore  : SettlementStore
+    @EnvironmentObject var eventStore       : EventStore
     
     /// Lets the Enviroment pop the Navigation View
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     /// LocationService is used for finding adresses based on the user input
     @ObservedObject var locationService: LocationService
-    
+
     @State var locationHelperActive     : Bool = false
+    
+    @State var eventReference           : Int
     
     var body: some View {
         NavigationView {
@@ -50,12 +54,13 @@ struct AddSettlement: View {
                             Text("Datum Abreise")
                         }
                     }
-                    Section (header: Text("Kosten pro Nacht")) {
+                    Section (header: Text("Kosten")) {
                         HStack {
-                            TextField("Honorar", text: $settlementPrice)
+                            TextField("Preis pro Nacht pro Person", text: $settlementPrice)
                                 .keyboardType(.numberPad)
                             Text("€")
                         }
+                        Stepper("Personenanzahl: \(settlementPersons)", value: $settlementPersons)
                     }
                     if(locationHelperActive) {
                         Section(header: Text("Suchergebnisse")) {
@@ -101,18 +106,25 @@ struct AddSettlement: View {
                             }
                         }
                     }
+                    
                 }
                 .navigationTitle("Übernachtungsmöglichkeit hinzufügen").font(.subheadline)
                 .navigationBarItems(trailing:  Button(action: {
                     if !settlementName.isEmpty {
-                        store.create(
-                            name:           settlementName,
-                            location:       settlementLocation,
-                            arrivalDate:    settlementArrivalDate,
-                            departureDate:  settlementDepartureDate,
-                            price:          Double(settlementPrice) ?? 0.0,
-                            currency:       settlementCurrency
+                        
+                        let settlementUUID = UUID().hashValue;
+                        
+                        settlementStore.create(
+                            id:                 settlementUUID,
+                            name:               settlementName,
+                            location:           settlementLocation,
+                            arrivalDate:        settlementArrivalDate,
+                            departureDate:      settlementDepartureDate,
+                            price:              Double(settlementPrice) ?? 0.0,
+                            currency:           settlementCurrency
                         )
+                        
+                        eventStore.addSettlementToList(eventID: eventReference, settlementID: settlementUUID)
                     }
                     
                     // Pop Navigation State

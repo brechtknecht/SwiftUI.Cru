@@ -15,6 +15,7 @@ class EventDB: Object {
     @objc dynamic var date = Date()
     @objc dynamic var venueID = 0
     @objc dynamic var imageUUID = ""
+    let settlements = RealmSwift.List<Int>()
     
     // Defines the standard key — realm needs this for identication
     override static func primaryKey() -> String? {

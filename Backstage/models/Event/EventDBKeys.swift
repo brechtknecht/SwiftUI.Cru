@@ -13,4 +13,5 @@ enum EventDBKeys: String {
     case date = "date"
     case venueID = "venueID"
     case imageUUID = "imageUUID"
+    case settlements = "settlements"
 }

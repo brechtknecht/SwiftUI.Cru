@@ -90,5 +90,40 @@ extension EventStore {
             print(err.localizedDescription)
         }
     }
+    
+    func update(eventID: Int, name: String, date: Date, venueID: Int, imageUUID: String, settlements: RealmSwift.List<Int>) {
+        // TODO: Add Realm update code below
+        objectWillChange.send()
+        
+        do {
+            let realm = try Realm()
+            try realm.write {
+                realm.create(VenueDB.self,
+                value: [
+                    EventDBKeys.id.rawValue             : eventID,
+                    EventDBKeys.date.rawValue           : name,
+                    EventDBKeys.venueID.rawValue        : venueID,
+                    EventDBKeys.imageUUID.rawValue      : imageUUID,
+                    EventDBKeys.settlements.rawValue    : settlements
+                ],
+                update: .modified)
+            }
+            
+        } catch let err {
+            print(err.localizedDescription)
+        }
+    }
+    
+    func addSettlementToList (eventID: Int, settlementID: Int) {
+        let event = self.findByID(id: eventID)
+        
+        do {
+            let realm = try! Realm()
+            try! realm.write {
+                event?.settlements.append(settlementID)
+            }
+        }
+        
+    }
 
 }
