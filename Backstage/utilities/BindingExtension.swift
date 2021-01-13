@@ -9,11 +9,7 @@ import SwiftUI
 
 
 // toNonOptionalValue() - Generic variant for all types add types like schema below
-
-
 // Call with $varname.toNonOptionalString() to convert to optional value in SwiftUI
-
-
 
 extension Binding {
     func toNonOptionalValue<T> (fallback: T) -> Binding<T> where Value == T? {
@@ -28,7 +24,7 @@ extension Binding {
         toNonOptionalValue(fallback: fallback)
     }
     
-    func toNonOptionalData (fallback: Date = Date()) -> Binding<Date> where Value == Date? {
+    func toNonOptionalDate (fallback: Date = Date()) -> Binding<Date> where Value == Date? {
         toNonOptionalValue(fallback: fallback)
     }
 }

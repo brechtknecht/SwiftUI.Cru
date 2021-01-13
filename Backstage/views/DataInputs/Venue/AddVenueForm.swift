@@ -14,12 +14,14 @@ struct AddVenueForm: View {
     @State var venueStreet = ""
     @State var venueCountry = ""
     
-    
     @EnvironmentObject var store: VenueStore
-    // Lets the Enviroment pop the Navigation View
+    
+    /// Lets the Enviroment pop the Navigation View
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     @ObservedObject var locationService: LocationService
+    
+    @State var locationHelperActive     : Bool = false
     
     var body : some View {
         NavigationView {
@@ -27,43 +29,52 @@ struct AddVenueForm: View {
                 Form {
                     Section {
                         TextField("Name", text: $venueName)
-                        TextField("Ort",  text: $locationService.queryFragment)
-                        if locationService.status == .isSearching {
-                            Image(systemName: "clock")
-                                .foregroundColor(Color.gray)
-                        }
-                        //                        TextField("Adresse",    text: $venueStreet)
-                        //                        TextField("Land",       text: $venueCountry)
+                        TextField("Ort",
+                                  text: $locationService.queryFragment,
+                                  onEditingChanged: { (editingChanged) in
+                                    self.locationHelperActive = editingChanged
+                                  }
+                        )
                     }
-                    Section(header: Text("Results")) {
-                        List {
-                            // With Xcode 12, this will not be necessary as it supports switch statements.
-                            Group { () -> AnyView in
-                                switch locationService.status {
-                                case .noResults: return AnyView(Text("No Results"))
-                                case .error(let description): return AnyView(Text("Error: \(description)"))
-                                default: return AnyView(EmptyView())
+                    if (locationHelperActive) {
+                        Section(header: Text("Suchergebnisse")) {
+                            List {
+                                // With Xcode 12, this will not be necessary as it supports switch statements.
+                                if locationService.status == .isSearching {
+                                    HStack {
+                                        Image(systemName: "clock")
+                                            .foregroundColor(Color.gray)
+                                        Text("Suche nach Ergebnissen")
+                                    }
                                 }
-                            }.foregroundColor(Color.gray)
-                            
-                            ForEach(locationService.searchResults, id: \.self) { completionResult in
-                                // This simply lists the results, use a button in case you'd like to perform an action
-                                // or use a NavigationLink to move to the next view upon selection.
-                                Button(action: {
-                                    var result = "\(completionResult.title) \(completionResult.subtitle)"
-                                    
-                                    result = result.replacingOccurrences(of: venueName, with: "", options: [.caseInsensitive])
-                                    result = result.trimmingCharacters(in: .whitespaces)
-                                    
-                                    self.venueLocation = result
-                                    locationService.queryFragment = result
-                                }) {
-                                    VStack (alignment: .leading){
-                                        Text(completionResult.title)
-                                            .foregroundColor(.black)
-                                            .fontWeight(.bold)
-                                        Text(completionResult.subtitle)
-                                            .foregroundColor(.black)
+                                
+                                Group { () -> AnyView in
+                                    switch locationService.status {
+                                    case .noResults: return AnyView(Text("No Results"))
+                                    case .error(let description): return AnyView(Text("Error: \(description)"))
+                                    default: return AnyView(EmptyView())
+                                    }
+                                }.foregroundColor(Color.gray)
+                                
+                                ForEach(locationService.searchResults, id: \.self) { completionResult in
+                                    // This simply lists the results, use a button in case you'd like to perform an action
+                                    // or use a NavigationLink to move to the next view upon selection.
+                                    Button(action: {
+                                        var result = "\(completionResult.title) \(completionResult.subtitle)"
+                                        
+                                        result = result.replacingOccurrences(of: venueName, with: "", options: [.caseInsensitive])
+                                        result = result.trimmingCharacters(in: .whitespaces)
+                                        
+                                        self.venueLocation = result
+                                        locationService.queryFragment = result
+                                    }) {
+                                        VStack (alignment: .leading){
+                                            Text(completionResult.title)
+                                                .foregroundColor(.black)
+                                                .fontWeight(.bold)
+                                            Text(completionResult.subtitle)
+                                                .foregroundColor(.black)
+                                        }
                                     }
                                 }
                             }

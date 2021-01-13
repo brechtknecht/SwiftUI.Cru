@@ -47,8 +47,8 @@
 		99C9837825AF9AD70093FF19 /* Settlement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C9837725AF9AD70093FF19 /* Settlement.swift */; };
 		99C9837C25AF9B1F0093FF19 /* SettlementDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C9837B25AF9B1F0093FF19 /* SettlementDB.swift */; };
 		99C9837F25AF9B480093FF19 /* SettlementDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C9837E25AF9B480093FF19 /* SettlementDBKeys.swift */; };
-		99C9838625AF9E270093FF19 /* AddSettlement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C9838525AF9E270093FF19 /* AddSettlement.swift */; };
 		99C9838A25AF9E3C0093FF19 /* SettlementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C9838925AF9E3C0093FF19 /* SettlementStore.swift */; };
+		99C9838F25AF9FD90093FF19 /* AddSettlement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C9838E25AF9FD90093FF19 /* AddSettlement.swift */; };
 		99F16B172582B6A000F3AB97 /* BindingExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F16B162582B6A000F3AB97 /* BindingExtension.swift */; };
 		99F3B86D25803BAE00113ADE /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99F3B86C25803BAE00113ADE /* Utilities.swift */; };
 /* End PBXBuildFile section */
@@ -93,8 +93,8 @@
 		99C9837725AF9AD70093FF19 /* Settlement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settlement.swift; sourceTree = "<group>"; };
 		99C9837B25AF9B1F0093FF19 /* SettlementDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementDB.swift; sourceTree = "<group>"; };
 		99C9837E25AF9B480093FF19 /* SettlementDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementDBKeys.swift; sourceTree = "<group>"; };
-		99C9838525AF9E270093FF19 /* AddSettlement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSettlement.swift; sourceTree = "<group>"; };
 		99C9838925AF9E3C0093FF19 /* SettlementStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementStore.swift; sourceTree = "<group>"; };
+		99C9838E25AF9FD90093FF19 /* AddSettlement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSettlement.swift; sourceTree = "<group>"; };
 		99F16B162582B6A000F3AB97 /* BindingExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingExtension.swift; sourceTree = "<group>"; };
 		99F3B86C25803BAE00113ADE /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -289,7 +289,7 @@
 		99C9838425AF9E030093FF19 /* Settlement */ = {
 			isa = PBXGroup;
 			children = (
-				99C9838525AF9E270093FF19 /* AddSettlement.swift */,
+				99C9838E25AF9FD90093FF19 /* AddSettlement.swift */,
 			);
 			path = Settlement;
 			sourceTree = "<group>";
@@ -407,11 +407,11 @@
 				99C0222D258573720031538C /* CEditButton.swift in Sources */,
 				99BCF524257D4AA600F2A7BC /* Overview.swift in Sources */,
 				99BCF515257D49BF00F2A7BC /* ContentView.swift in Sources */,
-				99C9838625AF9E270093FF19 /* AddSettlement.swift in Sources */,
 				99BCF513257D49BF00F2A7BC /* BackstageApp.swift in Sources */,
 				99A965EC257E5C0400B8B2D7 /* AddVenueForm.swift in Sources */,
 				9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */,
 				99A965E0257E4D0600B8B2D7 /* VenueDB.swift in Sources */,
+				99C9838F25AF9FD90093FF19 /* AddSettlement.swift in Sources */,
 				990301B725A0A7F9004E4BD5 /* EventListElement.swift in Sources */,
 				9951C12225AE6E0D001E8F95 /* LocationService.swift in Sources */,
 				99BCF52D257D4B4700F2A7BC /* Crew.swift in Sources */,

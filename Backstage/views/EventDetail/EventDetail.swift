@@ -141,7 +141,10 @@ struct EventDetail: View {
             .sheet(item: $activeSheet) { item in
                 switch item {
                 case .settlement:
-                    Text("Settlement")
+                    AddSettlement(
+                        proposedDate: eventStore.findByID(id: eventID)?.date ?? Date(),
+                        locationService: LocationService()
+                    )
                 case .transport:
                     Text("Transport")
                 case .contact:
