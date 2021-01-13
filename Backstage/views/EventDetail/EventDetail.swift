@@ -19,7 +19,7 @@ struct EventDetail: View {
         let viewModel = EventDetailViewModel(eventStore: eventStore, eventID: eventID, venueStore: venueStore)
         
         ScrollView {
-            VStack {
+            VStack (alignment: .leading, spacing: 0){
                 ZStack {
                     GeometryReader { geometry in
                         let geometryWidth = geometry.size.width
@@ -66,21 +66,61 @@ struct EventDetail: View {
                         .foregroundColor(.gray)
                         .font(.body)
                         .textCase(.uppercase)
-                        .padding(EdgeInsets(top: 12, leading: 16, bottom: 0, trailing: 16))
+                        .padding(EdgeInsets(top: 22, leading: 16, bottom: 0, trailing: 16))
                     Text("\(viewModel.getVenue().name)")
                         .foregroundColor(.black)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(EdgeInsets(top: 0, leading: 16, bottom: 4, trailing: 16))
-                    Text("\(adress)")
-                        .foregroundColor(.gray)
-                        .tracking(-0.1)
-                        .textCase(.uppercase)
-                        .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+                    
                     VenueMap(adress: adress)
                     
-                    Text("Test")
+                    HStack {
+                        Button(action: {
+                            print("do something!")
+                        }) {
+                            ZStack {
+                                Rectangle()
+                                    .fill(Color(.white))
+                                    .cornerRadius(4)
+                                VStack {
+                                    Image(systemName: "map.fill")
+                                        .resizable()
+                                        .frame(width: 22, height: 22)
+                                    Text("Route öffnen")
+                                }
+                                .padding(.vertical, 8)
+                            }
+                            
+                        }
+                        Button(action: {
+                            print("do something!")
+                        }) {
+                            ZStack {
+                                Rectangle()
+                                    .fill(Color(.white))
+                                    .cornerRadius(4)
+                                VStack {
+                                    Image(systemName: "phone.fill")
+                                        .resizable()
+                                        .frame(width: 22, height: 22)
+                                    Text("Veranstalter anrufen")
+                                }
+                                .padding(.vertical, 8)
+                            }
+                        }
+                    }
+                    .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
+                    
                 }
+                .background(ColorManager.backgroundForm)
+                
+                Settlements()
+                
+                Transportation()
+                
+                Contacts()
+                
             }
         }
         .edgesIgnoringSafeArea(.top)

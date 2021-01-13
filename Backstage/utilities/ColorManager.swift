@@ -12,6 +12,10 @@ struct ColorManager {
     static let primaryDark = Color("primary-dark")
     static let primaryLight = Color("primary-light")
     
+    static let backgroundForm = Color("background-form")
+    
+    static let success = Color("success")
+    
 
     //... add the rest of your colors here
 }
