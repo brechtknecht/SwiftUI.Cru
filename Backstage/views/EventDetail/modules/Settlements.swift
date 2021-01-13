@@ -7,44 +7,42 @@
 
 import SwiftUI
 
-struct Transportation: View {
+struct Settlements: View {
     
-    @Binding var sheetIsActive : ActiveSheet?
+    @Binding var sheetIsActive: ActiveSheet?
     
     var body: some View {
         VStack (alignment: .leading){
-            Text("Transport")
+            Text("Übernachtungemöglichkeit")
                 .foregroundColor(.gray)
                 .font(.body)
                 .textCase(.uppercase)
-                .padding(EdgeInsets(top: 22, leading: 16, bottom: 0, trailing: 16))
-            VStack {
+                .padding(EdgeInsets(top: 22, leading: 16, bottom: 4, trailing: 16))
+            ScrollView(.horizontal, showsIndicators: false){
                 Button(action: {
-                    self.sheetIsActive = .transport
+                    self.sheetIsActive = .settlement
                 }) {
                     ZStack {
                         Rectangle()
                             .fill(ColorManager.primaryLight)
                             .cornerRadius(12)
-                        HStack{
-                            Text("Transportoption hinzufügen")
-                                .padding(EdgeInsets(top: 22, leading: 16, bottom: 22, trailing: 16))
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(ColorManager.primaryDark)
-                            Spacer()
+                        VStack {
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
-                                .frame(width: 24, height: 24)
-                                .padding(EdgeInsets(top: 22, leading: 16, bottom: 22, trailing: 16))
+                                .frame(width: 32, height: 32)
+                                .padding(EdgeInsets(top: 64, leading: 16, bottom: 8, trailing: 16))
                                 .foregroundColor(ColorManager.success)
+                            Text("Übernachtungsmöglichkeit hinzufügen")
+                                .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(ColorManager.primaryDark)
+                            
                         }
-//                        .frame(width: 250, height: 220)
+                        .frame(width: 250, height: 220)
                     }
                     .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                 }
             }
-            
-
         }
         .background(ColorManager.backgroundForm)
     }
