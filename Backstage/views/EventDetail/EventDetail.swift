@@ -29,120 +29,125 @@ struct EventDetail: View {
     var body: some View {
         
         let viewModel = EventDetailViewModel(eventStore: eventStore, eventID: eventID, venueStore: venueStore)
-        NavigationView {
-            ScrollView {
-                VStack (alignment: .leading, spacing: 0){
-                    ZStack {
-                        GeometryReader { geometry in
-                            let geometryWidth = geometry.size.width
-                            let geometryHeight = geometry.size.height
-                            let geometryFrame = geometry.frame(in: .global).minY
-                            
-                            ZStack {
-                                Image(uiImage: viewModel.eventImage)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: geometryWidth, height: geometryHeight + geometryFrame)
-                                    .clipped()
-                                    .offset(y: -geometryFrame)
-                                Rectangle()
-                                    .frame(width: geometryWidth, height: geometryHeight + geometryFrame)
-                                    .clipped()
-                                    .offset(y: -geometryFrame)
-                                    .opacity(0.6)
-                                    .foregroundColor(viewModel.eventImageBackground)
-                            }
-                            
+        
+        ScrollView {
+            VStack (alignment: .leading, spacing: 0){
+                ZStack {
+                    GeometryReader { geometry in
+                        let geometryWidth = geometry.size.width
+                        let geometryHeight = geometry.size.height
+                        let geometryFrame = geometry.frame(in: .global).minY
+                        
+                        ZStack {
+                            Image(uiImage: viewModel.eventImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: geometryWidth, height: geometryHeight + geometryFrame)
+                                .clipped()
+                                .offset(y: -geometryFrame)
+                            Rectangle()
+                                .frame(width: geometryWidth, height: geometryHeight + geometryFrame)
+                                .clipped()
+                                .offset(y: -geometryFrame)
+                                .opacity(0.6)
+                                .foregroundColor(viewModel.eventImageBackground)
                         }
-                        .frame(height: 600)
-                        VStack {
-                            Text("\(viewModel.convertDate(date: viewModel.currentEvent.date))" + " — " +  "\(viewModel.getVenue().name)")
-                                .font(.headline)
-                                .foregroundColor(Color.white)
-                                .padding(.vertical, 4)
-                            Text("\(viewModel.currentEvent.name)")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
-                                .foregroundColor(Color.white)
-                                .multilineTextAlignment(.center)
-                            Text("\(viewModel.getVenue().location)")
-                                .foregroundColor(Color.white)
-                                .padding(.vertical, 4)
-                        }
+                        
                     }
-                    VStack (alignment: .leading){
-    //                    Text("\(eventID)")
-    //                    Text("\(viewModel.currentEvent.name)")
-                        
-                        let adress = "\(viewModel.getVenue().street) \(viewModel.getVenue().location)"
-                        
-                        Text("Veranstaltungsort")
-                            .foregroundColor(.gray)
-                            .font(.body)
-                            .textCase(.uppercase)
-                            .padding(EdgeInsets(top: 22, leading: 16, bottom: 0, trailing: 16))
-                        Text("\(viewModel.getVenue().name)")
-                            .foregroundColor(.black)
+                    .frame(height: 600)
+                    VStack {
+                        Text("\(viewModel.convertDate(date: viewModel.currentEvent.date))" + " — " +  "\(viewModel.getVenue().name)")
+                            .font(.headline)
+                            .foregroundColor(Color.white)
+                            .padding(.vertical, 4)
+                        Text("\(viewModel.currentEvent.name)")
                             .font(.largeTitle)
                             .fontWeight(.bold)
-                            .padding(EdgeInsets(top: 0, leading: 16, bottom: 4, trailing: 16))
-                        
-                        VenueMap(adress: adress)
-                        
-                        HStack (spacing: 8) {
-                            Button(action: {
-                                print("do something!")
-                            }) {
-                                ZStack {
-                                    Rectangle()
-                                        .fill(Color(.white))
-                                        .cornerRadius(12)
-                                    VStack {
-                                        Image(systemName: "map.fill")
-                                            .resizable()
-                                            .frame(width: 22, height: 22)
-                                        Text("Route öffnen")
-                                    }
-                                    .padding(.vertical, 16)
+                            .foregroundColor(Color.white)
+                            .multilineTextAlignment(.center)
+                        Text("\(viewModel.getVenue().location)")
+                            .foregroundColor(Color.white)
+                            .padding(.vertical, 4)
+                    }
+                }
+                VStack (alignment: .leading){
+//                    Text("\(eventID)")
+//                    Text("\(viewModel.currentEvent.name)")
+                    
+                    let adress = "\(viewModel.getVenue().street) \(viewModel.getVenue().location)"
+                    
+                    Text("Veranstaltungsort")
+                        .foregroundColor(.gray)
+                        .font(.body)
+                        .textCase(.uppercase)
+                        .padding(EdgeInsets(top: 22, leading: 16, bottom: 0, trailing: 16))
+                    Text("\(viewModel.getVenue().name)")
+                        .foregroundColor(.black)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .padding(EdgeInsets(top: 0, leading: 16, bottom: 4, trailing: 16))
+                    
+                    VenueMap(adress: adress)
+                    
+                    HStack (spacing: 8) {
+                        Button(action: {
+                            print("do something!")
+                        }) {
+                            ZStack {
+                                Rectangle()
+                                    .fill(Color(.white))
+                                    .cornerRadius(12)
+                                VStack {
+                                    Image(systemName: "map.fill")
+                                        .resizable()
+                                        .frame(width: 22, height: 22)
+                                    Text("Route öffnen")
                                 }
-                                
+                                .padding(.vertical, 16)
                             }
-                            Button(action: {
-                                print("do something!")
-                            }) {
-                                ZStack {
-                                    Rectangle()
-                                        .fill(Color(.white))
-                                        .cornerRadius(12)
-                                    VStack {
-                                        Image(systemName: "phone.fill")
-                                            .resizable()
-                                            .frame(width: 22, height: 22)
-                                        Text("Veranstalter anrufen")
-                                    }
-                                    .padding(.vertical, 16)
+                            
+                        }
+                        Button(action: {
+                            print("do something!")
+                        }) {
+                            ZStack {
+                                Rectangle()
+                                    .fill(Color(.white))
+                                    .cornerRadius(12)
+                                VStack {
+                                    Image(systemName: "phone.fill")
+                                        .resizable()
+                                        .frame(width: 22, height: 22)
+                                    Text("Veranstalter anrufen")
                                 }
+                                .padding(.vertical, 16)
                             }
                         }
-                        .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
-                        
                     }
-                    .background(ColorManager.backgroundForm)
-                    
-                    Settlements(sheetIsActive: $activeSheet)
-                    
-                    Transportation(sheetIsActive: $activeSheet)
-                    
-                    Contacts()
+                    .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
                     
                 }
+                .background(ColorManager.backgroundForm)
+                
+                Settlements(sheetIsActive: $activeSheet)
+                
+                Transportation(sheetIsActive: $activeSheet)
+                
+                Contacts()
+                
             }
+            
             .edgesIgnoringSafeArea(.top)
             .sheet(item: $activeSheet) { item in
                 switch item {
                 case .settlement:
-                    AddSettlement(
-                        proposedDate: eventStore.findByID(id: eventID)?.date ?? Date(),
+                    
+                    let proposedDate = eventStore.findByID(id: eventID)?.date ?? Date()
+                    let dayPlusOne = Calendar.current.date(byAdding: .day, value: 1, to: proposedDate)!
+                    AddSettlement (
+                        settlementArrivalDate: proposedDate,
+                        settlementDepartureDate: dayPlusOne,
+                        proposedDate: proposedDate,
                         locationService: LocationService(),
                         eventReference: eventID
                     )

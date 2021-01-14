@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct Settlements: View {
+    static let settlementDateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d. MMM"
+        return formatter
+    }()
     
     @Binding var sheetIsActive: ActiveSheet?
     
@@ -26,26 +31,23 @@ struct Settlements: View {
                         Button(action: {
                             self.sheetIsActive = .settlement
                         }) {
-                            ZStack {
+                            ZStack{
+                                SettlementMap(adress: settlement.location)
                                 Rectangle()
-                                    .fill(ColorManager.primaryLight)
+                                    .fill(ColorManager.primaryLight.opacity(0.4))
                                     .cornerRadius(12)
-                                VStack {
+                                VStack(alignment: .leading){
                                     Text("\(settlement.name)")
-                                        .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                                        .multilineTextAlignment(.center)
+                                        .font(.headline)
                                         .foregroundColor(ColorManager.primaryDark)
                                     
-                                    Text("\(settlement.arrivalDate)")
-                                        .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                                        .multilineTextAlignment(.center)
+                                    Text(
+                                        "\(settlement.arrivalDate, formatter: Self.settlementDateFormat) — \(settlement.departureDate, formatter: Self.settlementDateFormat)"
+                                    )
                                         .foregroundColor(ColorManager.primaryDark)
                                     
                                     Text("\(settlement.price) € / Person")
-                                        .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-                                        .multilineTextAlignment(.center)
                                         .foregroundColor(ColorManager.primaryDark)
-                                    
                                 }
                                 .frame(width: 250, height: 220)
                             }
@@ -74,7 +76,7 @@ struct Settlements: View {
                                     .foregroundColor(ColorManager.primaryDark)
                                 
                             }
-                            .frame(width: 250, height: 220)
+                            .frame(width: 300, height: 260)
                         }
                         .padding(EdgeInsets(top: 8, leading: 4, bottom: 8, trailing: 4))
                     }

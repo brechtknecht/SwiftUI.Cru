@@ -10,8 +10,8 @@ import SwiftUI
 struct AddSettlement: View {
     @State var settlementName           : String  = ""
     @State var settlementLocation       : String  = ""
-    @State var settlementArrivalDate    : Date    = Date()
-    @State var settlementDepartureDate  : Date    = Date()
+    @State var settlementArrivalDate    : Date
+    @State var settlementDepartureDate  : Date
     @State var settlementPrice          : String  = ""
     @State var settlementCurrency       : String  = ""
     @State var settlementPersons                  = 3
@@ -45,12 +45,12 @@ struct AddSettlement: View {
                         )
                         
                         /// The proposed Day is the Date from the event
-                        DatePicker(selection: $settlementArrivalDate, in: proposedDate..., displayedComponents: .date) {
+                        DatePicker(selection: $settlementArrivalDate, in: settlementArrivalDate..., displayedComponents: .date) {
                             Text("Datum Ankunft")
                         }
                         
                         /// Adds one Day to the proposed Day
-                        DatePicker(selection: $settlementDepartureDate, in: Calendar.current.date(byAdding: .day, value: 1, to: proposedDate)!..., displayedComponents: .date) {
+                        DatePicker(selection: $settlementDepartureDate, in: settlementDepartureDate..., displayedComponents: .date) {
                             Text("Datum Abreise")
                         }
                     }
