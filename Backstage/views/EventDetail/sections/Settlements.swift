@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct Settlements: View {
     static let settlementDateFormat: DateFormatter = {
@@ -15,8 +16,11 @@ struct Settlements: View {
     }()
     
     @Binding var sheetIsActive: ActiveSheet?
+    @Binding var eventID : Int
     
     @EnvironmentObject var settlementStore: SettlementStore
+    @EnvironmentObject var eventStore : EventStore
+    
     
     var body: some View {
         VStack (alignment: .leading){
@@ -26,27 +30,32 @@ struct Settlements: View {
                 .textCase(.uppercase)
                 .padding(EdgeInsets(top: 22, leading: 16, bottom: 4, trailing: 16))
             ScrollView(.horizontal, showsIndicators: false){
+                
+                let settlementIDs = eventStore.findByID(id: eventID)?.settlements ?? RealmSwift.List<Int>()
+            
                 HStack {
-                    ForEach(settlementStore.settlements, id: \.self.id) { settlement in
+                    ForEach(settlementIDs, id: \.self) { settlementID in
+                        let settlement = settlementStore.findByID(id: settlementID)
+                        
                         Button(action: {
                             self.sheetIsActive = .settlement
                         }) {
                             ZStack{
-                                SettlementMap(adress: settlement.location)
+                                SettlementMap(adress: settlement?.location ?? "")
                                 Rectangle()
                                     .fill(ColorManager.primaryLight.opacity(0.4))
                                     .cornerRadius(12)
                                 VStack(alignment: .leading){
-                                    Text("\(settlement.name)")
+                                    Text("\(settlement?.name ?? "")")
                                         .font(.headline)
                                         .foregroundColor(ColorManager.primaryDark)
                                     
                                     Text(
-                                        "\(settlement.arrivalDate, formatter: Self.settlementDateFormat) — \(settlement.departureDate, formatter: Self.settlementDateFormat)"
+                                        "\(settlement?.arrivalDate ?? Date(), formatter: Self.settlementDateFormat) — \(settlement?.departureDate ?? Date(), formatter: Self.settlementDateFormat)"
                                     )
                                         .foregroundColor(ColorManager.primaryDark)
                                     
-                                    Text("\(settlement.price) € / Person")
+                                    Text("\(settlement?.price ?? 0) € / Person")
                                         .foregroundColor(ColorManager.primaryDark)
                                 }
                                 .frame(width: 250, height: 220)

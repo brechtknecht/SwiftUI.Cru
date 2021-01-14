@@ -129,7 +129,7 @@ struct EventDetail: View {
                 }
                 .background(ColorManager.backgroundForm)
                 
-                Settlements(sheetIsActive: $activeSheet)
+                Settlements(sheetIsActive: $activeSheet, eventID: $eventID)
                 
                 Transportation(sheetIsActive: $activeSheet)
                 
