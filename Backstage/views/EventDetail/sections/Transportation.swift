@@ -49,7 +49,7 @@ struct Transportation: View {
                             HStack{
                                 Text("\(transportationType)")
                                     .foregroundColor(Color.white)
-                                    .padding(EdgeInsets(top: 4, leading: 4, bottom: 4, trailing: 4))
+                                    .padding(EdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8))
                                     .background(Rectangle().fill(ColorManager.accent).cornerRadius(4))
                                 Text("\(transportName)")
                                     .padding(EdgeInsets(top: 22, leading: 8, bottom: 22, trailing: 8))

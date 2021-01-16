@@ -131,7 +131,7 @@ struct EventDetail: View {
                 
                 Transportation(sheetIsActive: $activeSheet, eventID: $eventID)
                 
-                Contacts(sheetIsActive: $activeSheet)
+                Contacts(sheetIsActive: $activeSheet, eventID: $eventID)
                 
             }
             
