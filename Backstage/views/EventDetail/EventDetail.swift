@@ -54,12 +54,12 @@ struct EventDetail: View {
                         }
                         
                     }
-                    .frame(height: 600)
+                    .frame(height: 500)
                     VStack {
                         Text("\(viewModel.convertDate(date: viewModel.currentEvent.date))" + " — " +  "\(viewModel.getVenue().name)")
                             .font(.headline)
                             .foregroundColor(Color.white)
-                            .padding(.vertical, 4)
+                            .padding(.vertical, 2)
                         Text("\(viewModel.currentEvent.name)")
                             .font(.largeTitle)
                             .fontWeight(.bold)
@@ -67,7 +67,7 @@ struct EventDetail: View {
                             .multilineTextAlignment(.center)
                         Text("\(viewModel.getVenue().location)")
                             .foregroundColor(Color.white)
-                            .padding(.vertical, 4)
+                            .padding(.vertical, 2)
                     }
                 }
                 VStack (alignment: .leading){

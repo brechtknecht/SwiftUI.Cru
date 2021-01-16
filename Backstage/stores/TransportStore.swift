@@ -1,5 +1,5 @@
 //
-//  SettlementStore.swift
+//  TransportStore.swift
 //  Backstage
 //
 //  Created by Felix Tesche on 07.12.20.
@@ -9,21 +9,21 @@ import Foundation
 import RealmSwift
 import SwiftUI
 
-final class SettlementStore: ObservableObject {
-    private var results: Results<SettlementDB>
+final class TransportStore: ObservableObject {
+    private var results: Results<TransportDB>
     
-    var settlements: [Settlement] {
-        results.map(Settlement.init)
+    var transports: [Transport] {
+        results.map(Transport.init)
     }
     
     // Load Items from the Realm Database
     init(realm: Realm) {
-        results = realm.objects(SettlementDB.self)
+        results = realm.objects(TransportDB.self)
     }
     
-    func findByID (id: Int) -> SettlementDB! {
+    func findByID (id: Int) -> TransportDB! {
         do {
-            return try Realm().object(ofType: SettlementDB.self, forPrimaryKey: id)
+            return try Realm().object(ofType: TransportDB.self, forPrimaryKey: id)
         } catch let error {
             print(error.localizedDescription)
             return nil
@@ -32,22 +32,20 @@ final class SettlementStore: ObservableObject {
 }
 
 // MARK: - CRUD Actions
-extension SettlementStore {
-    func create(id: Int, name: String, location: String, arrivalDate: Date, departureDate: Date, price: Int, currency: String) {
+extension TransportStore {
+    func create(id: Int, name: String, tag: String, isRented: Bool, price: Int) {
         
         objectWillChange.send()
         
         do {
             let realm = try Realm()
             
-            let refDB = SettlementDB()
+            let refDB = TransportDB()
             refDB.id            = id
             refDB.name          = name
-            refDB.location      = location
-            refDB.arrivalDate   = arrivalDate
-            refDB.departureDate = departureDate
+            refDB.tag           = tag
+            refDB.isRented      = isRented
             refDB.price         = price
-            refDB.currency      = currency
 
             try realm.write {
                 realm.add(refDB)
@@ -80,7 +78,7 @@ extension SettlementStore {
         do {
             let realm = try Realm()
             
-            let object = realm.objects(SettlementDB.self).filter("id = %@", id).first
+            let object = realm.objects(TransportDB.self).filter("id = %@", id).first
             
             try! realm.write {
                 if let obj = object {

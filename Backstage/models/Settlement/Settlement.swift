@@ -14,7 +14,7 @@ struct Settlement: Identifiable, Hashable {
     let location : String
     let arrivalDate : Date
     let departureDate : Date
-    let price : Double
+    let price : Int
     let currency : String
 }
 

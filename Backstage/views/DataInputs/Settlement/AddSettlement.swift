@@ -14,7 +14,7 @@ struct AddSettlement: View {
     @State var settlementDepartureDate  : Date
     @State var settlementPrice          : String  = ""
     @State var settlementCurrency       : String  = ""
-    @State var settlementPersons                  = 3
+    @State var settlementPersons                  = 0
     
     @State var proposedDate             : Date
     
@@ -64,6 +64,7 @@ struct AddSettlement: View {
                     }
                     if(locationHelperActive) {
                         Section(header: Text("Suchergebnisse")) {
+                            
                             List {
                                 // With Xcode 12, this will not be necessary as it supports switch statements.
                                 if locationService.status == .isSearching {
@@ -120,7 +121,7 @@ struct AddSettlement: View {
                             location:           settlementLocation,
                             arrivalDate:        settlementArrivalDate,
                             departureDate:      settlementDepartureDate,
-                            price:              Double(settlementPrice) ?? 0.0,
+                            price:              Int(settlementPrice) ?? 0,
                             currency:           settlementCurrency
                         )
                         

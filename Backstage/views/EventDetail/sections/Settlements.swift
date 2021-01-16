@@ -21,7 +21,6 @@ struct Settlements: View {
     @EnvironmentObject var settlementStore: SettlementStore
     @EnvironmentObject var eventStore : EventStore
     
-    
     var body: some View {
         VStack (alignment: .leading){
             Text("Übernachtungemöglichkeit")
@@ -32,31 +31,50 @@ struct Settlements: View {
             ScrollView(.horizontal, showsIndicators: false){
                 
                 let settlementIDs = eventStore.findByID(id: eventID)?.settlements ?? RealmSwift.List<Int>()
+                
+//                let viewModel = SettlementViewModel(eventID: eventID, eventStore: eventStore)
             
                 HStack {
                     ForEach(settlementIDs, id: \.self) { settlementID in
                         let settlement = settlementStore.findByID(id: settlementID)
                         
+                        /// Unwrapping all the data needed
+                        let settlementLocation      = settlement?.location      ?? ""
+                        let settlementName          = settlement?.name          ?? ""
+                        let settlementArrivalDate   = settlement?.arrivalDate   ?? Date()
+                        let settlementDepartureDate = settlement?.departureDate ?? Date()
+                        let settlementPrice         = settlement?.price         ?? 0
+                        
                         Button(action: {
                             self.sheetIsActive = .settlement
                         }) {
-                            ZStack{
-                                SettlementMap(adress: settlement?.location ?? "")
+                            ZStack {
+                                SettlementMap(adress: settlementLocation)
                                 Rectangle()
                                     .fill(ColorManager.primaryLight.opacity(0.4))
                                     .cornerRadius(12)
-                                VStack(alignment: .leading){
-                                    Text("\(settlement?.name ?? "")")
+                                VStack(){
+                                    Text("\(settlementName)")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(ColorManager.primaryDark)
+                                        .padding(EdgeInsets(top: 16, leading: 8, bottom: 0, trailing: 8))
+                                        .frame(width: 250, alignment: .leading)
+                                    Spacer()
+                                    Text(
+                                        "\(settlementArrivalDate, formatter: Self.settlementDateFormat) — \(settlementDepartureDate, formatter: Self.settlementDateFormat)"
+                                    )
                                         .font(.headline)
                                         .foregroundColor(ColorManager.primaryDark)
+                                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
+                                        .frame(width: 250, alignment: .leading)
                                     
-                                    Text(
-                                        "\(settlement?.arrivalDate ?? Date(), formatter: Self.settlementDateFormat) — \(settlement?.departureDate ?? Date(), formatter: Self.settlementDateFormat)"
-                                    )
+                                    Text("\(settlementPrice)\(Characters.hairSpace)€\(Characters.thinSpace)/\(Characters.thinSpace)Person")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
                                         .foregroundColor(ColorManager.primaryDark)
-                                    
-                                    Text("\(settlement?.price ?? 0) € / Person")
-                                        .foregroundColor(ColorManager.primaryDark)
+                                        .padding(EdgeInsets(top: 0, leading: 8, bottom: 16, trailing: 8))
+                                        .frame(width: 250, alignment: .leading)
                                 }
                                 .frame(width: 250, height: 220)
                             }
@@ -94,5 +112,16 @@ struct Settlements: View {
             }
         }
         .background(ColorManager.backgroundForm)
+    }
+}
+
+
+class SettlementViewModel: ObservableObject {
+    var eventStore: EventStore
+    private var settlementIDs: RealmSwift.List<Int>
+    
+    init(eventID: Int, eventStore: EventStore) {
+        self.eventStore = eventStore
+        self.settlementIDs = eventStore.findByID(id: eventID)?.settlements ?? RealmSwift.List<Int>()
     }
 }

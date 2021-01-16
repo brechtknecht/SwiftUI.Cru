@@ -19,6 +19,11 @@
 		9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AAD1257D597F004AB2C4 /* ColorManager.swift */; };
 		9956AAD5257D59FA004AB2C4 /* ButtonFullWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AAD4257D59FA004AB2C4 /* ButtonFullWidth.swift */; };
 		9956AADB257D7CDB004AB2C4 /* SelectVenueForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AADA257D7CDB004AB2C4 /* SelectVenueForm.swift */; };
+		995EA25A25B3516600B9D96D /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA25925B3516600B9D96D /* Characters.swift */; };
+		995EA25F25B35F9200B9D96D /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA25E25B35F9200B9D96D /* Transport.swift */; };
+		995EA26325B3603900B9D96D /* TransportDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA26225B3603900B9D96D /* TransportDB.swift */; };
+		995EA26625B3608900B9D96D /* TransportDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA26525B3608900B9D96D /* TransportDBKeys.swift */; };
+		995EA26925B360C000B9D96D /* TransportStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA26825B360C000B9D96D /* TransportStore.swift */; };
 		995EEEFD25AFC15C00012D39 /* SettlementMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EEEFC25AFC15C00012D39 /* SettlementMap.swift */; };
 		998DD3E6257E4C5B00E17E8B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 998DD3E5257E4C5B00E17E8B /* Realm */; };
 		998DD3E8257E4C5B00E17E8B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 998DD3E7257E4C5B00E17E8B /* RealmSwift */; };
@@ -67,6 +72,11 @@
 		9956AAD1257D597F004AB2C4 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		9956AAD4257D59FA004AB2C4 /* ButtonFullWidth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonFullWidth.swift; sourceTree = "<group>"; };
 		9956AADA257D7CDB004AB2C4 /* SelectVenueForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectVenueForm.swift; sourceTree = "<group>"; };
+		995EA25925B3516600B9D96D /* Characters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Characters.swift; sourceTree = "<group>"; };
+		995EA25E25B35F9200B9D96D /* Transport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transport.swift; sourceTree = "<group>"; };
+		995EA26225B3603900B9D96D /* TransportDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportDB.swift; sourceTree = "<group>"; };
+		995EA26525B3608900B9D96D /* TransportDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportDBKeys.swift; sourceTree = "<group>"; };
+		995EA26825B360C000B9D96D /* TransportStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportStore.swift; sourceTree = "<group>"; };
 		995EEEFC25AFC15C00012D39 /* SettlementMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementMap.swift; sourceTree = "<group>"; };
 		99A965DF257E4D0600B8B2D7 /* VenueDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDB.swift; sourceTree = "<group>"; };
 		99A965E2257E4EAF00B8B2D7 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
@@ -118,6 +128,7 @@
 		991E6371257E494500911D17 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				995EA25D25B35F6E00B9D96D /* Transport */,
 				99C9837625AF9ABC0093FF19 /* Settlement */,
 				99A965FD257EB29900B8B2D7 /* Event */,
 				99A965FB257EA57100B8B2D7 /* Venue */,
@@ -153,6 +164,16 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		995EA25D25B35F6E00B9D96D /* Transport */ = {
+			isa = PBXGroup;
+			children = (
+				995EA25E25B35F9200B9D96D /* Transport.swift */,
+				995EA26225B3603900B9D96D /* TransportDB.swift */,
+				995EA26525B3608900B9D96D /* TransportDBKeys.swift */,
+			);
+			path = Transport;
+			sourceTree = "<group>";
+		};
 		998FA76F257D89DC000468BE /* DataInputs */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +188,7 @@
 			children = (
 				99A965E6257E4FB200B8B2D7 /* VenueStore.swift */,
 				99C9838925AF9E3C0093FF19 /* SettlementStore.swift */,
+				995EA26825B360C000B9D96D /* TransportStore.swift */,
 				99A96608257EB4F900B8B2D7 /* EventStore.swift */,
 			);
 			path = stores;
@@ -305,6 +327,7 @@
 				99F16B162582B6A000F3AB97 /* BindingExtension.swift */,
 				9951C12125AE6E0D001E8F95 /* LocationService.swift */,
 				993EAD3225AE7EC700531A67 /* Paddings.swift */,
+				995EA25925B3516600B9D96D /* Characters.swift */,
 			);
 			path = utilities;
 			sourceTree = "<group>";
@@ -388,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				99C9837C25AF9B1F0093FF19 /* SettlementDB.swift in Sources */,
+				995EA25F25B35F9200B9D96D /* Transport.swift in Sources */,
 				99BCF536257D4E9E00F2A7BC /* EventDetail.swift in Sources */,
 				99C9838A25AF9E3C0093FF19 /* SettlementStore.swift in Sources */,
 				993BD7B9257ED2C80014CA4C /* EventListItem.swift in Sources */,
@@ -397,8 +421,11 @@
 				99BCF532257D4D9B00F2A7BC /* EventList.swift in Sources */,
 				992AA13325AF7E21005B1061 /* Settlements.swift in Sources */,
 				99A965F0257E677900B8B2D7 /* RealmPersistentInitializer.swift in Sources */,
+				995EA26625B3608900B9D96D /* TransportDBKeys.swift in Sources */,
 				995EEEFD25AFC15C00012D39 /* SettlementMap.swift in Sources */,
 				99F3B86D25803BAE00113ADE /* Utilities.swift in Sources */,
+				995EA26325B3603900B9D96D /* TransportDB.swift in Sources */,
+				995EA25A25B3516600B9D96D /* Characters.swift in Sources */,
 				99BCF528257D4B3A00F2A7BC /* Events.swift in Sources */,
 				9956AAD5257D59FA004AB2C4 /* ButtonFullWidth.swift in Sources */,
 				99A965F4257E687100B8B2D7 /* VenueDBKeys.swift in Sources */,
@@ -406,6 +433,7 @@
 				99A965FF257EB2A600B8B2D7 /* Event.swift in Sources */,
 				9956AADB257D7CDB004AB2C4 /* SelectVenueForm.swift in Sources */,
 				993EAD3325AE7EC700531A67 /* Paddings.swift in Sources */,
+				995EA26925B360C000B9D96D /* TransportStore.swift in Sources */,
 				9951C11F25AE6065001E8F95 /* VenueMap.swift in Sources */,
 				99F16B172582B6A000F3AB97 /* BindingExtension.swift in Sources */,
 				99C0222D258573720031538C /* CEditButton.swift in Sources */,
