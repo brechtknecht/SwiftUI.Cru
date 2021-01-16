@@ -19,6 +19,7 @@ class EventDB: Object {
     @objc dynamic var type          = ""
     let settlements                 = RealmSwift.List<Int>()
     let transports                  = RealmSwift.List<Int>()
+    let persons                     = RealmSwift.List<Int>()
     
     // Defines the standard key — realm needs this for identication
     override static func primaryKey() -> String? {

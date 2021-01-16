@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		990301B725A0A7F9004E4BD5 /* EventListElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990301B625A0A7F9004E4BD5 /* EventListElement.swift */; };
 		990301BA25A0A82B004E4BD5 /* EventListElementPoster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990301B925A0A82B004E4BD5 /* EventListElementPoster.swift */; };
+		990A4E0325B377EF00CEF57F /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990A4E0225B377EF00CEF57F /* Person.swift */; };
+		990A4E0625B3787A00CEF57F /* PersonDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990A4E0525B3787A00CEF57F /* PersonDB.swift */; };
+		990A4E0925B378D900CEF57F /* PersonDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990A4E0825B378D900CEF57F /* PersonDBKeys.swift */; };
+		990A4E0C25B3792700CEF57F /* PersonStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990A4E0B25B3792700CEF57F /* PersonStore.swift */; };
+		990A4E1025B379EA00CEF57F /* AddPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990A4E0F25B379EA00CEF57F /* AddPerson.swift */; };
 		992AA13325AF7E21005B1061 /* Settlements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AA13225AF7E21005B1061 /* Settlements.swift */; };
 		992AA13725AF7E5E005B1061 /* Transportation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AA13625AF7E5E005B1061 /* Transportation.swift */; };
 		993BD7B9257ED2C80014CA4C /* EventListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BD7B8257ED2C80014CA4C /* EventListItem.swift */; };
@@ -63,6 +68,11 @@
 /* Begin PBXFileReference section */
 		990301B625A0A7F9004E4BD5 /* EventListElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListElement.swift; sourceTree = "<group>"; };
 		990301B925A0A82B004E4BD5 /* EventListElementPoster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListElementPoster.swift; sourceTree = "<group>"; };
+		990A4E0225B377EF00CEF57F /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		990A4E0525B3787A00CEF57F /* PersonDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDB.swift; sourceTree = "<group>"; };
+		990A4E0825B378D900CEF57F /* PersonDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDBKeys.swift; sourceTree = "<group>"; };
+		990A4E0B25B3792700CEF57F /* PersonStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonStore.swift; sourceTree = "<group>"; };
+		990A4E0F25B379EA00CEF57F /* AddPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPerson.swift; sourceTree = "<group>"; };
 		992AA13225AF7E21005B1061 /* Settlements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settlements.swift; sourceTree = "<group>"; };
 		992AA13625AF7E5E005B1061 /* Transportation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transportation.swift; sourceTree = "<group>"; };
 		993BD7B8257ED2C80014CA4C /* EventListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListItem.swift; sourceTree = "<group>"; };
@@ -127,9 +137,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		990A4E0125B377B800CEF57F /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				990A4E0225B377EF00CEF57F /* Person.swift */,
+				990A4E0525B3787A00CEF57F /* PersonDB.swift */,
+				990A4E0825B378D900CEF57F /* PersonDBKeys.swift */,
+			);
+			path = Person;
+			sourceTree = "<group>";
+		};
+		990A4E0E25B379C400CEF57F /* Person */ = {
+			isa = PBXGroup;
+			children = (
+				990A4E0F25B379EA00CEF57F /* AddPerson.swift */,
+			);
+			path = Person;
+			sourceTree = "<group>";
+		};
 		991E6371257E494500911D17 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				990A4E0125B377B800CEF57F /* Person */,
 				995EA25D25B35F6E00B9D96D /* Transport */,
 				99C9837625AF9ABC0093FF19 /* Settlement */,
 				99A965FD257EB29900B8B2D7 /* Event */,
@@ -187,6 +216,7 @@
 		998FA76F257D89DC000468BE /* DataInputs */ = {
 			isa = PBXGroup;
 			children = (
+				990A4E0E25B379C400CEF57F /* Person */,
 				995EA26C25B36A2200B9D96D /* Transport */,
 				99C9838425AF9E030093FF19 /* Settlement */,
 				99C9838325AF9DE90093FF19 /* Venue */,
@@ -201,6 +231,7 @@
 				99C9838925AF9E3C0093FF19 /* SettlementStore.swift */,
 				995EA26825B360C000B9D96D /* TransportStore.swift */,
 				99A96608257EB4F900B8B2D7 /* EventStore.swift */,
+				990A4E0B25B3792700CEF57F /* PersonStore.swift */,
 			);
 			path = stores;
 			sourceTree = "<group>";
@@ -425,8 +456,10 @@
 				995EA25F25B35F9200B9D96D /* Transport.swift in Sources */,
 				99BCF536257D4E9E00F2A7BC /* EventDetail.swift in Sources */,
 				99C9838A25AF9E3C0093FF19 /* SettlementStore.swift in Sources */,
+				990A4E0C25B3792700CEF57F /* PersonStore.swift in Sources */,
 				993BD7B9257ED2C80014CA4C /* EventListItem.swift in Sources */,
 				992AA13725AF7E5E005B1061 /* Transportation.swift in Sources */,
+				990A4E0625B3787A00CEF57F /* PersonDB.swift in Sources */,
 				99C9837825AF9AD70093FF19 /* Settlement.swift in Sources */,
 				99A96606257EB48800B8B2D7 /* EventDBKeys.swift in Sources */,
 				99BCF532257D4D9B00F2A7BC /* EventList.swift in Sources */,
@@ -439,12 +472,15 @@
 				995EA25A25B3516600B9D96D /* Characters.swift in Sources */,
 				99BCF528257D4B3A00F2A7BC /* Events.swift in Sources */,
 				995EA26E25B36A3F00B9D96D /* AddTransport.swift in Sources */,
+				990A4E1025B379EA00CEF57F /* AddPerson.swift in Sources */,
 				9956AAD5257D59FA004AB2C4 /* ButtonFullWidth.swift in Sources */,
 				99A965F4257E687100B8B2D7 /* VenueDBKeys.swift in Sources */,
 				990301BA25A0A82B004E4BD5 /* EventListElementPoster.swift in Sources */,
+				990A4E0925B378D900CEF57F /* PersonDBKeys.swift in Sources */,
 				99A965FF257EB2A600B8B2D7 /* Event.swift in Sources */,
 				9956AADB257D7CDB004AB2C4 /* SelectVenueForm.swift in Sources */,
 				993EAD3325AE7EC700531A67 /* Paddings.swift in Sources */,
+				990A4E0325B377EF00CEF57F /* Person.swift in Sources */,
 				995EA26925B360C000B9D96D /* TransportStore.swift in Sources */,
 				9951C11F25AE6065001E8F95 /* VenueMap.swift in Sources */,
 				99F16B172582B6A000F3AB97 /* BindingExtension.swift in Sources */,

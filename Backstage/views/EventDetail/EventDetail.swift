@@ -129,9 +129,9 @@ struct EventDetail: View {
                 
                 Settlements(sheetIsActive: $activeSheet, eventID: $eventID)
                 
-                Transportation(sheetIsActive: $activeSheet)
+                Transportation(sheetIsActive: $activeSheet, eventID: $eventID)
                 
-                Contacts()
+                Contacts(sheetIsActive: $activeSheet)
                 
             }
             
@@ -154,7 +154,9 @@ struct EventDetail: View {
                         eventReference: eventID
                     )
                 case .contact:
-                    Text("Kontakt")
+                    AddPerson(
+                        eventReference: eventID
+                    )
                 }
             }
         }

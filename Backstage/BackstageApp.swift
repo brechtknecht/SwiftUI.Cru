@@ -17,6 +17,7 @@ struct BackstageApp: App {
                 .environmentObject(EventStore(realm: RealmPersistent.initializer()))
                 .environmentObject(SettlementStore(realm: RealmPersistent.initializer()))
                 .environmentObject(TransportStore(realm: RealmPersistent.initializer()))
+                .environmentObject(PersonStore(realm: RealmPersistent.initializer()))
         }
     }
 }

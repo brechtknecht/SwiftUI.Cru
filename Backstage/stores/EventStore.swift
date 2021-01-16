@@ -137,5 +137,16 @@ extension EventStore {
             }
         }
     }
+    
+    func addPersonToList (eventID: Int, personID: Int) {
+        let event = self.findByID(id: eventID)
+        
+        do {
+            let realm = try! Realm()
+            try! realm.write {
+                event?.persons.append(personID)
+            }
+        }
+    }
 
 }

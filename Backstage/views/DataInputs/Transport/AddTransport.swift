@@ -60,9 +60,11 @@ struct AddTransport: View {
                         Toggle(isOn: $transportIsRented) {
                             Text("Is Rented")
                         }
-                        TextField("Price per Day", text: $transportPrice)
-                            .keyboardType(.numberPad)
-                        Text("€")
+                        HStack {
+                            TextField("Price per Day", text: $transportPrice)
+                                .keyboardType(.numberPad)
+                            Text("€")
+                        }
                     }
                 }
                 

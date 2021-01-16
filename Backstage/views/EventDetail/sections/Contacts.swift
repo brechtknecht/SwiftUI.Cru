@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct Contacts: View {
+    
+    @Binding var sheetIsActive : ActiveSheet?
+    
     var body: some View {
         VStack (alignment: .leading){
             Text("Kontakte")
@@ -17,7 +20,7 @@ struct Contacts: View {
                 .padding(EdgeInsets(top: 22, leading: 16, bottom: 0, trailing: 16))
             VStack {
                 Button(action: {
-                    print("Tapped on Contact Add")
+                    self.sheetIsActive = .contact
                 }) {
                     ZStack {
                         Rectangle()
@@ -49,6 +52,6 @@ struct Contacts: View {
 
 struct Contacts_Previews: PreviewProvider {
     static var previews: some View {
-        Contacts()
+        Contacts(sheetIsActive: .constant(.contact))
     }
 }

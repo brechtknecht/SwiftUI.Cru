@@ -51,7 +51,7 @@ struct Settlements: View {
                             ZStack {
                                 SettlementMap(adress: settlementLocation)
                                 Rectangle()
-                                    .fill(ColorManager.primaryLight.opacity(0.4))
+                                    .fill(ColorManager.primaryLight.opacity(0.6))
                                     .cornerRadius(12)
                                 VStack(){
                                     Text("\(settlementName)")
@@ -78,11 +78,11 @@ struct Settlements: View {
                                 }
                                 .frame(width: 250, height: 220)
                             }
-                            .padding(EdgeInsets(top: 8, leading: 4, bottom: 8, trailing: 4))
+                            .padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
                         }
                     }
                     
-                    
+                    // - Create Button
                     
                     Button(action: {
                         self.sheetIsActive = .settlement
