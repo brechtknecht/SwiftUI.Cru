@@ -33,7 +33,7 @@ final class EventStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension EventStore {
-    func create(name: String, date: Date, venueID: Int, imageUUID: String) {
+    func create(name: String, date: Date, fee: Int, type: String, venueID: Int, imageUUID: String) {
         
         objectWillChange.send()
         
@@ -44,6 +44,8 @@ extension EventStore {
             refDB.id = UUID().hashValue
             refDB.name = name
             refDB.date = date
+            refDB.fee = fee
+            refDB.type = type
             refDB.venueID = venueID
             refDB.imageUUID = imageUUID
 
@@ -123,7 +125,17 @@ extension EventStore {
                 event?.settlements.append(settlementID)
             }
         }
+    }
+    
+    func addTransportToList (eventID: Int, transportID: Int) {
+        let event = self.findByID(id: eventID)
         
+        do {
+            let realm = try! Realm()
+            try! realm.write {
+                event?.transports.append(transportID)
+            }
+        }
     }
 
 }

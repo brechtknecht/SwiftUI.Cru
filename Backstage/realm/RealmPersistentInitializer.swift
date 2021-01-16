@@ -13,7 +13,7 @@ class RealmPersistent {
         do {
             let realm = try Realm()
             return realm
-        } catch let err {
+        } catch let err {   
             fatalError("Failed to open Realm \(err.localizedDescription)")
         }
     }

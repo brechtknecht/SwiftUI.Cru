@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+enum EventType: String, Equatable, CaseIterable {
+    case club           = "Clubauftritt"
+    case festival       = "Festivalauftritt"
+    case tour           = "Tourauftritt"
+
+    var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue) }
+    
+    var selected: String {
+            switch self {
+                case .club      : return "Clubauftritt"
+                case .festival  : return "Festivalauftritt"
+                case .tour      : return "Tourauftritt"
+            }
+        }
+}
+
 struct CreateNewEvent: View {
     // Navigation Enviroment
     @Environment(\.presentationMode) var presentationMode
@@ -18,7 +34,7 @@ struct CreateNewEvent: View {
     // Reactive Datapoints for the Form
     @State var eventName = ""
     @State var eventDate = Date()
-    @State var eventType = 0
+    @State var eventType : EventType = .club
     @State var eventTime = Date()
     @State var eventFee = ""
     @State static var label = "Event hinzufügen"
@@ -42,10 +58,11 @@ struct CreateNewEvent: View {
                         }
                         DatePicker("Zeit", selection: $eventTime, displayedComponents: .hourAndMinute)
                         
-                        Picker(selection: $eventType, label: Text("What is your favorite color?")) {
-                            Text("Clubauftritt").tag(0)
-                            Text("Festivalauftritt").tag(1)
-                            Text("Tourauftritt").tag(2)
+                        Picker(selection: $eventType, label: Text("")) {
+                            ForEach(EventType.allCases, id: \.self) { value in
+                                Text(value.localizedName)
+                                    .tag(value)
+                            }
                         }.pickerStyle(SegmentedPickerStyle())
                         .padding(.vertical, 8)
                     }
@@ -92,20 +109,6 @@ struct CreateNewEvent: View {
                         }
                     }
                     
-                    
-                    Section(header: Text("Logistik und Transport")) {
-                        Button(action: {
-                            print("Buttontriggag")
-                        }) {
-                            Text("Fahrzeug auswählen")
-                        }
-                        Button(action: {
-                            print("Buttontriggag")
-                        }) {
-                            Text("Übernachtung auswählen")
-                        }
-                    }
-                    
                     Section (header: Text("Kosten")) {
                         HStack {
                             TextField("Honorar", text: $eventFee)
@@ -115,13 +118,6 @@ struct CreateNewEvent: View {
                         
                     }
                 }
-                
-//                Button(action: {
-//                    print("Delete tapped!")
-//                }) {
-//                    ButtonFullWidth(label: CreateNewEvent.$label)
-//                }
-//                .padding(8)
             }
             .navigationBarTitle("Event erstellen")
             .navigationBarItems(
@@ -137,8 +133,15 @@ struct CreateNewEvent: View {
                 trailing: HStack {
                     Button(action: {
                         let imageUUID = saveImageAndCreateUUID();
-
-                        eventStore.create(name: eventName, date: eventDate, venueID: selectVenueViewModel.selectedID, imageUUID: imageUUID.uuidString)
+                        
+                        eventStore.create(
+                            name: eventName,
+                            date: eventDate,
+                            fee: Int(eventFee) ?? 0,
+                            type: eventType.rawValue,
+                            venueID: selectVenueViewModel.selectedID,
+                            imageUUID: imageUUID.uuidString
+                        )
                         
                         // Pop View from Navigation View
                         presentationMode.wrappedValue.dismiss()

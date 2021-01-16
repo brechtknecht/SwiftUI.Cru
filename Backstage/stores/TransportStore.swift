@@ -33,7 +33,7 @@ final class TransportStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension TransportStore {
-    func create(id: Int, name: String, tag: String, isRented: Bool, price: Int) {
+    func create(id: Int, name: String, tag: String, seats: Int, type: String, isRented: Bool, price: Int) {
         
         objectWillChange.send()
         
@@ -44,6 +44,8 @@ extension TransportStore {
             refDB.id            = id
             refDB.name          = name
             refDB.tag           = tag
+            refDB.seats         = seats
+            refDB.type          = type
             refDB.isRented      = isRented
             refDB.price         = price
 

@@ -71,8 +71,6 @@ struct EventDetail: View {
                     }
                 }
                 VStack (alignment: .leading){
-//                    Text("\(eventID)")
-//                    Text("\(viewModel.currentEvent.name)")
                     
                     let adress = "\(viewModel.getVenue().street) \(viewModel.getVenue().location)"
                     
@@ -152,12 +150,15 @@ struct EventDetail: View {
                         eventReference: eventID
                     )
                 case .transport:
-                    Text("Transport")
+                    AddTransport(
+                        eventReference: eventID
+                    )
                 case .contact:
                     Text("Kontakt")
                 }
             }
         }
+        .navigationBarItems(trailing: CEditButton())
     }
 }
 
@@ -211,9 +212,6 @@ class EventDetailViewModel: ObservableObject {
         
         return formatter.string(from: date)
     }
-    
-    
-    
 }
 
 struct EventDetail_Previews: PreviewProvider {

@@ -13,6 +13,8 @@ class TransportDB: Object {
     @objc dynamic var id = 0
     @objc dynamic var name = ""
     @objc dynamic var tag = ""
+    @objc dynamic var seats = 0
+    @objc dynamic var type = ""
     @objc dynamic var isRented = false
     @objc dynamic var price = 0
     
