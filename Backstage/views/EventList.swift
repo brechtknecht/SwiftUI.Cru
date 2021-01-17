@@ -23,49 +23,50 @@ struct EventList: View {
 
     
     var body: some View {
-        HStack {
-            Text("Deine nächsten Events")
-                .font(.headline)
-                .padding(.horizontal, 20)
-            Spacer()
-        }
-        
-        // Creates a Dictionary with the events saved for each month into a key, value pair
-        let empty: [Date: [Event]] = [:]
-        let groupedByDate = eventStore.separatedEvents.reduce(into: empty) { acc, cur in
-            let components = Calendar.current.dateComponents([.year, .month], from: cur.date)
-            let date = Calendar.current.date(from: components)!
-            let existing = acc[date] ?? []
-            acc[date] = existing + [cur]
-        }
-        
-        
-        // Sorts the Elements based on the Date
-        let sortedEvents = groupedByDate.sorted {
-            $0.key < $1.key
-        }
-        
-        ForEach(Array(sortedEvents.enumerated()), id: \.offset) { index, events in
-            // Displays the current Month
-            
+        VStack {
             HStack {
-                Text("\(events.key, formatter: Self.monthDateFormat)")
-                    .font(.title)
-                    .fontWeight(.bold)
+                Text("Alle kommenden Events")
+                    .font(.headline)
                 Spacer()
             }
-            .padding(EdgeInsets(top: 16, leading: 0, bottom: -16, trailing: 0))
+            .padding(EdgeInsets(top: 0, leading: 22, bottom: 4, trailing: 22))
             
-            
-            ForEach(events.value, id: \.id) { event in
-                EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID))
+            // Creates a Dictionary with the events saved for each month into a key, value pair
+            let empty: [Date: [Event]] = [:]
+            let groupedByDate = eventStore.separatedEvents.reduce(into: empty) { acc, cur in
+                let components = Calendar.current.dateComponents([.year, .month], from: cur.date)
+                let date = Calendar.current.date(from: components)!
+                let existing = acc[date] ?? []
+                acc[date] = existing + [cur]
             }
+            
+            
+            // Sorts the Elements based on the Date
+            let sortedEvents = groupedByDate.sorted {
+                $0.key < $1.key
+            }
+            
+            ForEach(Array(sortedEvents.enumerated()), id: \.offset) { index, events in
+                // Displays the current Month
+                
+                HStack {
+                    Text("\(events.key, formatter: Self.monthDateFormat)")
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Spacer()
+                }
+                .padding(EdgeInsets(top: 8, leading: 8, bottom: -8, trailing: 8))
+                
+                
+                ForEach(events.value, id: \.id) { event in
+                    EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID))
+                }
+            }
+            .onDelete(perform: onDelete)
+            .environment(\.editMode, editMode)
+            .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
         }
-        .onDelete(perform: onDelete)
-        .environment(\.editMode, editMode)
-        .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
     }
-    
     
     private func onDelete(with indexSet: IndexSet) {
         eventStore.delete(indexSet: indexSet)
