@@ -89,7 +89,7 @@ struct Settlements: View {
                     }) {
                         ZStack {
                             Rectangle()
-                                .fill(ColorManager.primaryLight)
+                                .fill(Color.white)
                                 .cornerRadius(12)
                             VStack {
                                 Image(systemName: "plus.circle.fill")

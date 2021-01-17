@@ -41,7 +41,7 @@ struct Contacts: View {
                     } label: {
                         ZStack {
                             Rectangle()
-                                .fill(ColorManager.primaryLight)
+                                .fill(Color.white)
                                 .cornerRadius(12)
                             HStack{
                                 Image(systemName: "person.fill")
@@ -62,7 +62,7 @@ struct Contacts: View {
                             }
                             .padding(.horizontal, 16)
                         }
-                        .padding(EdgeInsets(top: 8, leading: 16, bottom: 0, trailing: 16))
+                        .padding(EdgeInsets(top: 4, leading: 16, bottom: 0, trailing: 16))
                     }
                     
                     
@@ -75,7 +75,7 @@ struct Contacts: View {
                 }) {
                     ZStack {
                         Rectangle()
-                            .fill(ColorManager.primaryLight)
+                            .fill(Color.white)
                             .cornerRadius(12)
                         HStack{
                             Text("Einen Kontakt hinzufügen")
@@ -97,6 +97,7 @@ struct Contacts: View {
             
 
         }
+        .padding(EdgeInsets(top: 0, leading: 0, bottom: 64, trailing: 0))
         .background(ColorManager.backgroundForm)
     }
 }

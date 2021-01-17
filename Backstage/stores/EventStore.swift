@@ -11,14 +11,26 @@ import SwiftUI
 
 final class EventStore: ObservableObject {
     private var results: Results<EventDB>
+    private var unsorted: Results<EventDB>
+    private var separated: Results<EventDB>
     
     var events: [Event] {
         results.map(Event.init)
     }
     
+    var unsortedEvents: [Event] {
+        unsorted.map(Event.init)
+    }
+    
+    var separatedEvents: [Event] {
+        separated.map(Event.init)
+    }
+    
     // Load Items from the Realm Database
     init(realm: Realm) {
-        results = realm.objects(EventDB.self)
+        unsorted = realm.objects(EventDB.self)
+        results = realm.objects(EventDB.self).sorted(byKeyPath: "date", ascending: true)
+        separated = realm.objects(EventDB.self).sorted(byKeyPath: "date", ascending: true)
     }
     
     func findByID (id: Int) -> EventDB! {
@@ -148,5 +160,4 @@ extension EventStore {
             }
         }
     }
-
 }

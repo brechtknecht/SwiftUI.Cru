@@ -15,34 +15,55 @@ struct EventList: View {
     
     @Environment(\.editMode) var editMode
     
+    static let monthDateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy"
+        return formatter
+    }()
+
+    
     var body: some View {
         HStack {
-            Text("Kommende Veranstaltungen")
+            Text("Deine nächsten Events")
                 .font(.headline)
                 .padding(.horizontal, 20)
             Spacer()
         }
-        ScrollView(.horizontal,showsIndicators: false) {
+        
+        // Creates a Dictionary with the events saved for each month into a key, value pair
+        let empty: [Date: [Event]] = [:]
+        let groupedByDate = eventStore.separatedEvents.reduce(into: empty) { acc, cur in
+            let components = Calendar.current.dateComponents([.year, .month], from: cur.date)
+            let date = Calendar.current.date(from: components)!
+            let existing = acc[date] ?? []
+            acc[date] = existing + [cur]
+        }
+        
+        
+        // Sorts the Elements based on the Date
+        let sortedEvents = groupedByDate.sorted {
+            $0.key < $1.key
+        }
+        
+        ForEach(Array(sortedEvents.enumerated()), id: \.offset) { index, events in
+            // Displays the current Month
+            
             HStack {
-                ForEach(eventStore.events, id: \.self.id) { event in
-                    EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID))
-                }
-                .onDelete(perform: onDelete)
-                .environment(\.editMode, editMode)
+                Text("\(events.key, formatter: Self.monthDateFormat)")
+                    .font(.title)
+                    .fontWeight(.bold)
+                Spacer()
+            }
+            .padding(EdgeInsets(top: 16, leading: 0, bottom: -16, trailing: 0))
+            
+            
+            ForEach(events.value, id: \.id) { event in
+                EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID))
             }
         }
-        .padding(.horizontal, 16)
-        
-//        VStack {
-//            ForEach(eventStore.events, id: \.self.id) { event in
-//                EventListElement(event: event, venue: venueStore.findByID(id: event.venueID))
-//            }
-//            .onDelete(perform: onDelete)
-//            .environment(\.editMode, editMode)
-//        }
-//        
-//        .environment(\.horizontalSizeClass, .regular)
-        
+        .onDelete(perform: onDelete)
+        .environment(\.editMode, editMode)
+        .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
     }
     
     

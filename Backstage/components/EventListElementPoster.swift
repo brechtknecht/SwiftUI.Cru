@@ -18,7 +18,7 @@ struct EventListElementPoster: View {
     
     @Environment(\.editMode) var editMode
     
-    let CARD_WIDTH : CGFloat = 350
+    let CARD_WIDTH : CGFloat = 400
     let CARD_HEIGHT : CGFloat = 500
     
     
@@ -70,7 +70,7 @@ struct EventListElementPoster: View {
                             .multilineTextAlignment(.center)
                             .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
                             .frame(width: CARD_WIDTH - 20)
-                        Text("Konzert".uppercased())
+                        Text(event.type.uppercased())
                             .font(.headline)
                             .fontWeight(.bold)
                             .tracking(2.54)
