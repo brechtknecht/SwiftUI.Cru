@@ -19,7 +19,8 @@ struct SettlementMap: View {
     @State var latitude: Double = 0.0
     @State var longitude: Double = 0.0
     
-    let MAP_HEIGHT : CGFloat = 300.0
+    let MAP_HEIGHT : CGFloat = 250.0
+    let MAP_WIDTH  : CGFloat = 270.0
     
     var body: some View {
         let coordinates = generateMapRegion()
@@ -51,7 +52,7 @@ struct SettlementMap: View {
                 annotationItems: markers) { marker in
                     marker.location
                 }
-            .frame(width: 250, height: 220)
+            .frame(width: MAP_WIDTH, height: MAP_HEIGHT)
             .cornerRadius(12)
             .disabled(true)
         }

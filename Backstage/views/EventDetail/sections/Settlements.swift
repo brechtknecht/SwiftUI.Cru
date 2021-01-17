@@ -103,9 +103,9 @@ struct Settlements: View {
                                     .foregroundColor(ColorManager.primaryDark)
                                 
                             }
-                            .frame(width: 300, height: 260)
+                            .frame(width: 270, height: 250)
                         }
-                        .padding(EdgeInsets(top: 8, leading: 4, bottom: 8, trailing: 4))
+                        .padding(EdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 4))
                     }
                 }
                 .padding(.leading, 16)
