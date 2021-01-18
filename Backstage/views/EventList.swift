@@ -17,7 +17,13 @@ struct EventList: View {
     
     static let monthDateFormat: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM yyyy"
+        formatter.dateFormat = "MMMM"
+        return formatter
+    }()
+    
+    static let yearDateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
         return formatter
     }()
 
@@ -53,11 +59,16 @@ struct EventList: View {
                     Section(
                         header:
                             VStack {
-                                HStack {
+                                HStack (alignment: .firstTextBaseline){
                                     Text("\(events.key, formatter: Self.monthDateFormat)")
                                         .font(.title)
                                         .fontWeight(.bold)
-                                        .padding(EdgeInsets(top: 8, leading: 16, bottom: 0, trailing: 16))
+                                        .padding(EdgeInsets(top: 8, leading: 16, bottom: 0, trailing: 0))
+                                    Text("\(events.key, formatter: Self.yearDateFormat)")
+                                        .font(.headline)
+                                        .fontWeight(.bold)
+                                        .foregroundColor(Color.gray)
+                                        .padding(EdgeInsets(top: 8, leading: 0, bottom: 0, trailing: 16))
                                     Spacer()
                                 }
                                 .background(
