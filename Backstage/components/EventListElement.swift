@@ -30,7 +30,7 @@ struct EventListElement: View {
         ) {
             HStack {
                 ZStack {
-                    let image = Utilities.helpers.loadImageFromUUID(imageUUID: event.imageUUID)
+                    let image = Utilities.helpers.loadImageFromUUID(imageUUID: event.imageUUID, compression: 0.5)
                     Image(uiImage: image)
                         .resizable()
                         .frame(width: CARD_WIDTH, height: CARD_HEIGHT)

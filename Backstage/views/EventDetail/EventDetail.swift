@@ -201,7 +201,7 @@ class EventDetailViewModel: ObservableObject {
     }
     
     func getEventHeaderImage() -> UIImage {
-        return Utilities.helpers.loadImageFromUUID(imageUUID: self.currentEvent.imageUUID)
+        return Utilities.helpers.loadImageFromUUID(imageUUID: self.currentEvent.imageUUID, compression: 0.5)
     }
     
     func generateBackgroundFromImage () -> Color {

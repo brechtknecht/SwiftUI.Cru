@@ -23,10 +23,16 @@ class Utilities {
     }
     
     // Loads previously saved images from the documentRoot via String UUID
-    func loadImageFromUUID (imageUUID: String) -> UIImage {
+    func loadImageFromUUID (imageUUID: String, compression: CGFloat) -> UIImage {
         let documentsPath = getDocumentsDirectory()
         let imageURL = URL(fileURLWithPath: documentsPath.absoluteString).appendingPathComponent(imageUUID)
-        return UIImage(contentsOfFile: imageURL.path) ?? UIImage()
+        let uncompressedImage = UIImage(contentsOfFile: imageURL.path) ?? UIImage()
+        
+        let compressedImage = uncompressedImage.jpegData(compressionQuality: compression)
+        
+        let uiImage = UIImage(data: compressedImage ?? Data())
+
+        return uiImage ?? UIImage()
     }
 }
 

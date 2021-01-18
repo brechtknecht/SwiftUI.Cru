@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct EventListElementPoster: View {
-    let viewModel = EventListViewModel()
     
     @State var event: Event
     @State var venue: VenueDB
@@ -20,6 +19,8 @@ struct EventListElementPoster: View {
     
     let CARD_WIDTH : CGFloat = 400
     let CARD_HEIGHT : CGFloat = 500
+    
+    @ObservedObject var viewModel = ViewModel()
     
     
     private var isEditing: Bool {
@@ -34,8 +35,10 @@ struct EventListElementPoster: View {
                 )
             ) {
                 ZStack {
-                    let image = Utilities.helpers.loadImageFromUUID(imageUUID: event.imageUUID)
-                    Image(uiImage: image)
+                    
+                    
+                    
+                    Image(uiImage: viewModel.getImage(imageUUID: event.imageUUID))
                         .renderingMode(.original)
                         .resizable()
                         .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
@@ -130,9 +133,6 @@ struct EventListElementPoster: View {
         }
     
     
-    
-    
-    
     struct ToggleEditModeEffect: GeometryEffect {
         var y: CGFloat = 0
         
@@ -152,6 +152,37 @@ struct EventListElementPoster: View {
         eventStore.deleteWithID(id: id)
     }
 }
+
+extension EventListElementPoster {
+    class ViewModel : ObservableObject {
+        @Published var compressedImage : UIImage
+        
+        init() {
+            self.compressedImage = UIImage()
+        }
+        
+        func getImage (imageUUID: String) -> UIImage {
+            return Utilities.helpers.loadImageFromUUID(imageUUID: imageUUID, compression: 0.25)
+        }
+        
+        func convertDate (date: Date) -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd. MMM, yyyy"
+            
+            return formatter.string(from: date)
+        }
+        
+        func venueString (venue: VenueDB?) -> String {
+            let venueName = venue!.name
+            let venueLocation = venue!.location
+            let venueDistict = venue!.street
+            let venueCountry = venue!.country
+            
+            return venueName + ", " + venueLocation + " — " + venueDistict + " " + venueCountry
+        }
+    }
+}
+
     
 
 //struct EventListElement_Previews: PreviewProvider {
