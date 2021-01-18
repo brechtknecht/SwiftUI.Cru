@@ -205,7 +205,11 @@ class EventDetailViewModel: ObservableObject {
     }
     
     func generateBackgroundFromImage () -> Color {
-        return Color(self.eventImage.averageColor ?? .clear)
+        let event = eventStore.findByID(id: self.eventID)
+        
+        let color = Color(hex: event?.backgroundColorHex ?? "#000000")
+        
+        return color
     }
     
     func getVenue () -> VenueDB {
@@ -213,7 +217,7 @@ class EventDetailViewModel: ObservableObject {
     }
     
 //    func getType () -> VenueDB {
-//        return venueStore.findByID(id: self.currentEvent.type.) ?? VenueDB()
+//        return venueStore.findByID(id: self.currentEvent.type) ?? VenueDB()
 //    }
     
     func convertDate (date: Date) -> String {

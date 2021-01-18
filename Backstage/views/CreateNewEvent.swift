@@ -134,13 +134,20 @@ struct CreateNewEvent: View {
                     Button(action: {
                         let imageUUID = saveImageAndCreateUUID();
                         
+                        let image = Utilities.helpers.loadImageFromUUID(imageUUID: imageUUID.uuidString, compression: 1.0)
+                        
+                        let color = Color(image.averageColor ?? .clear)
+                        
+                        let convertedUIColor = UIColor(color)
+                        
                         eventStore.create(
-                            name: eventName,
-                            date: eventDate,
-                            fee: Int(eventFee) ?? 0,
-                            type: eventType.rawValue,
-                            venueID: selectVenueViewModel.selectedID,
-                            imageUUID: imageUUID.uuidString
+                            name                        : eventName,
+                            date                        : eventDate,
+                            fee                         : Int(eventFee) ?? 0,
+                            type                        : eventType.rawValue,
+                            venueID                     : selectVenueViewModel.selectedID,
+                            imageUUID                   : imageUUID.uuidString,
+                            backgroundColorHex          : convertedUIColor.toHexString()
                         )
                         
                         // Pop View from Navigation View
