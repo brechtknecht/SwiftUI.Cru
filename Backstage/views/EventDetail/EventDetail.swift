@@ -25,6 +25,7 @@ struct EventDetail: View {
     @EnvironmentObject var venueStore: VenueStore
     
     @State var activeSheet: ActiveSheet?
+    @State var navigationBarTitleIsShowing : Bool = false
     
     @Environment(\.editMode) var editMode
     
@@ -58,7 +59,7 @@ struct EventDetail: View {
                     }
                     .frame(height: 500)
                     VStack {
-                        Text("\(viewModel.convertDate(date: viewModel.currentEvent.date))" + " — "  /* "\(viewModel.getType())"*/)
+                        Text("\(viewModel.convertDate(date: viewModel.currentEvent.date)) — \(viewModel.getType())")
                             .font(.headline)
                             .foregroundColor(Color.white)
                             .padding(.vertical, 2)
@@ -69,7 +70,8 @@ struct EventDetail: View {
                             .multilineTextAlignment(.center)
                         Text("\(viewModel.getVenue().name) \(viewModel.getVenue().location)")
                             .foregroundColor(Color.white)
-                            .padding(.vertical, 2)
+                            .padding(EdgeInsets(top: 2, leading: 32, bottom: 0, trailing: 32))
+                            .multilineTextAlignment(.center)
                     }
                 }
                 VStack (alignment: .leading){
@@ -164,9 +166,14 @@ struct EventDetail: View {
         .navigationBarItems(
             trailing: CEditButton()
         )
+        .navigationBarTitle(Text("\(viewModel.currentEvent.name)"))
+        .navigationBarTitleDisplayMode(.inline)
+                            
         .environment(\.editMode, editMode)
+        .coordinateSpace(name: "scroll")
     }
 }
+
 
 class EventDetailViewModel: ObservableObject {
     
@@ -216,9 +223,9 @@ class EventDetailViewModel: ObservableObject {
         return venueStore.findByID(id: self.currentEvent.venueID) ?? VenueDB()
     }
     
-//    func getType () -> VenueDB {
-//        return venueStore.findByID(id: self.currentEvent.type) ?? VenueDB()
-//    }
+    func getType () -> String {
+        return currentEvent.type.uppercased()
+    }
     
     func convertDate (date: Date) -> String {
         let formatter = DateFormatter()
