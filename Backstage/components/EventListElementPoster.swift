@@ -36,6 +36,7 @@ struct EventListElementPoster: View {
                 ZStack {
                     let image = Utilities.helpers.loadImageFromUUID(imageUUID: event.imageUUID)
                     Image(uiImage: image)
+                        .renderingMode(.original)
                         .resizable()
                         .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
                         .cornerRadius(4)
@@ -43,6 +44,7 @@ struct EventListElementPoster: View {
                         .clipped()
                         .opacity(isEditing ? 0.4 : 1)
                     Image("PaperTexture")
+                        .renderingMode(.original)
                         .resizable()
                         .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
                         .aspectRatio(1.12, contentMode: .fill)
@@ -50,6 +52,7 @@ struct EventListElementPoster: View {
                         .blendMode(.multiply)
                         .opacity(isEditing ? 0.4 : 1)
                     Image("EventFrame")
+                        .renderingMode(.original)
                         .resizable()
                         .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
                         .aspectRatio(1.12, contentMode: .fill)
@@ -81,7 +84,9 @@ struct EventListElementPoster: View {
                     }
                     .padding(EdgeInsets(top: 32, leading: 12, bottom: 64, trailing: 12))
                 }
+                
             }
+            .buttonStyle(PlainButtonStyle())
             if (isEditing) {
                 HStack {
                     Button(action: {

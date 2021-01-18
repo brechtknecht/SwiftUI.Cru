@@ -46,25 +46,38 @@ struct EventList: View {
                 $0.key < $1.key
             }
             
-            ForEach(Array(sortedEvents.enumerated()), id: \.offset) { index, events in
-                // Displays the current Month
-                
-                HStack {
-                    Text("\(events.key, formatter: Self.monthDateFormat)")
-                        .font(.title)
-                        .fontWeight(.bold)
-                    Spacer()
+            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+            
+                ForEach(Array(sortedEvents.enumerated()), id: \.offset) { index, events in
+                    // Displays the current Month
+                    Section(
+                        header:
+                            VStack {
+                                HStack {
+                                    Text("\(events.key, formatter: Self.monthDateFormat)")
+                                        .font(.title)
+                                        .fontWeight(.bold)
+                                        .padding(EdgeInsets(top: 8, leading: 16, bottom: 0, trailing: 16))
+                                    Spacer()
+                                }
+                                .background(
+                                    Rectangle()
+                                        .fill(Color.white.opacity(0.8))
+                                        .frame(height: 60)
+                                )
+                            }
+                        )
+                    {
+                        ForEach(events.value, id: \.id) { event in
+                            EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID))
+                        }
+                    }
+                    
                 }
-                .padding(EdgeInsets(top: 8, leading: 8, bottom: -8, trailing: 8))
-                
-                
-                ForEach(events.value, id: \.id) { event in
-                    EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID))
-                }
+                .onDelete(perform: onDelete)
+                .environment(\.editMode, editMode)
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 0))
             }
-            .onDelete(perform: onDelete)
-            .environment(\.editMode, editMode)
-            .padding(EdgeInsets(top: 0, leading: 16, bottom: 16, trailing: 16))
         }
     }
     
