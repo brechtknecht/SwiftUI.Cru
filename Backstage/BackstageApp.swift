@@ -18,6 +18,8 @@ struct BackstageApp: App {
                 .environmentObject(SettlementStore(realm: RealmPersistent.initializer()))
                 .environmentObject(TransportStore(realm: RealmPersistent.initializer()))
                 .environmentObject(PersonStore(realm: RealmPersistent.initializer()))
+                .environmentObject(TimetableStore(realm: RealmPersistent.initializer()))
+                .environmentObject(TimeslotStore(realm: RealmPersistent.initializer()))
         }
     }
 }

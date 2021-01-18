@@ -39,11 +39,14 @@ struct EventList: View {
             
             // Creates a Dictionary with the events saved for each month into a key, value pair
             let empty: [Date: [Event]] = [:]
+            
             let groupedByDate = eventStore.separatedEvents.reduce(into: empty) { acc, cur in
-                let components = Calendar.current.dateComponents([.year, .month], from: cur.date)
-                let date = Calendar.current.date(from: components)!
-                let existing = acc[date] ?? []
-                acc[date] = existing + [cur]
+                if(eventStore.events.count > 1) {
+                    let components = Calendar.current.dateComponents([.year, .month], from: cur.date)
+                    let date = Calendar.current.date(from: components)!
+                    let existing = acc[date] ?? []
+                    acc[date] = existing + [cur]
+                }
             }
             
             

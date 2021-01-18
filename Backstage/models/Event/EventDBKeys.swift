@@ -17,6 +17,7 @@ enum EventDBKeys: String {
     case settlements        = "settlements"
     case transports         = "transports"
     case persons            = "persons"
+    case timetable          = "timetable"
     case fee                = "fee"
     case type               = "type"
 }

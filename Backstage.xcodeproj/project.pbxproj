@@ -39,6 +39,7 @@
 		9988B45025B6052300D36BA4 /* TimeslotDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44F25B6052300D36BA4 /* TimeslotDB.swift */; };
 		9988B45325B605C200D36BA4 /* TimeslotDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B45225B605C200D36BA4 /* TimeslotDBKeys.swift */; };
 		9988B45625B6061C00D36BA4 /* TimeslotStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B45525B6061C00D36BA4 /* TimeslotStore.swift */; };
+		9988B45925B6077100D36BA4 /* TimetableSingle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B45825B6077100D36BA4 /* TimetableSingle.swift */; };
 		998DD3E6257E4C5B00E17E8B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 998DD3E5257E4C5B00E17E8B /* Realm */; };
 		998DD3E8257E4C5B00E17E8B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 998DD3E7257E4C5B00E17E8B /* RealmSwift */; };
 		99A01AE2257D9D5F00C9914D /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 99A01AE1257D9D5F00C9914D /* PartialSheet */; };
@@ -106,6 +107,7 @@
 		9988B44F25B6052300D36BA4 /* TimeslotDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeslotDB.swift; sourceTree = "<group>"; };
 		9988B45225B605C200D36BA4 /* TimeslotDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeslotDBKeys.swift; sourceTree = "<group>"; };
 		9988B45525B6061C00D36BA4 /* TimeslotStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeslotStore.swift; sourceTree = "<group>"; };
+		9988B45825B6077100D36BA4 /* TimetableSingle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableSingle.swift; sourceTree = "<group>"; };
 		99A965DF257E4D0600B8B2D7 /* VenueDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueDB.swift; sourceTree = "<group>"; };
 		99A965E2257E4EAF00B8B2D7 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
 		99A965E6257E4FB200B8B2D7 /* VenueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueStore.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				992AA13625AF7E5E005B1061 /* Transportation.swift */,
+				9988B45825B6077100D36BA4 /* TimetableSingle.swift */,
 				99C9837225AF80FC0093FF19 /* Contacts.swift */,
 				992AA13225AF7E21005B1061 /* Settlements.swift */,
 			);
@@ -507,6 +510,7 @@
 				992AA13325AF7E21005B1061 /* Settlements.swift in Sources */,
 				99A965F0257E677900B8B2D7 /* RealmPersistentInitializer.swift in Sources */,
 				995EA26625B3608900B9D96D /* TransportDBKeys.swift in Sources */,
+				9988B45925B6077100D36BA4 /* TimetableSingle.swift in Sources */,
 				9988B45625B6061C00D36BA4 /* TimeslotStore.swift in Sources */,
 				9988B44D25B6048F00D36BA4 /* Timeslot.swift in Sources */,
 				995EEEFD25AFC15C00012D39 /* SettlementMap.swift in Sources */,

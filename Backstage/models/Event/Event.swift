@@ -19,6 +19,7 @@ struct Event: Identifiable, Hashable {
     let settlements         : RealmSwift.List<Int>
     let transports          : RealmSwift.List<Int>
     let persons             : RealmSwift.List<Int>
+    let timetable           : Int
     let fee                 : Int
     let type                : String
 }
@@ -34,6 +35,7 @@ extension Event {
         settlements         = eventDB.settlements
         transports          = eventDB.transports
         persons             = eventDB.persons
+        timetable           = eventDB.timetable
         fee                 = eventDB.fee
         type                = eventDB.type
     }
