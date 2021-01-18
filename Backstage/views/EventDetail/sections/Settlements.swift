@@ -53,6 +53,10 @@ struct Settlements: View {
                                 Rectangle()
                                     .fill(ColorManager.primaryLight.opacity(0.6))
                                     .cornerRadius(12)
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .stroke(Color.black.opacity(0.05), lineWidth: 1)
+                                    )
                                 VStack(){
                                     Text("\(settlementName)")
                                         .font(.title2)

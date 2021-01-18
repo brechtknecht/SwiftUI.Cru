@@ -54,6 +54,11 @@ struct VenueMap: View {
             .frame(height: MAP_HEIGHT)
             .cornerRadius(12)
             .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.black.opacity(0.05), lineWidth: 1)
+                    .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+            )
             .disabled(true)
             
             

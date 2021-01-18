@@ -1,29 +1,30 @@
 //
-//  SettlementStore.swift
+//  TimeslotStore.swift
 //  Backstage
 //
-//  Created by Felix Tesche on 07.12.20.
+//  Created by Felix Tesche on 18.01.21.
 //
 
 import Foundation
+
 import RealmSwift
 import SwiftUI
 
-final class SettlementStore: ObservableObject {
-    private var results: Results<SettlementDB>
+final class TimeslotStore: ObservableObject {
+    private var results: Results<TimeslotDB>
     
-    var settlements: [Settlement] {
-        results.map(Settlement.init)
+    var timeslots: [Timeslot] {
+        results.map(Timeslot.init)
     }
     
     // Load Items from the Realm Database
     init(realm: Realm) {
-        results = realm.objects(SettlementDB.self)
+        results = realm.objects(TimeslotDB.self)
     }
     
-    func findByID (id: Int) -> SettlementDB! {
+    func findByID (id: Int) -> TimeslotDB! {
         do {
-            return try Realm().object(ofType: SettlementDB.self, forPrimaryKey: id)
+            return try Realm().object(ofType: TimeslotDB.self, forPrimaryKey: id)
         } catch let error {
             print(error.localizedDescription)
             return nil
@@ -32,22 +33,20 @@ final class SettlementStore: ObservableObject {
 }
 
 // MARK: - CRUD Actions
-extension SettlementStore {
-    func create(id: Int, name: String, location: String, arrivalDate: Date, departureDate: Date, price: Int, currency: String) {
+extension TimeslotStore {
+    func create(id: Int, startTime: Date, endTime: Date, taskName: String) {
         
         objectWillChange.send()
         
         do {
             let realm = try Realm()
             
-            let refDB = SettlementDB()
+            let refDB = TimeslotDB()
             refDB.id            = id
-            refDB.name          = name
-            refDB.location      = location
-            refDB.arrivalDate   = arrivalDate
-            refDB.departureDate = departureDate
-            refDB.price         = price
-            refDB.currency      = currency
+            refDB.startTime     = startTime
+            refDB.endTime       = endTime
+            refDB.taskName      = taskName
+            
 
             try realm.write {
                 realm.add(refDB)
@@ -80,7 +79,7 @@ extension SettlementStore {
         do {
             let realm = try Realm()
             
-            let object = realm.objects(SettlementDB.self).filter("id = %@", id).first
+            let object = realm.objects(TimeslotDB.self).filter("id = %@", id).first
             
             try! realm.write {
                 if let obj = object {
@@ -92,4 +91,5 @@ extension SettlementStore {
             print(err.localizedDescription)
         }
     }
+
 }
