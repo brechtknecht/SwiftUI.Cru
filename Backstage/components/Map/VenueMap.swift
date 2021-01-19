@@ -63,13 +63,16 @@ struct VenueMap: View {
             
             
             ZStack {
-                Rectangle()
-                    .fill(Color(.white))
-                    .cornerRadius(8)
-                    .frame(width: UIScreen.screenWidth - 50, height: 50)
                 Text("\(adress)")
                     .fontWeight(.bold)
                     .foregroundColor(.black)
+                    .frame(width: UIScreen.screenWidth - 70)
+                    .padding(EdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0))
+                    .background(
+                        Rectangle()
+                            .fill(Color(.white))
+                            .cornerRadius(8)
+                    )
             }
             .position(x: UIScreen.screenWidth / 2, y: MAP_HEIGHT / 2 + 50)
         }
