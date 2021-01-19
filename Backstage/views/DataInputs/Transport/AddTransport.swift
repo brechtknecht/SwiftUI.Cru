@@ -28,7 +28,7 @@ enum CarType: String, Equatable, CaseIterable {
 struct AddTransport: View {
     @State var transportName        : String    = ""
     @State var transportTag         : String    = ""
-    @State var transportSeats       : Int       = 0
+    @State var transportSeats       : Int       = 1
     @State var transportType        : CarType   = .car
     @State var transportIsRented    : Bool      = false
     @State var transportPrice       : String    = ""
@@ -54,7 +54,7 @@ struct AddTransport: View {
                         }.pickerStyle(SegmentedPickerStyle())
                         .padding(.vertical, 8)
                         
-                        Stepper("Seats: \(transportSeats)", value: $transportSeats)
+                        Stepper("Seats: \(transportSeats)", value: $transportSeats, in: 1...100)
                     }
                     Section (header: Text("Rental and costs")) {
                         Toggle(isOn: $transportIsRented) {

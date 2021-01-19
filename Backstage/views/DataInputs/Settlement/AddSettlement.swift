@@ -14,7 +14,7 @@ struct AddSettlement: View {
     @State var settlementDepartureDate  : Date
     @State var settlementPrice          : String  = ""
     @State var settlementCurrency       : String  = ""
-    @State var settlementPersons                  = 0
+    @State var settlementPersons                  = 1
     
     @State var proposedDate             : Date
     
@@ -60,7 +60,7 @@ struct AddSettlement: View {
                                 .keyboardType(.numberPad)
                             Text("€")
                         }
-                        Stepper("Personenanzahl: \(settlementPersons)", value: $settlementPersons)
+                        Stepper("Personenanzahl: \(settlementPersons)", value: $settlementPersons, in: 1...100)
                     }
                     if(locationHelperActive) {
                         Section(header: Text("Suchergebnisse")) {
