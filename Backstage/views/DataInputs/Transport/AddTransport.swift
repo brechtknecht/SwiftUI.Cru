@@ -38,6 +38,8 @@ struct AddTransport: View {
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
+    @Binding var sheetHasBeenFinished : Bool
+    
     @State var eventReference           : Int
     
     var body: some View {
@@ -91,6 +93,7 @@ struct AddTransport: View {
                     }
                     
                     // Pop Navigation State
+                    self.sheetHasBeenFinished = true
                     self.mode.wrappedValue.dismiss()
                 }) {
                     Text("Fertig")

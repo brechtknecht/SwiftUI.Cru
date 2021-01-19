@@ -10,7 +10,7 @@ import SwiftUI
 
 
 enum ActiveSheet: Identifiable {
-    case settlement, transport, contact
+    case settlement, transport, contact, addSection
         
     var id: Int {
         hashValue
@@ -137,6 +137,31 @@ struct EventDetail: View {
                 
                 Contacts(sheetIsActive: $activeSheet, eventID: $eventID)
                 
+                Button(action: {
+                    self.activeSheet = .addSection
+                }) {
+                    ZStack {
+                        Rectangle()
+                            .fill(Color.white)
+                            .cornerRadius(12)
+                        HStack{
+                            Text("Neue Sektion hinzufügen")
+                                .padding(EdgeInsets(top: 22, leading: 16, bottom: 22, trailing: 16))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(ColorManager.primaryDark)
+                            Spacer()
+                            Image(systemName: "plus.circle.fill")
+                                .resizable()
+                                .frame(width: 24, height: 24)
+                                .padding(EdgeInsets(top: 22, leading: 16, bottom: 22, trailing: 16))
+                                .foregroundColor(ColorManager.success)
+                        }
+//                        .frame(width: 250, height: 220)
+                    }
+                    .padding(EdgeInsets(top: 4, leading: 16, bottom: 8, trailing: 16))
+                }
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 64, trailing: 0))
+                .background(ColorManager.backgroundForm)
             }
             .edgesIgnoringSafeArea(.top)
             .sheet(item: $activeSheet) { item in
@@ -154,11 +179,16 @@ struct EventDetail: View {
                     )
                 case .transport:
                     AddTransport(
+                        sheetHasBeenFinished: .constant(false),
                         eventReference: eventID
                     )
                 case .contact:
                     AddPerson(
                         eventReference: eventID
+                    )
+                case .addSection:
+                    AddSection(
+                        eventReference: $eventID
                     )
                 }
             }
@@ -171,6 +201,8 @@ struct EventDetail: View {
                             
         .environment(\.editMode, editMode)
         .coordinateSpace(name: "scroll")
+        .background(ColorManager.backgroundForm)
+
     }
 }
 

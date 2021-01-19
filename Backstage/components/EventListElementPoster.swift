@@ -95,7 +95,7 @@ struct EventListElementPoster: View {
                     Button(action: {
                         print("Edit Event")
                     }) {
-                        ZStack {
+                        ZStack {    
                             Rectangle()
                                 .fill(Color(.systemBlue))
                                 .cornerRadius(4)

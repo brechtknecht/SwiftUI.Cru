@@ -14,6 +14,8 @@
 		990A4E0925B378D900CEF57F /* PersonDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990A4E0825B378D900CEF57F /* PersonDBKeys.swift */; };
 		990A4E0C25B3792700CEF57F /* PersonStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990A4E0B25B3792700CEF57F /* PersonStore.swift */; };
 		990A4E1025B379EA00CEF57F /* AddPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990A4E0F25B379EA00CEF57F /* AddPerson.swift */; };
+		990C201325B736A80040861C /* AddSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990C201225B736A80040861C /* AddSection.swift */; };
+		990C201625B73B4E0040861C /* GridStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 990C201525B73B4E0040861C /* GridStack.swift */; };
 		992AA13325AF7E21005B1061 /* Settlements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AA13225AF7E21005B1061 /* Settlements.swift */; };
 		992AA13725AF7E5E005B1061 /* Transportation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992AA13625AF7E5E005B1061 /* Transportation.swift */; };
 		993BD7B9257ED2C80014CA4C /* EventListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BD7B8257ED2C80014CA4C /* EventListItem.swift */; };
@@ -82,6 +84,8 @@
 		990A4E0825B378D900CEF57F /* PersonDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDBKeys.swift; sourceTree = "<group>"; };
 		990A4E0B25B3792700CEF57F /* PersonStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonStore.swift; sourceTree = "<group>"; };
 		990A4E0F25B379EA00CEF57F /* AddPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPerson.swift; sourceTree = "<group>"; };
+		990C201225B736A80040861C /* AddSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSection.swift; sourceTree = "<group>"; };
+		990C201525B73B4E0040861C /* GridStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridStack.swift; sourceTree = "<group>"; };
 		992AA13225AF7E21005B1061 /* Settlements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settlements.swift; sourceTree = "<group>"; };
 		992AA13625AF7E5E005B1061 /* Transportation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transportation.swift; sourceTree = "<group>"; };
 		993BD7B8257ED2C80014CA4C /* EventListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListItem.swift; sourceTree = "<group>"; };
@@ -202,6 +206,7 @@
 				9988B45825B6077100D36BA4 /* TimetableSingle.swift */,
 				99C9837225AF80FC0093FF19 /* Contacts.swift */,
 				992AA13225AF7E21005B1061 /* Settlements.swift */,
+				990C201225B736A80040861C /* AddSection.swift */,
 			);
 			path = sections;
 			sourceTree = "<group>";
@@ -373,6 +378,7 @@
 				99C0222C258573720031538C /* CEditButton.swift */,
 				990301B925A0A82B004E4BD5 /* EventListElementPoster.swift */,
 				990301B625A0A7F9004E4BD5 /* EventListElement.swift */,
+				990C201525B73B4E0040861C /* GridStack.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -509,6 +515,7 @@
 				99BCF532257D4D9B00F2A7BC /* EventList.swift in Sources */,
 				992AA13325AF7E21005B1061 /* Settlements.swift in Sources */,
 				99A965F0257E677900B8B2D7 /* RealmPersistentInitializer.swift in Sources */,
+				990C201325B736A80040861C /* AddSection.swift in Sources */,
 				995EA26625B3608900B9D96D /* TransportDBKeys.swift in Sources */,
 				9988B45925B6077100D36BA4 /* TimetableSingle.swift in Sources */,
 				9988B45625B6061C00D36BA4 /* TimeslotStore.swift in Sources */,
@@ -538,6 +545,7 @@
 				99BCF515257D49BF00F2A7BC /* ContentView.swift in Sources */,
 				99BCF513257D49BF00F2A7BC /* BackstageApp.swift in Sources */,
 				99A965EC257E5C0400B8B2D7 /* AddVenueForm.swift in Sources */,
+				990C201625B73B4E0040861C /* GridStack.swift in Sources */,
 				9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */,
 				99A965E0257E4D0600B8B2D7 /* VenueDB.swift in Sources */,
 				99C9838F25AF9FD90093FF19 /* AddSettlement.swift in Sources */,
