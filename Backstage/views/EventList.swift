@@ -74,7 +74,7 @@ struct EventList: View {
                                     }
                                     .background(
                                         Rectangle()
-                                            .fill(Color.white.opacity(0.8))
+                                            .fill(ColorManager.responsiveWhite.opacity(0.8))
                                             .frame(height: 60)
                                     )
                                 }

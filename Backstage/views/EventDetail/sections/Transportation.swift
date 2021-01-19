@@ -44,7 +44,7 @@ struct Transportation: View {
                         } label: {
                             ZStack {
                                 Rectangle()
-                                    .fill(Color.white)
+                                    .fill(ColorManager.responsiveLight)
                                     .cornerRadius(12)
                                 HStack{
                                     Text("\(transportationType)")
@@ -74,7 +74,7 @@ struct Transportation: View {
                     }) {
                         ZStack {
                             Rectangle()
-                                .fill(Color.white)
+                                .fill(ColorManager.responsiveLight)
                                 .cornerRadius(12)
                             HStack{
                                 Text("Transportoption hinzufügen")

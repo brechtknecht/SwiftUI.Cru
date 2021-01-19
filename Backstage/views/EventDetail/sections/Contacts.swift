@@ -42,7 +42,7 @@ struct Contacts: View {
                         } label: {
                             ZStack {
                                 Rectangle()
-                                    .fill(Color.white)
+                                    .fill(ColorManager.responsiveLight)
                                     .cornerRadius(12)
                                 HStack{
                                     Image(systemName: "person.fill")
@@ -76,7 +76,7 @@ struct Contacts: View {
                     }) {
                         ZStack {
                             Rectangle()
-                                .fill(Color.white)
+                                .fill(ColorManager.responsiveLight)
                                 .cornerRadius(12)
                             HStack{
                                 Text("Einen Kontakt hinzufügen")

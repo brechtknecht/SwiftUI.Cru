@@ -84,7 +84,7 @@ struct EventDetail: View {
                         .textCase(.uppercase)
                         .padding(EdgeInsets(top: 22, leading: 16, bottom: 0, trailing: 16))
                     Text("\(viewModel.getVenue().name)")
-                        .foregroundColor(.black)
+                        .foregroundColor(.primaryDark)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .padding(EdgeInsets(top: 0, leading: 16, bottom: 4, trailing: 16))
@@ -97,7 +97,7 @@ struct EventDetail: View {
                         }) {
                             ZStack {
                                 Rectangle()
-                                    .fill(Color(.white))
+                                    .fill(ColorManager.responsiveLight)
                                     .cornerRadius(12)
                                 VStack {
                                     Image(systemName: "map.fill")
@@ -114,7 +114,7 @@ struct EventDetail: View {
                         }) {
                             ZStack {
                                 Rectangle()
-                                    .fill(Color(.white))
+                                    .fill(ColorManager.responsiveLight)
                                     .cornerRadius(12)
                                 VStack {
                                     Image(systemName: "phone.fill")
@@ -132,29 +132,28 @@ struct EventDetail: View {
                 .background(ColorManager.backgroundForm)
                 
                 Settlements(sheetIsActive: $activeSheet, eventID: $eventID)
-                
+
                 Transportation(sheetIsActive: $activeSheet, eventID: $eventID)
-                
+
                 Contacts(sheetIsActive: $activeSheet, eventID: $eventID)
-                
+    
                 Button(action: {
                     self.activeSheet = .addSection
                 }) {
                     ZStack {
                         Rectangle()
-                            .fill(Color.white)
+                            .fill(ColorManager.responsiveLight.opacity(0.8))
                             .cornerRadius(12)
                         HStack{
-                            Text("Neue Sektion hinzufügen")
-                                .padding(EdgeInsets(top: 22, leading: 16, bottom: 22, trailing: 16))
-                                .multilineTextAlignment(.center)
-                                .foregroundColor(ColorManager.primaryDark)
-                            Spacer()
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
-                                .frame(width: 24, height: 24)
-                                .padding(EdgeInsets(top: 22, leading: 16, bottom: 22, trailing: 16))
-                                .foregroundColor(ColorManager.success)
+                                .frame(width: 32, height: 32)
+                                .padding(EdgeInsets(top: 22, leading: 16, bottom: 22, trailing: 4))
+                                .foregroundColor(Color.blue)
+                            Text("Neue Sektion hinzufügen")
+                                .padding(EdgeInsets(top: 22, leading: 4, bottom: 22, trailing: 16))
+                                .multilineTextAlignment(.leading)
+                                .foregroundColor(ColorManager.primaryDark)
                         }
 //                        .frame(width: 250, height: 220)
                     }
