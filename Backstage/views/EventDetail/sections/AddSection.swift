@@ -11,7 +11,7 @@ enum ActiveSheetCreate: Identifiable {
     case settlement, transport, contact, placeholder
     
     var id: Int {
-        hashValue
+        hashValue 
     }
 }
 
