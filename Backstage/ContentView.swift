@@ -14,38 +14,28 @@ struct ContentView: View {
         
         
         // Disabled Tabview During Development
-        
-        Events()
-//        TabView {
-//            VStack {
-//                Overview()
-//            }
-//            .tabItem({
-//                TabLabel(
-//                    imageName: "music.note.house.fill",
-//                    label: "Übersicht"
-//                )
-//            })
-//            VStack {
-//                Events()
-//            }
-//            .tabItem({
-//                TabLabel(
-//                    imageName: "guitars.fill",
-//                    label: "Events"
-//                )
-//            })
-//            VStack {
-//                Crew()
-//            }
-//            .tabItem({
-//                TabLabel(
-//                    imageName: "person.3.fill",
-//                    label: "Crew"
-//                )
-//            })
-//
-//        }
+
+        TabView {
+            VStack {
+                Events()
+            }
+            .tabItem({
+                TabLabel(
+                    imageName: "guitars.fill",
+                    label: "Events"
+                )
+            })
+            VStack {
+                Crew()
+            }
+            .tabItem({
+                TabLabel(
+                    imageName: "person.3.fill",
+                    label: "Crew"
+                )
+            })
+
+        }
     }
     
     struct TabLabel: View {

@@ -10,10 +10,15 @@ import UIKit
 
 @main
 struct BackstageApp: App {
+    
+    init () {
+        RealmSync.syncInitializer()
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.realmConfiguration, app.currentUser!.configuration(partitionValue: "band_id=123"))
+//                .environment(\.realmConfiguration, app.currentUser!.configuration(partitionValue: "band_id=123"))
                 .environmentObject(VenueStore(realm: RealmPersistent.initializer()))
                 .environmentObject(EventStore(realm: RealmPersistent.initializer()))
                 .environmentObject(SettlementStore(realm: RealmPersistent.initializer()))

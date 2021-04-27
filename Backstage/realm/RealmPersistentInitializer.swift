@@ -13,8 +13,6 @@ class RealmPersistent {
         do {
             let realm = try Realm()
             
-            RealmSync.syncInitializer()
-            
             return realm
         } catch let err {   
             fatalError("Failed to open Realm \(err.localizedDescription)")
