@@ -9,6 +9,7 @@ import Foundation
 import CoreLocation
 
 struct Venue: Identifiable, Hashable {
+    let _id: Int
     let id: Int
     let name: String
     let location: String
@@ -18,6 +19,7 @@ struct Venue: Identifiable, Hashable {
 
 extension Venue {
     init(venueDB: VenueDB) {
+        _id = venueDB._id
         id = venueDB.id
         name = venueDB.name
         location = venueDB.location

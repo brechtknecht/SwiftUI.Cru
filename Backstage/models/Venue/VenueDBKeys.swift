@@ -8,6 +8,7 @@
 import Foundation
 
 enum VenueDBKeys: String {
+    case _id = "_id"
     case id = "id"
     case name = "name"
     case location = "location"
