@@ -39,8 +39,32 @@ class RealmSync {
                 case .success(let user):
                     print("Login as \(user) succeeded!")
                     // Continue below
+                    asyncConnection()
                 }
             }
         }
+    }
+    
+    
+    static func asyncConnection() -> Void {
+        // The partition determines which subset of data to access.
+        let partitionValue = "123"
+        
+        let user = app.currentUser!
+        // Get a sync configuration from the user object.
+        var configuration = user.configuration(partitionValue: partitionValue)
+        // Open the realm asynchronously to ensure backend data is downloaded first.
+        Realm.asyncOpen(configuration: configuration) { (result) in
+            switch result {
+            case .failure(let error):
+                print("Failed to open realm: \(error.localizedDescription)")
+                // Handle error...
+            case .success(let realm):
+                // Realm opened
+                print("Realm opened")
+//                onRealmOpened(realm)
+            }
+        }
+
     }
 }
