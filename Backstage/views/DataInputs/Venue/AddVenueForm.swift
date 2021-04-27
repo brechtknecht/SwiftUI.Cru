@@ -43,7 +43,7 @@ struct AddVenueForm: View {
                                 if locationService.status == .isSearching {
                                     HStack {
                                         Image(systemName: "clock")
-                                            .foregroundColor(Color.gray)
+                                            .foregroundColor(ColorManager.primaryDark)
                                         Text("Suche nach Ergebnissen")
                                     }
                                 }
@@ -54,7 +54,7 @@ struct AddVenueForm: View {
                                     case .error(let description): return AnyView(Text("Error: \(description)"))
                                     default: return AnyView(EmptyView())
                                     }
-                                }.foregroundColor(Color.gray)
+                                }.foregroundColor(ColorManager.primaryDark)
                                 
                                 ForEach(locationService.searchResults, id: \.self) { completionResult in
                                     // This simply lists the results, use a button in case you'd like to perform an action

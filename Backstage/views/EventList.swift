@@ -55,6 +55,9 @@ struct EventList: View {
                 }
                 
                 LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                    
+                    // Iterates over the Array of Events and Enumerates
+                    // the Current month as a header for sorting
                     ForEach(Array(sortedEvents.enumerated()), id: \.offset) { index, events in
                         // Displays the current Month
                         Section(
@@ -80,6 +83,7 @@ struct EventList: View {
                                 }
                             )
                         {
+                        // Displays the actual Event
                             ForEach(events.value, id: \.id) { event in
                                 EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID) ?? VenueDB())
                             }
@@ -92,7 +96,7 @@ struct EventList: View {
                 }
             } else {
                 
-                // If there is only one Event and it could lead to a crash
+                // INITIAL STATE and fallback if there is only one Event and it could lead to a crash
                 VStack(spacing: 0){
                     ForEach(eventStore.events, id: \.self.id) { event in
                         EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID) ?? VenueDB())

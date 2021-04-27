@@ -67,7 +67,7 @@ struct VenueMap: View {
                     .fontWeight(.bold)
                     .foregroundColor(.black)
                     .frame(width: UIScreen.screenWidth - 70)
-                    .padding(EdgeInsets(top: 12, leading: 0, bottom: 12, trailing: 0))
+                    .padding(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12))
                     .background(
                         Rectangle()
                             .fill(Color(.white))

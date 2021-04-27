@@ -8,6 +8,7 @@
 import Foundation
 import RealmSwift
 import SwiftUI
+import Combine
 
 class EventDB: Object {
     @objc dynamic var id                    = 0

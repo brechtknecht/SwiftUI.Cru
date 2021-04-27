@@ -33,6 +33,7 @@
 		995EA26925B360C000B9D96D /* TransportStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA26825B360C000B9D96D /* TransportStore.swift */; };
 		995EA26E25B36A3F00B9D96D /* AddTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA26D25B36A3F00B9D96D /* AddTransport.swift */; };
 		995EEEFD25AFC15C00012D39 /* SettlementMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EEEFC25AFC15C00012D39 /* SettlementMap.swift */; };
+		996EB8602635F83C00893E6E /* BandOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996EB85F2635F83C00893E6E /* BandOverview.swift */; };
 		9988B44125B600C600D36BA4 /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44025B600C600D36BA4 /* Timetable.swift */; };
 		9988B44425B6019100D36BA4 /* TimetableDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44325B6019100D36BA4 /* TimetableDB.swift */; };
 		9988B44725B601E100D36BA4 /* TimetableDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44625B601E100D36BA4 /* TimetableDBKeys.swift */; };
@@ -103,6 +104,7 @@
 		995EA26825B360C000B9D96D /* TransportStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportStore.swift; sourceTree = "<group>"; };
 		995EA26D25B36A3F00B9D96D /* AddTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransport.swift; sourceTree = "<group>"; };
 		995EEEFC25AFC15C00012D39 /* SettlementMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementMap.swift; sourceTree = "<group>"; };
+		996EB85F2635F83C00893E6E /* BandOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandOverview.swift; sourceTree = "<group>"; };
 		9988B44025B600C600D36BA4 /* Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
 		9988B44325B6019100D36BA4 /* TimetableDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDB.swift; sourceTree = "<group>"; };
 		9988B44625B601E100D36BA4 /* TimetableDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDBKeys.swift; sourceTree = "<group>"; };
@@ -238,6 +240,14 @@
 			path = Transport;
 			sourceTree = "<group>";
 		};
+		996EB85E2635F82500893E6E /* Band */ = {
+			isa = PBXGroup;
+			children = (
+				996EB85F2635F83C00893E6E /* BandOverview.swift */,
+			);
+			path = Band;
+			sourceTree = "<group>";
+		};
 		9988B43E25B600AA00D36BA4 /* Timetable */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,6 +367,7 @@
 		99BCF522257D4A8A00F2A7BC /* views */ = {
 			isa = PBXGroup;
 			children = (
+				996EB85E2635F82500893E6E /* Band */,
 				992AA13025AF7DEC005B1061 /* EventDetail */,
 				998FA76F257D89DC000468BE /* DataInputs */,
 				99BCF523257D4AA600F2A7BC /* Overview.swift */,
@@ -512,6 +523,7 @@
 				99C9837825AF9AD70093FF19 /* Settlement.swift in Sources */,
 				9988B45025B6052300D36BA4 /* TimeslotDB.swift in Sources */,
 				99A96606257EB48800B8B2D7 /* EventDBKeys.swift in Sources */,
+				996EB8602635F83C00893E6E /* BandOverview.swift in Sources */,
 				99BCF532257D4D9B00F2A7BC /* EventList.swift in Sources */,
 				992AA13325AF7E21005B1061 /* Settlements.swift in Sources */,
 				99A965F0257E677900B8B2D7 /* RealmPersistentInitializer.swift in Sources */,

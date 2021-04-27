@@ -13,6 +13,7 @@ struct BackstageApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.realmConfiguration, app.currentUser!.configuration(partitionValue: "band_id=123"))
                 .environmentObject(VenueStore(realm: RealmPersistent.initializer()))
                 .environmentObject(EventStore(realm: RealmPersistent.initializer()))
                 .environmentObject(SettlementStore(realm: RealmPersistent.initializer()))
