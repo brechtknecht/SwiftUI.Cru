@@ -41,23 +41,33 @@ extension VenueStore {
     func create(name: String, location: String, street: String, country: String) {
         
         objectWillChange.send()
-
+        
         do {
-          let realm = try Realm()
-
-          let refDB = VenueDB()
-          refDB.id = UUID().hashValue
-          refDB.name = name
-          refDB.location = location
-          refDB.street = street
-          refDB.country = country
             
-          try realm.write {
-            realm.add(refDB)
-          }
+            let partitionValue = "band123"
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
+            
+            let refDB = VenueDB()
+            
+            let id = UUID().hashValue
+            refDB._id = id
+            refDB.id = id
+            refDB.band_id = "band123"
+            refDB.name = name
+            refDB.location = location
+            refDB.street = street
+            refDB.country = country
+            
+            try realm.write {
+                realm.add(refDB)
+            }
         } catch let error {
-          // Handle error
-          print(error.localizedDescription)
+            // Handle error
+            print(error.localizedDescription)
         }
     }
     
@@ -69,14 +79,14 @@ extension VenueStore {
             let realm = try Realm()
             try realm.write {
                 realm.create(VenueDB.self,
-                value: [
-                    VenueDBKeys.id.rawValue: venueID,
-                    VenueDBKeys.name.rawValue: venueName,
-                    VenueDBKeys.location.rawValue: venueLocation,
-                    VenueDBKeys.street.rawValue: venueStreet,
-                    VenueDBKeys.country.rawValue: venueCountry
-                ],
-                update: .modified)
+                             value: [
+                                VenueDBKeys.id.rawValue: venueID,
+                                VenueDBKeys.name.rawValue: venueName,
+                                VenueDBKeys.location.rawValue: venueLocation,
+                                VenueDBKeys.street.rawValue: venueStreet,
+                                VenueDBKeys.country.rawValue: venueCountry
+                             ],
+                             update: .modified)
             }
             
         } catch let err {
@@ -89,7 +99,7 @@ extension VenueStore {
         
         do {
             let realm = try Realm()
-        
+            
             indexSet.forEach ({ index in
                 try! realm.write {
                     realm.delete(self.results[index])
