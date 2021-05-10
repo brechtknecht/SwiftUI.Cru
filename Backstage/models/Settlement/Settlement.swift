@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Settlement: Identifiable, Hashable {
+    let _id : Int
     let id : Int
     let name : String
     let location : String
@@ -20,6 +21,7 @@ struct Settlement: Identifiable, Hashable {
 
 extension Settlement {
     init(settlementDB: SettlementDB) {
+        _id             = settlementDB._id
         id              = settlementDB.id
         name            = settlementDB.name
         location        = settlementDB.location

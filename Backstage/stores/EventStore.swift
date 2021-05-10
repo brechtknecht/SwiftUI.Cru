@@ -50,6 +50,12 @@ extension EventStore {
         objectWillChange.send()
         
         do {
+            
+            let partitionValue = "band123"
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
             let realm = try Realm()
             
             let refDB = EventDB()

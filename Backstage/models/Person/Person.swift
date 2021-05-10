@@ -8,6 +8,7 @@
 import Foundation
 
 struct Person: Identifiable, Hashable {
+    let _id          : Int
     let id          : Int
     let name        : String
     let role        : String
@@ -16,6 +17,7 @@ struct Person: Identifiable, Hashable {
 
 extension Person {
     init(personDB: PersonDB) {
+        _id         = personDB._id
         id          = personDB.id
         name        = personDB.name
         role        = personDB.role

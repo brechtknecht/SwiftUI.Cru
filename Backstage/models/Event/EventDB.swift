@@ -11,6 +11,7 @@ import SwiftUI
 import Combine
 
 class EventDB: Object {
+    @objc dynamic var _id                    = 0
     @objc dynamic var id                    = 0
     @objc dynamic var name                  = ""
     @objc dynamic var date                  = Date()
@@ -26,6 +27,6 @@ class EventDB: Object {
     
     // Defines the standard key — realm needs this for identication
     override static func primaryKey() -> String? {
-        "id"
+        "_id"
     }
 }

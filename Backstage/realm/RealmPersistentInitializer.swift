@@ -46,7 +46,7 @@ class RealmSync {
     
     static func asyncConnection() -> Void {
         // The partition determines which subset of data to access.
-        let partitionValue = "123"
+        let partitionValue = "band123"
         
         let user = app.currentUser!
         // Get a sync configuration from the user object.

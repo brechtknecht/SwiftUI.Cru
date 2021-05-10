@@ -8,6 +8,7 @@
 import Foundation
 
 enum TransportDBKeys: String {
+    case _id        = "_id"
     case id         = "id"
     case name       = "name"
     case tag        = "tag"

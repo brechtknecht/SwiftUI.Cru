@@ -9,10 +9,11 @@ import Foundation
 import RealmSwift
 
 class TimetableDB : Object {
+    @objc dynamic var _id            = 0
     @objc dynamic var id            = 0
     let timeslots                   = RealmSwift.List<Int>()
     
     override static func primaryKey() -> String? {
-        "id"
+        "_id"
     }
 }

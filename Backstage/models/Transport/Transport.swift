@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct Transport: Identifiable, Hashable {
+    let _id         : Int
     let id          : Int
     let name        : String
     let tag         : String
@@ -20,6 +21,7 @@ struct Transport: Identifiable, Hashable {
 
 extension Transport {
     init(transportDB: TransportDB) {
+        _id             = transportDB._id
         id              = transportDB.id
         name            = transportDB.name
         tag             = transportDB.tag

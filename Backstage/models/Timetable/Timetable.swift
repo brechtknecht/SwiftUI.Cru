@@ -10,12 +10,14 @@ import SwiftUI
 import RealmSwift
 
 struct Timetable: Identifiable, Hashable {
+    let _id             : Int
     let id              : Int
     let timeslots       : RealmSwift.List<Int>
 }
 
 extension Timetable {
     init(timetableDB: TimetableDB) {
+        _id         = timetableDB._id
         id          = timetableDB.id
         timeslots   = timetableDB.timeslots
     }

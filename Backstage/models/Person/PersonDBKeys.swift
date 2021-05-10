@@ -9,6 +9,7 @@ import Foundation
 
 
 enum PersonDBKeys: String {
+    case _id            = "_id"
     case id             = "id"
     case name           = "name"
     case role           = "role"
