@@ -32,6 +32,9 @@ struct EventDetail: View {
     var body: some View {
         
         let viewModel = EventDetailViewModel(eventStore: eventStore, eventID: eventID, venueStore: venueStore)
+
+        
+        let currentEvent = eventStore.findByID(id: eventID)
         
         ScrollView {
             VStack (alignment: .leading, spacing: 0){

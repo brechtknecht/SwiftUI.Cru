@@ -31,7 +31,7 @@ struct EventListElementPoster: View {
         VStack {
             NavigationLink(destination:
                 EventDetail(
-                    eventID: .constant(event.id)
+                    eventID: .constant(event._id)
                 )
             ) {
                 ZStack {

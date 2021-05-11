@@ -25,7 +25,7 @@ struct EventListElement: View {
     var body: some View {
         NavigationLink(destination:
             EventDetail(
-                eventID: .constant(event.id)
+                eventID: .constant(event._id)
             )
         ) {
             HStack {
