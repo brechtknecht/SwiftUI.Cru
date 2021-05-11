@@ -26,6 +26,7 @@
 		9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AAD1257D597F004AB2C4 /* ColorManager.swift */; };
 		9956AAD5257D59FA004AB2C4 /* ButtonFullWidth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AAD4257D59FA004AB2C4 /* ButtonFullWidth.swift */; };
 		9956AADB257D7CDB004AB2C4 /* SelectVenueForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9956AADA257D7CDB004AB2C4 /* SelectVenueForm.swift */; };
+		995869DC264B25DA00E50732 /* Cloudinary in Frameworks */ = {isa = PBXBuildFile; productRef = 995869DB264B25DA00E50732 /* Cloudinary */; };
 		995EA25A25B3516600B9D96D /* Characters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA25925B3516600B9D96D /* Characters.swift */; };
 		995EA25F25B35F9200B9D96D /* Transport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA25E25B35F9200B9D96D /* Transport.swift */; };
 		995EA26325B3603900B9D96D /* TransportDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA26225B3603900B9D96D /* TransportDB.swift */; };
@@ -46,7 +47,6 @@
 		998DD3E6257E4C5B00E17E8B /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 998DD3E5257E4C5B00E17E8B /* Realm */; };
 		998DD3E8257E4C5B00E17E8B /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 998DD3E7257E4C5B00E17E8B /* RealmSwift */; };
 		999E23F12649A2A400B63D3B /* VenueListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999E23F02649A2A400B63D3B /* VenueListItem.swift */; };
-		99A01AE2257D9D5F00C9914D /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 99A01AE1257D9D5F00C9914D /* PartialSheet */; };
 		99A965E0257E4D0600B8B2D7 /* VenueDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965DF257E4D0600B8B2D7 /* VenueDB.swift */; };
 		99A965E3257E4EAF00B8B2D7 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965E2257E4EAF00B8B2D7 /* Venue.swift */; };
 		99A965E7257E4FB200B8B2D7 /* VenueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A965E6257E4FB200B8B2D7 /* VenueStore.swift */; };
@@ -154,9 +154,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				995869DC264B25DA00E50732 /* Cloudinary in Frameworks */,
 				998DD3E8257E4C5B00E17E8B /* RealmSwift in Frameworks */,
 				998DD3E6257E4C5B00E17E8B /* Realm in Frameworks */,
-				99A01AE2257D9D5F00C9914D /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,9 +454,9 @@
 			);
 			name = Backstage;
 			packageProductDependencies = (
-				99A01AE1257D9D5F00C9914D /* PartialSheet */,
 				998DD3E5257E4C5B00E17E8B /* Realm */,
 				998DD3E7257E4C5B00E17E8B /* RealmSwift */,
+				995869DB264B25DA00E50732 /* Cloudinary */,
 			);
 			productName = Backstage;
 			productReference = 99BCF50F257D49BF00F2A7BC /* Backstage.app */;
@@ -486,8 +486,8 @@
 			);
 			mainGroup = 99BCF506257D49BF00F2A7BC;
 			packageReferences = (
-				99A01AE0257D9D5F00C9914D /* XCRemoteSwiftPackageReference "PartialSheet" */,
 				998DD3E4257E4C5B00E17E8B /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				995869DA264B25DA00E50732 /* XCRemoteSwiftPackageReference "cloudinary_ios" */,
 			);
 			productRefGroup = 99BCF510257D49BF00F2A7BC /* Products */;
 			projectDirPath = "";
@@ -769,6 +769,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		995869DA264B25DA00E50732 /* XCRemoteSwiftPackageReference "cloudinary_ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cloudinary/cloudinary_ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		998DD3E4257E4C5B00E17E8B /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
@@ -777,17 +785,14 @@
 				minimumVersion = 10.2.0;
 			};
 		};
-		99A01AE0257D9D5F00C9914D /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.11;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		995869DB264B25DA00E50732 /* Cloudinary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 995869DA264B25DA00E50732 /* XCRemoteSwiftPackageReference "cloudinary_ios" */;
+			productName = Cloudinary;
+		};
 		998DD3E5257E4C5B00E17E8B /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 998DD3E4257E4C5B00E17E8B /* XCRemoteSwiftPackageReference "realm-cocoa" */;
@@ -797,11 +802,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 998DD3E4257E4C5B00E17E8B /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
-		};
-		99A01AE1257D9D5F00C9914D /* PartialSheet */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 99A01AE0257D9D5F00C9914D /* XCRemoteSwiftPackageReference "PartialSheet" */;
-			productName = PartialSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

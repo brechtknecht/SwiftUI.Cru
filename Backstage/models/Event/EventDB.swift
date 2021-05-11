@@ -17,6 +17,7 @@ class EventDB: Object, ObjectKeyIdentifiable {
     @objc dynamic var date                  = Date()
     @objc dynamic var venueID               = 0
     @objc dynamic var imageUUID             = ""
+    @objc dynamic var imageData             = Data()
     @objc dynamic var backgroundColorHex    = ""
     @objc dynamic var timetable             = 0
     @objc dynamic var fee                   = 0

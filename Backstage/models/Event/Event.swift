@@ -16,6 +16,7 @@ struct Event: Identifiable, Hashable {
     let date                : Date
     let venueID             : Int
     let imageUUID           : String
+    let imageData           : Data
     let backgroundColorHex  : String
     let settlements         : RealmSwift.List<Int>
     let transports          : RealmSwift.List<Int>
@@ -33,6 +34,7 @@ extension Event {
         date                = eventDB.date
         venueID             = eventDB.venueID
         imageUUID           = eventDB.imageUUID
+        imageData           = eventDB.imageData
         backgroundColorHex  = eventDB.backgroundColorHex
         settlements         = eventDB.settlements
         transports          = eventDB.transports

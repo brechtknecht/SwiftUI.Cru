@@ -8,6 +8,7 @@
 import Foundation
 import RealmSwift
 import SwiftUI
+import Cloudinary
 
 final class EventStore: ObservableObject {
     private var results: Results<EventDB>
@@ -76,7 +77,8 @@ extension EventStore {
             refDB.venueID               = venueID
             refDB.imageUUID             = imageUUID
             refDB.backgroundColorHex    = backgroundColorHex
-
+            refDB.imageData             = self.convertImageToData(imageUUID: imageUUID)
+            
             try realm.write {
                 realm.add(refDB)
             }
@@ -200,5 +202,11 @@ extension EventStore {
                 event?.persons.append(personID)
             }
         }
+    }
+    
+    func convertImageToData(imageUUID: String) -> Data {
+        let image = Utilities.helpers.loadImageFromUUID(imageUUID: imageUUID, compression: 0.0)
+        let data = image.pngData()
+        return data ?? Data.init()
     }
 }
