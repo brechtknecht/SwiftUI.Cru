@@ -7,7 +7,7 @@
 
 import Foundation
 import RealmSwift
-
+import SwiftUI
 import CoreLocation
 
 final class VenueStore: ObservableObject {
@@ -43,8 +43,8 @@ extension VenueStore {
         objectWillChange.send()
         
         do {
-            
-            let partitionValue = RealmSync.partitionValue
+
+            let partitionValue = realmSync.getPartitionValue()
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -98,7 +98,7 @@ extension VenueStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = RealmSync.partitionValue
+            let partitionValue = realmSync.partitionValue
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)

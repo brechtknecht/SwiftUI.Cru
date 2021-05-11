@@ -10,19 +10,16 @@ import UIKit
 import RealmSwift
 
 let app = App(id: "backstage-ghsov") // Global App Object for SYNCING data with and to LOGIN against
+let realmSync = RealmSync()
 
 
 @main
 struct BackstageApp: SwiftUI.App {
-    
-    init () {
-        RealmSync.syncInitializer()
-    }
+    @StateObject var realmSyncUI = realmSync
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.realmConfiguration, app.currentUser!.configuration(partitionValue: RealmSync.partitionValue))
                 .environmentObject(VenueStore(realm: RealmPersistent.initializer()))
                 .environmentObject(EventStore(realm: RealmPersistent.initializer()))
                 .environmentObject(SettlementStore(realm: RealmPersistent.initializer()))
@@ -30,6 +27,7 @@ struct BackstageApp: SwiftUI.App {
                 .environmentObject(PersonStore(realm: RealmPersistent.initializer()))
                 .environmentObject(TimetableStore(realm: RealmPersistent.initializer()))
                 .environmentObject(TimeslotStore(realm: RealmPersistent.initializer()))
+                .environmentObject(realmSync)
         }
     }
 }

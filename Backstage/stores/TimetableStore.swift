@@ -39,19 +39,24 @@ final class TimetableStore: ObservableObject {
 extension TimetableStore {
     func create(name: String) {
         objectWillChange.send()
-
+        
         do {
-          let realm = try Realm()
-
-          let refDB = TimetableDB()
-          refDB.id              = UUID().hashValue
+            let partitionValue = realmSync.partitionValue
             
-          try realm.write {
-            realm.add(refDB)
-          }
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
+            
+            let refDB = TimetableDB()
+            refDB.id              = UUID().hashValue
+            
+            try realm.write {
+                realm.add(refDB)
+            }
         } catch let error {
-          // Handle error
-          print(error.localizedDescription)
+            // Handle error
+            print(error.localizedDescription)
         }
     }
     
@@ -63,11 +68,11 @@ extension TimetableStore {
             let realm = try Realm()
             try realm.write {
                 realm.create(TimetableDB.self,
-                value: [
-                    TimetableDBKeys.id.rawValue: venueID,
-                    
-                ],
-                update: .modified)
+                             value: [
+                                TimetableDBKeys.id.rawValue: venueID,
+                                
+                             ],
+                             update: .modified)
             }
             
         } catch let err {
@@ -80,7 +85,7 @@ extension TimetableStore {
         
         do {
             let realm = try Realm()
-        
+            
             indexSet.forEach ({ index in
                 try! realm.write {
                     realm.delete(self.results[index])

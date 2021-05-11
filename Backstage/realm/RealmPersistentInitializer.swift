@@ -7,29 +7,48 @@
 
 import Foundation
 import RealmSwift
+import Realm
 
 class RealmPersistent {
     static func initializer() -> Realm {
-        let partitionValue = RealmSync.partitionValue
+        realmSync.syncInitializer()
         
-        let user = app.currentUser!
-        // Get a sync configuration from the user object.
-        let configuration = user.configuration(partitionValue: partitionValue)
+        let partitionValue = realmSync.partitionValue
         
-        do {
-            let realm = try Realm(configuration: configuration)
+        let user = app.currentUser ?? nil
+        
+        if (user !=  nil) {
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
             
-            return realm
-        } catch let err {   
-            fatalError("Failed to open Realm \(err.localizedDescription)")
+            // Get a sync configuration from the user object.
+            do {
+                let realm = try Realm(configuration: configuration)
+                return realm
+            } catch let err {
+                fatalError("Failed to open Realm \(err.localizedDescription)")
+            }
+        } else {
+            do {
+                let realm = try Realm()
+                return realm
+            } catch let err {
+                fatalError("Failed to open Realm \(err.localizedDescription)")
+            }
         }
+        
+        
     }
 }
 
-class RealmSync {
-    public static var partitionValue = "band123"
+class RealmSync : ObservableObject {
+    @Published var partitionValue = "band123"
     
-    static func syncInitializer() -> Void {
+    init() {
+        self.syncInitializer()
+    }
+    
+    func syncInitializer() -> Void {
         
         // Log in anonymously.
         app.login(credentials: Credentials.anonymous) { (result) in
@@ -42,14 +61,14 @@ class RealmSync {
                 case .success(let user):
                     print("Login as \(user) succeeded!")
                     // Continue below
-                    asyncConnection()
+                    self.asyncConnection()
                 }
             }
         }
     }
     
     
-    static func asyncConnection() -> Void {
+    func asyncConnection() -> Void {
         // The partition determines which subset of data to access.
         let partitionValue = self.partitionValue
         
@@ -70,7 +89,11 @@ class RealmSync {
         }
     }
     
-    static func setPartitionValue(value: String) -> Void {
+    func setPartitionValue(value: String) -> Void {
         self.partitionValue = value
+    }
+    
+    public func getPartitionValue() -> String {
+        return self.partitionValue
     }
 }

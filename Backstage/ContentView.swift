@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct ContentView: View {
     @EnvironmentObject var store: VenueStore
@@ -36,6 +37,9 @@ struct ContentView: View {
             })
 
         }
+        .environment(\.realmConfiguration,
+                      app.currentUser!.configuration(partitionValue: realmSync.partitionValue)
+         )
     }
     
     struct TabLabel: View {
@@ -50,10 +54,4 @@ struct ContentView: View {
         }
     }
     
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
 }

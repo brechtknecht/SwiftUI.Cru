@@ -51,7 +51,7 @@ extension EventStore {
         
         do {
             
-            let partitionValue = RealmSync.partitionValue
+            let partitionValue = realmSync.partitionValue
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -85,7 +85,12 @@ extension EventStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = realmSync.partitionValue
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
         
             indexSet.forEach ({ index in
                 try! realm.write {
@@ -101,10 +106,15 @@ extension EventStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = realmSync.partitionValue
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
             
             let object = realm.objects(EventDB.self).filter("id = %@", id).first
-            
+                        
             try! realm.write {
                 if let obj = object {
                     realm.delete(obj)
