@@ -28,7 +28,15 @@ struct BackstageApp: SwiftUI.App {
                 .environmentObject(TimetableStore(realm: RealmPersistent.initializer()))
                 .environmentObject(TimeslotStore(realm: RealmPersistent.initializer()))
                 .environmentObject(realmSync)
+                .environment(\.realmConfiguration, self.initializeConfiguration())
         }
+    }
+    
+    func initializeConfiguration () -> Realm.Configuration {
+        if(app.currentUser != nil) {
+            return app.currentUser!.configuration(partitionValue: realmSync.partitionValue)
+        }
+        return Realm.Configuration.defaultConfiguration
     }
 }
 

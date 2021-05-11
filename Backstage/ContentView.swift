@@ -37,9 +37,7 @@ struct ContentView: View {
             })
 
         }
-        .environment(\.realmConfiguration,
-                      app.currentUser!.configuration(partitionValue: realmSync.partitionValue)
-         )
+        
     }
     
     struct TabLabel: View {
