@@ -35,7 +35,12 @@ final class EventStore: ObservableObject {
     
     func findByID (id: Int) -> EventDB! {
         do {
-            return try Realm().object(ofType: EventDB.self, forPrimaryKey: id)
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            return try Realm(configuration: configuration).object(ofType: EventDB.self, forPrimaryKey: id)
         } catch let error {
             print(error.localizedDescription)
             return nil
@@ -153,7 +158,12 @@ extension EventStore {
         let event = self.findByID(id: eventID)
         
         do {
-            let realm = try! Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try! Realm(configuration: configuration)
             try! realm.write {
                 event?.settlements.append(settlementID)
             }
@@ -164,7 +174,12 @@ extension EventStore {
         let event = self.findByID(id: eventID)
         
         do {
-            let realm = try! Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try! Realm(configuration: configuration)
             try! realm.write {
                 event?.transports.append(transportID)
             }
@@ -175,7 +190,12 @@ extension EventStore {
         let event = self.findByID(id: eventID)
         
         do {
-            let realm = try! Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try! Realm(configuration: configuration)
             try! realm.write {
                 event?.persons.append(personID)
             }

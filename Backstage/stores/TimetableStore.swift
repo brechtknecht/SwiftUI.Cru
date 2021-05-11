@@ -27,7 +27,12 @@ final class TimetableStore: ObservableObject {
     
     func findByID (id: Int) -> TimetableDB! {
         do {
-            return try Realm().object(ofType: TimetableDB.self, forPrimaryKey: id)
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            return try Realm(configuration: configuration).object(ofType: TimetableDB.self, forPrimaryKey: id)
         } catch let error {
             print(error.localizedDescription)
             return nil
@@ -84,7 +89,12 @@ extension TimetableStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
             
             indexSet.forEach ({ index in
                 try! realm.write {

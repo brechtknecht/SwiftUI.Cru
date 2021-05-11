@@ -24,7 +24,12 @@ final class TimeslotStore: ObservableObject {
     
     func findByID (id: Int) -> TimeslotDB! {
         do {
-            return try Realm().object(ofType: TimeslotDB.self, forPrimaryKey: id)
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            return try Realm(configuration: configuration).object(ofType: TimeslotDB.self, forPrimaryKey: id)
         } catch let error {
             print(error.localizedDescription)
             return nil
@@ -66,7 +71,12 @@ extension TimeslotStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
         
             indexSet.forEach ({ index in
                 try! realm.write {
@@ -82,7 +92,12 @@ extension TimeslotStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
             
             let object = realm.objects(TimeslotDB.self).filter("id = %@", id).first
             

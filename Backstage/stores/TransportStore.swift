@@ -23,7 +23,12 @@ final class TransportStore: ObservableObject {
     
     func findByID (id: Int) -> TransportDB! {
         do {
-            return try Realm().object(ofType: TransportDB.self, forPrimaryKey: id)
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            return try Realm(configuration: configuration).object(ofType: TransportDB.self, forPrimaryKey: id)
         } catch let error {
             print(error.localizedDescription)
             return nil
@@ -46,7 +51,9 @@ extension TransportStore {
             let realm = try Realm(configuration: configuration)
             
             let refDB = TransportDB()
+            
             refDB.id            = id
+            refDB._id           = id
             refDB.name          = name
             refDB.tag           = tag
             refDB.seats         = seats
@@ -67,7 +74,12 @@ extension TransportStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
         
             indexSet.forEach ({ index in
                 try! realm.write {
@@ -83,7 +95,12 @@ extension TransportStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
             
             let object = realm.objects(TransportDB.self).filter("id = %@", id).first
             

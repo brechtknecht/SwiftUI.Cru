@@ -38,9 +38,10 @@ struct Transportation: View {
                         let transportationType = transport?.type ?? ""
                         let transpotationPrice = transport?.price ?? 0
                         
+                        
 
                         Button {
-                            print("Test")
+                            print("Test \( transportationID ))")
                         } label: {
                             ZStack {
                                 Rectangle()

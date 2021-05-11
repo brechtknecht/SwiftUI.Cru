@@ -23,7 +23,12 @@ final class PersonStore: ObservableObject {
     
     func findByID (id: Int) -> PersonDB! {
         do {
-            return try Realm().object(ofType: PersonDB.self, forPrimaryKey: id)
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            return try Realm(configuration: configuration).object(ofType: PersonDB.self, forPrimaryKey: id)
         } catch let error {
             print(error.localizedDescription)
             return nil
@@ -47,6 +52,7 @@ extension PersonStore {
             
             let refDB = PersonDB()
             refDB.id            = id
+            refDB._id           = id
             refDB.name          = name
             refDB.role          = role
             refDB.phoneNumber   = phoneNumber
@@ -64,7 +70,12 @@ extension PersonStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
         
             indexSet.forEach ({ index in
                 try! realm.write {
@@ -80,7 +91,12 @@ extension PersonStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
             
             let object = realm.objects(PersonDB.self).filter("id = %@", id).first
             

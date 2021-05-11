@@ -23,7 +23,11 @@ final class SettlementStore: ObservableObject {
     
     func findByID (id: Int) -> SettlementDB! {
         do {
-            return try Realm().object(ofType: SettlementDB.self, forPrimaryKey: id)
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            return try Realm(configuration: configuration).object(ofType: SettlementDB.self, forPrimaryKey: id)
         } catch let error {
             print(error.localizedDescription)
             return nil
@@ -46,6 +50,7 @@ extension SettlementStore {
             let realm = try Realm(configuration: configuration)
             
             let refDB = SettlementDB()
+            refDB._id           = id
             refDB.id            = id
             refDB.name          = name
             refDB.location      = location
@@ -83,7 +88,12 @@ extension SettlementStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
             
             let object = realm.objects(SettlementDB.self).filter("id = %@", id).first
             

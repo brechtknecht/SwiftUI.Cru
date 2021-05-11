@@ -28,7 +28,11 @@ final class VenueStore: ObservableObject {
     
     func findByID (id: Int) -> VenueDB! {
         do {
-            return try Realm().object(ofType: VenueDB.self, forPrimaryKey: id)
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            return try Realm(configuration: configuration).object(ofType: VenueDB.self, forPrimaryKey: id)
         } catch let error {
             print(error.localizedDescription)
             return nil

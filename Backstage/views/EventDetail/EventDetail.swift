@@ -34,7 +34,8 @@ struct EventDetail: View {
         let viewModel = EventDetailViewModel(eventStore: eventStore, eventID: eventID, venueStore: venueStore)
 
         
-        let currentEvent = eventStore.findByID(id: eventID)
+        let currentEvent = eventStore.findByID(id: eventID) ?? EventDB.init()
+        
         
         ScrollView {
             VStack (alignment: .leading, spacing: 0){
