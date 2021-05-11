@@ -22,7 +22,7 @@ struct BackstageApp: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.realmConfiguration, app.currentUser!.configuration(partitionValue: "band=band123"))
+                .environment(\.realmConfiguration, app.currentUser!.configuration(partitionValue: RealmSync.partitionValue))
                 .environmentObject(VenueStore(realm: RealmPersistent.initializer()))
                 .environmentObject(EventStore(realm: RealmPersistent.initializer()))
                 .environmentObject(SettlementStore(realm: RealmPersistent.initializer()))

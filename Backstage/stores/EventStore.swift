@@ -51,7 +51,7 @@ extension EventStore {
         
         do {
             
-            let partitionValue = "band123"
+            let partitionValue = RealmSync.partitionValue
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)

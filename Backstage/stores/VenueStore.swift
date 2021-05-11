@@ -44,7 +44,7 @@ extension VenueStore {
         
         do {
             
-            let partitionValue = "band123"
+            let partitionValue = RealmSync.partitionValue
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -56,7 +56,7 @@ extension VenueStore {
             let id = UUID().hashValue
             refDB._id = id
             refDB.id = id
-            refDB.band_id = "band123"
+            refDB.band_id = partitionValue
             refDB.name = name
             refDB.location = location
             refDB.street = street
@@ -98,7 +98,12 @@ extension VenueStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = RealmSync.partitionValue
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
             
             indexSet.forEach ({ index in
                 try! realm.write {

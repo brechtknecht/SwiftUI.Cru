@@ -10,7 +10,7 @@ import RealmSwift
 
 class RealmPersistent {
     static func initializer() -> Realm {
-        let partitionValue = "band123"
+        let partitionValue = RealmSync.partitionValue
         
         let user = app.currentUser!
         // Get a sync configuration from the user object.
@@ -27,10 +27,11 @@ class RealmPersistent {
 }
 
 class RealmSync {
+    public static var partitionValue = "band123"
+    
     static func syncInitializer() -> Void {
         
         // Log in anonymously.
-        
         app.login(credentials: Credentials.anonymous) { (result) in
             // Remember to dispatch back to the main thread in completion handlers
             // if you want to do anything on the UI.
@@ -50,7 +51,7 @@ class RealmSync {
     
     static func asyncConnection() -> Void {
         // The partition determines which subset of data to access.
-        let partitionValue = "band123"
+        let partitionValue = self.partitionValue
         
         let user = app.currentUser!
         // Get a sync configuration from the user object.
@@ -67,6 +68,9 @@ class RealmSync {
 //                onRealmOpened(realm)
             }
         }
-
+    }
+    
+    static func setPartitionValue(value: String) -> Void {
+        self.partitionValue = value
     }
 }

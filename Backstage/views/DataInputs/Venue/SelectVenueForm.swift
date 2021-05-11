@@ -35,8 +35,7 @@ struct SelectionItemView: View {
                             footer: Text("Here is a detailed description of the setting.")
                         ) {
                             List {
-                                Text("VENUE DEFAULT FETCH \(venueRealm.objects(VenueDB.self).count)")
-                                ForEach(venues, id: \.id) { venue in
+                                ForEach(venueStore.venues, id: \.id) { venue in
                                     HStack {
                                         Button(action: {
                                             // Trigger Controller

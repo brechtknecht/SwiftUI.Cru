@@ -9,11 +9,10 @@ import SwiftUI
 import RealmSwift
 
 struct VenueListItem: View {
-    @ObservedRealmObject var venue : VenueDB
+    @State var venue : Venue
     
     var body: some View {
         VStack (alignment: .leading) {
-            Text("\(venue)")
             Text("\(venue.name)")
                 .foregroundColor(ColorManager.primaryDark)
             
