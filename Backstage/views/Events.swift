@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct Events: View {
     @State var showingCreateNewEvent = false
@@ -17,6 +18,9 @@ struct Events: View {
     
     @EnvironmentObject var eventStore: EventStore
     @EnvironmentObject var venueStore: VenueStore
+    
+   
+    
     
     var body: some View {
         NavigationView {

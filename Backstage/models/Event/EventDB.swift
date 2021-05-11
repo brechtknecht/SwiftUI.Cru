@@ -10,8 +10,8 @@ import RealmSwift
 import SwiftUI
 import Combine
 
-class EventDB: Object {
-    @objc dynamic var _id                    = 0
+class EventDB: Object, ObjectKeyIdentifiable {
+    @objc dynamic var _id                   = 0
     @objc dynamic var id                    = 0
     @objc dynamic var name                  = ""
     @objc dynamic var date                  = Date()

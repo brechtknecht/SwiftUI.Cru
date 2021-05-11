@@ -56,10 +56,14 @@ extension EventStore {
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
             
-            let realm = try Realm()
+            let realm = try Realm(configuration: configuration)
             
             let refDB = EventDB()
-            refDB.id                    = UUID().hashValue
+            
+            let id = UUID().hashValue
+            
+            refDB._id                   = id
+            refDB.id                    = id
             refDB.name                  = name
             refDB.date                  = date
             refDB.fee                   = fee

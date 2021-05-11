@@ -31,6 +31,7 @@ struct CreateNewEvent: View {
     @EnvironmentObject var store : VenueStore
     @EnvironmentObject var eventStore: EventStore
     
+    
     // Reactive Datapoints for the Form
     @State var eventName = ""
     @State var eventDate = Date()

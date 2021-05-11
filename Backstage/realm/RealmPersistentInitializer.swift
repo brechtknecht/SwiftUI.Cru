@@ -50,7 +50,7 @@ class RealmSync {
         
         let user = app.currentUser!
         // Get a sync configuration from the user object.
-        var configuration = user.configuration(partitionValue: partitionValue)
+        let configuration = user.configuration(partitionValue: partitionValue)
         // Open the realm asynchronously to ensure backend data is downloaded first.
         Realm.asyncOpen(configuration: configuration) { (result) in
             switch result {
@@ -59,7 +59,7 @@ class RealmSync {
                 // Handle error...
             case .success(let realm):
                 // Realm opened
-                print("Realm opened")
+                print("Realm opened \(realm)")
 //                onRealmOpened(realm)
             }
         }

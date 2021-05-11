@@ -13,6 +13,9 @@ struct EventList: View {
     @EnvironmentObject var eventStore: EventStore
     @EnvironmentObject var venueStore: VenueStore
     
+    @ObservedResults(EventDB.self) var events
+    @Environment(\.realm) var eventRealm
+    
     @Environment(\.editMode) var editMode
     
     static let monthDateFormat: DateFormatter = {

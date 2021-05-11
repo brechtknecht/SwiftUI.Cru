@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 import CoreLocation
 
-class VenueDB: Object {
+class VenueDB: Object, ObjectKeyIdentifiable {
     @objc dynamic var _id = 0
     @objc dynamic var band_id: String? = nil
     @objc dynamic var id = 0
