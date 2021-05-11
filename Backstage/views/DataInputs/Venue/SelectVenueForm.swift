@@ -1,5 +1,6 @@
 import SwiftUI
 import RealmSwift
+import Realm
 
 struct SelectionItemView: View {
     
@@ -27,7 +28,6 @@ struct SelectionItemView: View {
     var body: some View {
         NavigationView {
             VStack {
-            
                 VStack {
                     Form {
                         Section(
@@ -35,6 +35,7 @@ struct SelectionItemView: View {
                             footer: Text("Here is a detailed description of the setting.")
                         ) {
                             List {
+                                Text("VENUE DEFAULT FETCH \(venueRealm.objects(VenueDB.self).count)")
                                 ForEach(venues, id: \.id) { venue in
                                     HStack {
                                         Button(action: {
@@ -47,9 +48,9 @@ struct SelectionItemView: View {
                                             
                                             // Pop Navigation State
                                             self.mode.wrappedValue.dismiss()
-                                            
                                         }){
                                             VenueListItem(venue: venue)
+                                            
                                         }
                                         Spacer()
                                         if (self.selection  ==  venue.name){

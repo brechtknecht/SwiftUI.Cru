@@ -10,8 +10,14 @@ import RealmSwift
 
 class RealmPersistent {
     static func initializer() -> Realm {
+        let partitionValue = "band123"
+        
+        let user = app.currentUser!
+        // Get a sync configuration from the user object.
+        let configuration = user.configuration(partitionValue: partitionValue)
+        
         do {
-            let realm = try Realm()
+            let realm = try Realm(configuration: configuration)
             
             return realm
         } catch let err {   
@@ -19,8 +25,6 @@ class RealmPersistent {
         }
     }
 }
-
-let app = App(id: "backstage-ghsov") // Global App Object for SYNCING data with and to LOGIN against
 
 class RealmSync {
     static func syncInitializer() -> Void {

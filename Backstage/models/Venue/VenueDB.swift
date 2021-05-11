@@ -9,14 +9,14 @@ import Foundation
 import RealmSwift
 import CoreLocation
 
-class VenueDB: Object, ObjectKeyIdentifiable {
-    @objc dynamic var _id = 0
-    @objc dynamic var band_id: String? = nil
-    @objc dynamic var id = 0
-    @objc dynamic var name = ""
-    @objc dynamic var location = ""
-    @objc dynamic var street = ""
-    @objc dynamic var country = ""
+@objcMembers class VenueDB: Object, ObjectKeyIdentifiable {
+    dynamic var _id = 0
+    dynamic var band_id: String? = nil
+    dynamic var id = 0
+    dynamic var name = ""
+    dynamic var location = ""
+    dynamic var street = ""
+    dynamic var country = ""
     
     // Defines the standard key — realm needs this for identication
     override static func primaryKey() -> String? {

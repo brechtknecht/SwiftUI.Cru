@@ -13,6 +13,7 @@ struct VenueListItem: View {
     
     var body: some View {
         VStack (alignment: .leading) {
+            Text("\(venue)")
             Text("\(venue.name)")
                 .foregroundColor(ColorManager.primaryDark)
             

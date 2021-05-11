@@ -7,10 +7,13 @@
 
 import SwiftUI
 import UIKit
+import RealmSwift
+
+let app = App(id: "backstage-ghsov") // Global App Object for SYNCING data with and to LOGIN against
 
 
 @main
-struct BackstageApp: App {
+struct BackstageApp: SwiftUI.App {
     
     init () {
         RealmSync.syncInitializer()
