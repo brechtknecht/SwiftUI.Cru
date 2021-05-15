@@ -35,10 +35,7 @@ struct EventListElementPoster: View {
                 )
             ) {
                 ZStack {
-                    
-                    
-                    
-                    Image(uiImage: viewModel.getImage(imageUUID: event.imageUUID, imageData: event.imageData))
+                    Image(uiImage: Utilities.helpers.loadImageFromCDN(imageUUID: event.imageUUID, imageData: event.imageData))
                         .renderingMode(.original)
                         .resizable()
                         .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
@@ -161,38 +158,7 @@ extension EventListElementPoster {
             self.compressedImage = UIImage()
         }
         
-        func getImage (imageUUID: String, imageData: Data) -> UIImage {
-            // Try catching the image from the hard-disk
-            let image = Utilities.helpers.loadImageFromUUID(imageUUID: imageUUID, compression: 0.25)
-            
-            // Check if the image is existing on the hard-disk
-            if(image.topCapHeight > 0) {
-                return image
-            }
-            
-            // Convert Image to UIImage
-            let imageData = UIImage(data: imageData)!
-            
-            self.saveImageToDiskWithImageUUID(image: image, imageUUID: imageUUID)
-            
-            return imageData
-        }
         
-        // Saves an image to hard-disk with an already excisting imageUUID
-        // This reduces cloud traffic
-        func saveImageToDiskWithImageUUID (image: UIImage, imageUUID: String) -> Void {
-            let documentsPath = Utilities.helpers.getDocumentsDirectory()
-            
-            let imageData = image.png() as NSData?
-            
-            let writePath = documentsPath.appendingPathComponent(imageUUID)
-            
-            do {
-                try imageData?.write(to: writePath, options: .atomic)
-            } catch {
-                print("Image could not be Saved to Disk")
-            }
-        }
         
         func convertDate (date: Date) -> String {
             let formatter = DateFormatter()

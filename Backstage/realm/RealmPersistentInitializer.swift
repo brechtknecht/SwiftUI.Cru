@@ -42,7 +42,7 @@ class RealmPersistent {
 }
 
 class RealmSync : ObservableObject {
-    @Published var partitionValue = "band123"
+    @Published var partitionValue = ""
     
     init() {
         self.syncInitializer()

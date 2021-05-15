@@ -46,7 +46,7 @@ struct EventDetail: View {
                         let geometryFrame = geometry.frame(in: .global).minY
                         
                         ZStack {
-                            Image(uiImage: viewModel.eventImage)
+                            Image(uiImage: Utilities.helpers.loadImageFromCDN(imageUUID: currentEvent.imageUUID, imageData: currentEvent.imageData))
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: geometryWidth, height: geometryHeight + geometryFrame)
