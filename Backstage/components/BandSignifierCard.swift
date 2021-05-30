@@ -9,8 +9,10 @@ import SwiftUI
 import CodeScanner
 
 struct BandSignifierCard: View {
-    @State var bandID : String = realmSync.partitionValue
+//    @State var bandID : String = realmSync.partitionValue
     @State var invalid: Bool = false
+    
+    @Binding var bandID : String
     
     @State private var isShowingScanner = false
     @State private var sheetNewBand: Bool = false
@@ -44,7 +46,7 @@ struct BandSignifierCard: View {
                 ButtonFullWidth(label: .constant("Scan Band Code"), icon: "qrcode.viewfinder");
             }
             .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "band123", completion: self.handleScan)
+                CodeScannerView(codeTypes: [.qr], simulatedData: "wXIH8bRCDPKI6gvpekoN7Hn0", completion: self.handleScan)
             }
             Text("or enter manually").font(Font.callout)
             

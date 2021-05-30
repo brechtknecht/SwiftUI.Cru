@@ -36,6 +36,7 @@
 		996EB8602635F83C00893E6E /* BandOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996EB85F2635F83C00893E6E /* BandOverview.swift */; };
 		998779C026639D9600A0DFB2 /* BandSignifierCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998779BF26639D9600A0DFB2 /* BandSignifierCard.swift */; };
 		998779C42663C2C300A0DFB2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 998779C32663C2C300A0DFB2 /* CodeScanner */; };
+		998779C72663D03600A0DFB2 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998779C62663D03600A0DFB2 /* QRCodeView.swift */; };
 		9988B44125B600C600D36BA4 /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44025B600C600D36BA4 /* Timetable.swift */; };
 		9988B44425B6019100D36BA4 /* TimetableDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44325B6019100D36BA4 /* TimetableDB.swift */; };
 		9988B44725B601E100D36BA4 /* TimetableDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44625B601E100D36BA4 /* TimetableDBKeys.swift */; };
@@ -112,6 +113,7 @@
 		995EEEFC25AFC15C00012D39 /* SettlementMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementMap.swift; sourceTree = "<group>"; };
 		996EB85F2635F83C00893E6E /* BandOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandOverview.swift; sourceTree = "<group>"; };
 		998779BF26639D9600A0DFB2 /* BandSignifierCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandSignifierCard.swift; sourceTree = "<group>"; };
+		998779C62663D03600A0DFB2 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		9988B44025B600C600D36BA4 /* Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
 		9988B44325B6019100D36BA4 /* TimetableDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDB.swift; sourceTree = "<group>"; };
 		9988B44625B601E100D36BA4 /* TimetableDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDBKeys.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				990301B625A0A7F9004E4BD5 /* EventListElement.swift */,
 				990C201525B73B4E0040861C /* GridStack.swift */,
 				998779BF26639D9600A0DFB2 /* BandSignifierCard.swift */,
+				998779C62663D03600A0DFB2 /* QRCodeView.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				99A965EC257E5C0400B8B2D7 /* AddVenueForm.swift in Sources */,
 				990C201625B73B4E0040861C /* GridStack.swift in Sources */,
 				99B099ED265C2034002FA63A /* UserDB.swift in Sources */,
+				998779C72663D03600A0DFB2 /* QRCodeView.swift in Sources */,
 				9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */,
 				99A965E0257E4D0600B8B2D7 /* VenueDB.swift in Sources */,
 				99C9838F25AF9FD90093FF19 /* AddSettlement.swift in Sources */,
