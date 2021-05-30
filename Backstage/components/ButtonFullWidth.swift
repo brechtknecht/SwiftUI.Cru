@@ -9,9 +9,14 @@ import SwiftUI
 
 struct ButtonFullWidth: View {
     @Binding var label: String
+    @State var backgroundColor : Color = ColorManager.primaryDark
+    @State var icon : String = ""
     
     var body: some View {
         HStack {
+            if(!icon.isEmpty) {
+                Image(systemName: icon)
+            }
             Text("\(label)")
                 .fontWeight(.semibold)
         }

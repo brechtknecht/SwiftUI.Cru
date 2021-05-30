@@ -16,10 +16,8 @@ struct Crew: View {
         NavigationView {
             ScrollView {
                 BandSignifierCard()
-                    .background(ColorManager.backgroundForm)
-                    .cornerRadius(8.0)
             }
-            .padding(.horizontal, 16)
+            .padding(.horizontal, 8)
             .navigationTitle(Text("Crew"))   
         }
         

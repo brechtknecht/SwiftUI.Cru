@@ -35,6 +35,7 @@
 		995EEEFD25AFC15C00012D39 /* SettlementMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EEEFC25AFC15C00012D39 /* SettlementMap.swift */; };
 		996EB8602635F83C00893E6E /* BandOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996EB85F2635F83C00893E6E /* BandOverview.swift */; };
 		998779C026639D9600A0DFB2 /* BandSignifierCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998779BF26639D9600A0DFB2 /* BandSignifierCard.swift */; };
+		998779C42663C2C300A0DFB2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 998779C32663C2C300A0DFB2 /* CodeScanner */; };
 		9988B44125B600C600D36BA4 /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44025B600C600D36BA4 /* Timetable.swift */; };
 		9988B44425B6019100D36BA4 /* TimetableDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44325B6019100D36BA4 /* TimetableDB.swift */; };
 		9988B44725B601E100D36BA4 /* TimetableDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44625B601E100D36BA4 /* TimetableDBKeys.swift */; };
@@ -165,6 +166,7 @@
 			files = (
 				998DD3E8257E4C5B00E17E8B /* RealmSwift in Frameworks */,
 				998DD3E6257E4C5B00E17E8B /* Realm in Frameworks */,
+				998779C42663C2C300A0DFB2 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +479,7 @@
 			packageProductDependencies = (
 				998DD3E5257E4C5B00E17E8B /* Realm */,
 				998DD3E7257E4C5B00E17E8B /* RealmSwift */,
+				998779C32663C2C300A0DFB2 /* CodeScanner */,
 			);
 			productName = Backstage;
 			productReference = 99BCF50F257D49BF00F2A7BC /* Backstage.app */;
@@ -507,6 +510,7 @@
 			mainGroup = 99BCF506257D49BF00F2A7BC;
 			packageReferences = (
 				998DD3E4257E4C5B00E17E8B /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				998779C22663C2C200A0DFB2 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 			);
 			productRefGroup = 99BCF510257D49BF00F2A7BC /* Products */;
 			projectDirPath = "";
@@ -793,6 +797,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		998779C22663C2C200A0DFB2 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.7;
+			};
+		};
 		998DD3E4257E4C5B00E17E8B /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
@@ -804,6 +816,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		998779C32663C2C300A0DFB2 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 998779C22663C2C200A0DFB2 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
 		998DD3E5257E4C5B00E17E8B /* Realm */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 998DD3E4257E4C5B00E17E8B /* XCRemoteSwiftPackageReference "realm-cocoa" */;

@@ -13,7 +13,7 @@ struct User: Identifiable, Hashable {
     let id      : Int
     let _id     : Int
     let name    : String
-    let bandID  : String
+    let bandRef  : String
 }
 
 extension User {
@@ -21,6 +21,6 @@ extension User {
         id      = userDB.id
         _id     = userDB._id
         name    = userDB.name
-        bandID  = userDB.bandID
+        bandRef  = userDB.bandRef
     }
 }

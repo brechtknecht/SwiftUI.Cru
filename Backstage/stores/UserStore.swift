@@ -33,7 +33,7 @@ final class UserStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension UserStore {
-    func create(name: String, bandID: String) {
+    func create(name: String, bandRef: String) {
         
         objectWillChange.send()
         
@@ -45,7 +45,9 @@ extension UserStore {
             refDB.id            = id
             refDB._id           = id
             refDB.name          = name
-            refDB.bandID        = bandID
+            refDB.bandRef       = bandRef
+            
+            realmSync.setPartitionValue(value: bandRef)
 
             try realm.write {
                 realm.add(refDB)

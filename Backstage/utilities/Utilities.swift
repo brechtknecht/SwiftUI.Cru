@@ -17,6 +17,13 @@ class Utilities {
         return Utilities()
     }()
     
+    func generateBandID() -> String {
+        let length = 24
+        
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return String((0..<length).map{ _ in letters.randomElement()! })
+    }
+    
     
     // Returns the Path of the documentRoot
     func getDocumentsDirectory() -> URL {
