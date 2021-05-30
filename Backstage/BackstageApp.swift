@@ -20,6 +20,7 @@ struct BackstageApp: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(UserStore(realm: RealmPersistent.initializer()))
                 .environmentObject(VenueStore(realm: RealmPersistent.initializer()))
                 .environmentObject(EventStore(realm: RealmPersistent.initializer()))
                 .environmentObject(SettlementStore(realm: RealmPersistent.initializer()))
@@ -29,6 +30,9 @@ struct BackstageApp: SwiftUI.App {
                 .environmentObject(TimeslotStore(realm: RealmPersistent.initializer()))
                 .environmentObject(realmSync)
                 .environment(\.realmConfiguration, self.initializeConfiguration())
+                .onAppear{
+                    self.loadPartitionValueFromUserDefaults()
+                }
         }
     }
     
@@ -37,6 +41,16 @@ struct BackstageApp: SwiftUI.App {
             return app.currentUser!.configuration(partitionValue: realmSync.partitionValue)
         }
         return Realm.Configuration.defaultConfiguration
+    }
+    
+    func loadPartitionValueFromUserDefaults () -> Void {
+        let defaults = UserDefaults.standard
+        
+        let defaultPartitionValue = defaults.value(forKey: "partitionValue") as? String
+        
+        if(defaultPartitionValue != "") {
+            realmSync.setPartitionValue(value: defaultPartitionValue ?? "")
+        }
     }
 }
 

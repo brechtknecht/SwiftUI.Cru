@@ -18,6 +18,7 @@ struct Events: View {
     
     @EnvironmentObject var eventStore: EventStore
     @EnvironmentObject var venueStore: VenueStore
+    @EnvironmentObject var userStore: UserStore
     
    
     

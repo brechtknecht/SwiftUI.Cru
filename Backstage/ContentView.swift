@@ -11,6 +11,7 @@ import RealmSwift
 struct ContentView: View {
     @EnvironmentObject var store: VenueStore
     
+    
     var body: some View {
         
         
@@ -37,7 +38,6 @@ struct ContentView: View {
             })
 
         }
-        
     }
     
     struct TabLabel: View {

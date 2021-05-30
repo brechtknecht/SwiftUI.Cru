@@ -13,25 +13,16 @@ struct Crew: View {
     @State var invalid: Bool = false
     
     var body: some View {
-        Text("Henlo World")
-        Text("\(realmSync.partitionValue)")
-        
-        Form {
-            TextField(LocalizedStringKey("Firstname"),
-                  text: $bandIdentifierInput,
-                  onEditingChanged: { changing in
-                    if !changing {
-                        self.bandIdentifierInput = self.bandIdentifierInput.trimmingCharacters(in: .whitespacesAndNewlines)
-                    } else {
-                        self.invalid = false
-                    }},
-                  onCommit: self.setBandID)
+        NavigationView {
+            ScrollView {
+                BandSignifierCard()
+                    .background(ColorManager.backgroundForm)
+                    .cornerRadius(8.0)
+            }
+            .padding(.horizontal, 16)
+            .navigationTitle(Text("Crew"))   
         }
-    }
-    
-    func setBandID() -> Void {
-        print("\(self.bandIdentifierInput)")
-        realmSync.setPartitionValue(value: self.bandIdentifierInput)
+        
     }
 }
 

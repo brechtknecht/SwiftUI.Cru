@@ -82,15 +82,27 @@ class RealmSync : ObservableObject {
                 print("Failed to open realm: \(error.localizedDescription)")
                 // Handle error...
             case .success(let realm):
-                // Realm opened
+                // Realm opened and synced
                 print("Realm opened \(realm)")
 //                onRealmOpened(realm)
             }
         }
     }
     
+        
     func setPartitionValue(value: String) -> Void {
         self.partitionValue = value
+        
+        // Set partition Value to user defaults
+        let defaults = UserDefaults.standard
+        
+        let currentPartitionValue = defaults.value(forKey: "partitionValue") as? String
+        
+        if(currentPartitionValue == value) {
+            return
+        }
+        
+        defaults.setValue(value, forKey: "partitionValue")
     }
     
     public func getPartitionValue() -> String {

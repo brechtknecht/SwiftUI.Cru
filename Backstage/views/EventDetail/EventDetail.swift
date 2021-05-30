@@ -21,8 +21,9 @@ enum ActiveSheet: Identifiable {
 struct EventDetail: View {
     @Binding var eventID: Int
     
-    @EnvironmentObject var eventStore: EventStore
-    @EnvironmentObject var venueStore: VenueStore
+    @EnvironmentObject var eventStore : EventStore
+    @EnvironmentObject var venueStore : VenueStore
+    
     
     @State var activeSheet: ActiveSheet?
     @State var navigationBarTitleIsShowing : Bool = false

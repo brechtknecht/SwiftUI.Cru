@@ -34,6 +34,7 @@
 		995EA26E25B36A3F00B9D96D /* AddTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA26D25B36A3F00B9D96D /* AddTransport.swift */; };
 		995EEEFD25AFC15C00012D39 /* SettlementMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EEEFC25AFC15C00012D39 /* SettlementMap.swift */; };
 		996EB8602635F83C00893E6E /* BandOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996EB85F2635F83C00893E6E /* BandOverview.swift */; };
+		998779C026639D9600A0DFB2 /* BandSignifierCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998779BF26639D9600A0DFB2 /* BandSignifierCard.swift */; };
 		9988B44125B600C600D36BA4 /* Timetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44025B600C600D36BA4 /* Timetable.swift */; };
 		9988B44425B6019100D36BA4 /* TimetableDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44325B6019100D36BA4 /* TimetableDB.swift */; };
 		9988B44725B601E100D36BA4 /* TimetableDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9988B44625B601E100D36BA4 /* TimetableDBKeys.swift */; };
@@ -56,6 +57,10 @@
 		99A96603257EB31600B8B2D7 /* EventDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A96602257EB31600B8B2D7 /* EventDB.swift */; };
 		99A96606257EB48800B8B2D7 /* EventDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A96605257EB48800B8B2D7 /* EventDBKeys.swift */; };
 		99A96609257EB4F900B8B2D7 /* EventStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A96608257EB4F900B8B2D7 /* EventStore.swift */; };
+		99B099E9265C1F91002FA63A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B099E8265C1F91002FA63A /* User.swift */; };
+		99B099ED265C2034002FA63A /* UserDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B099EC265C2034002FA63A /* UserDB.swift */; };
+		99B099F0265C2072002FA63A /* UserDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B099EF265C2072002FA63A /* UserDBKeys.swift */; };
+		99B099F3265C20AC002FA63A /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B099F2265C20AC002FA63A /* UserStore.swift */; };
 		99BCF513257D49BF00F2A7BC /* BackstageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF512257D49BF00F2A7BC /* BackstageApp.swift */; };
 		99BCF515257D49BF00F2A7BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF514257D49BF00F2A7BC /* ContentView.swift */; };
 		99BCF517257D49C000F2A7BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 99BCF516257D49C000F2A7BC /* Assets.xcassets */; };
@@ -105,6 +110,7 @@
 		995EA26D25B36A3F00B9D96D /* AddTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransport.swift; sourceTree = "<group>"; };
 		995EEEFC25AFC15C00012D39 /* SettlementMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementMap.swift; sourceTree = "<group>"; };
 		996EB85F2635F83C00893E6E /* BandOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandOverview.swift; sourceTree = "<group>"; };
+		998779BF26639D9600A0DFB2 /* BandSignifierCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandSignifierCard.swift; sourceTree = "<group>"; };
 		9988B44025B600C600D36BA4 /* Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
 		9988B44325B6019100D36BA4 /* TimetableDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDB.swift; sourceTree = "<group>"; };
 		9988B44625B601E100D36BA4 /* TimetableDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDBKeys.swift; sourceTree = "<group>"; };
@@ -125,6 +131,10 @@
 		99A96602257EB31600B8B2D7 /* EventDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDB.swift; sourceTree = "<group>"; };
 		99A96605257EB48800B8B2D7 /* EventDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDBKeys.swift; sourceTree = "<group>"; };
 		99A96608257EB4F900B8B2D7 /* EventStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventStore.swift; sourceTree = "<group>"; };
+		99B099E8265C1F91002FA63A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		99B099EC265C2034002FA63A /* UserDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDB.swift; sourceTree = "<group>"; };
+		99B099EF265C2072002FA63A /* UserDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDBKeys.swift; sourceTree = "<group>"; };
+		99B099F2265C20AC002FA63A /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		99BCF50F257D49BF00F2A7BC /* Backstage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Backstage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99BCF512257D49BF00F2A7BC /* BackstageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackstageApp.swift; sourceTree = "<group>"; };
 		99BCF514257D49BF00F2A7BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -182,6 +192,7 @@
 		991E6371257E494500911D17 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				99B099E7265C1F7B002FA63A /* User */,
 				9988B43E25B600AA00D36BA4 /* Timetable */,
 				990A4E0125B377B800CEF57F /* Person */,
 				995EA25D25B35F6E00B9D96D /* Transport */,
@@ -286,6 +297,7 @@
 				99A965E6257E4FB200B8B2D7 /* VenueStore.swift */,
 				99C9838925AF9E3C0093FF19 /* SettlementStore.swift */,
 				995EA26825B360C000B9D96D /* TransportStore.swift */,
+				99B099F2265C20AC002FA63A /* UserStore.swift */,
 				99A96608257EB4F900B8B2D7 /* EventStore.swift */,
 				990A4E0B25B3792700CEF57F /* PersonStore.swift */,
 				9988B44925B6023B00D36BA4 /* TimetableStore.swift */,
@@ -320,6 +332,16 @@
 				99A96605257EB48800B8B2D7 /* EventDBKeys.swift */,
 			);
 			path = Event;
+			sourceTree = "<group>";
+		};
+		99B099E7265C1F7B002FA63A /* User */ = {
+			isa = PBXGroup;
+			children = (
+				99B099E8265C1F91002FA63A /* User.swift */,
+				99B099EC265C2034002FA63A /* UserDB.swift */,
+				99B099EF265C2072002FA63A /* UserDBKeys.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		99BCF506257D49BF00F2A7BC = {
@@ -390,6 +412,7 @@
 				990301B925A0A82B004E4BD5 /* EventListElementPoster.swift */,
 				990301B625A0A7F9004E4BD5 /* EventListElement.swift */,
 				990C201525B73B4E0040861C /* GridStack.swift */,
+				998779BF26639D9600A0DFB2 /* BandSignifierCard.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -524,11 +547,14 @@
 				99A96606257EB48800B8B2D7 /* EventDBKeys.swift in Sources */,
 				996EB8602635F83C00893E6E /* BandOverview.swift in Sources */,
 				99BCF532257D4D9B00F2A7BC /* EventList.swift in Sources */,
+				99B099F3265C20AC002FA63A /* UserStore.swift in Sources */,
+				99B099E9265C1F91002FA63A /* User.swift in Sources */,
 				992AA13325AF7E21005B1061 /* Settlements.swift in Sources */,
 				99A965F0257E677900B8B2D7 /* RealmPersistentInitializer.swift in Sources */,
 				990C201325B736A80040861C /* AddSection.swift in Sources */,
 				995EA26625B3608900B9D96D /* TransportDBKeys.swift in Sources */,
 				9988B45925B6077100D36BA4 /* TimetableSingle.swift in Sources */,
+				998779C026639D9600A0DFB2 /* BandSignifierCard.swift in Sources */,
 				9988B45625B6061C00D36BA4 /* TimeslotStore.swift in Sources */,
 				9988B44D25B6048F00D36BA4 /* Timeslot.swift in Sources */,
 				995EEEFD25AFC15C00012D39 /* SettlementMap.swift in Sources */,
@@ -548,6 +574,7 @@
 				9956AADB257D7CDB004AB2C4 /* SelectVenueForm.swift in Sources */,
 				993EAD3325AE7EC700531A67 /* Paddings.swift in Sources */,
 				990A4E0325B377EF00CEF57F /* Person.swift in Sources */,
+				99B099F0265C2072002FA63A /* UserDBKeys.swift in Sources */,
 				995EA26925B360C000B9D96D /* TransportStore.swift in Sources */,
 				9988B44425B6019100D36BA4 /* TimetableDB.swift in Sources */,
 				9951C11F25AE6065001E8F95 /* VenueMap.swift in Sources */,
@@ -558,6 +585,7 @@
 				99BCF513257D49BF00F2A7BC /* BackstageApp.swift in Sources */,
 				99A965EC257E5C0400B8B2D7 /* AddVenueForm.swift in Sources */,
 				990C201625B73B4E0040861C /* GridStack.swift in Sources */,
+				99B099ED265C2034002FA63A /* UserDB.swift in Sources */,
 				9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */,
 				99A965E0257E4D0600B8B2D7 /* VenueDB.swift in Sources */,
 				99C9838F25AF9FD90093FF19 /* AddSettlement.swift in Sources */,

@@ -11,7 +11,6 @@ struct SelectionItemView: View {
     @ObservedResults(VenueDB.self) var venues
     @Environment(\.realm) var venueRealm
 
-    
     @State var actionText = "Neuen Veranstalter hinzufügen"
     
     @State var addNewVenue = false
