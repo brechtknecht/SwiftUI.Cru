@@ -121,6 +121,10 @@ class RealmSync : ObservableObject {
         
     }
     
+    func logout() -> Void {
+        self.setPartitionValue(value: "")
+    }
+    
     public func getPartitionValue() -> String {
         return self.partitionValue
     }

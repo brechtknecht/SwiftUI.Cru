@@ -42,7 +42,7 @@ struct Crew: View {
                     
                     Text("Invite others to your Band with tis code").font(Font.callout)
                         .navigationBarItems(trailing: Button("Logout") {
-                            realmSync.setPartitionValue(value: "")
+                            realmSync.logout()
                             self.partitionValueInput = realmSync.partitionValue
                         }
                     )
@@ -50,7 +50,7 @@ struct Crew: View {
                 
             }
             .padding(.horizontal, 8)
-            .navigationTitle(Text("Crew"))   
+            .navigationTitle(Text("Your Groups"))   
         }
         
     }
