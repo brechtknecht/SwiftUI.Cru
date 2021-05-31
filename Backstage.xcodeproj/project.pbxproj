@@ -74,6 +74,10 @@
 		99BCF536257D4E9E00F2A7BC /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF535257D4E9E00F2A7BC /* EventDetail.swift */; };
 		99BCF539257D4FA100F2A7BC /* CreateNewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF538257D4FA100F2A7BC /* CreateNewEvent.swift */; };
 		99C0222D258573720031538C /* CEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C0222C258573720031538C /* CEditButton.swift */; };
+		99C6F43B2665016800534CA6 /* Band.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C6F43A2665016800534CA6 /* Band.swift */; };
+		99C6F43F266501CA00534CA6 /* BandDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C6F43E266501CA00534CA6 /* BandDB.swift */; };
+		99C6F4422665022300534CA6 /* BandDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C6F4412665022300534CA6 /* BandDBKeys.swift */; };
+		99C6F445266502BB00534CA6 /* BandStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C6F444266502BB00534CA6 /* BandStore.swift */; };
 		99C9837325AF80FC0093FF19 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C9837225AF80FC0093FF19 /* Contacts.swift */; };
 		99C9837825AF9AD70093FF19 /* Settlement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C9837725AF9AD70093FF19 /* Settlement.swift */; };
 		99C9837C25AF9B1F0093FF19 /* SettlementDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C9837B25AF9B1F0093FF19 /* SettlementDB.swift */; };
@@ -151,6 +155,10 @@
 		99BCF535257D4E9E00F2A7BC /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		99BCF538257D4FA100F2A7BC /* CreateNewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEvent.swift; sourceTree = "<group>"; };
 		99C0222C258573720031538C /* CEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEditButton.swift; sourceTree = "<group>"; };
+		99C6F43A2665016800534CA6 /* Band.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Band.swift; sourceTree = "<group>"; };
+		99C6F43E266501CA00534CA6 /* BandDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandDB.swift; sourceTree = "<group>"; };
+		99C6F4412665022300534CA6 /* BandDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandDBKeys.swift; sourceTree = "<group>"; };
+		99C6F444266502BB00534CA6 /* BandStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandStore.swift; sourceTree = "<group>"; };
 		99C9837225AF80FC0093FF19 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
 		99C9837725AF9AD70093FF19 /* Settlement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settlement.swift; sourceTree = "<group>"; };
 		99C9837B25AF9B1F0093FF19 /* SettlementDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementDB.swift; sourceTree = "<group>"; };
@@ -196,6 +204,7 @@
 		991E6371257E494500911D17 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				99C6F4392665015000534CA6 /* Band */,
 				99B099E7265C1F7B002FA63A /* User */,
 				9988B43E25B600AA00D36BA4 /* Timetable */,
 				990A4E0125B377B800CEF57F /* Person */,
@@ -306,6 +315,7 @@
 				990A4E0B25B3792700CEF57F /* PersonStore.swift */,
 				9988B44925B6023B00D36BA4 /* TimetableStore.swift */,
 				9988B45525B6061C00D36BA4 /* TimeslotStore.swift */,
+				99C6F444266502BB00534CA6 /* BandStore.swift */,
 			);
 			path = stores;
 			sourceTree = "<group>";
@@ -420,6 +430,16 @@
 				998779C62663D03600A0DFB2 /* QRCodeView.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		99C6F4392665015000534CA6 /* Band */ = {
+			isa = PBXGroup;
+			children = (
+				99C6F43A2665016800534CA6 /* Band.swift */,
+				99C6F43E266501CA00534CA6 /* BandDB.swift */,
+				99C6F4412665022300534CA6 /* BandDBKeys.swift */,
+			);
+			path = Band;
 			sourceTree = "<group>";
 		};
 		99C9837625AF9ABC0093FF19 /* Settlement */ = {
@@ -543,6 +563,7 @@
 			files = (
 				99C9837C25AF9B1F0093FF19 /* SettlementDB.swift in Sources */,
 				995EA25F25B35F9200B9D96D /* Transport.swift in Sources */,
+				99C6F43F266501CA00534CA6 /* BandDB.swift in Sources */,
 				99BCF536257D4E9E00F2A7BC /* EventDetail.swift in Sources */,
 				99C9838A25AF9E3C0093FF19 /* SettlementStore.swift in Sources */,
 				990A4E0C25B3792700CEF57F /* PersonStore.swift in Sources */,
@@ -568,6 +589,7 @@
 				99F3B86D25803BAE00113ADE /* Utilities.swift in Sources */,
 				995EA26325B3603900B9D96D /* TransportDB.swift in Sources */,
 				9988B44A25B6023B00D36BA4 /* TimetableStore.swift in Sources */,
+				99C6F4422665022300534CA6 /* BandDBKeys.swift in Sources */,
 				995EA25A25B3516600B9D96D /* Characters.swift in Sources */,
 				99BCF528257D4B3A00F2A7BC /* Events.swift in Sources */,
 				995EA26E25B36A3F00B9D96D /* AddTransport.swift in Sources */,
@@ -593,6 +615,7 @@
 				99A965EC257E5C0400B8B2D7 /* AddVenueForm.swift in Sources */,
 				990C201625B73B4E0040861C /* GridStack.swift in Sources */,
 				99B099ED265C2034002FA63A /* UserDB.swift in Sources */,
+				99C6F445266502BB00534CA6 /* BandStore.swift in Sources */,
 				998779C72663D03600A0DFB2 /* QRCodeView.swift in Sources */,
 				9956AAD2257D597F004AB2C4 /* ColorManager.swift in Sources */,
 				99A965E0257E4D0600B8B2D7 /* VenueDB.swift in Sources */,
@@ -611,6 +634,7 @@
 				99C9837F25AF9B480093FF19 /* SettlementDBKeys.swift in Sources */,
 				99BCF539257D4FA100F2A7BC /* CreateNewEvent.swift in Sources */,
 				9988B44725B601E100D36BA4 /* TimetableDBKeys.swift in Sources */,
+				99C6F43B2665016800534CA6 /* Band.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

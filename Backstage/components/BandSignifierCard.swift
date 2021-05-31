@@ -46,7 +46,7 @@ struct BandSignifierCard: View {
                 ButtonFullWidth(label: .constant("Scan Band Code"), icon: "qrcode.viewfinder");
             }
             .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "wXIH8bRCDPKI6gvpekoN7Hn0", completion: self.handleScan)
+                CodeScannerView(codeTypes: [.qr], simulatedData: "kOIkTOpdaF7SbJtiwkEI3q0Z", completion: self.handleScan)
             }
             Text("or enter manually").font(Font.callout)
             
@@ -94,6 +94,7 @@ struct BandSignifierCard: View {
         @State var username : String = ""
         
         @EnvironmentObject var userStore : UserStore
+        @EnvironmentObject var bandStore : BandStore
 
         var body: some View {
             
@@ -123,7 +124,17 @@ struct BandSignifierCard: View {
                         Spacer()
                         Section {
                             Button(action: {
-                                userStore.create(name: self.username, bandRef: Utilities.helpers.generateBandID())
+                                let bandRef = Utilities.helpers.generateBandID()
+                                // Creates User first to then ref the UserID
+                                // @Hook:userStore:create
+                                userStore.create(name: self.username, bandRef: bandRef)
+                                
+                                // Create Band and attach the UserID as Admin
+                                // @Hook:bandStore:create
+                                bandStore.create(name: self.bandName, bandRef: bandRef)
+                                
+                                realmSync.setPartitionValue(value: bandRef)
+                                
                                 self.presentationMode.wrappedValue.dismiss()
                             }) {
                                 ButtonFullWidth(label: .constant("Create new Band"));

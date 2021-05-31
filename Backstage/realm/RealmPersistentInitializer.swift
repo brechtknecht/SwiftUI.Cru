@@ -43,6 +43,7 @@ class RealmPersistent {
 
 class RealmSync : ObservableObject {
     @Published var partitionValue = ""
+    @Published var userID = 0
     
     init() {
         self.syncInitializer()
@@ -103,6 +104,21 @@ class RealmSync : ObservableObject {
         }
         
         defaults.setValue(value, forKey: "partitionValue")
+    }
+    
+    func setCurrentUser(value: Int) -> Void {
+        self.userID = value
+        
+        let defaults = UserDefaults.standard
+        
+        let currentUserID = defaults.value(forKey: "userID") as? Int
+        
+        if(currentUserID == value) {
+            return
+        }
+        
+        defaults.setValue(value, forKey: "userID")
+        
     }
     
     public func getPartitionValue() -> String {

@@ -23,7 +23,12 @@ final class UserStore: ObservableObject {
     
     func findByID (id: Int) -> UserDB! {
         do {
-            return try Realm().object(ofType: UserDB.self, forPrimaryKey: id)
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            return try Realm(configuration: configuration).object(ofType: UserDB.self, forPrimaryKey: id)
         } catch let error {
             print(error.localizedDescription)
             return nil
@@ -38,7 +43,12 @@ extension UserStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
             
             let refDB = UserDB()
             let id = UUID().hashValue
@@ -48,6 +58,8 @@ extension UserStore {
             refDB.bandRef       = bandRef
             
             realmSync.setPartitionValue(value: bandRef)
+            
+            realmSync.setCurrentUser(value: id)
 
             try realm.write {
                 realm.add(refDB)
@@ -62,7 +74,12 @@ extension UserStore {
         objectWillChange.send()
         
         do {
-            let realm = try Realm()
+            let partitionValue = realmSync.getPartitionValue()
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
         
             indexSet.forEach ({ index in
                 try! realm.write {

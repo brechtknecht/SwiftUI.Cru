@@ -9,24 +9,43 @@ import SwiftUI
 
 struct Crew: View {
     
-    @State var partitionValueInput : String = realmSync.partitionValue
+    @State var partitionValueInput : String
     @State var invalid: Bool = false
     
+    @EnvironmentObject var bandStore : BandStore
+    @EnvironmentObject var realmSync : RealmSync
+        
     var body: some View {
         NavigationView {
             ScrollView {
-                if(self.partitionValueInput.isEmpty) {
+                if(realmSync.partitionValue.isEmpty) {
                     BandSignifierCard(bandID: $partitionValueInput)
                 } else {
                     Text("You are logged in with")
-                    Text("\(realmSync.partitionValue)")
+                    
+                    Button(action: {
+                        print("\(realmSync.partitionValue)")
+                        UIPasteboard.general.string = realmSync.partitionValue
+                    }) {
+                        VStack {
+                            Text("\(realmSync.partitionValue)")
+                            HStack {
+                                Text("Copy to clipboard")
+                                Image(systemName: "doc.on.doc")
+                            }
+                        }
+                    }
+                    
+                    Text("\(bandStore.findByPartitionValue(partitionValue: realmSync.partitionValue)?.name ?? "")")
+                    
                     QRCodeView(url: realmSync.partitionValue)
+                    
                     Text("Invite others to your Band with tis code").font(Font.callout)
                         .navigationBarItems(trailing: Button("Logout") {
                             realmSync.setPartitionValue(value: "")
                             self.partitionValueInput = realmSync.partitionValue
                         }
-)
+                    )
                 }
                 
             }
@@ -34,11 +53,5 @@ struct Crew: View {
             .navigationTitle(Text("Crew"))   
         }
         
-    }
-}
-
-struct Crew_Previews: PreviewProvider {
-    static var previews: some View {
-        Crew()
     }
 }

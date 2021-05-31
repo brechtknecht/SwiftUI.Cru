@@ -28,7 +28,7 @@ struct ContentView: View {
                 )
             })
             VStack {
-                Crew()
+                Crew(partitionValueInput: realmSync.partitionValue)
             }
             .tabItem({
                 TabLabel(
