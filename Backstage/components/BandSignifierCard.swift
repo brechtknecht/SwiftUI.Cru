@@ -136,12 +136,10 @@ struct BandSignifierCard: View {
                                 
                                 realmSync.setPartitionValue(value: bandRef)
                                 
-                                
                                 let band = bandStore.findByPartitionValue(partitionValue: bandRef)
                                 
-                                print("BAND TO UPDATE \(band)")
-                                
                                 userStore.update(userID: userID, band: band)
+                                
                                 
                                 self.presentationMode.wrappedValue.dismiss()
                             }) {

@@ -12,9 +12,9 @@ import RealmSwift
     dynamic var id          = 0
     dynamic var _id         = 0
     dynamic var name        = ""
-    let members             = RealmSwift.List<UserDB>()
     dynamic var bandRef     = ""
     dynamic var adminID     = 0
+    let members     = LinkingObjects(fromType: UserDB.self, property: "bands")
     
     override static func primaryKey() -> String? {
         "_id"

@@ -11,7 +11,6 @@ enum BandDBKeys: String {
     case id     = "id"
     case _id    = "_id"
     case name   = "name"
-    case members = "members"
     case bandRef = "bandRef"
     case adminID = "adminID"
 }
