@@ -20,9 +20,9 @@ struct Contacts: View {
     var body: some View {
         VStack (alignment: .leading){
             
-            let personIDs = eventStore.findByID(id: eventID)?.persons ?? RealmSwift.List<Int>()
+            let persons = eventStore.findByID(id: eventID)?.persons ?? RealmSwift.List<PersonDB>()
             
-            if(personIDs.count > 0) {
+            if(persons.count > 0) {
                 Text("Kontakte")
                     .foregroundColor(.gray)
                     .font(.body)
@@ -30,12 +30,9 @@ struct Contacts: View {
                     .padding(EdgeInsets(top: 22, leading: 16, bottom: 0, trailing: 16))
                 VStack {
                     
-                    ForEach (personIDs, id: \.self) { personID in
-                        
-                        let person = personStore.findByID(id: personID)
-                        
-                        let personName          = person?.name ?? ""
-                        let personRole          = person?.role ?? ""
+                    ForEach (persons, id: \.self) { person in
+                        let personName          = person.name
+                        let personRole          = person.role
                         
                         Button {
                             print("Test")

@@ -23,10 +23,8 @@ final class UserStore: ObservableObject {
     
     func findByID (id: Int) -> UserDB! {
         do {
-            let partitionValue = realmSync.getPartitionValue()
-            
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: partitionValue)
+            let configuration = user.configuration(partitionValue: "all-the-users")
             
             return try Realm(configuration: configuration).object(ofType: UserDB.self, forPrimaryKey: id)
         } catch let error {
@@ -38,28 +36,23 @@ final class UserStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension UserStore {
-    func create(name: String, bandRef: String) {
+    func create(userID: Int, name: String) {
         
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.getPartitionValue()
-            
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: partitionValue)
+            let configuration = user.configuration(partitionValue: "all-the-users")
             
             let realm = try Realm(configuration: configuration)
             
             let refDB = UserDB()
-            let id = UUID().hashValue
-            refDB.id            = id
-            refDB._id           = id
+            refDB.id            = userID
+            refDB._id           = userID
             refDB.name          = name
-            refDB.bandRef       = bandRef
-            
-            realmSync.setPartitionValue(value: bandRef)
-            
-            realmSync.setCurrentUser(value: id)
+
+                        
+            realmSync.setCurrentUser(value: userID)
 
             try realm.write {
                 realm.add(refDB)
@@ -74,10 +67,8 @@ extension UserStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.getPartitionValue()
-            
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: partitionValue)
+            let configuration = user.configuration(partitionValue: "all-the-users")
             
             let realm = try Realm(configuration: configuration)
         
@@ -90,4 +81,68 @@ extension UserStore {
             print(err.localizedDescription)
         }
     }
+    
+    func addBand (userID: Int, band: BandDB) {
+        objectWillChange.send()
+        
+        do {
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: "all-the-users")
+            
+            let realm = try Realm(configuration: configuration)
+            
+            try realm.write {
+                let user = self.findByID(id: userID)
+                
+                
+                
+            }
+        } catch let err {
+            print(err.localizedDescription)
+        }
+    }
+    
+    // Updated eine gegebene Task. Dafür wird die ID benötigt,
+    // welche in der Datenbank danach sucht und dann nach den mitgegebenen
+    // Parametern aktualisiert.
+    /// text und isDone sind hierbei optional
+    func update(userID: Int, name: String? = nil, band: BandDB? = nil) {
+        // TODO: Add Realm update code below
+        objectWillChange.send()
+        
+        let previousUser = self.findByID(id: userID)!
+        
+        print("ADDING BAND TO USER \(band?.name)")
+        
+        do {
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: "all-the-users")
+            
+            let realm = try Realm(configuration: configuration)
+            
+            try realm.write {
+                let updatedUser = UserDB()
+                updatedUser.id  = userID
+
+                if(name == nil) {
+                    updatedUser.name = previousUser.name
+                } else {
+                    updatedUser.name = name!
+                }
+                
+                if(band == nil) {
+                    updatedUser.bands = previousUser.bands
+                } else {
+                    updatedUser.bands = previousUser.bands
+                    updatedUser.bands.append(band!)
+                }
+
+                realm.add(updatedUser, update: .all)
+            }
+            
+        } catch let err {
+            print(err.localizedDescription)
+        }
+    }
+    
 }

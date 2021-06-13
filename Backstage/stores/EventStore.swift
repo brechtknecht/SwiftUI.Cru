@@ -8,7 +8,6 @@
 import Foundation
 import RealmSwift
 import SwiftUI
-import Cloudinary
 
 final class EventStore: ObservableObject {
     private var results: Results<EventDB>
@@ -188,7 +187,7 @@ extension EventStore {
         }
     }
     
-    func addPersonToList (eventID: Int, personID: Int) {
+    func addPersonToList (eventID: Int, person: PersonDB) {
         let event = self.findByID(id: eventID)
         
         do {
@@ -199,7 +198,7 @@ extension EventStore {
             
             let realm = try! Realm(configuration: configuration)
             try! realm.write {
-                event?.persons.append(personID)
+                event?.persons.append(person)
             }
         }
     }

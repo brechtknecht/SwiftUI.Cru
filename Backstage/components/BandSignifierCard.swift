@@ -125,15 +125,23 @@ struct BandSignifierCard: View {
                         Section {
                             Button(action: {
                                 let bandRef = Utilities.helpers.generateBandID()
-                                // Creates User first to then ref the UserID
-                                // @Hook:userStore:create
-                                userStore.create(name: self.username, bandRef: bandRef)
                                 
+                                let userID = realmSync.getCurrentUser()
+                                print("CURRENTUSERID \(userID)")
                                 // Create Band and attach the UserID as Admin
                                 // @Hook:bandStore:create
-                                bandStore.create(name: self.bandName, bandRef: bandRef)
+                                
+                                let bandID = UUID().hashValue
+                                bandStore.create(bandID: bandID, name: self.bandName, bandRef: bandRef)
                                 
                                 realmSync.setPartitionValue(value: bandRef)
+                                
+                                
+                                let band = bandStore.findByPartitionValue(partitionValue: bandRef)
+                                
+                                print("BAND TO UPDATE \(band)")
+                                
+                                userStore.update(userID: userID, band: band)
                                 
                                 self.presentationMode.wrappedValue.dismiss()
                             }) {

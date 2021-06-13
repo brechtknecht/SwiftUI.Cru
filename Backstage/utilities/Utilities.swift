@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 import UIKit
-import Cloudinary
 
 class Utilities {
     

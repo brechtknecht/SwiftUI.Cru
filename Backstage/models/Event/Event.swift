@@ -20,7 +20,7 @@ struct Event: Identifiable, Hashable {
     let backgroundColorHex  : String
     let settlements         : RealmSwift.List<Int>
     let transports          : RealmSwift.List<Int>
-    let persons             : RealmSwift.List<Int>
+    let persons             : RealmSwift.List<PersonDB>
     let timetable           : Int
     let fee                 : Int
     let type                : String

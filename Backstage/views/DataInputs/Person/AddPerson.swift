@@ -44,9 +44,11 @@ struct AddPerson: View {
                             phoneNumber         : personPhoneNumber
                         )
                         
+                        let person = personStore.findByID(id: personUUID)!
+                        
                         eventStore.addPersonToList(
                             eventID: eventReference,
-                            personID: personUUID
+                            person: person
                         )
                     }
                     

@@ -20,7 +20,7 @@ struct BackstageApp: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(UserStore(realm: RealmPersistent.initializer()))
+                .environmentObject(UserStore(realm: RealmPersistent.initializer(alternativePartitionValue: "all-the-users")))
                 .environmentObject(VenueStore(realm: RealmPersistent.initializer()))
                 .environmentObject(EventStore(realm: RealmPersistent.initializer()))
                 .environmentObject(SettlementStore(realm: RealmPersistent.initializer()))
@@ -33,6 +33,8 @@ struct BackstageApp: SwiftUI.App {
                 .environment(\.realmConfiguration, self.initializeConfiguration())
                 .onAppear{
                     self.loadPartitionValueFromUserDefaults()
+                    
+                    self.loadCurrentUserFromUserDefaults()
                 }
         }
     }
@@ -51,6 +53,16 @@ struct BackstageApp: SwiftUI.App {
         
         if(defaultPartitionValue != "") {
             realmSync.setPartitionValue(value: defaultPartitionValue ?? "")
+        }
+    }
+    
+    func loadCurrentUserFromUserDefaults () -> Void {
+        let defaults = UserDefaults.standard
+        
+        let defaultUser = defaults.value(forKey: "userID") as? Int
+        
+        if(defaultUser != 0) {
+            realmSync.setCurrentUser(value: defaultUser ?? 0)
         }
     }
 }

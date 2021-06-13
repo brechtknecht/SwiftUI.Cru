@@ -12,42 +12,64 @@ struct Crew: View {
     @State var partitionValueInput : String
     @State var invalid: Bool = false
     
+    @State private var username: String = ""
+    
     @EnvironmentObject var bandStore : BandStore
     @EnvironmentObject var realmSync : RealmSync
+    
+    @EnvironmentObject var userStore : UserStore
         
     var body: some View {
+        
+        Button("Display UserData") {
+            let userID = realmSync.getCurrentUser()
+            let user = userStore.findByID(id: userID) ?? UserDB()
+            print("\(user)")
+        }
         NavigationView {
             ScrollView {
-                if(realmSync.partitionValue.isEmpty) {
-                    BandSignifierCard(bandID: $partitionValueInput)
-                } else {
-                    Text("You are logged in with")
+                if(realmSync.getCurrentUser() == 0) {
                     
-                    Button(action: {
-                        print("\(realmSync.partitionValue)")
-                        UIPasteboard.general.string = realmSync.partitionValue
-                    }) {
-                        VStack {
-                            Text("\(realmSync.partitionValue)")
-                            HStack {
-                                Text("Copy to clipboard")
-                                Image(systemName: "doc.on.doc")
+                    TextField("Enter your name", text: $username)
+                    Button("Create new User") {
+                        let id = UUID().hashValue
+                        // Creates User first to then ref the UserID
+                        // @Hook:userStore:create
+                        userStore.create(userID: id, name: username)
+                        
+                        realmSync.setCurrentUser(value: id)
+                    }
+                } else {
+                    if(realmSync.partitionValue.isEmpty) {
+                        BandSignifierCard(bandID: $partitionValueInput)
+                    } else {
+                        Text("You are logged in with")
+                        
+                        Button(action: {
+                            print("\(realmSync.partitionValue)")
+                            UIPasteboard.general.string = realmSync.partitionValue
+                        }) {
+                            VStack {
+                                Text("\(realmSync.partitionValue)")
+                                HStack {
+                                    Text("Copy to clipboard")
+                                    Image(systemName: "doc.on.doc")
+                                }
                             }
                         }
+                        
+                        Text("\(bandStore.findByPartitionValue(partitionValue: realmSync.partitionValue)?.name ?? "")")
+                        
+                        QRCodeView(url: realmSync.partitionValue)
+                        
+                        Text("Invite others to your Band with tis code").font(Font.callout)
+                            .navigationBarItems(trailing: Button("Logout") {
+                                realmSync.logout()
+                                self.partitionValueInput = realmSync.partitionValue
+                            }
+                        )
                     }
-                    
-                    Text("\(bandStore.findByPartitionValue(partitionValue: realmSync.partitionValue)?.name ?? "")")
-                    
-                    QRCodeView(url: realmSync.partitionValue)
-                    
-                    Text("Invite others to your Band with tis code").font(Font.callout)
-                        .navigationBarItems(trailing: Button("Logout") {
-                            realmSync.logout()
-                            self.partitionValueInput = realmSync.partitionValue
-                        }
-                    )
                 }
-                
             }
             .padding(.horizontal, 8)
             .navigationTitle(Text("Your Groups"))   

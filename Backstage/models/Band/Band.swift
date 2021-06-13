@@ -13,7 +13,7 @@ struct Band: Identifiable, Hashable {
     let id          : Int
     let _id         : Int
     let name        : String
-    let members     : RealmSwift.List<Int>
+    let members     : RealmSwift.List<UserDB>
     let bandRef     : String
     let adminID     : Int
 }

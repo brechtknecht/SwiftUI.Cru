@@ -60,7 +60,6 @@ extension VenueStore {
             let id = UUID().hashValue
             refDB._id = id
             refDB.id = id
-            refDB.band_id = partitionValue
             refDB.name = name
             refDB.location = location
             refDB.street = street

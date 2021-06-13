@@ -10,10 +10,21 @@ import RealmSwift
 import Realm
 
 class RealmPersistent {
-    static func initializer() -> Realm {
+    static func initializer(alternativePartitionValue: String? = nil) -> Realm {
         realmSync.syncInitializer()
         
-        let partitionValue = realmSync.partitionValue
+        var partitionValue : String
+        
+        if(alternativePartitionValue == nil) {
+            partitionValue = realmSync.partitionValue
+        } else {
+            partitionValue = alternativePartitionValue!
+        }
+        
+        
+        print("Partition Value USED: \(partitionValue)")
+        
+        
         
         let user = app.currentUser ?? nil
         
@@ -127,5 +138,9 @@ class RealmSync : ObservableObject {
     
     public func getPartitionValue() -> String {
         return self.partitionValue
+    }
+    
+    public func getCurrentUser() -> Int {
+        return self.userID
     }
 }

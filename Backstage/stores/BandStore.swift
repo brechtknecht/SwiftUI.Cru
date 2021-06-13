@@ -53,12 +53,12 @@ final class BandStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension BandStore {
-    func create(name: String, bandRef: String) {
+    func create(bandID: Int, name: String, bandRef: String) {
         
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = bandRef
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -67,8 +67,8 @@ extension BandStore {
             
             let refDB = BandDB()
             
-            let id = UUID().hashValue
-            refDB.id = id
+            refDB.id = bandID
+            refDB._id = bandID
             refDB.name = name
             refDB.bandRef = bandRef
             

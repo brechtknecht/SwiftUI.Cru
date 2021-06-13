@@ -11,7 +11,6 @@ import CoreLocation
 
 @objcMembers class VenueDB: Object, ObjectKeyIdentifiable {
     dynamic var _id = 0
-    dynamic var band_id: String? = nil
     dynamic var id = 0
     dynamic var name = ""
     dynamic var location = ""
