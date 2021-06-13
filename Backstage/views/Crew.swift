@@ -63,7 +63,25 @@ struct Crew: View {
                         QRCodeView(url: realmSync.partitionValue)
                         
                         Text("Invite others to your Band with tis code").font(Font.callout)
-                            .navigationBarItems(trailing: Button("Logout") {
+                            .navigationBarItems(
+                                leading: Menu("Options") {
+                                    let userID = realmSync.getCurrentUser()
+                                    let user = userStore.findByID(id: userID) ?? UserDB()
+                                    
+                                    
+                                    ForEach(user.bands, id: \.self) { band in
+                                        Button(action: {
+                                            realmSync.setPartitionValue(value: band.bandRef)
+                                        }) {
+                                            VStack {
+                                                Text("\(band.name)").fontWeight(.semibold)
+                                                Text("\(band.bandRef) (REF)")
+                                            }
+                                        }
+                                        
+                                    }
+                                },
+                                trailing: Button("Logout") {
                                 realmSync.logout()
                                 self.partitionValueInput = realmSync.partitionValue
                             }
