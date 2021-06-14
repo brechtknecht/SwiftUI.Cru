@@ -82,16 +82,52 @@ extension UserStore {
         }
     }
     
-    func addBand(userID: Int, band: BandDB? = nil) {
+    func removeBand(userID: Int, band: BandDB? = nil) {
         objectWillChange.send()
         
-        if(band == nil) { print("Cannot add Band to User — band parameter was not defined");  return }
+        if(band == nil) { print("Cannot Remove Band from User — band parameter was not provided");  return }
         
         let previousUser = self.findByID(id: userID)!
         
         do {
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: userID)
+            let configuration = user.configuration(partitionValue: "all-the-users")
+            
+            let realm = try Realm(configuration: configuration)
+            
+            try realm.write {
+                let updatedUser = UserDB()
+                
+                updatedUser.bands.append(objectsIn: previousUser.bands)
+                let index = updatedUser.bands.index(of: band!)
+                
+                if(index != nil) {
+                    updatedUser.bands.remove(at: index!)
+                }
+                
+                realm.create(UserDB.self,
+                                 value: [
+                                    "_id": userID,
+                                    "id" : userID,
+                                    "bands": updatedUser.bands],
+                                 update: .modified)
+            }
+            
+        } catch let err {
+            print(err.localizedDescription)
+        }
+    }
+    
+    func addBand(userID: Int, band: BandDB? = nil) {
+        objectWillChange.send()
+        
+        if(band == nil) { print("Cannot add Band to User — band parameter was not provided");  return }
+        
+        let previousUser = self.findByID(id: userID)!
+        
+        do {
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: "all-the-users")
             
             let realm = try Realm(configuration: configuration)
             

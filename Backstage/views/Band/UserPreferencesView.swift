@@ -35,6 +35,10 @@ struct UserPreferencesView: View {
                 }
                 
                 Button("Aus Band Austreten") {
+                    let currentBandID = realmSync.getPartitionValue()
+                    let band = bandStore.findByPartitionValue(partitionValue: currentBandID)
+                    userStore.removeBand(userID: user.id, band: band)
+                    
                     realmSync.logout()
                     self.bandID = realmSync.partitionValue
                 }

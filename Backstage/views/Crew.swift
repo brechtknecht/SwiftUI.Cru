@@ -7,11 +7,23 @@
 
 import SwiftUI
 
+enum ActiveCrewSheet: Identifiable {
+    case bands, userPreferences
+    
+    var id: Int {
+        hashValue
+    }
+}
+
+
 struct Crew: View {
     @State var partitionValueInput : String
     @State var invalid: Bool = false
     
+    @State var activeSheet: ActiveCrewSheet?
+    
     @State private var userSheet = false
+    @State private var sheetNewBand: Bool = false
     
     @State private var username: String = ""
     
@@ -80,9 +92,17 @@ struct Crew: View {
                                         }
                                     }
                                 }
+                                Button(action: {
+                                    activeSheet = .bands
+                                }) {
+                                    HStack {
+                                        Image(systemName: "plus")
+                                        Text("New Band").fontWeight(.semibold)
+                                    }
+                                }
                             },
                             trailing: Button(action: {
-                                userSheet.toggle()
+                                activeSheet = .userPreferences
                             }) {
                                 HStack {
                                     Image(systemName: "person.circle")
@@ -95,9 +115,13 @@ struct Crew: View {
             }
             .padding(.horizontal, 8)
             .navigationTitle(Text("Your Groups"))
-        }.sheet(isPresented: $userSheet) {
-            UserPreferencesView(bandID: $partitionValueInput)
+        }.sheet(item: $activeSheet) { item in
+            switch item {
+            case .bands:
+                BandSignifierCard(bandID: self.$partitionValueInput)
+            case .userPreferences:
+                UserPreferencesView(bandID: $partitionValueInput)
+            }
         }
-        
     }
 }

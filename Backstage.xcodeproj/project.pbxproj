@@ -33,6 +33,7 @@
 		995EA26925B360C000B9D96D /* TransportStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA26825B360C000B9D96D /* TransportStore.swift */; };
 		995EA26E25B36A3F00B9D96D /* AddTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EA26D25B36A3F00B9D96D /* AddTransport.swift */; };
 		995EEEFD25AFC15C00012D39 /* SettlementMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EEEFC25AFC15C00012D39 /* SettlementMap.swift */; };
+		99646D852677ACBA00112593 /* NewBand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99646D842677ACBA00112593 /* NewBand.swift */; };
 		996EB8602635F83C00893E6E /* BandOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996EB85F2635F83C00893E6E /* BandOverview.swift */; };
 		998779C026639D9600A0DFB2 /* BandSignifierCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998779BF26639D9600A0DFB2 /* BandSignifierCard.swift */; };
 		998779C42663C2C300A0DFB2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 998779C32663C2C300A0DFB2 /* CodeScanner */; };
@@ -116,6 +117,7 @@
 		995EA26825B360C000B9D96D /* TransportStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportStore.swift; sourceTree = "<group>"; };
 		995EA26D25B36A3F00B9D96D /* AddTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransport.swift; sourceTree = "<group>"; };
 		995EEEFC25AFC15C00012D39 /* SettlementMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementMap.swift; sourceTree = "<group>"; };
+		99646D842677ACBA00112593 /* NewBand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBand.swift; sourceTree = "<group>"; };
 		996EB85F2635F83C00893E6E /* BandOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandOverview.swift; sourceTree = "<group>"; };
 		998779BF26639D9600A0DFB2 /* BandSignifierCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BandSignifierCard.swift; sourceTree = "<group>"; };
 		998779C62663D03600A0DFB2 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 				990C201525B73B4E0040861C /* GridStack.swift */,
 				998779BF26639D9600A0DFB2 /* BandSignifierCard.swift */,
 				998779C62663D03600A0DFB2 /* QRCodeView.swift */,
+				99646D842677ACBA00112593 /* NewBand.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				996EB8602635F83C00893E6E /* BandOverview.swift in Sources */,
 				99BCF532257D4D9B00F2A7BC /* EventList.swift in Sources */,
 				99B099F3265C20AC002FA63A /* UserStore.swift in Sources */,
+				99646D852677ACBA00112593 /* NewBand.swift in Sources */,
 				99B099E9265C1F91002FA63A /* User.swift in Sources */,
 				992AA13325AF7E21005B1061 /* Settlements.swift in Sources */,
 				99A965F0257E677900B8B2D7 /* RealmPersistentInitializer.swift in Sources */,
