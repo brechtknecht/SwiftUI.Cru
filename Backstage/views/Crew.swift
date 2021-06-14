@@ -26,12 +26,6 @@ struct Crew: View {
     }
         
     var body: some View {
-        
-//        Button("Display UserData") {
-//            let userID = realmSync.getCurrentUser()
-//            let user = userStore.findByID(id: userID) ?? UserDB()
-//            print("\(user)")
-//        }
         NavigationView {
             ScrollView {
                 if(realmSync.getCurrentUser() == 0) {

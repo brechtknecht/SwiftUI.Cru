@@ -11,11 +11,18 @@ import CodeScanner
 struct BandSignifierCard: View {
 //    @State var bandID : String = realmSync.partitionValue
     @State var invalid: Bool = false
-    
     @Binding var bandID : String
-    
+        
     @State private var isShowingScanner = false
     @State private var sheetNewBand: Bool = false
+    
+    @EnvironmentObject var userStore : UserStore
+    @EnvironmentObject var bandStore : BandStore
+    
+    var user : UserDB {
+        let currentUserID = realmSync.getCurrentUser()
+        return userStore.findByID(id: currentUserID)
+    }
     
     var body: some View {
         VStack {
@@ -46,7 +53,7 @@ struct BandSignifierCard: View {
                 ButtonFullWidth(label: .constant("Scan Band Code"), icon: "qrcode.viewfinder");
             }
             .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "kOIkTOpdaF7SbJtiwkEI3q0Z", completion: self.handleScan)
+                CodeScannerView(codeTypes: [.qr], simulatedData: "jGNtiO7tho3wBCjjMWKJQsxx", completion: self.handleScan)
             }
             Text("or enter manually").font(Font.callout)
             
@@ -79,6 +86,15 @@ struct BandSignifierCard: View {
         switch result {
             case .success(let decoded):
                 realmSync.setPartitionValue(value: decoded)
+                
+                let band = bandStore.findByPartitionValue(partitionValue: decoded)
+                
+                if(band == nil) { print("No Band found for your scan."); return }
+                
+                let userID = realmSync.getCurrentUser()
+                
+                userStore.update(userID: userID, band: band)
+                
                 self.bandID = decoded
                 
                 self.setBandID()
@@ -138,8 +154,7 @@ struct BandSignifierCard: View {
                                 
                                 let band = bandStore.findByPartitionValue(partitionValue: bandRef)
                                 
-                                userStore.addBand(partitionValue: userID, band: band)
-                                
+                                userStore.update(userID: userID, band: band)
                                 
                                 self.presentationMode.wrappedValue.dismiss()
                             }) {

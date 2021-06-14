@@ -82,16 +82,16 @@ extension UserStore {
         }
     }
     
-    func addBand(partitionValue: Int, band: BandDB? = nil) {
+    func addBand(userID: Int, band: BandDB? = nil) {
         objectWillChange.send()
         
         if(band == nil) { print("Cannot add Band to User — band parameter was not defined");  return }
         
-        let previousUser = self.findByID(id: partitionValue)!
+        let previousUser = self.findByID(id: userID)!
         
         do {
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: realmSync.partitionValue)
+            let configuration = user.configuration(partitionValue: userID)
             
             let realm = try Realm(configuration: configuration)
             
@@ -103,8 +103,8 @@ extension UserStore {
 
                 realm.create(UserDB.self,
                                  value: [
-                                    "_id": partitionValue,
-                                    "id" : partitionValue,
+                                    "_id": userID,
+                                    "id" : userID,
                                     "bands": updatedUser.bands],
                                  update: .modified)
             }

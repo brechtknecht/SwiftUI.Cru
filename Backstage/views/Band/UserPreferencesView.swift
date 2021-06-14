@@ -38,6 +38,12 @@ struct UserPreferencesView: View {
                     realmSync.logout()
                     self.bandID = realmSync.partitionValue
                 }
+                
+                Button("Display UserData") {
+                    let userID = realmSync.getCurrentUser()
+                    let user = userStore.findByID(id: userID) ?? UserDB()
+                    print("\(user)")
+                }
             }.navigationBarTitle(Text("User Preferences"))
             
         }
