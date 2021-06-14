@@ -39,7 +39,7 @@ struct EventListElementPoster: View {
                         .renderingMode(.original)
                         .resizable()
                         .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
-                        .cornerRadius(4)
+                        .cornerRadius(12)
                         .aspectRatio(contentMode: .fit)
                         .clipped()
                         .opacity(isEditing ? 0.4 : 1)
@@ -48,7 +48,7 @@ struct EventListElementPoster: View {
                         .resizable()
                         .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
                         .aspectRatio(1.12, contentMode: .fill)
-                        .cornerRadius(4)
+                        .cornerRadius(12)
                         .blendMode(.multiply)
                         .opacity(isEditing ? 0.4 : 1)
                     Image("EventFrame")
@@ -56,7 +56,7 @@ struct EventListElementPoster: View {
                         .resizable()
                         .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
                         .aspectRatio(1.12, contentMode: .fill)
-                        .cornerRadius(4)
+                        .cornerRadius(12)
                         .opacity(isEditing ? 0.15 : 1)
                     
                     VStack (alignment: .center){

@@ -82,11 +82,43 @@ extension UserStore {
         }
     }
     
+    func addBand(userID: Int, band: BandDB? = nil) {
+        objectWillChange.send()
+        
+        if(band == nil) { print("Cannot add Band to User — band parameter was not defined");  return }
+        
+        let previousUser = self.findByID(id: userID)!
+        
+        do {
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: realmSync.partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
+            
+            try realm.write {
+                let updatedUser = UserDB()
+                
+                updatedUser.bands.append(objectsIn: previousUser.bands)
+                updatedUser.bands.append(band!)
+
+                realm.create(UserDB.self,
+                                 value: [
+                                    "_id": userID ,
+                                    "id" : userID,
+                                    "bands": updatedUser.bands],
+                                 update: .modified)
+            }
+            
+        } catch let err {
+            print(err.localizedDescription)
+        }
+    }
     
-//     Updated eine gegebene Task. Dafür wird die ID benötigt,
-//     welche in der Datenbank danach sucht und dann nach den mitgegebenen
-//     Parametern aktualisiert.
-//    / text und isDone sind hierbei optional
+    
+    // Updated eine gegebene Task. Dafür wird die ID benötigt,
+    // welche in der Datenbank danach sucht und dann nach den mitgegebenen
+    // Parametern aktualisiert.
+    /// text und isDone sind hierbei optional
     func update(userID: Int, name: String? = nil, band: BandDB? = nil) {
         // TODO: Add Realm update code below
         objectWillChange.send()

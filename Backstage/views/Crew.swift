@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct Crew: View {
-    
     @State var partitionValueInput : String
     @State var invalid: Bool = false
+    
+    @State private var userSheet = false
     
     @State private var username: String = ""
     
@@ -18,18 +19,23 @@ struct Crew: View {
     @EnvironmentObject var realmSync : RealmSync
     
     @EnvironmentObject var userStore : UserStore
+    
+    var band : BandDB? {
+        let currentBandID = realmSync.partitionValue
+        return bandStore.findByPartitionValue(partitionValue: currentBandID)
+    }
         
     var body: some View {
         
-        Button("Display UserData") {
-            let userID = realmSync.getCurrentUser()
-            let user = userStore.findByID(id: userID) ?? UserDB()
-            print("\(user)")
-        }
+//        Button("Display UserData") {
+//            let userID = realmSync.getCurrentUser()
+//            let user = userStore.findByID(id: userID) ?? UserDB()
+//            print("\(user)")
+//        }
         NavigationView {
             ScrollView {
                 if(realmSync.getCurrentUser() == 0) {
-                    
+                    Text("\(band?.name ?? "NO NAME DEFINED")")
                     TextField("Enter your name", text: $username)
                     Button("Create new User") {
                         let id = UUID().hashValue
@@ -43,6 +49,8 @@ struct Crew: View {
                     if(realmSync.partitionValue.isEmpty) {
                         BandSignifierCard(bandID: $partitionValueInput)
                     } else {
+                    
+                        
                         Text("You are logged in with")
                         
                         Button(action: {
@@ -63,34 +71,38 @@ struct Crew: View {
                         QRCodeView(url: realmSync.partitionValue)
                         
                         Text("Invite others to your Band with tis code").font(Font.callout)
-                            .navigationBarItems(
-                                leading: Menu("Options") {
-                                    let userID = realmSync.getCurrentUser()
-                                    let user = userStore.findByID(id: userID) ?? UserDB()
-                                    
-                                    
-                                    ForEach(user.bands, id: \.self) { band in
-                                        Button(action: {
-                                            realmSync.setPartitionValue(value: band.bandRef)
-                                        }) {
-                                            VStack {
-                                                Text("\(band.name)").fontWeight(.semibold)
-                                                Text("\(band.bandRef) (REF)")
-                                            }
+                        .navigationBarItems(
+                            leading: Menu("Deine Bands") {
+                                let userID = realmSync.getCurrentUser()
+                                let user = userStore.findByID(id: userID) ?? UserDB()
+                                
+                                ForEach(user.bands, id: \.self) { band in
+                                    Button(action: {
+                                        realmSync.setPartitionValue(value: band.bandRef)
+                                    }) {
+                                        VStack {
+                                            Text("\(band.name)").fontWeight(.semibold)
+                                            Text("\(band.bandRef) (REF)")
                                         }
-                                        
                                     }
-                                },
-                                trailing: Button("Logout") {
-                                realmSync.logout()
-                                self.partitionValueInput = realmSync.partitionValue
+                                }
+                            },
+                            trailing: Button(action: {
+                                userSheet.toggle()
+                            }) {
+                                HStack {
+                                    Image(systemName: "person.circle")
+                                    Text("Profil")
+                                }
                             }
                         )
                     }
                 }
             }
             .padding(.horizontal, 8)
-            .navigationTitle(Text("Your Groups"))   
+            .navigationTitle(Text("Your Groups"))
+        }.sheet(isPresented: $userSheet) {
+            UserPreferencesView(bandID: $partitionValueInput)
         }
         
     }

@@ -35,8 +35,6 @@ final class BandStore: ObservableObject {
     
     func findByPartitionValue (partitionValue: String) -> BandDB! {
         do {
-            let partitionValue = realmSync.getPartitionValue()
-            
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
             

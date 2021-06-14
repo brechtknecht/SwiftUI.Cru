@@ -138,7 +138,8 @@ struct BandSignifierCard: View {
                                 
                                 let band = bandStore.findByPartitionValue(partitionValue: bandRef)
                                 
-                                userStore.update(userID: userID, band: band)
+//                                userStore.update(userID: userID, band: band)
+                                userStore.addBand(userID: userID, band: band)
                                 
                                 
                                 self.presentationMode.wrappedValue.dismiss()
