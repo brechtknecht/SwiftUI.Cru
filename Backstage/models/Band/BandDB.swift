@@ -9,6 +9,8 @@ import Foundation
 import RealmSwift
 
 @objcMembers class BandDB: Object {
+    dynamic var partition   = ""
+    
     dynamic var id          = 0
     dynamic var _id         = 0
     dynamic var name        = ""

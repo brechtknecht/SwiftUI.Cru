@@ -36,7 +36,7 @@ final class BandStore: ObservableObject {
     func findByPartitionValue (partitionValue: String) -> BandDB! {
         do {
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: partitionValue)
+            let configuration = user.configuration(partitionValue: "all-the-bands")
             
             let predicate = NSPredicate(format: "bandRef = %@", partitionValue as String)
             
@@ -59,7 +59,7 @@ extension BandStore {
             let partitionValue = bandRef
             
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: partitionValue)
+            let configuration = user.configuration(partitionValue: "all-the-bands")
             
             let realm = try Realm(configuration: configuration)
             
@@ -79,50 +79,6 @@ extension BandStore {
         }
     }
     
-    
-    // Updated eine gegebene Task. Dafür wird die ID benötigt,
-    // welche in der Datenbank danach sucht und dann nach den mitgegebenen
-    // Parametern aktualisiert.
-    /// text und isDone sind hierbei optional
-    func update(taskID: Int, text: String? = nil, isDone: Bool? = nil) {
-        // TODO: Add Realm update code below
-        objectWillChange.send()
-        
-        let previousTask = self.findByID(id: taskID)!
-                
-        do {
-            let partitionValue = realmSync.getPartitionValue()
-            
-            let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: partitionValue)
-            
-            let realm = try Realm(configuration: configuration)
-            
-//            try realm.write {
-//                let updatedTask = TaskDB()
-//                updatedTask.id     = taskID
-//
-//                if(text == nil) {
-//                    updatedTask.task = previousTask.task
-//                } else {
-//                    updatedTask.task = text!
-//                }
-//
-//                if(isDone == nil) {
-//                    updatedTask.isDone = previousTask.isDone
-//                } else {
-//                    updatedTask.isDone = isDone!
-//                }
-//
-//                updatedTask.isDone = isDone ?? false
-//
-//                realm.add(updatedTask, update: .modified)
-//            }
-            
-        } catch let err {
-            print(err.localizedDescription)
-        }
-    }
     
     func delete(indexSet: IndexSet) {
         objectWillChange.send()

@@ -10,6 +10,8 @@ import RealmSwift
 import SwiftUI
 
 final class UserStore: ObservableObject {
+    @EnvironmentObject var bandStore : BandStore
+    
     private var results: Results<UserDB>
     
     var users: [User] {
@@ -101,6 +103,8 @@ extension UserStore {
                 updatedUser.bands.append(objectsIn: previousUser.bands)
                 let index = updatedUser.bands.index(of: band!)
                 
+                print("INDEX TO DELETE \(index)")
+                
                 if(index != nil) {
                     updatedUser.bands.remove(at: index!)
                 }
@@ -124,6 +128,7 @@ extension UserStore {
         if(band == nil) { print("Cannot add Band to User — band parameter was not provided");  return }
         
         let previousUser = self.findByID(id: userID)!
+        let partition = band!.partition
         
         do {
             let user = app.currentUser!

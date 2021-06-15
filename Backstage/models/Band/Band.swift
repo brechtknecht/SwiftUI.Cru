@@ -10,6 +10,8 @@ import SwiftUI
 import RealmSwift
 
 struct Band: Identifiable, Hashable {
+    let partition   : String
+    
     let id          : Int
     let _id         : Int
     let name        : String
@@ -19,6 +21,8 @@ struct Band: Identifiable, Hashable {
 
 extension Band {
     init(bandDB: BandDB) {
+        partition   = bandDB.partition
+        
         id          = bandDB.id
         _id         = bandDB._id
         name        = bandDB.name

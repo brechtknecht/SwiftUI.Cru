@@ -20,6 +20,7 @@ struct BackstageApp: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(BandStore(realm: RealmPersistent.initializer(alternativePartitionValue: "all-the-bands")))
                 .environmentObject(UserStore(realm: RealmPersistent.initializer(alternativePartitionValue: "all-the-users")))
                 .environmentObject(VenueStore(realm: RealmPersistent.initializer()))
                 .environmentObject(EventStore(realm: RealmPersistent.initializer()))
@@ -28,7 +29,7 @@ struct BackstageApp: SwiftUI.App {
                 .environmentObject(PersonStore(realm: RealmPersistent.initializer()))
                 .environmentObject(TimetableStore(realm: RealmPersistent.initializer()))
                 .environmentObject(TimeslotStore(realm: RealmPersistent.initializer()))
-                .environmentObject(BandStore(realm: RealmPersistent.initializer()))
+                
                 .environmentObject(realmSync)
                 .environment(\.realmConfiguration, self.initializeConfiguration())
                 .onAppear{
