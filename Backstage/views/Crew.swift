@@ -85,9 +85,11 @@ struct Crew: View {
                                     Button(action: {
                                         realmSync.setPartitionValue(value: band.bandRef)
                                     }) {
-                                        VStack {
+                                        HStack {
+                                            if(band.bandRef == realmSync.partitionValue) {
+                                                Image(systemName: "checkmark")
+                                            }
                                             Text("\(band.name)").fontWeight(.semibold)
-                                            Text("\(band.bandRef) (REF)")
                                         }
                                     }
                                 }
