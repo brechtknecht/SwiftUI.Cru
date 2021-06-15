@@ -32,16 +32,15 @@ struct Crew: View {
     
     @EnvironmentObject var userStore : UserStore
     
-    var band : BandDB? {
-        let currentBandID = realmSync.partitionValue
-        return bandStore.findByPartitionValue(partitionValue: currentBandID)
+    var user : UserDB {
+        let currentUserID = realmSync.getCurrentUser()
+        return userStore.findByID(id: currentUserID)
     }
         
     var body: some View {
         NavigationView {
             ScrollView {
                 if(realmSync.getCurrentUser() == 0) {
-                    Text("\(band?.name ?? "NO NAME DEFINED")")
                     TextField("Enter your name", text: $username)
                     Button("Create new User") {
                         let id = UUID().hashValue
@@ -72,11 +71,11 @@ struct Crew: View {
                             }
                         }
                         
-                        Text("\(bandStore.findByPartitionValue(partitionValue: realmSync.partitionValue)?.name ?? "")")
-                        
                         QRCodeView(url: realmSync.partitionValue)
                         
                         Text("Invite others to your Band with tis code").font(Font.callout)
+                                                        
+                            
                         .navigationBarItems(
                             leading: Menu("Deine Bands") {
                                 let userID = realmSync.getCurrentUser()

@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-@objcMembers class UserDB: Object {
+@objcMembers class UserDB: Object, ObjectKeyIdentifiable {
     dynamic var partition = "all-the-users"
     
     dynamic var id      = 0

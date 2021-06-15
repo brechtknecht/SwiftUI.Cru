@@ -33,6 +33,20 @@ final class BandStore: ObservableObject {
         }
     }
     
+    func findWithFixedPartitionValue (partitionValue: String) -> BandDB! {
+        do {
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: "all-the-bands")
+            
+            let predicate = NSPredicate(format: "bandRef = %@", partitionValue as String)
+            
+            return try Realm(configuration: configuration).objects(BandDB.self).filter(predicate).first
+        } catch let error {
+            print(error.localizedDescription)
+            return nil
+        }
+    }
+    
     func findByPartitionValue (partitionValue: String) -> BandDB! {
         do {
             let user = app.currentUser!

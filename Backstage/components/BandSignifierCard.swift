@@ -53,7 +53,7 @@ struct BandSignifierCard: View {
                 ButtonFullWidth(label: .constant("Scan Band Code"), icon: "qrcode.viewfinder");
             }
             .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "jGNtiO7tho3wBCjjMWKJQsxx", completion: self.handleScan)
+                CodeScannerView(codeTypes: [.qr], simulatedData: "kQiMlPaIu6WVRCcDtH6xs5Kn", completion: self.handleScan)
             }
             Text("or enter manually").font(Font.callout)
             
