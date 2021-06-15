@@ -87,11 +87,13 @@ struct BandSignifierCard: View {
             case .success(let decoded):
                 realmSync.setPartitionValue(value: decoded)
                 
-                let band = bandStore.findByPartitionValue(partitionValue: decoded)
-                
-                if(band == nil) { print("No Band found for your scan."); return }
+                let band = bandStore.findWithFixedPartitionValue(partitionValue: decoded)
+                                
+                if(band == nil) { print("No Band found for your scan. — DECODED VALUE \(decoded)"); return }
                 
                 let userID = realmSync.getCurrentUser()
+                
+                print("SCAN ADDING BAND \(band)")
                 
                 userStore.addBand(userID: userID, band: band)
                 

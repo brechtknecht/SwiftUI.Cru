@@ -36,7 +36,7 @@ final class BandStore: ObservableObject {
     func findWithFixedPartitionValue (partitionValue: String) -> BandDB! {
         do {
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: "all-the-bands")
+            let configuration = user.configuration(partitionValue: "all-the-users")
             
             let predicate = NSPredicate(format: "bandRef = %@", partitionValue as String)
             
