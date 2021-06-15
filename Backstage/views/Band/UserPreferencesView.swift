@@ -31,7 +31,7 @@ struct UserPreferencesView: View {
                             Text("\(band.name)").fontWeight(.semibold)
                             Text("\(band.bandRef) (REF)")
                         }
-                    }
+                    }.onDelete(perform: delete)
                 }
                 
                 Button("Display UserData") {
@@ -47,5 +47,11 @@ struct UserPreferencesView: View {
             }.navigationBarTitle(Text("User Preferences"))
             
         }
+    }
+    
+    private func delete(with indexSet: IndexSet) {
+        indexSet.forEach ({ index in
+            userStore.removeBand(userID: self.user.id, index: index)
+        })
     }
 }

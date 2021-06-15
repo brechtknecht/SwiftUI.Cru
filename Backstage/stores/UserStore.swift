@@ -84,10 +84,10 @@ extension UserStore {
         }
     }
     
-    func removeBand(userID: Int, band: BandDB? = nil) {
+    func removeBand(userID: Int, index: Int) {
         objectWillChange.send()
         
-        if(band == nil) { print("Cannot Remove Band from User — band parameter was not provided");  return }
+        if(index == nil) { print("Cannot Remove Band from User — index parameter was not provided");  return }
         
         let previousUser = self.findByID(id: userID)!
         
@@ -101,13 +101,7 @@ extension UserStore {
                 let updatedUser = UserDB()
                 
                 updatedUser.bands.append(objectsIn: previousUser.bands)
-                let index = updatedUser.bands.index(of: band!)
-                
-                print("INDEX TO DELETE \(index)")
-                
-                if(index != nil) {
-                    updatedUser.bands.remove(at: index!)
-                }
+                updatedUser.bands.remove(at: index)
                 
                 realm.create(UserDB.self,
                                  value: [
