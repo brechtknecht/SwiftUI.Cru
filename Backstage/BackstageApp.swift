@@ -23,7 +23,11 @@ struct BackstageApp: SwiftUI.App {
                 .environmentObject(BandStore(realm: RealmPersistent.initializer(alternativePartitionValue: "all-the-users")))
                 .environmentObject(UserStore(realm: RealmPersistent.initializer(alternativePartitionValue: "all-the-users")))
                 .environmentObject(VenueStore(realm: RealmPersistent.initializer()))
-                .environmentObject(EventStore(realm: RealmPersistent.initializer()))
+                .environmentObject(
+                    EventStore(
+                        realm: RealmPersistent.initializer()
+                    )
+                )
                 .environmentObject(SettlementStore(realm: RealmPersistent.initializer()))
                 .environmentObject(TransportStore(realm: RealmPersistent.initializer()))
                 .environmentObject(PersonStore(realm: RealmPersistent.initializer()))

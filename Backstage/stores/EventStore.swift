@@ -28,6 +28,7 @@ final class EventStore: ObservableObject {
     
     // Load Items from the Realm Database
     init(realm: Realm) {
+        
         unsorted = realm.objects(EventDB.self)
         results = realm.objects(EventDB.self).sorted(byKeyPath: "date", ascending: true)
         separated = realm.objects(EventDB.self).sorted(byKeyPath: "date", ascending: true)
