@@ -56,7 +56,7 @@ struct NewBand: View {
                             
                             realmSync.setPartitionValue(value: bandRef)
                             
-                            let band = bandStore.findByPartitionValue(partitionValue: bandRef)
+                            let band = bandStore.findByID(id: bandID)
                             
                             userStore.addBand(userID: userID, band: band)
                             

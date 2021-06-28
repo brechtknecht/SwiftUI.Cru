@@ -27,7 +27,7 @@ final class TimetableStore: ObservableObject {
     
     func findByID (id: Int) -> TimetableDB! {
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -46,7 +46,7 @@ extension TimetableStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.partitionValue
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -89,7 +89,7 @@ extension TimetableStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)

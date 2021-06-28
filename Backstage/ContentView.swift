@@ -10,11 +10,9 @@ import RealmSwift
 
 struct ContentView: View {
     @EnvironmentObject var store: VenueStore
-    
+    @EnvironmentObject var userStore : UserStore
     
     var body: some View {
-        
-        
         // Disabled Tabview During Development
 
         TabView {
@@ -28,7 +26,7 @@ struct ContentView: View {
                 )
             })
             VStack {
-                Crew(partitionValueInput: realmSync.partitionValue)
+                Crew()
             }
             .tabItem({
                 TabLabel(
@@ -37,6 +35,36 @@ struct ContentView: View {
                 )
             })
 
+        }.onAppear{
+            self.loadPartitionValueFromUserDefaults()
+            
+            self.loadCurrentUserFromUserDefaults()
+        }
+    }
+    
+    func loadPartitionValueFromUserDefaults () -> Void {
+        let defaults = UserDefaults.standard
+        
+        let defaultPartitionValue = defaults.value(forKey: "partitionValue") as? String
+        
+        if(defaultPartitionValue != "") {
+            realmSync.setPartitionValue(value: defaultPartitionValue ?? "")
+        }
+    }
+    
+    func loadCurrentUserFromUserDefaults () -> Void {
+        let defaults = UserDefaults.standard
+        
+        let defaultUser = defaults.value(forKey: "userID") as? Int
+        
+        print("DefaultUSER \(defaultUser)")
+        
+        if(defaultUser != 0) {
+            realmSync.setCurrentUser(value: defaultUser ?? 0)
+            
+//            let user = userStore.findByID(id: defaultUser ?? 0)
+            
+//            realmSync.setCurrentUserData(user: user ?? UserDB())
         }
     }
     

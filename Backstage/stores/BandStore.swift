@@ -22,7 +22,7 @@ final class BandStore: ObservableObject {
 
     func findByID (id: Int) -> BandDB! {
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -35,8 +35,9 @@ final class BandStore: ObservableObject {
     
     func findWithFixedPartitionValue (partitionValue: String) -> BandDB! {
         do {
+            let partitionValue = "all-the-data"
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: "all-the-users")
+            let configuration = user.configuration(partitionValue: partitionValue)
             
             let predicate = NSPredicate(format: "bandRef = %@", partitionValue as String)
             
@@ -49,8 +50,9 @@ final class BandStore: ObservableObject {
     
     func findByPartitionValue (partitionValue: String) -> BandDB! {
         do {
+            let partitionValue = "all-the-data"
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: "all-the-bands")
+            let configuration = user.configuration(partitionValue: partitionValue)
             
             let predicate = NSPredicate(format: "bandRef = %@", partitionValue as String)
             
@@ -70,10 +72,10 @@ extension BandStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = bandRef
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: "all-the-bands")
+            let configuration = user.configuration(partitionValue: partitionValue)
             
             let realm = try Realm(configuration: configuration)
             
@@ -93,12 +95,49 @@ extension BandStore {
         }
     }
     
+    func addEvent(bandID: Int, event: EventDB? = nil) {
+        
+        objectWillChange.send()
+        
+        if(event == nil) {print("Cannot add Event to Band — event parameter was not provided")}
+        
+        let previousBand = self.findByID(id: bandID)
+        
+        if(previousBand == nil) {print("Cannot add Event to Band — Previous Band was not found")}
+        
+        do {
+            let partitionValue = "all-the-data"
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
+            
+            try realm.write {
+                let updatedBand = BandDB()
+                
+                updatedBand.events.append(objectsIn: previousBand!.events)
+                updatedBand.events.append(event!)
+                
+                realm.create(BandDB.self, value: [
+                    "_id"       : bandID,
+                    "id"        : bandID,
+                    "events"    : updatedBand.events
+                ])
+            }
+        } catch let err {
+            print(err.localizedDescription)
+        }
+        
+        
+        
+    }
     
     func delete(indexSet: IndexSet) {
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)

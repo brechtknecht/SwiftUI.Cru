@@ -23,7 +23,7 @@ final class TransportStore: ObservableObject {
     
     func findByID (id: Int) -> TransportDB! {
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -43,7 +43,7 @@ extension TransportStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.partitionValue
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -74,7 +74,7 @@ extension TransportStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -95,7 +95,7 @@ extension TransportStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)

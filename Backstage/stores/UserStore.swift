@@ -25,8 +25,9 @@ final class UserStore: ObservableObject {
     
     func findByID (id: Int) -> UserDB! {
         do {
+            let partitionValue = "all-the-data"
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: "all-the-users")
+            let configuration = user.configuration(partitionValue: partitionValue)
             
             return try Realm(configuration: configuration).object(ofType: UserDB.self, forPrimaryKey: id)
         } catch let error {
@@ -43,8 +44,9 @@ extension UserStore {
         objectWillChange.send()
         
         do {
+            let partitionValue = "all-the-data"
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: "all-the-users")
+            let configuration = user.configuration(partitionValue: partitionValue)
             
             let realm = try Realm(configuration: configuration)
             
@@ -69,8 +71,9 @@ extension UserStore {
         objectWillChange.send()
         
         do {
+            let partitionValue = "all-the-data"
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: "all-the-users")
+            let configuration = user.configuration(partitionValue: partitionValue)
             
             let realm = try Realm(configuration: configuration)
         
@@ -92,8 +95,9 @@ extension UserStore {
         let previousUser = self.findByID(id: userID)!
         
         do {
+            let partitionValue = "all-the-data"
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: "all-the-users")
+            let configuration = user.configuration(partitionValue: partitionValue)
             
             let realm = try Realm(configuration: configuration)
             
@@ -125,8 +129,9 @@ extension UserStore {
         let partition = band!.partition
         
         do {
+            let partitionValue = "all-the-data"
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: "all-the-users")
+            let configuration = user.configuration(partitionValue: partitionValue)
             
             let realm = try Realm(configuration: configuration)
             
@@ -163,8 +168,9 @@ extension UserStore {
         print("ADDING BAND TO USER \(band?.name)")
         
         do {
+            let partitionValue = "all-the-data"
             let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: "all-the-users")
+            let configuration = user.configuration(partitionValue: partitionValue)
             
             let realm = try Realm(configuration: configuration)
             

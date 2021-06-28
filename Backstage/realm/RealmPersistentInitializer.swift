@@ -13,18 +13,7 @@ class RealmPersistent {
     static func initializer(alternativePartitionValue: String? = nil) -> Realm {
         realmSync.syncInitializer()
         
-        var partitionValue : String
-        
-        if(alternativePartitionValue == nil) {
-            partitionValue = realmSync.partitionValue
-        } else {
-            partitionValue = alternativePartitionValue!
-        }
-        
-        
-        print("Partition Value USED: \(partitionValue)")
-        
-        
+        let partitionValue = "all-the-data"
         
         let user = app.currentUser ?? nil
         
@@ -52,9 +41,11 @@ class RealmPersistent {
     }
 }
 
+
 class RealmSync : ObservableObject {
     @Published var partitionValue = ""
     @Published var userID = 0
+    @Published var user : UserDB = UserDB()
     
     init() {
         self.syncInitializer()
@@ -129,7 +120,10 @@ class RealmSync : ObservableObject {
         }
         
         defaults.setValue(value, forKey: "userID")
-        
+    }
+    
+    func setCurrentUserData(user: UserDB) -> Void {
+        self.user = user
     }
     
     func logout() -> Void {

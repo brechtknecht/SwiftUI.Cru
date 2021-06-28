@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 import RealmSwift
 
-let app = App(id: "backstage-ghsov") // Global App Object for SYNCING data with and to LOGIN against
+let app = App(id: "backstage-pjhnz") // Global App Object for SYNCING data with and to LOGIN against
 let realmSync = RealmSync()
 
 
@@ -20,8 +20,8 @@ struct BackstageApp: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(BandStore(realm: RealmPersistent.initializer(alternativePartitionValue: "all-the-users")))
-                .environmentObject(UserStore(realm: RealmPersistent.initializer(alternativePartitionValue: "all-the-users")))
+                .environmentObject(BandStore(realm: RealmPersistent.initializer()))
+                .environmentObject(UserStore(realm: RealmPersistent.initializer()))
                 .environmentObject(VenueStore(realm: RealmPersistent.initializer()))
                 .environmentObject(
                     EventStore(
@@ -36,40 +36,18 @@ struct BackstageApp: SwiftUI.App {
                 
                 .environmentObject(realmSync)
                 .environment(\.realmConfiguration, self.initializeConfiguration())
-                .onAppear{
-                    self.loadPartitionValueFromUserDefaults()
-                    
-                    self.loadCurrentUserFromUserDefaults()
-                }
+                
         }
     }
     
     func initializeConfiguration () -> Realm.Configuration {
         if(app.currentUser != nil) {
-            return app.currentUser!.configuration(partitionValue: realmSync.partitionValue)
+            return app.currentUser!.configuration(partitionValue: "all-the-data")
         }
         return Realm.Configuration.defaultConfiguration
     }
     
-    func loadPartitionValueFromUserDefaults () -> Void {
-        let defaults = UserDefaults.standard
-        
-        let defaultPartitionValue = defaults.value(forKey: "partitionValue") as? String
-        
-        if(defaultPartitionValue != "") {
-            realmSync.setPartitionValue(value: defaultPartitionValue ?? "")
-        }
-    }
     
-    func loadCurrentUserFromUserDefaults () -> Void {
-        let defaults = UserDefaults.standard
-        
-        let defaultUser = defaults.value(forKey: "userID") as? Int
-        
-        if(defaultUser != 0) {
-            realmSync.setCurrentUser(value: defaultUser ?? 0)
-        }
-    }
 }
 
 

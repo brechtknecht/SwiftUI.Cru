@@ -36,7 +36,7 @@ final class EventStore: ObservableObject {
     
     func findByID (id: Int) -> EventDB! {
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -51,13 +51,13 @@ final class EventStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension EventStore {
-    func create(name: String, date: Date, fee: Int, type: String, venueID: Int, imageUUID: String, backgroundColorHex: String) {
+    func create(id: Int, name: String, date: Date, fee: Int, type: String, venueID: Int, imageUUID: String, backgroundColorHex: String) {
         
         objectWillChange.send()
         
         do {
             
-            let partitionValue = realmSync.partitionValue
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -65,8 +65,6 @@ extension EventStore {
             let realm = try Realm(configuration: configuration)
             
             let refDB = EventDB()
-            
-            let id = UUID().hashValue
             
             refDB._id                   = id
             refDB.id                    = id
@@ -92,7 +90,7 @@ extension EventStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.partitionValue
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -113,7 +111,7 @@ extension EventStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.partitionValue
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -160,7 +158,7 @@ extension EventStore {
         let event = self.findByID(id: eventID)
         
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -176,7 +174,7 @@ extension EventStore {
         let event = self.findByID(id: eventID)
         
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -192,7 +190,7 @@ extension EventStore {
         let event = self.findByID(id: eventID)
         
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
