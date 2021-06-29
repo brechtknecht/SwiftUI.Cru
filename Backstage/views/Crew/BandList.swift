@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct BandList: View {
-    private var user : UserDB = realmSync.user
+    
+    @ObservedObject var user = realmSync.user
     
     var body: some View {
         

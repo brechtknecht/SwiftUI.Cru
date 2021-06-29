@@ -50,7 +50,7 @@ struct CreateNewEvent: View {
     // Computed Properties
     @ObservedObject var selectVenueViewModel = SelectVenueViewModel()
     
-    var user = realmSync.user
+    @State var user = realmSync.user
     
     var body: some View {
         NavigationView {

@@ -15,10 +15,7 @@ struct UserPreferencesView: View {
     
     @Binding var bandID : String
     
-    var user : UserDB {
-        let currentUserID = realmSync.getCurrentUser()
-        return userStore.findByID(id: currentUserID)
-    }
+    @State var user : UserDB = realmSync.user
     
     var body: some View {
         NavigationView {

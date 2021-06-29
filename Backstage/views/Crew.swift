@@ -31,10 +31,6 @@ struct Crew: View {
     @EnvironmentObject var realmSync : RealmSync
     
     @EnvironmentObject var userStore : UserStore
-    
-    var user : UserDB {
-        return realmSync.user
-    }
         
     var body: some View {
         NavigationView {

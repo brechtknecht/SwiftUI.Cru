@@ -18,10 +18,7 @@ struct BandSignifierCard: View {
     @EnvironmentObject var userStore : UserStore
     @EnvironmentObject var bandStore : BandStore
     
-    var user : UserDB {
-        let currentUserID = realmSync.getCurrentUser()
-        return userStore.findByID(id: currentUserID)
-    }
+    @State var user : UserDB = realmSync.user
     
     var body: some View {
         VStack {
@@ -90,11 +87,11 @@ struct BandSignifierCard: View {
                                 
                 if(band == nil) { print("No Band found for your scan. — DECODED VALUE \(decoded)"); return }
                 
-                let userID = realmSync.getCurrentUser()
+                let user = realmSync.user
                 
                 print("SCAN ADDING BAND \(band)")
                 
-                userStore.addBand(userID: userID, band: band)
+                userStore.addBand(user: user, band: band)
                 
                 self.bandID = decoded
                 

@@ -47,6 +47,9 @@ struct NewBand: View {
                             let bandRef = Utilities.helpers.generateBandID()
                             
                             let userID = realmSync.getCurrentUser()
+                            
+                            let user = realmSync.user
+                            
                             print("CURRENTUSERID \(userID)")
                             // Create Band and attach the UserID as Admin
                             // @Hook:bandStore:create
@@ -58,7 +61,7 @@ struct NewBand: View {
                             
                             let band = bandStore.findByID(id: bandID)
                             
-                            userStore.addBand(userID: userID, band: band)
+                            userStore.addBand(user: user, band: band)
                             
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
