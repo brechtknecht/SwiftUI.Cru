@@ -20,10 +20,9 @@ struct BackstageApp: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(UserStore(realm: RealmPersistent.initializer()))
-                .environmentObject(realmSync)
                 .environment(\.realmConfiguration, self.initializeConfiguration())
-                
+                .environmentObject(realmSync)
+                .environmentObject(UserStore(realm: RealmPersistent.initializer()))
                 .environmentObject(BandStore(realm: RealmPersistent.initializer()))
                 .environmentObject(VenueStore(realm: RealmPersistent.initializer()))
                 .environmentObject(EventStore(realm: RealmPersistent.initializer()))
