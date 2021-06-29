@@ -30,6 +30,7 @@ struct CreateNewEvent: View {
     // Store Enviroment
     @EnvironmentObject var store : VenueStore
     @EnvironmentObject var eventStore: EventStore
+    @EnvironmentObject var bandStore : BandStore
     
     
     // Reactive Datapoints for the Form
@@ -141,7 +142,10 @@ struct CreateNewEvent: View {
                         
                         let convertedUIColor = UIColor(color)
                         
+                        let eventID = UUID().hashValue
+                        
                         eventStore.create(
+                            id                          : eventID,
                             name                        : eventName,
                             date                        : eventDate,
                             fee                         : Int(eventFee) ?? 0,
@@ -150,6 +154,10 @@ struct CreateNewEvent: View {
                             imageUUID                   : imageUUID.uuidString,
                             backgroundColorHex          : convertedUIColor.toHexString()
                         )
+                        
+                        let event = eventStore.findByID(id: eventID)
+                        
+//                        bandStore.addEvent(bandID: <#T##Int#>, event: event)
                         
                         // Pop View from Navigation View
                         presentationMode.wrappedValue.dismiss()

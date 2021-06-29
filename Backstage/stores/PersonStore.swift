@@ -23,7 +23,7 @@ final class PersonStore: ObservableObject {
     
     func findByID (id: Int) -> PersonDB! {
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -43,7 +43,7 @@ extension PersonStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.partitionValue
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -70,7 +70,7 @@ extension PersonStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
@@ -91,7 +91,7 @@ extension PersonStore {
         objectWillChange.send()
         
         do {
-            let partitionValue = realmSync.getPartitionValue()
+            let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)

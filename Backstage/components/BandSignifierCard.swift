@@ -9,7 +9,6 @@ import SwiftUI
 import CodeScanner
 
 struct BandSignifierCard: View {
-//    @State var bandID : String = realmSync.partitionValue
     @State var invalid: Bool = false
     @Binding var bandID : String
         

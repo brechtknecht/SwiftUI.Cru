@@ -17,7 +17,7 @@ enum ActiveCrewSheet: Identifiable {
 
 
 struct Crew: View {
-    @State var partitionValueInput : String
+    @State var partitionValueInput : String = "all-the-data"
     @State var invalid: Bool = false
     
     @State var activeSheet: ActiveCrewSheet?
@@ -59,11 +59,10 @@ struct Crew: View {
                         Text("You are logged in with")
                         
                         Button(action: {
-                            print("\(realmSync.partitionValue)")
                             UIPasteboard.general.string = realmSync.partitionValue
                         }) {
                             VStack {
-                                Text("\(realmSync.partitionValue)")
+                                Text("HERE SHOULD BE THE BANDID")
                                 HStack {
                                     Text("Copy to clipboard")
                                     Image(systemName: "doc.on.doc")
