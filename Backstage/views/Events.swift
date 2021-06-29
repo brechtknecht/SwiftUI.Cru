@@ -20,13 +20,24 @@ struct Events: View {
     @EnvironmentObject var venueStore: VenueStore
     @EnvironmentObject var userStore: UserStore
     
-   
-    
+    @State private var showingAlert = false
     
     var body: some View {
         NavigationView {
             ScrollView {
                 EventList()
+                
+                
+                #if DEBUG
+                    Button("Show Current UserData") {
+                        showingAlert = true
+                    }
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("User Data"), message: Text("\(realmSync.user)"), dismissButton: .default(Text("Got it!")))
+                    }
+                #endif
+                
+                
             }
             .environment(\.editMode, editMode)
             .navigationBarTitle("Veranstaltungen")
