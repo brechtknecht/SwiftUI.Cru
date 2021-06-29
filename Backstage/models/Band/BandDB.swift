@@ -16,8 +16,8 @@ import RealmSwift
     dynamic var name        = ""
     dynamic var bandRef     = ""
     dynamic var adminID     = 0
-    let members     = LinkingObjects(fromType: UserDB.self, property: "bands")
-    let events      = RealmSwift.List<EventDB>()
+    let members             = RealmSwift.List<UserDB>()
+    let events              = RealmSwift.List<EventDB>()
     
     override static func primaryKey() -> String? {
         "_id"

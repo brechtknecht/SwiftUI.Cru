@@ -18,6 +18,7 @@ struct Band: Identifiable, Hashable {
     let bandRef     : String
     let adminID     : Int
     let events      : RealmSwift.List<EventDB>
+    let members     : RealmSwift.List<UserDB>
 }
 
 extension Band {
@@ -31,5 +32,6 @@ extension Band {
         adminID     = bandDB.adminID
         
         events      = bandDB.events
+        members     = bandDB.members
     }
 }

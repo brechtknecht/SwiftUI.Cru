@@ -39,7 +39,7 @@ struct DateTag: View {
         }
         .padding(.horizontal, 12.00)
         .padding(.vertical, 17.00)
-        .background(Color.white)
+        .background(ColorManager.primaryLight)
         .cornerRadius(8)
     }
 }

@@ -33,7 +33,7 @@ struct BandList: View {
                             QRCodeView(url: band.bandRef)
                             
                             Button(action: {
-                                UIPasteboard.general.string = realmSync.partitionValue
+                                UIPasteboard.general.string = band.bandRef
                             }) {
                                 VStack {
                                     HStack {
@@ -51,7 +51,7 @@ struct BandList: View {
                     }
                 }
                 .padding(32.00)
-                .background(Color.white)
+                .background(ColorManager.primaryLight)
                 .border(Color.black.opacity(0.05))
                 .cornerRadius(8)
                 .shadow(color: Color(red: 0.00, green: 0.00, blue: 0.00).opacity(0.15),

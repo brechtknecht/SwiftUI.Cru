@@ -20,7 +20,7 @@ struct Attendants: View {
                     .shadow(radius: 10)
                     .offset(x: (-32.00 * CGFloat(index)), y: 0)
                     .overlay(
-                        Circle().stroke(Color.white, lineWidth: 2)
+                        Circle().stroke(ColorManager.primaryLight, lineWidth: 2)
                             .offset(x: (-32.00 * CGFloat(index)), y: 0)
                     )
                     .frame(width: 54.00, height: 54.00)

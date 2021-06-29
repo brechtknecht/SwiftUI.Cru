@@ -48,13 +48,13 @@ final class BandStore: ObservableObject {
         }
     }
     
-    func findByPartitionValue (partitionValue: String) -> BandDB! {
+    func findByBandReference (referenceString: String) -> BandDB! {
         do {
             let partitionValue = "all-the-data"
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
             
-            let predicate = NSPredicate(format: "bandRef = %@", partitionValue as String)
+            let predicate = NSPredicate(format: "bandRef = %@", referenceString as String)
             
             return try Realm(configuration: configuration).objects(BandDB.self).filter(predicate).first
         } catch let error {
@@ -130,9 +130,43 @@ extension BandStore {
         } catch let err {
             print(err.localizedDescription)
         }
+    }
+    
+    func addMember(band: BandDB? = nil, member: UserDB? = nil) {
+        if(band == nil)         { print("Cannot add Member to Band — band parameter was not provided"); return }
+        if(member == nil)       { print("Cannot add Member to Band — user to add was not provided"); return}
         
+        let previousBand = band
         
+        objectWillChange.send()
         
+        do {
+            let partitionValue = "all-the-data"
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try Realm(configuration: configuration)
+            
+            try realm.write {
+                let updatedBand = BandDB()
+                
+                if(!previousBand!.events.isEmpty){
+                    updatedBand.members.append(objectsIn: previousBand!.members)
+                }
+                updatedBand.members.append(member!)
+                
+                realm.create(BandDB.self,
+                     value: [
+                        "_id"       : previousBand!.id,
+                        "id"        : previousBand!._id,
+                        "members"   : updatedBand.members
+                     ],
+                     update: .modified)
+            }
+        } catch let err {
+            print(err.localizedDescription)
+        }
     }
     
     func delete(indexSet: IndexSet) {

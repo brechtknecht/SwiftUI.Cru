@@ -63,7 +63,7 @@ struct BandSignifierCard: View {
                         }},
                       onCommit: self.setBandID)
                 .padding(.all, 8)
-                .background(Color.white)
+                .background(ColorManager.primaryLight)
                 .cornerRadius(8.0)
                 .font(.system(size: 14, design: .monospaced))
                 .multilineTextAlignment(.center)
@@ -81,21 +81,15 @@ struct BandSignifierCard: View {
         
         switch result {
             case .success(let decoded):
-                realmSync.setPartitionValue(value: decoded)
-                
-                let band = bandStore.findWithFixedPartitionValue(partitionValue: decoded)
-                                
+                let band = bandStore.findByBandReference(referenceString: decoded)
+                            
                 if(band == nil) { print("No Band found for your scan. — DECODED VALUE \(decoded)"); return }
                 
-                let user = realmSync.user
-                
                 print("SCAN ADDING BAND \(band)")
-                
                 userStore.addBand(user: user, band: band)
+                bandStore.addMember(band: band, member: user)
                 
-                self.bandID = decoded
                 
-                self.setBandID()
             case .failure(let error):
                 print("Scanner didnt work \(error)")
         }
