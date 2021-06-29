@@ -10,8 +10,9 @@ import SwiftUI
 struct UserPreferencesView: View {
     @Environment(\.presentationMode) var presentationMode
     
-    @EnvironmentObject var userStore : UserStore
-    @EnvironmentObject var bandStore : BandStore
+    @EnvironmentObject var userStore    : UserStore
+    @EnvironmentObject var bandStore    : BandStore
+    @EnvironmentObject var eventStore   : EventStore
     
     @Binding var bandID : String
     
@@ -40,6 +41,11 @@ struct UserPreferencesView: View {
                 Button("Display all Bands") {
                     bandStore.bands
                     print("\(bandStore.bands)")
+                }
+                
+                Button("Display all Events") {
+                    eventStore.separatedEvents.count
+                    print("---------EVENTCOUNT\(eventStore.separatedEvents.count)")
                 }
             }.navigationBarTitle(Text("User Preferences"))
             

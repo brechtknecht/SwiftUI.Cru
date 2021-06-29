@@ -23,15 +23,24 @@ final class EventStore: ObservableObject {
     }
     
     var separatedEvents: [Event] {
-//        separated.filter
-        separated.map(Event.init)
+        var events = [Int]()
+        
+        // Add all events saved in the user-data
+        realmSync.user.bands.forEach { band in
+            band.events.forEach { (event) in
+                events.append(event.id)
+            }
+        }
+        
+        return separated.filter("id IN %@", events).map(Event.init)
     }
     
     // Load Items from the Realm Database
     init(realm: Realm) {
-        
         unsorted = realm.objects(EventDB.self)
         results = realm.objects(EventDB.self).sorted(byKeyPath: "date", ascending: true)
+        separated = realm.objects(EventDB.self).sorted(byKeyPath: "date", ascending: true)
+        
         separated = realm.objects(EventDB.self).sorted(byKeyPath: "date", ascending: true)
     }
     
