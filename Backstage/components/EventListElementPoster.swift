@@ -38,9 +38,9 @@ struct EventListElementPoster: View {
                     Image(uiImage: Utilities.helpers.loadImageFromCDN(imageUUID: event.imageUUID, imageData: event.imageData))
                         .renderingMode(.original)
                         .resizable()
+                        .aspectRatio(contentMode: .fit)
                         .frame(width: CARD_WIDTH, height: CARD_HEIGHT)
                         .cornerRadius(12)
-                        .aspectRatio(contentMode: .fit)
                         .clipped()
                         .opacity(isEditing ? 0.4 : 1)
                     Image("PaperTexture")
@@ -60,11 +60,16 @@ struct EventListElementPoster: View {
                         .opacity(isEditing ? 0.15 : 1)
                     
                     VStack (alignment: .center){
-                        Text(viewModel.convertDate(date: event.date))
-                            .font(.headline)
-                            .foregroundColor(.white)
-                            .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
-                            .frame(width: CARD_WIDTH - 20)
+                        HStack {
+                            Attendants(/* event.attendants */)
+                            
+                            Spacer()
+                            
+                            DateTag(date: event.date)
+                                .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
+                                .padding(.trailing, 28.00)
+                        }
+                    
                         Spacer()
                         Text(event.name)
                             .font(.largeTitle)
@@ -82,7 +87,7 @@ struct EventListElementPoster: View {
                             .padding(.vertical, 4)
                             .frame(width: CARD_WIDTH - 20)
                     }
-                    .padding(EdgeInsets(top: 32, leading: 12, bottom: 64, trailing: 12))
+                    .padding(EdgeInsets(top: 24, leading: 12, bottom: 64, trailing: 12))
                 }
                 
             }
@@ -156,15 +161,6 @@ extension EventListElementPoster {
         
         init() {
             self.compressedImage = UIImage()
-        }
-        
-        
-        
-        func convertDate (date: Date) -> String {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd. MMM, yyyy"
-            
-            return formatter.string(from: date)
         }
         
         func venueString (venue: VenueDB?) -> String {

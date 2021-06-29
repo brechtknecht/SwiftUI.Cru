@@ -62,9 +62,9 @@ struct ContentView: View {
         if(defaultUser != 0) {
             realmSync.setCurrentUser(value: defaultUser ?? 0)
             
-//            let user = userStore.findByID(id: defaultUser ?? 0)
+            let user = userStore.findByID(id: defaultUser ?? 0)
             
-//            realmSync.setCurrentUserData(user: user ?? UserDB())
+            realmSync.setCurrentUserData(user: user ?? UserDB())
         }
     }
     

@@ -33,8 +33,7 @@ struct Crew: View {
     @EnvironmentObject var userStore : UserStore
     
     var user : UserDB {
-        let currentUserID = realmSync.getCurrentUser()
-        return userStore.findByID(id: currentUserID)
+        return realmSync.user
     }
         
     var body: some View {
@@ -55,24 +54,7 @@ struct Crew: View {
                         BandSignifierCard(bandID: $partitionValueInput)
                     } else {
                     
-                        
-                        Text("You are logged in with")
-                        
-                        Button(action: {
-                            UIPasteboard.general.string = realmSync.partitionValue
-                        }) {
-                            VStack {
-                                Text("HERE SHOULD BE THE BANDID")
-                                HStack {
-                                    Text("Copy to clipboard")
-                                    Image(systemName: "doc.on.doc")
-                                }
-                            }
-                        }
-                        
-                        QRCodeView(url: realmSync.partitionValue)
-                        
-                        Text("Invite others to your Band with tis code").font(Font.callout)
+                        BandList()
                                                         
                             
                         .navigationBarItems(
@@ -113,7 +95,6 @@ struct Crew: View {
                     }
                 }
             }
-            .padding(.horizontal, 8)
             .navigationTitle(Text("Your Groups"))
         }.sheet(item: $activeSheet) { item in
             switch item {

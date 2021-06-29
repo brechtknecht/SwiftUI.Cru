@@ -23,6 +23,7 @@ final class EventStore: ObservableObject {
     }
     
     var separatedEvents: [Event] {
+//        separated.filter
         separated.map(Event.init)
     }
     

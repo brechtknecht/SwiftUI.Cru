@@ -35,6 +35,7 @@ struct CreateNewEvent: View {
     
     // Reactive Datapoints for the Form
     @State var eventName = ""
+    @State var assignedBand : BandDB = BandDB()
     @State var eventDate = Date()
     @State var eventType : EventType = .club
     @State var eventTime = Date()
@@ -48,6 +49,8 @@ struct CreateNewEvent: View {
     
     // Computed Properties
     @ObservedObject var selectVenueViewModel = SelectVenueViewModel()
+    
+    var user = realmSync.user
     
     var body: some View {
         NavigationView {
@@ -67,6 +70,16 @@ struct CreateNewEvent: View {
                             }
                         }.pickerStyle(SegmentedPickerStyle())
                         .padding(.vertical, 8)
+                    }
+                    
+                    Section (header: Text("Zugehörige Gruppe")) {
+                        Section {
+                            Picker("Zugehörige Gruppe", selection: $assignedBand) {
+                                ForEach(user.bands, id: \.self) {
+                                    Text($0.name).tag($0)
+                                }
+                            }
+                        }
                     }
                     
                     Section(
