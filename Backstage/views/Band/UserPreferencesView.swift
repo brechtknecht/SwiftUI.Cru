@@ -16,7 +16,7 @@ struct UserPreferencesView: View {
     
     @Binding var bandID : String
     
-    @State var user : UserDB = realmSync.user
+    @ObservedObject var user : UserDB = realmSync.user
     
     var body: some View {
         NavigationView {

@@ -18,7 +18,7 @@ struct BandSignifierCard: View {
     @EnvironmentObject var userStore : UserStore
     @EnvironmentObject var bandStore : BandStore
     
-    @State var user : UserDB = realmSync.user
+    @ObservedObject var user : UserDB = realmSync.user
     
     var body: some View {
         VStack {

@@ -44,6 +44,10 @@ struct Crew: View {
                         userStore.create(userID: id, name: username)
                         
                         realmSync.setCurrentUser(value: id)
+                        
+                        let user = userStore.findByID(id: id)
+                        
+                        realmSync.setCurrentUserData(user: user ?? UserDB())
                     }
                 } else {
                     if(realmSync.partitionValue.isEmpty) {
