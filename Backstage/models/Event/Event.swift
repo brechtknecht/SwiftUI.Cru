@@ -14,6 +14,7 @@ struct Event: Identifiable, Hashable {
     let id                  : Int
     let name                : String
     let date                : Date
+    let assignedBand        : BandDB
     let venueID             : Int
     let imageUUID           : String
     let imageData           : Data
@@ -30,6 +31,7 @@ extension Event {
     init(eventDB: EventDB) {
         _id                 = eventDB._id
         id                  = eventDB.id
+        assignedBand        = eventDB.assignedBand
         name                = eventDB.name
         date                = eventDB.date
         venueID             = eventDB.venueID

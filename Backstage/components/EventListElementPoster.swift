@@ -71,7 +71,8 @@ struct EventListElementPoster: View {
                         }
                     
                         Spacer()
-                        Text(event.name)
+//                        Text(event.name)
+                        Text(event.assignedBand.name)
                             .font(.largeTitle)
                             .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                             .foregroundColor(.white)

@@ -160,6 +160,7 @@ struct CreateNewEvent: View {
                         eventStore.create(
                             id                          : eventID,
                             name                        : eventName,
+                            assignedBand                : assignedBand,
                             date                        : eventDate,
                             fee                         : Int(eventFee) ?? 0,
                             type                        : eventType.rawValue,
@@ -170,7 +171,7 @@ struct CreateNewEvent: View {
                         
                         let event = eventStore.findByID(id: eventID)
                         
-//                        bandStore.addEvent(bandID: <#T##Int#>, event: event)
+                        bandStore.addEvent(band: assignedBand, event: event)
                         
                         // Pop View from Navigation View
                         presentationMode.wrappedValue.dismiss()

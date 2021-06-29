@@ -59,8 +59,7 @@ struct Crew: View {
                             
                         .navigationBarItems(
                             leading: Menu("Deine Bands") {
-                                let userID = realmSync.getCurrentUser()
-                                let user = userStore.findByID(id: userID) ?? UserDB()
+                                let user = realmSync.user
                                 
                                 ForEach(user.bands, id: \.self) { band in
                                     Button(action: {

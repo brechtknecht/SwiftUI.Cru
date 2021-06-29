@@ -95,15 +95,13 @@ extension BandStore {
         }
     }
     
-    func addEvent(bandID: Int, event: EventDB? = nil) {
+    func addEvent(band: BandDB, event: EventDB? = nil) {
+        if(event == nil)        { print("Cannot add Event to Band — event parameter was not provided"); return }
+        if(band  == nil)        { print("Cannot add Event to Band — Previous Band was not found"); return}
+        
+        let previousBand = band
         
         objectWillChange.send()
-        
-        if(event == nil) {print("Cannot add Event to Band — event parameter was not provided")}
-        
-        let previousBand = self.findByID(id: bandID)
-        
-        if(previousBand == nil) {print("Cannot add Event to Band — Previous Band was not found")}
         
         do {
             let partitionValue = "all-the-data"
@@ -116,14 +114,18 @@ extension BandStore {
             try realm.write {
                 let updatedBand = BandDB()
                 
-                updatedBand.events.append(objectsIn: previousBand!.events)
+                if(!previousBand.events.isEmpty){
+                    updatedBand.events.append(objectsIn: previousBand.events)
+                }
                 updatedBand.events.append(event!)
                 
-                realm.create(BandDB.self, value: [
-                    "_id"       : bandID,
-                    "id"        : bandID,
-                    "events"    : updatedBand.events
-                ])
+                realm.create(BandDB.self,
+                     value: [
+                        "_id"     : band.id,
+                        "id"      : band._id,
+                        "events"  : updatedBand.events
+                     ],
+                     update: .modified)
             }
         } catch let err {
             print(err.localizedDescription)

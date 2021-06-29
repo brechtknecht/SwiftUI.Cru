@@ -52,7 +52,7 @@ final class EventStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension EventStore {
-    func create(id: Int, name: String, date: Date, fee: Int, type: String, venueID: Int, imageUUID: String, backgroundColorHex: String) {
+    func create(id: Int, name: String, assignedBand: BandDB, date: Date, fee: Int, type: String, venueID: Int, imageUUID: String, backgroundColorHex: String) {
         
         objectWillChange.send()
         

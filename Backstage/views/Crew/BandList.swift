@@ -21,6 +21,9 @@ struct BandList: View {
                         BandIcon()
                     }
                     
+                    HStack {
+                        Text("\(band.events.count) Zugehörige Verabredungen")
+                    }
                     
                     HStack {
                         Spacer()
