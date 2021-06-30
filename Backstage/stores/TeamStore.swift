@@ -1,5 +1,5 @@
 //
-//  BandStore.swift
+//  TeamStore.swift
 //  Backstage
 //
 //  Created by Felix Tesche on 25.05.21.
@@ -8,55 +8,55 @@
 import Foundation
 import RealmSwift
 
-final class BandStore: ObservableObject {
-    private var results: Results<BandDB>
+final class TeamStore: ObservableObject {
+    private var results: Results<TeamDB>
     
-    var bands: [Band] {
-        results.map(Band.init)
+    var teams: [Team] {
+        results.map(Team.init)
     }
     
     init(realm: Realm) {
-        results = realm.objects(BandDB.self)
+        results = realm.objects(TeamDB.self)
     }
     
 
-    func findByID (id: Int) -> BandDB! {
+    func findByID (id: Int) -> TeamDB! {
         do {
             let partitionValue = "all-the-data"
             
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
-            return try Realm(configuration: configuration).object(ofType: BandDB.self, forPrimaryKey: id)
+            return try Realm(configuration: configuration).object(ofType: TeamDB.self, forPrimaryKey: id)
         } catch let error {
             print(error.localizedDescription)
             return nil
         }
     }
     
-    func findWithFixedPartitionValue (partitionValue: String) -> BandDB! {
+    func findWithFixedPartitionValue (partitionValue: String) -> TeamDB! {
         do {
             let partitionValue = "all-the-data"
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
             
-            let predicate = NSPredicate(format: "bandRef = %@", partitionValue as String)
+            let predicate = NSPredicate(format: "teamRef = %@", partitionValue as String)
             
-            return try Realm(configuration: configuration).objects(BandDB.self).filter(predicate).first
+            return try Realm(configuration: configuration).objects(TeamDB.self).filter(predicate).first
         } catch let error {
             print(error.localizedDescription)
             return nil
         }
     }
     
-    func findByBandReference (referenceString: String) -> BandDB! {
+    func findByTeamReference (referenceString: String) -> TeamDB! {
         do {
             let partitionValue = "all-the-data"
             let user = app.currentUser!
             let configuration = user.configuration(partitionValue: partitionValue)
             
-            let predicate = NSPredicate(format: "bandRef = %@", referenceString as String)
+            let predicate = NSPredicate(format: "teamRef = %@", referenceString as String)
             
-            return try Realm(configuration: configuration).objects(BandDB.self).filter(predicate).first
+            return try Realm(configuration: configuration).objects(TeamDB.self).filter(predicate).first
         } catch let error {
             print(error.localizedDescription)
             return nil
@@ -66,8 +66,8 @@ final class BandStore: ObservableObject {
 }
 
 // MARK: - CRUD Actions
-extension BandStore {
-    func create(bandID: Int, name: String, bandRef: String) {
+extension TeamStore {
+    func create(teamID: Int, name: String, teamRef: String) {
         
         objectWillChange.send()
         
@@ -79,12 +79,12 @@ extension BandStore {
             
             let realm = try Realm(configuration: configuration)
             
-            let refDB = BandDB()
+            let refDB = TeamDB()
             
-            refDB.id = bandID
-            refDB._id = bandID
+            refDB.id = teamID
+            refDB._id = teamID
             refDB.name = name
-            refDB.bandRef = bandRef
+            refDB.teamRef = teamRef
             
             try realm.write {
                 realm.add(refDB)
@@ -95,11 +95,11 @@ extension BandStore {
         }
     }
     
-    func addEvent(band: BandDB, event: EventDB? = nil) {
-        if(event == nil)        { print("Cannot add Event to Band — event parameter was not provided"); return }
-        if(band  == nil)        { print("Cannot add Event to Band — Previous Band was not found"); return}
+    func addEvent(team: TeamDB, event: EventDB? = nil) {
+        if(event == nil)        { print("Cannot add Event to Team — event parameter was not provided"); return }
+        if(team  == nil)        { print("Cannot add Event to Team — Previous Team was not found"); return}
         
-        let previousBand = band
+        let previousTeam = team
         
         objectWillChange.send()
         
@@ -112,18 +112,18 @@ extension BandStore {
             let realm = try Realm(configuration: configuration)
             
             try realm.write {
-                let updatedBand = BandDB()
+                let updatedTeam = TeamDB()
                 
-                if(!previousBand.events.isEmpty){
-                    updatedBand.events.append(objectsIn: previousBand.events)
+                if(!previousTeam.events.isEmpty){
+                    updatedTeam.events.append(objectsIn: previousTeam.events)
                 }
-                updatedBand.events.append(event!)
+                updatedTeam.events.append(event!)
                 
-                realm.create(BandDB.self,
+                realm.create(TeamDB.self,
                      value: [
-                        "_id"     : band.id,
-                        "id"      : band._id,
-                        "events"  : updatedBand.events
+                        "_id"     : team.id,
+                        "id"      : team._id,
+                        "events"  : updatedTeam.events
                      ],
                      update: .modified)
             }
@@ -132,11 +132,11 @@ extension BandStore {
         }
     }
     
-    func addMember(band: BandDB? = nil, member: UserDB? = nil) {
-        if(band == nil)         { print("Cannot add Member to Band — band parameter was not provided"); return }
-        if(member == nil)       { print("Cannot add Member to Band — user to add was not provided"); return}
+    func addMember(team: TeamDB? = nil, member: UserDB? = nil) {
+        if(team == nil)         { print("Cannot add Member to Team — team parameter was not provided"); return }
+        if(member == nil)       { print("Cannot add Member to Team — user to add was not provided"); return}
         
-        let previousBand = band
+        let previousTeam = team
         
         objectWillChange.send()
         
@@ -149,18 +149,18 @@ extension BandStore {
             let realm = try Realm(configuration: configuration)
             
             try realm.write {
-                let updatedBand = BandDB()
+                let updatedTeam = TeamDB()
                 
-                if(!previousBand!.events.isEmpty){
-                    updatedBand.members.append(objectsIn: previousBand!.members)
+                if(!previousTeam!.events.isEmpty){
+                    updatedTeam.members.append(objectsIn: previousTeam!.members)
                 }
-                updatedBand.members.append(member!)
+                updatedTeam.members.append(member!)
                 
-                realm.create(BandDB.self,
+                realm.create(TeamDB.self,
                      value: [
-                        "_id"       : previousBand!.id,
-                        "id"        : previousBand!._id,
-                        "members"   : updatedBand.members
+                        "_id"       : previousTeam!.id,
+                        "id"        : previousTeam!._id,
+                        "members"   : updatedTeam.members
                      ],
                      update: .modified)
             }

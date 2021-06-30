@@ -10,7 +10,7 @@ import SwiftUI
 struct NewTeam: View {
     @Environment (\.presentationMode) var presentationMode
     
-    @State var bandName : String = ""
+    @State var teamName : String = ""
     @State var username : String = ""
     
     @EnvironmentObject var userStore : UserStore
@@ -55,7 +55,7 @@ struct NewTeam: View {
                             // @Hook:teamStore:create
                             
                             let teamID = UUID().hashValue
-                            teamStore.create(teamID: bandID, name: self.teamName, teamRef: teamRef)
+                            teamStore.create(teamID: teamID, name: self.teamName, teamRef: teamRef)
                             
                             realmSync.setPartitionValue(value: teamRef)
                             
@@ -70,7 +70,7 @@ struct NewTeam: View {
                     }.padding(.horizontal, 16)
                 }
             }
-            .navigationTitle(Text("Create new Band"))
+            .navigationTitle(Text("Create new Team"))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .edgesIgnoringSafeArea(.all)

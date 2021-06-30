@@ -79,7 +79,7 @@ struct EventListElementPoster: View {
                             .multilineTextAlignment(.center)
                             .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
                             .frame(width: CARD_WIDTH - 20)
-                        Text(event.assignedBand.name.uppercased())
+                        Text(event.assignedTeam.name.uppercased())
                             .font(.headline)
                             .fontWeight(.bold)
                             .tracking(2.54)

@@ -30,12 +30,12 @@ struct CreateNewEvent: View {
     // Store Enviroment
     @EnvironmentObject var store : VenueStore
     @EnvironmentObject var eventStore: EventStore
-    @EnvironmentObject var bandStore : BandStore
+    @EnvironmentObject var teamStore : TeamStore
     
     
     // Reactive Datapoints for the Form
     @State var eventName = ""
-    @State var assignedBand : BandDB = BandDB()
+    @State var assignedTeam : TeamDB = TeamDB()
     @State var eventDate = Date()
     @State var eventType : EventType = .club
     @State var eventTime = Date()
@@ -74,8 +74,8 @@ struct CreateNewEvent: View {
                     
                     Section (header: Text("Zugehörige Gruppe")) {
                         Section {
-                            Picker("Zugehörige Gruppe", selection: $assignedBand) {
-                                ForEach(user.bands, id: \.self) {
+                            Picker("Zugehörige Gruppe", selection: $assignedTeam) {
+                                ForEach(user.teams, id: \.self) {
                                     Text($0.name).tag($0)
                                 }
                             }
@@ -160,7 +160,7 @@ struct CreateNewEvent: View {
                         eventStore.create(
                             id                          : eventID,
                             name                        : eventName,
-                            assignedBand                : assignedBand,
+                            assignedTeam                : assignedTeam,
                             date                        : eventDate,
                             fee                         : Int(eventFee) ?? 0,
                             type                        : eventType.rawValue,
@@ -171,7 +171,7 @@ struct CreateNewEvent: View {
                         
                         let event = eventStore.findByID(id: eventID)
                         
-                        bandStore.addEvent(band: assignedBand, event: event)
+                        teamStore.addEvent(team: assignedTeam, event: event)
                         
                         // Pop View from Navigation View
                         presentationMode.wrappedValue.dismiss()

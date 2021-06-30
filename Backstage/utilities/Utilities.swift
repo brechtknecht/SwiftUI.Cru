@@ -16,7 +16,7 @@ class Utilities {
         return Utilities()
     }()
     
-    func generateBandID() -> String {
+    func generateTeanID() -> String {
         let length = 24
         
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

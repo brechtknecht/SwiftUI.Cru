@@ -1,5 +1,5 @@
 //
-//  BandList.swift
+//  TeamList.swift
 //  Backstage
 //
 //  Created by Felix Tesche on 29.06.21.
@@ -7,33 +7,33 @@
 
 import SwiftUI
 
-struct BandList: View {
+struct TeamList: View {
     
     @ObservedObject var user = realmSync.user
     
     var body: some View {
         
         VStack {
-            ForEach(user.bands, id: \.self) { band in
+            ForEach(user.teams, id: \.self) { team in
                 VStack (alignment: .leading) {
                     HStack {
-                        Text("\(band.name)").font(.title).fontWeight(.semibold)
+                        Text("\(team.name)").font(.title).fontWeight(.semibold)
                         Spacer()
-                        BandIcon()
+                        TeamIcon()
                     }
                     
                     HStack {
-                        Text("\(band.events.count) Zugehörige Verabredungen")
+                        Text("\(team.events.count) Zugehörige Verabredungen")
                     }
                     
                     HStack {
                         Spacer()
 
                         VStack (alignment: .center){
-                            QRCodeView(url: band.bandRef)
+                            QRCodeView(url: team.teamRef)
                             
                             Button(action: {
-                                UIPasteboard.general.string = band.bandRef
+                                UIPasteboard.general.string = team.teamRef
                             }) {
                                 VStack {
                                     HStack {
@@ -43,7 +43,7 @@ struct BandList: View {
                                 }
                             }
                             
-                            Text("Invite others to your Band with this code").font(Font.callout)
+                            Text("Invite others to your Team with this code").font(Font.callout)
                         }
                         
                         
@@ -61,8 +61,8 @@ struct BandList: View {
     }
 }
 
-struct BandList_Previews: PreviewProvider {
+struct TeamList_Previews: PreviewProvider {
     static var previews: some View {
-        BandList()
+        TeamList()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  BandDB.swift
+//  TeamDB.swift
 //  Backstage
 //
 //  Created by Felix Tesche on 31.05.21.
@@ -8,13 +8,13 @@
 import Foundation
 import RealmSwift
 
-@objcMembers class BandDB: Object {
+@objcMembers class TeamDB: Object {
     dynamic var partition   = ""
     
     dynamic var id          = 0
     dynamic var _id         = 0
     dynamic var name        = ""
-    dynamic var bandRef     = ""
+    dynamic var teamRef     = ""
     dynamic var adminID     = 0
     let members             = RealmSwift.List<UserDB>()
     let events              = RealmSwift.List<EventDB>()

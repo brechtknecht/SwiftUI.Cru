@@ -11,5 +11,5 @@ enum UserDBKeys: String {
     case id     = "id"
     case _id    = "_id"
     case name   = "name"
-    case bandRef = "bandRef"
+    case teamRef = "teamRef"
 }

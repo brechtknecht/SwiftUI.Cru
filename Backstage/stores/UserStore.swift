@@ -10,7 +10,7 @@ import RealmSwift
 import SwiftUI
 
 final class UserStore: ObservableObject {
-    @EnvironmentObject var bandStore : BandStore
+    @EnvironmentObject var teamStore : TeamStore
     
     private var results: Results<UserDB>
     
@@ -87,10 +87,10 @@ extension UserStore {
         }
     }
     
-    func removeBand(userID: Int, index: Int) {
+    func removeTeam(userID: Int, index: Int) {
         objectWillChange.send()
         
-        if(index == nil) { print("Cannot Remove Band from User — index parameter was not provided");  return }
+        if(index == nil) { print("Cannot Remove Team from User — index parameter was not provided");  return }
         
         let previousUser = self.findByID(id: userID)!
         
@@ -104,14 +104,14 @@ extension UserStore {
             try realm.write {
                 let updatedUser = UserDB()
                 
-                updatedUser.bands.append(objectsIn: previousUser.bands)
-                updatedUser.bands.remove(at: index)
+                updatedUser.teams.append(objectsIn: previousUser.teams)
+                updatedUser.teams.remove(at: index)
                 
                 realm.create(UserDB.self,
                                  value: [
                                     "_id": userID,
                                     "id" : userID,
-                                    "bands": updatedUser.bands],
+                                    "teams": updatedUser.teams],
                                  update: .modified)
                 
             }
@@ -121,10 +121,10 @@ extension UserStore {
         }
     }
     
-    func addBand(user: UserDB, band: BandDB? = nil) {
+    func addTeam(user: UserDB, team: TeamDB? = nil) {
         objectWillChange.send()
         
-        if(band == nil) { print("Cannot add Band to User — band parameter was not provided");  return }
+        if(team == nil) { print("Cannot add Team to User — team parameter was not provided");  return }
         
         let previousUser = user
         
@@ -138,14 +138,14 @@ extension UserStore {
             try realm.write {
                 let updatedUser = UserDB()
                 
-                updatedUser.bands.append(objectsIn: previousUser.bands)
-                updatedUser.bands.append(band!)
+                updatedUser.teams.append(objectsIn: previousUser.teams)
+                updatedUser.teams.append(team!)
 
                 realm.create(UserDB.self,
                                  value: [
                                     "_id": previousUser.id,
                                     "id" : previousUser.id,
-                                    "bands": updatedUser.bands],
+                                    "teams": updatedUser.teams],
                                  update: .modified)
             }
             
@@ -159,13 +159,13 @@ extension UserStore {
     // welche in der Datenbank danach sucht und dann nach den mitgegebenen
     // Parametern aktualisiert.
     /// text und isDone sind hierbei optional
-    func update(userID: Int, name: String? = nil, band: BandDB? = nil) {
+    func update(userID: Int, name: String? = nil, team: TeamDB? = nil) {
         // TODO: Add Realm update code below
         objectWillChange.send()
         
         let previousUser = self.findByID(id: userID)!
         
-        print("ADDING BAND TO USER \(band?.name)")
+        print("ADDING TEAM TO USER \(team?.name)")
         
         do {
             let partitionValue = "all-the-data"
@@ -183,18 +183,18 @@ extension UserStore {
                 } else {
                     updatedUser.name = name!
                 }
-                if(band == nil) {
-                    updatedUser.bands = previousUser.bands
+                if(team == nil) {
+                    updatedUser.teams = previousUser.teams
                 } else {
-                    updatedUser.bands.append(objectsIn: previousUser.bands)
-                    updatedUser.bands.append(band!)
+                    updatedUser.teams.append(objectsIn: previousUser.teams)
+                    updatedUser.teams.append(team!)
                 }
 
                 realm.create(UserDB.self,
                              value: [
                                 "_id": userID ,
                                 "id" : userID,
-                                "bands": updatedUser.bands],
+                                "teams": updatedUser.teams],
                              update: .modified)
             }
             

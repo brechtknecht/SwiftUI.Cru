@@ -11,10 +11,10 @@ struct UserPreferencesView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @EnvironmentObject var userStore    : UserStore
-    @EnvironmentObject var bandStore    : BandStore
+    @EnvironmentObject var teamStore    : TeamStore
     @EnvironmentObject var eventStore   : EventStore
     
-    @Binding var bandID : String
+    @Binding var teamID : String
     
     @ObservedObject var user : UserDB = realmSync.user
     
@@ -23,11 +23,11 @@ struct UserPreferencesView: View {
             Form {
                 Text("\(user.name)")
 
-                Section (header: Text("Bands")) {
-                    ForEach(user.bands, id: \.self) { band in
+                Section (header: Text("Teams")) {
+                    ForEach(user.teams, id: \.self) { team in
                         VStack {
-                            Text("\(band.name)").fontWeight(.semibold)
-                            Text("\(band.bandRef) (REF)")
+                            Text("\(team.name)").fontWeight(.semibold)
+                            Text("\(team.teamRef) (REF)")
                         }
                     }.onDelete(perform: delete)
                 }
@@ -38,9 +38,9 @@ struct UserPreferencesView: View {
                     print("\(user)")
                 }
                 
-                Button("Display all Bands") {
-                    bandStore.bands
-                    print("\(bandStore.bands)")
+                Button("Display all Teams") {
+                    teamStore.teams
+                    print("\(teamStore.teams)")
                 }
                 
                 Button("Display all Events") {
@@ -54,7 +54,7 @@ struct UserPreferencesView: View {
     
     private func delete(with indexSet: IndexSet) {
         indexSet.forEach ({ index in
-            userStore.removeBand(userID: self.user.id, index: index)
+            userStore.removeTeam(userID: self.user.id, index: index)
         })
     }
 }

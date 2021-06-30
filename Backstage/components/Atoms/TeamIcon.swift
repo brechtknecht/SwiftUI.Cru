@@ -1,5 +1,5 @@
 //
-//  BandIcon.swift
+//  TeamIcon.swift
 //  Backstage
 //
 //  Created by Felix Tesche on 29.06.21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BandIcon: View {
+struct TeamIcon: View {
     var body: some View {
         Rectangle()
             .fill(Color.blue)
@@ -17,8 +17,8 @@ struct BandIcon: View {
     }
 }
 
-struct BandIcon_Previews: PreviewProvider {
+struct TeamIcon_Previews: PreviewProvider {
     static var previews: some View {
-        BandIcon()
+        TeamIcon()
     }
 }

@@ -10,26 +10,26 @@ import CodeScanner
 
 struct TeamSignifierCard: View {
     @State var invalid: Bool = false
-    @Binding var bandID : String
+    @Binding var teamID : String
         
     @State private var isShowingScanner = false
-    @State private var sheetNewBand: Bool = false
+    @State private var sheetNewTeam: Bool = false
     
     @EnvironmentObject var userStore : UserStore
-    @EnvironmentObject var bandStore : TeamStore
+    @EnvironmentObject var teamStore : TeamStore
     
     @ObservedObject var user : UserDB = realmSync.user
     
     var body: some View {
         VStack {
-            Text("Create new band").font(.title3).fontWeight(Font.Weight.semibold)
+            Text("Create new team").font(.title3).fontWeight(Font.Weight.semibold)
             Spacer(minLength: 16)
             Button(action: {
-                self.sheetNewBand = true
+                self.sheetNewTeam = true
             }) {
-                ButtonFullWidth(label: .constant("Register your band"));
+                ButtonFullWidth(label: .constant("Register your team"));
             }
-            .sheet(isPresented: $sheetNewBand,
+            .sheet(isPresented: $sheetNewTeam,
                     onDismiss: { print("finished!") },
                     content: { NewTeam() })
         }
@@ -40,28 +40,28 @@ struct TeamSignifierCard: View {
         Spacer(minLength: 32)
         
         VStack {
-            Text("Join existing band").font(.title3).fontWeight(Font.Weight.semibold)
+            Text("Join existing Team").font(.title3).fontWeight(Font.Weight.semibold)
             Spacer(minLength: 16)
             Button(action: {
                 self.isShowingScanner = true
                 
             }) {
-                ButtonFullWidth(label: .constant("Scan Band Code"), icon: "qrcode.viewfinder");
+                ButtonFullWidth(label: .constant("Scan Team Code"), icon: "qrcode.viewfinder");
             }
             .sheet(isPresented: $isShowingScanner) {
                 CodeScannerView(codeTypes: [.qr], simulatedData: "kQiMlPaIu6WVRCcDtH6xs5Kn", completion: self.handleScan)
             }
             Text("or enter manually").font(Font.callout)
             
-            TextField(LocalizedStringKey("Enter existing Band Code"),
-                      text: $bandID,
+            TextField(LocalizedStringKey("Enter existing Team Code"),
+                      text: $teamID,
                       onEditingChanged: { changing in
                         if !changing {
-                            self.bandID = self.bandID.trimmingCharacters(in: .whitespacesAndNewlines)
+                            self.teamID = self.teamID.trimmingCharacters(in: .whitespacesAndNewlines)
                         } else {
                             self.invalid = false
                         }},
-                      onCommit: self.setBandID)
+                      onCommit: self.setTeamID)
                 .padding(.all, 8)
                 .background(ColorManager.primaryLight)
                 .cornerRadius(8.0)
@@ -69,7 +69,7 @@ struct TeamSignifierCard: View {
                 .multilineTextAlignment(.center)
                 .autocapitalization(.none)
             
-            Text("This is your unique Band ID, share it to let your other bandmembers come on board").font(Font.caption2)
+            Text("This is your unique Team ID, share it to let your other team-members come on board").font(Font.caption2)
         }
         .padding(.all, 8)
         .background(ColorManager.backgroundForm)
@@ -81,13 +81,13 @@ struct TeamSignifierCard: View {
         
         switch result {
             case .success(let decoded):
-                let band = bandStore.findByTeamReference(referenceString: decoded)
+                let team = teamStore.findByTeamReference(referenceString: decoded)
                             
-                if(band == nil) { print("No Band found for your scan. — DECODED VALUE \(decoded)"); return }
+                if(team == nil) { print("No Team found for your scan. — DECODED VALUE \(decoded)"); return }
                 
-                print("SCAN ADDING BAND \(band)")
-                userStore.addTeam(user: user, team: band)
-                bandStore.addMember(team: band, member: user)
+                print("SCAN ADDING TEAM \(team)")
+                userStore.addTeam(user: user, team: team)
+                teamStore.addMember(team: team, member: user)
                 
                 
             case .failure(let error):
@@ -98,8 +98,8 @@ struct TeamSignifierCard: View {
     
     
     
-    func setBandID() -> Void {
-        print("\(self.bandID)")
-        realmSync.setPartitionValue(value: self.bandID)
+    func setTeamID() -> Void {
+        print("\(self.teamID)")
+        realmSync.setPartitionValue(value: self.teamID)
     }
 }

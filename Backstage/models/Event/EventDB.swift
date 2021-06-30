@@ -23,9 +23,9 @@ class EventDB: Object, ObjectKeyIdentifiable {
     @objc dynamic var fee                   = 0
     @objc dynamic var type                  = ""
     
-    private let assignedBands = LinkingObjects(fromType: BandDB.self, property: "events")
-    var assignedBand: BandDB {
-        return self.assignedBands.first ?? BandDB()
+    private let assignedTeams = LinkingObjects(fromType: TeamDB.self, property: "events")
+    var assignedTeam: TeamDB {
+        return self.assignedTeams.first ?? TeamDB()
     }
     
     let settlements                         = RealmSwift.List<Int>()

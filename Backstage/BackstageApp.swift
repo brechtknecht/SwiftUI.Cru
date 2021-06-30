@@ -25,7 +25,7 @@ struct BackstageApp: SwiftUI.App {
                 /* 🚧 Do not change order! Otherwise User Configuration will crash */
                 
                 .environmentObject(UserStore(realm: RealmPersistent.initializer()))
-                .environmentObject(BandStore(realm: RealmPersistent.initializer()))
+                .environmentObject(TeamStore(realm: RealmPersistent.initializer()))
                 .environmentObject(VenueStore(realm: RealmPersistent.initializer()))
                 .environmentObject(EventStore(realm: RealmPersistent.initializer()))
                 .environmentObject(SettlementStore(realm: RealmPersistent.initializer()))

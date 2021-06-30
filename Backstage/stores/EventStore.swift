@@ -26,8 +26,8 @@ final class EventStore: ObservableObject {
         var events = [Int]()
         
         // Add all events saved in the user-data
-        realmSync.user.bands.forEach { band in
-            band.events.forEach { (event) in
+        realmSync.user.teams.forEach { team in
+            team.events.forEach { (event) in
                 events.append(event.id)
             }
         }
@@ -61,7 +61,7 @@ final class EventStore: ObservableObject {
 
 // MARK: - CRUD Actions
 extension EventStore {
-    func create(id: Int, name: String, assignedBand: BandDB, date: Date, fee: Int, type: String, venueID: Int, imageUUID: String, backgroundColorHex: String) {
+    func create(id: Int, name: String, assignedTeam: TeamDB, date: Date, fee: Int, type: String, venueID: Int, imageUUID: String, backgroundColorHex: String) {
         
         objectWillChange.send()
         

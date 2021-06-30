@@ -15,7 +15,7 @@ struct User: Identifiable, Hashable {
     let id      : Int
     let _id     : Int
     let name    : String
-    var bands   : RealmSwift.List<BandDB>
+    var teams   : RealmSwift.List<TeamDB>
 }
 
 extension User {
@@ -25,6 +25,6 @@ extension User {
         id      = userDB.id
         _id     = userDB._id
         name    = userDB.name
-        bands   = userDB.bands
+        teams   = userDB.teams
     }
 }

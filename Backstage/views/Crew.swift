@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum ActiveCrewSheet: Identifiable {
-    case bands, userPreferences
+    case teams, userPreferences
     
     var id: Int {
         hashValue
@@ -23,11 +23,11 @@ struct Crew: View {
     @State var activeSheet: ActiveCrewSheet?
     
     @State private var userSheet = false
-    @State private var sheetNewBand: Bool = false
+    @State private var sheetNewTeam: Bool = false
     
     @State private var username: String = ""
     
-    @EnvironmentObject var bandStore : BandStore
+    @EnvironmentObject var teamStore : TeamStore
     @EnvironmentObject var realmSync : RealmSync
     
     @EnvironmentObject var userStore : UserStore
@@ -51,34 +51,34 @@ struct Crew: View {
                     }
                 } else {
                     if(realmSync.partitionValue.isEmpty) {
-                        BandSignifierCard(bandID: $partitionValueInput)
+                        TeamSignifierCard(teamID: $partitionValueInput)
                     } else {
                     
-                        BandList()
+                        TeamList()
                                                         
                             
                         .navigationBarItems(
-                            leading: Menu("Deine Bands") {
+                            leading: Menu("Deine Gruppen") {
                                 let user = realmSync.user
                                 
-                                ForEach(user.bands, id: \.self) { band in
+                                ForEach(user.teams, id: \.self) { team in
                                     Button(action: {
-                                        realmSync.setPartitionValue(value: band.bandRef)
+                                        realmSync.setPartitionValue(value: team.teamRef)
                                     }) {
                                         HStack {
-                                            if(band.bandRef == realmSync.partitionValue) {
+                                            if(team.teamRef == realmSync.partitionValue) {
                                                 Image(systemName: "checkmark")
                                             }
-                                            Text("\(band.name)").fontWeight(.semibold)
+                                            Text("\(team.name)").fontWeight(.semibold)
                                         }
                                     }
                                 }
                                 Button(action: {
-                                    activeSheet = .bands
+                                    activeSheet = .teams
                                 }) {
                                     HStack {
                                         Image(systemName: "plus")
-                                        Text("New Band").fontWeight(.semibold)
+                                        Text("New Team").fontWeight(.semibold)
                                     }
                                 }
                             },
@@ -97,10 +97,10 @@ struct Crew: View {
             .navigationTitle(Text("Your Groups"))
         }.sheet(item: $activeSheet) { item in
             switch item {
-            case .bands:
-                BandSignifierCard(bandID: self.$partitionValueInput)
+            case .teams:
+                TeamSignifierCard(teamID: self.$partitionValueInput)
             case .userPreferences:
-                UserPreferencesView(bandID: $partitionValueInput)
+                UserPreferencesView(teamID: $partitionValueInput)
             }
         }
     }

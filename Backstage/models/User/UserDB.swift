@@ -14,7 +14,7 @@ import RealmSwift
     dynamic var id      = 0
     dynamic var _id     = 0
     dynamic var name    = ""
-    var bands = RealmSwift.List<BandDB>()
+    var teams = RealmSwift.List<TeamDB>()
     
     override static func primaryKey() -> String? {
         "_id"
