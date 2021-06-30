@@ -19,7 +19,7 @@ struct Event: Identifiable, Hashable {
     let imageUUID           : String
     let imageData           : Data
     let backgroundColorHex  : String
-    let settlements         : RealmSwift.List<Int>
+    let settlements         : RealmSwift.List<SettlementDB>
     let transports          : RealmSwift.List<Int>
     let persons             : RealmSwift.List<PersonDB>
     let timetable           : Int

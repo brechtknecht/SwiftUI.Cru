@@ -16,7 +16,7 @@ struct Settlements: View {
     }()
     
     @Binding var sheetIsActive: ActiveSheet?
-    @Binding var eventID : Int
+    @State var currentEvent : EventDB
     
     @EnvironmentObject var settlementStore: SettlementStore
     @EnvironmentObject var eventStore : EventStore
@@ -24,30 +24,21 @@ struct Settlements: View {
     var body: some View {
         VStack (alignment: .leading){
             
-            let settlementIDs = eventStore.findByID(id: eventID)?.settlements ?? RealmSwift.List<Int>()
-            
-            if(settlementIDs.count > 0) {
+            if(currentEvent.settlements.count > 0) {
                 Text("Übernachtungemöglichkeit")
                     .foregroundColor(.gray)
                     .font(.body)
                     .textCase(.uppercase)
                     .padding(EdgeInsets(top: 22, leading: 16, bottom: 4, trailing: 16))
                 ScrollView(.horizontal, showsIndicators: false){
-                    
-                    
-                    
-    //                let viewModel = SettlementViewModel(eventID: eventID, eventStore: eventStore)
-                
                     HStack {
-                        ForEach(settlementIDs, id: \.self) { settlementID in
-                            let settlement = settlementStore.findByID(id: settlementID)
-                            
+                        ForEach(currentEvent.settlements, id: \.self) { settlement in
                             /// Unwrapping all the data needed
-                            let settlementLocation      = settlement?.location      ?? ""
-                            let settlementName          = settlement?.name          ?? ""
-                            let settlementArrivalDate   = settlement?.arrivalDate   ?? Date()
-                            let settlementDepartureDate = settlement?.departureDate ?? Date()
-                            let settlementPrice         = settlement?.price         ?? 0
+                            let settlementLocation      = settlement.location
+                            let settlementName          = settlement.name
+                            let settlementArrivalDate   = settlement.arrivalDate
+                            let settlementDepartureDate = settlement.departureDate
+                            let settlementPrice         = settlement.price
                             
                             Button(action: {
                                 self.sheetIsActive = .settlement
@@ -121,16 +112,5 @@ struct Settlements: View {
             }
         }
         .background(ColorManager.backgroundForm)
-    }
-}
-
-
-class SettlementViewModel: ObservableObject {
-    var eventStore: EventStore
-    private var settlementIDs: RealmSwift.List<Int>
-    
-    init(eventID: Int, eventStore: EventStore) {
-        self.eventStore = eventStore
-        self.settlementIDs = eventStore.findByID(id: eventID)?.settlements ?? RealmSwift.List<Int>()
     }
 }

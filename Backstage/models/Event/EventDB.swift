@@ -28,8 +28,9 @@ class EventDB: Object, ObjectKeyIdentifiable {
         return self.assignedTeams.first ?? TeamDB()
     }
     
-    let settlements                         = RealmSwift.List<Int>()
     let transports                          = RealmSwift.List<Int>( )
+    
+    let settlements                         = RealmSwift.List<SettlementDB>()
     let persons                             = RealmSwift.List<PersonDB>()
     
     // Defines the standard key — realm needs this for identication

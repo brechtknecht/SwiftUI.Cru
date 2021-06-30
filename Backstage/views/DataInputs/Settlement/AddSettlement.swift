@@ -125,7 +125,9 @@ struct AddSettlement: View {
                             currency:           settlementCurrency
                         )
                         
-                        eventStore.addSettlementToList(eventID: eventReference, settlementID: settlementUUID)
+                        let settlement = settlementStore.findByID(id: settlementUUID)!
+                        
+                        eventStore.addSettlementToList(eventID: eventReference, settlement: settlement)
                     }
                     
                     // Pop Navigation State

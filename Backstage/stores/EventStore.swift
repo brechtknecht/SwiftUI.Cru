@@ -164,7 +164,7 @@ extension EventStore {
         }
     }
     
-    func addSettlementToList (eventID: Int, settlementID: Int) {
+    func addSettlementToList (eventID: Int, settlement: SettlementDB) {
         let event = self.findByID(id: eventID)
         
         do {
@@ -175,7 +175,7 @@ extension EventStore {
             
             let realm = try! Realm(configuration: configuration)
             try! realm.write {
-                event?.settlements.append(settlementID)
+                event?.settlements.append(settlement)
             }
         }
     }
