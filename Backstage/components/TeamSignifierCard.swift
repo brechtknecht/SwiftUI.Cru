@@ -49,7 +49,9 @@ struct TeamSignifierCard: View {
                 ButtonFullWidth(label: "Scan Team Code", icon: "qrcode.viewfinder");
             }
             .sheet(isPresented: $isShowingScanner) {
-                CodeScannerView(codeTypes: [.qr], simulatedData: "kQiMlPaIu6WVRCcDtH6xs5Kn", completion: self.handleScan)
+                // Team ID: 5176337727020190607
+                // TeamRef: Mhf3bzunY9Q1zNr9JfaIU8Rh
+                CodeScannerView(codeTypes: [.qr], simulatedData: "Mhf3bzunY9Q1zNr9JfaIU8Rh", completion: self.handleScan)
             }
             Text("or enter manually").font(Font.callout)
             

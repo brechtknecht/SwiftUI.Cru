@@ -95,12 +95,10 @@ extension TeamStore {
         }
     }
     
-    func addEvent(team: TeamDB, event: EventDB? = nil) {
+    func addEvent(team: TeamDB? = nil, event: EventDB? = nil) {
         if(event == nil)        { print("Cannot add Event to Team — event parameter was not provided"); return }
         if(team  == nil)        { print("Cannot add Event to Team — Previous Team was not found"); return}
-        
-        let previousTeam = team
-        
+                
         objectWillChange.send()
         
         do {
@@ -111,21 +109,8 @@ extension TeamStore {
             
             let realm = try Realm(configuration: configuration)
             
-            try realm.write {
-                let updatedTeam = TeamDB()
-                
-                if(!previousTeam.events.isEmpty){
-                    updatedTeam.events.append(objectsIn: previousTeam.events)
-                }
-                updatedTeam.events.append(event!)
-                
-                realm.create(TeamDB.self,
-                     value: [
-                        "_id"     : team.id,
-                        "id"      : team._id,
-                        "events"  : updatedTeam.events
-                     ],
-                     update: .modified)
+            try! realm.write {
+                team!.events.append(event!)
             }
         } catch let err {
             print(err.localizedDescription)

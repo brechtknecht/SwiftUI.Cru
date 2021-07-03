@@ -165,7 +165,7 @@ extension UserStore {
         
         let previousUser = self.findByID(id: userID)!
         
-        print("ADDING TEAM TO USER \(team?.name)")
+        print("ADDING TEAM TO USER \(String(describing: team?.name))")
         
         do {
             let partitionValue = "all-the-data"
