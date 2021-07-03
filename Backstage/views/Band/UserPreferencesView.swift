@@ -34,8 +34,8 @@ struct UserPreferencesView: View {
                 
                 Button("Display UserData") {
                     let userID = realmSync.getCurrentUser()
-                    let user = userStore.findByID(id: userID) ?? UserDB()
-                    print("\(user)")
+//                    let user = userStore.findByID(id: userID) ?? UserDB()
+//                    print("\(user)")
                 }
                 
                 Button("Display all Teams") {
