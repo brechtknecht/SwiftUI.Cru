@@ -66,7 +66,7 @@ struct SelectionItemView: View {
                         Button(action: {
                             self.addNewVenue.toggle()
                         }) {
-                            ButtonFullWidth(label: $actionText);
+                            ButtonFullWidth(label: actionText);
                         }.sheet(isPresented: $addNewVenue) {
                             AddVenueForm(locationService: LocationService())
                         }

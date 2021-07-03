@@ -65,7 +65,7 @@ struct NewTeam: View {
                             
                             self.presentationMode.wrappedValue.dismiss()
                         }) {
-                            ButtonFullWidth(label: .constant("Create new Team"));
+                            ButtonFullWidth(label: "Create new Team");
                         }
                     }.padding(.horizontal, 16)
                 }

@@ -27,7 +27,7 @@ struct TeamSignifierCard: View {
             Button(action: {
                 self.sheetNewTeam = true
             }) {
-                ButtonFullWidth(label: .constant("Register your team"));
+                ButtonFullWidth(label: "Register your team");
             }
             .sheet(isPresented: $sheetNewTeam,
                     onDismiss: { print("finished!") },
@@ -46,7 +46,7 @@ struct TeamSignifierCard: View {
                 self.isShowingScanner = true
                 
             }) {
-                ButtonFullWidth(label: .constant("Scan Team Code"), icon: "qrcode.viewfinder");
+                ButtonFullWidth(label: "Scan Team Code", icon: "qrcode.viewfinder");
             }
             .sheet(isPresented: $isShowingScanner) {
                 CodeScannerView(codeTypes: [.qr], simulatedData: "kQiMlPaIu6WVRCcDtH6xs5Kn", completion: self.handleScan)

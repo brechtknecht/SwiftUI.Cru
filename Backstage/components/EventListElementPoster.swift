@@ -61,7 +61,7 @@ struct EventListElementPoster: View {
                     
                     VStack (alignment: .center){
                         HStack {
-                            Attendants(/* event.attendants */)
+//                            Attendants(/* event.attendants */)
                             
                             Spacer()
                             

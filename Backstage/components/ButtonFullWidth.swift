@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ButtonFullWidth: View {
-    @Binding var label: String
+    @State var label: String
     @State var backgroundColor : Color = ColorManager.primaryDark
     @State var icon : String = ""
     
@@ -32,6 +32,6 @@ struct ButtonFullWidth_Previews: PreviewProvider {
     @State static var label = "Testtext aus Preview"
     
     static var previews: some View {
-        ButtonFullWidth(label: $label)
+        ButtonFullWidth(label: label)
     }
 }

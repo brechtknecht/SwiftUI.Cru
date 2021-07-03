@@ -7,6 +7,7 @@
 
 
 import SwiftUI
+import RealmSwift
 
 
 enum ActiveSheet: Identifiable {
@@ -31,12 +32,9 @@ struct EventDetail: View {
     @Environment(\.editMode) var editMode
     
     var body: some View {
-        
         let viewModel = EventDetailViewModel(eventStore: eventStore, eventID: eventID, venueStore: venueStore)
 
-        
         let currentEvent = eventStore.findByID(id: eventID) ?? EventDB.init()
-        
         
         ScrollView {
             VStack (alignment: .leading, spacing: 0){
@@ -139,18 +137,24 @@ struct EventDetail: View {
                         .textCase(.uppercase)
                         .padding(EdgeInsets(top: 22, leading: 16, bottom: 0, trailing: 16))
                     
-                    Button(action: {
-                        print("do something!")
-                    }) {
-                        ZStack {
-                            Rectangle()
-                                .fill(ColorManager.responsiveLight)
-                                .cornerRadius(12)
-                                Text("Am Event Teilnehmen")
-                            .padding(.all, 16)  
-                        }
-                        
+                    HStack {
+                        Attendants(attendants: viewModel.getAttendants())
                     }
+                    
+                    if(!viewModel.userIsAttendant()) {
+                        Button(action: {
+                            viewModel.addAttendant()
+                        }) {
+                            ButtonFullWidth(label: "Am Event Teilnehmen")
+                        }.padding(.horizontal, 16)
+                    } else {
+                        Button(action: {
+                            viewModel.removeAttendant()
+                        }) {
+                            ButtonFullWidth(label: "Aus Event austreten")
+                        }.padding(.horizontal, 16)
+                    }
+                    
                     
                 }
                 .background(ColorManager.backgroundForm)
@@ -268,7 +272,7 @@ class EventDetailViewModel: ObservableObject {
     
     func generateBackgroundFromImage () -> Color {
         let event = eventStore.findByID(id: self.eventID)
-        
+         
         let color = Color(hex: event?.backgroundColorHex ?? "#000000")
         
         return color
@@ -276,6 +280,36 @@ class EventDetailViewModel: ObservableObject {
     
     func getVenue () -> VenueDB {
         return venueStore.findByID(id: self.currentEvent.venueID) ?? VenueDB()
+    }
+    
+    func getAttendants() -> RealmSwift.List<UserDB> {
+        return currentEvent.attendants
+    }
+    
+    func addAttendant() -> Void {
+        let user = realmSync.user
+        
+        eventStore.addAttendant(event: currentEvent, attendingUser: user)
+    }
+    
+    func removeAttendant() -> Void {
+        let user = realmSync.user
+        
+        eventStore.removeAttendant(event: currentEvent, attendingUser: user)
+    }
+    
+    
+    func userIsAttendant() -> Bool {
+        let user = realmSync.user
+        let attendants = self.getAttendants()
+        
+        for attendant in attendants {
+            if(attendant.id == user.id) {
+                return true
+            }
+        }
+        
+        return false
     }
     
     func getTeam () -> String {

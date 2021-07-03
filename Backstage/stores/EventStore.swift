@@ -180,6 +180,45 @@ extension EventStore {
         }
     }
     
+    func addAttendant (event: EventDB? = nil, attendingUser: UserDB? = nil) {
+        if(event == nil) { print("Cannot add Attendand to Event, event parameter was not provided");  return }
+        if(attendingUser == nil) { print("Cannot add Attendand to Event — user parameter was not provided");  return }
+        
+        do {
+            let partitionValue = "all-the-data"
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try! Realm(configuration: configuration)
+            try! realm.write {
+                event!.attendants.append(attendingUser!)
+            }
+        }
+    }
+    
+    func removeAttendant (event: EventDB? = nil, attendingUser: UserDB? = nil) {
+        if(event == nil) { print("Cannot remove Attendant from event: event parameter was not provided");  return }
+        if(attendingUser == nil) { print("Cannot remove Attendant from event: user parameter was not provided");  return }
+        
+        do {
+            let partitionValue = "all-the-data"
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try! Realm(configuration: configuration)
+            try! realm.write {
+                guard let index = event!.attendants.index(of: attendingUser!) else {
+                    print("Cannot remove Attendant from event: index of attendant was not found in events attendants list")
+                    return
+                }
+                
+                event!.attendants.remove(at: index)
+            }
+        }
+    }
+    
     func addTransportToList (eventID: Int, transportID: Int) {
         let event = self.findByID(id: eventID)
         
