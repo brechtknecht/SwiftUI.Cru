@@ -18,7 +18,7 @@ struct TeamSignifierCard: View {
     @EnvironmentObject var userStore : UserStore
     @EnvironmentObject var teamStore : TeamStore
     
-    @ObservedObject var user : UserDB = realmSync.user
+    @EnvironmentObject var realmSync : RealmSync
     
     var body: some View {
         VStack {
@@ -88,8 +88,8 @@ struct TeamSignifierCard: View {
                 if(team == nil) { print("No Team found for your scan. — DECODED VALUE \(decoded)"); return }
                 
                 print("SCAN ADDING TEAM \(team)")
-                userStore.addTeam(user: user, team: team)
-                teamStore.addMember(team: team, member: user)
+                userStore.addTeam(user: self.realmSync.user, team: team)
+                teamStore.addMember(team: team, member: self.realmSync.user)
                 
                 
             case .failure(let error):

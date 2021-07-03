@@ -16,15 +16,15 @@ struct UserPreferencesView: View {
     
     @Binding var teamID : String
     
-    @ObservedObject var user : UserDB = realmSync.user
+    @EnvironmentObject var realmSync : RealmSync
     
     var body: some View {
         NavigationView {
             Form {
-                Text("\(user.name)")
+                Text("\(self.realmSync.user.name)")
 
                 Section (header: Text("Teams")) {
-                    ForEach(user.teams, id: \.self) { team in
+                    ForEach(self.realmSync.user.teams, id: \.self) { team in
                         VStack {
                             Text("\(team.name)").fontWeight(.semibold)
                             Text("\(team.teamRef) (REF)")
@@ -54,7 +54,7 @@ struct UserPreferencesView: View {
     
     private func delete(with indexSet: IndexSet) {
         indexSet.forEach ({ index in
-            userStore.removeTeam(userID: self.user.id, index: index)
+            userStore.removeTeam(userID: self.realmSync.user.id, index: index)
         })
     }
 }

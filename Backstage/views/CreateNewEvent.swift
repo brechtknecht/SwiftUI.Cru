@@ -50,7 +50,7 @@ struct CreateNewEvent: View {
     // Computed Properties
     @ObservedObject var selectVenueViewModel = SelectVenueViewModel()
     
-    @ObservedObject var user : UserDB = realmSync.user
+    @EnvironmentObject var realmSync : RealmSync
     
     var body: some View {
         NavigationView {
@@ -75,7 +75,7 @@ struct CreateNewEvent: View {
                     Section (header: Text("Zugehörige Gruppe")) {
                         Section {
                             Picker("Zugehörige Gruppe", selection: $assignedTeam) {
-                                ForEach(user.teams, id: \.self) {
+                                ForEach(self.realmSync.user.teams, id: \.self) {
                                     Text($0.name).tag($0)
                                 }
                             }

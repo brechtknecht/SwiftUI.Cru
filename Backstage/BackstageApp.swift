@@ -20,8 +20,8 @@ struct BackstageApp: SwiftUI.App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(realmSync)
                 .environment(\.realmConfiguration, self.initializeConfiguration())
+                .environmentObject(realmSync)
                 /* 🚧 Do not change order! Otherwise User Configuration will crash */
                 
                 .environmentObject(UserStore(realm: RealmPersistent.initializer()))

@@ -25,14 +25,18 @@ final class EventStore: ObservableObject {
     var separatedEvents: [Event] {
         var events = [Int]()
         
-        // Add all events saved in the user-data
-        realmSync.user.teams.forEach { team in
-            team.events.forEach { (event) in
-                events.append(event.id)
+        if(realmSync.user.id != 0) {
+            // Add all events saved in the user-data
+            realmSync.user.teams.forEach { team in
+                team.events.forEach { (event) in
+                    events.append(event.id)
+                }
             }
+            
+            return separated.filter("id IN %@", events).map(Event.init)
+        } else {
+            return [Event]()
         }
-        
-        return separated.filter("id IN %@", events).map(Event.init)
     }
     
     // Load Items from the Realm Database

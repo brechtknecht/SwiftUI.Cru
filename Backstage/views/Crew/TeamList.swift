@@ -9,12 +9,12 @@ import SwiftUI
 
 struct TeamList: View {
     
-    @ObservedObject var user = realmSync.user
+    @EnvironmentObject var realmSync : RealmSync
     
     var body: some View {
         
         VStack {
-            ForEach(user.teams, id: \.self) { team in
+            ForEach(self.realmSync.user.teams, id: \.self) { team in
                 VStack (alignment: .leading) {
                     HStack {
                         Text("\(team.name)").font(.title).fontWeight(.semibold)

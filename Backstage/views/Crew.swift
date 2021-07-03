@@ -31,7 +31,7 @@ struct Crew: View {
     @EnvironmentObject var realmSync : RealmSync
     
     @EnvironmentObject var userStore : UserStore
-        
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -45,18 +45,16 @@ struct Crew: View {
                         
                         realmSync.setCurrentUser(value: id)
                         
-//                        let user = userStore.findByID(id: id)
-//                        
-//                        realmSync.setCurrentUserData(user: user ?? UserDB())
+                        let user = userStore.findByID(id: id)
+                        
+                        realmSync.setCurrentUserData(user: user ?? UserDB())
                     }
                 } else {
-                    if(realmSync.partitionValue.isEmpty) {
-                        TeamSignifierCard(teamID: $partitionValueInput)
-                    } else {
                     
-                        TeamList()
-                                                        
-                            
+                    
+                    TeamList()
+                        
+                        
                         .navigationBarItems(
                             leading: Menu("Deine Gruppen") {
                                 let user = realmSync.user
@@ -91,7 +89,6 @@ struct Crew: View {
                                 }
                             }
                         )
-                    }
                 }
             }
             .navigationTitle(Text("Your Groups"))

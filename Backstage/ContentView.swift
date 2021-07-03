@@ -35,27 +35,15 @@ struct ContentView: View {
                 )
             })
 
-        }.onAppear{
-            self.loadPartitionValueFromUserDefaults()
-            
+        }.onAppear{            
             self.loadCurrentUserFromUserDefaults()
-        }
-    }
-    
-    func loadPartitionValueFromUserDefaults () -> Void {
-        let defaults = UserDefaults.standard
-        
-        let defaultPartitionValue = defaults.value(forKey: "partitionValue") as? String
-        
-        if(defaultPartitionValue != "") {
-            realmSync.setPartitionValue(value: defaultPartitionValue ?? "")
         }
     }
     
     func loadCurrentUserFromUserDefaults () -> Void {
         let defaults = UserDefaults.standard
         
-        guard var defaultUser = defaults.value(forKey: "userID") else {
+        guard let defaultUser = defaults.value(forKey: "userID") else {
             print("No User-Data was found")
             return
         }

@@ -45,9 +45,10 @@ class RealmPersistent {
 class RealmSync : ObservableObject {
     @Published var partitionValue = ""
     @Published var userID = 0
-    @Published var user : UserDB = UserDB()
+    @Published var user : UserDB
     
     init() {
+        self.user = UserDB()
         self.syncInitializer()
     }
     
