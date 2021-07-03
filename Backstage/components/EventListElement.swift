@@ -63,35 +63,14 @@ struct EventListElement: View {
                         .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
                         .foregroundColor(.black)
                         .multilineTextAlignment(.leading)
-                    Text(event.type.uppercased())
+                    Text(event.assignedTeam.name)
                         .font(.headline)
                         .fontWeight(.bold)
                         .tracking(2.54)
                         .foregroundColor(.black)
                         .padding(.vertical, 4)
-                } .layoutPriority(4)
-    
-//                VStack (alignment: .leading){
-//                    Text(event.name)
-//                        .font(.title3)
-//                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-//                    Text(viewModel.convertDate(date: event.date))
-//                        .font(.subheadline)
-//
-//                    Spacer()
-//                    // IMPORTANT: Test if venue is nil — prevent crashes from empty data
-//                    if venue != nil {
-//                        let text = "\(viewModel.venueString(venue: venue))"
-//                        Text(text)
-//                            .font(.subheadline)
-//
-//
-//                    } else {
-//                        Text("Kein Veranstaltungsort angegeben")
-//                            .font(.subheadline)
-//                    }
-//                }
-//                .layoutPriority(4)
+                    
+                }.layoutPriority(4)
             }
             
             

@@ -19,6 +19,7 @@ class EventDB: Object, ObjectKeyIdentifiable {
     @objc dynamic var imageUUID             = ""
     @objc dynamic var imageData             = Data()
     @objc dynamic var backgroundColorHex    = ""
+    let attendants            = RealmSwift.List<UserDB>()
     @objc dynamic var timetable             = 0
     @objc dynamic var fee                   = 0
     @objc dynamic var type                  = ""

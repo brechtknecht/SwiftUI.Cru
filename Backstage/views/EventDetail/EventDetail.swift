@@ -64,7 +64,7 @@ struct EventDetail: View {
                     }
                     .frame(height: 500)
                     VStack {
-                        Text("\(viewModel.convertDate(date: viewModel.currentEvent.date)) — \(viewModel.getType())")
+                        Text("\(viewModel.convertDate(date: viewModel.currentEvent.date)) — \(viewModel.getTeam())")
                             .font(.headline)
                             .foregroundColor(Color.white)
                             .padding(.vertical, 2)
@@ -80,7 +80,6 @@ struct EventDetail: View {
                     }
                 }
                 VStack (alignment: .leading){
-                    
                     let adress = "\(viewModel.getVenue().street) \(viewModel.getVenue().location)"
                     
                     Text("Veranstaltungsort")
@@ -132,6 +131,26 @@ struct EventDetail: View {
                         }
                     }
                     .padding(EdgeInsets(top: 0, leading: 16, bottom: 8, trailing: 16))
+                    
+                    
+                    Text("Teilnehmer")
+                        .foregroundColor(.gray)
+                        .font(.body)
+                        .textCase(.uppercase)
+                        .padding(EdgeInsets(top: 22, leading: 16, bottom: 0, trailing: 16))
+                    
+                    Button(action: {
+                        print("do something!")
+                    }) {
+                        ZStack {
+                            Rectangle()
+                                .fill(ColorManager.responsiveLight)
+                                .cornerRadius(12)
+                                Text("Am Event Teilnehmen")
+                            .padding(.all, 16)  
+                        }
+                        
+                    }
                     
                 }
                 .background(ColorManager.backgroundForm)
@@ -259,8 +278,8 @@ class EventDetailViewModel: ObservableObject {
         return venueStore.findByID(id: self.currentEvent.venueID) ?? VenueDB()
     }
     
-    func getType () -> String {
-        return currentEvent.type.uppercased()
+    func getTeam () -> String {
+        return currentEvent.assignedTeam.name.uppercased()
     }
     
     func convertDate (date: Date) -> String {
