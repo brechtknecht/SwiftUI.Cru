@@ -57,9 +57,9 @@ struct NewTeam: View {
                             let teamID = UUID().hashValue
                             teamStore.create(teamID: teamID, name: self.teamName, teamRef: teamRef)
                             
-                            realmSync.setPartitionValue(value: teamRef)
-                            
                             let team = teamStore.findByID(id: teamID)
+                            
+                            print("CREATED TEAM :::: \(team) :::: ")
                             
                             userStore.addTeam(user: user, team: team)
                             

@@ -51,7 +51,7 @@ struct TeamSignifierCard: View {
             .sheet(isPresented: $isShowingScanner) {
                 // Team ID: 5176337727020190607
                 // TeamRef: Mhf3bzunY9Q1zNr9JfaIU8Rh
-                CodeScannerView(codeTypes: [.qr], simulatedData: "Mhf3bzunY9Q1zNr9JfaIU8Rh", completion: self.handleScan)
+                CodeScannerView(codeTypes: [.qr], simulatedData: "aCNZGIgnsErGeOQW6nMdSp3l", completion: self.handleScan)
             }
             Text("or enter manually").font(Font.callout)
             

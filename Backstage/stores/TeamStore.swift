@@ -33,21 +33,6 @@ final class TeamStore: ObservableObject {
         }
     }
     
-    func findWithFixedPartitionValue (partitionValue: String) -> TeamDB! {
-        do {
-            let partitionValue = "all-the-data"
-            let user = app.currentUser!
-            let configuration = user.configuration(partitionValue: partitionValue)
-            
-            let predicate = NSPredicate(format: "teamRef = %@", partitionValue as String)
-            
-            return try Realm(configuration: configuration).objects(TeamDB.self).filter(predicate).first
-        } catch let error {
-            print(error.localizedDescription)
-            return nil
-        }
-    }
-    
     func findByTeamReference (referenceString: String) -> TeamDB! {
         do {
             let partitionValue = "all-the-data"

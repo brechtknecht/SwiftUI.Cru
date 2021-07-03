@@ -10,9 +10,7 @@ import RealmSwift
 import Realm
 
 class RealmPersistent {
-    static func initializer(alternativePartitionValue: String? = nil) -> Realm {
-        realmSync.syncInitializer()
-        
+    static func initializer(alternativePartitionValue: String? = nil) -> Realm {        
         let partitionValue = "all-the-data"
         
         let user = app.currentUser ?? nil

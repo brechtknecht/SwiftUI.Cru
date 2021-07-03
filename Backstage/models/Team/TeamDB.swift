@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 @objcMembers class TeamDB: Object {
-    dynamic var partition   = ""
+    dynamic var partition   = "all-the-data"
     
     dynamic var id          = 0
     dynamic var _id         = 0
