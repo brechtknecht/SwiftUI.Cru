@@ -85,7 +85,7 @@ struct TeamSignifierCard: View {
             case .success(let decoded):
                 let team = teamStore.findByTeamReference(referenceString: decoded)
                             
-                if(team == nil) { print("No Team found for your scan. — DECODED VALUE \(decoded)"); return }
+                if(team == nil) { print("No Team found for your scan. — DECODED VALUE**\(decoded)**"); return }
                 
                 print("SCAN ADDING TEAM \(team)")
                 userStore.addTeam(user: self.realmSync.user, team: team)
