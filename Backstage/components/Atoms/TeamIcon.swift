@@ -8,17 +8,35 @@
 import SwiftUI
 
 struct TeamIcon: View {
+    
+    @State var teamName : String
+    @State var cornerRadius : String
+    
     var body: some View {
-        Rectangle()
-            .fill(Color.blue)
-            .frame(width: 28, height: 28)
-            .border(Color.black.opacity(0.05))
-            .cornerRadius(4.0)
+        ZStack {
+            if(cornerRadius == "top") {
+                Rectangle()
+                    .fill(ColorManager.accent)
+                    .cornerRadius(20, corners: [.topLeft, .topRight])
+            }
+            if(cornerRadius == "bottom") {
+                Rectangle()
+                    .fill(ColorManager.accent)
+                    .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
+            }
+            Text(teamName.uppercased())
+                .font(.subheadline)
+                .fontWeight(.bold)
+                .tracking(1.54)
+                .multilineTextAlignment(.leading)
+                .foregroundColor(Color.white)
+                .padding(.vertical, 4)
+        }
     }
 }
 
 struct TeamIcon_Previews: PreviewProvider {
     static var previews: some View {
-        TeamIcon()
+        TeamIcon(teamName: "Random", cornerRadius: "bottom")
     }
 }

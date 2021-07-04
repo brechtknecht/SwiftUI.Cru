@@ -110,7 +110,7 @@ extension ChecklistStore {
         }
     }
     
-    func addChecklistItem (checklist: ChecklistDB? = nil, checklistInput: String) {
+    func addChecklistItem (checklist: ChecklistDB? = nil, checklistInput: String, id: Int) {
         if(checklist == nil) { print("Cannot add Checklist Input to Chechlist, checklist parameter was not provided");  return }
 
         do {
@@ -123,6 +123,8 @@ extension ChecklistStore {
             try! realm.write {
                 let checklistItem = ChecklistItem()
                 
+                checklistItem._id = id
+                
                 checklistItem.label = checklistInput
                 
                 checklistItem.assignedUser = nil
@@ -132,7 +134,7 @@ extension ChecklistStore {
         }
     }
     
-    func updateChecklistItem (checklist: ChecklistDB? = nil, checklistInput: String) {
+    func updateChecklistItem (checklist: ChecklistDB? = nil, checklistItemID: Int, currentUser: UserDB? = nil) {
         if(checklist == nil) { print("Cannot add Checklist Input to Chechlist, checklist parameter was not provided");  return }
 
         do {
@@ -145,7 +147,18 @@ extension ChecklistStore {
             try! realm.write {
             
                 // Irgendwie so, das gleiche gilt auch fürs löschen
-                //checklist?.items.index(of: <#T##ChecklistItem#>)
+                
+                guard let checklistItem = checklist?.items.first(where: { $0._id == checklistItemID }) else {
+                    return
+                }
+                
+                if(checklistItem.isDone) {
+                    checklistItem.isDone = false
+                    checklistItem.assignedUser = nil
+                } else {
+                    checklistItem.isDone = true
+                    checklistItem.assignedUser = currentUser
+                }
             }
         }
     }

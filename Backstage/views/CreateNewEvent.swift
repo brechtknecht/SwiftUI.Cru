@@ -124,14 +124,14 @@ struct CreateNewEvent: View {
                         }
                     }
                     
-                    Section (header: Text("Kosten")) {
-                        HStack {
-                            TextField("Honorar", text: $eventFee)
-                                .keyboardType(.numberPad)
-                            Text("€")
-                        }
-                        
-                    }
+//                    Section (header: Text("Kosten")) {
+//                        HStack {
+//                            TextField("Honorar", text: $eventFee)
+//                                .keyboardType(.numberPad)
+//                            Text("€")
+//                        }
+//
+//                    }
                 }
             }
             .navigationBarTitle("Event erstellen")
@@ -162,7 +162,7 @@ struct CreateNewEvent: View {
                             name                        : eventName,
                             assignedTeam                : assignedTeam,
                             date                        : eventDate,
-                            fee                         : Int(eventFee) ?? 0,
+                            fee                         : 0,
                             type                        : eventType.rawValue,
                             venueID                     : selectVenueViewModel.selectedID,
                             imageUUID                   : imageUUID.uuidString,

@@ -56,19 +56,11 @@ struct EventListElement: View {
                                 }
                                 Attendants(attendants: event.attendants)
                             }
-                            ZStack {
-                                Rectangle()
-                                    .fill(ColorManager.accent)
-                                    .cornerRadius(20, corners: [.bottomLeft, .bottomRight])
-                                Text(event.assignedTeam.name.uppercased())
-                                    .font(.subheadline)
-                                    .fontWeight(.bold)
-                                    .tracking(1.54)
-                                    .multilineTextAlignment(.leading)
-                                    .foregroundColor(Color.white)
-                                    .padding(.vertical, 4)
-                            }
+                            TeamIcon(teamName: event.assignedTeam.name, cornerRadius: "bottom")
                         }
+                        .addBorder(Color.black.opacity(0.15), width: 0.5, cornerRadius: 12)
+                        .shadow(color: Color(red: 0.00, green: 0.00, blue: 0.00).opacity(0.15),
+                                 radius: 8.68, x: 0.00, y: 7.35)
                 }
                 .padding(EdgeInsets(top: 16.00, leading: 12, bottom: 16.00, trailing: 12))
 

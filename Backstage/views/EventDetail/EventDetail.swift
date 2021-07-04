@@ -56,13 +56,16 @@ struct EventDetail: View {
                                 .clipped()
                                 .offset(y: -geometryFrame)
                                 .opacity(0.6)
-                                .foregroundColor(viewModel.eventImageBackground)
+                                .foregroundColor(ColorManager.accent)
                         }
                         
                     }
-                    .frame(height: 500)
+                    .frame(height: 280)
                     VStack {
-                        Text("\(viewModel.convertDate(date: viewModel.currentEvent.date)) — \(viewModel.getTeam())")
+                        DateTag(date: viewModel.currentEvent.date)
+                            .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
+                            .padding(.all, 8.00)
+                        Text("\(viewModel.getTeam())")
                             .font(.headline)
                             .foregroundColor(Color.white)
                             .padding(.vertical, 2)

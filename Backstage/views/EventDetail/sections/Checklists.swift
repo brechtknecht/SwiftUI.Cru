@@ -35,18 +35,21 @@ struct Checklists: View {
                             
                             
                             Button {
-                                print("Test")
+                                updateAndCheckListElement(checklistID: checklist.id, checklistItemID: item._id)
                             } label: {
                                 ZStack {
+                                    
                                     Rectangle()
                                         .fill(ColorManager.responsiveLight)
                                         .cornerRadius(12)
                                     HStack{
-                                        Image(systemName: "person.fill")
+                                        Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
                                             .resizable()
                                             .foregroundColor(Color.white)
                                             .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                                            .background(Rectangle().fill(ColorManager.accent).cornerRadius(4))
+                                            .background(
+                                                Rectangle().fill(ColorManager.accent).cornerRadius(4)
+                                            )
                                             .frame(width: 32, height: 32)
                                         Text("\(item.label)")
                                             .padding(EdgeInsets(top: 22, leading: 8, bottom: 22, trailing: 8))
@@ -103,6 +106,18 @@ struct Checklists: View {
             return
         }
         
-        checklistStore.addChecklistItem(checklist: checklist, checklistInput: checklistItemInput)
+        let id = UUID().hashValue
+        
+        checklistStore.addChecklistItem(checklist: checklist, checklistInput: checklistItemInput, id: id)
+    }
+    
+    func updateAndCheckListElement (checklistID: Int, checklistItemID: Int) {
+        guard let checklist = checklistStore.findByID(id: checklistID) else {
+            return
+        }
+        
+        let user = realmSync.user
+        
+        checklistStore.updateChecklistItem(checklist: checklist, checklistItemID: checklistItemID, currentUser: user)
     }
 }

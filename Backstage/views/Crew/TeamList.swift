@@ -17,44 +17,54 @@ struct TeamList: View {
             let user = realmSync.user
             ForEach(user.teams, id: \.self) { team in
                 VStack (alignment: .leading) {
-                    HStack {
-                        Text("\(team.name)").font(.title).fontWeight(.semibold)
-                        Spacer()
-                        TeamIcon()
-                    }
-                    
-                    HStack {
-                        Text("\(team.events.count) Zugehörige Verabredungen")
-                    }
-                    
-                    HStack {
-                        Spacer()
+                    TeamIcon(teamName: "", cornerRadius: "top")
+                    VStack {
+                        VStack {
+                            Text("\(team.name)").font(.title).fontWeight(.semibold)
+                            Text("\(team.events.count) Zugehörige Verabredungen")
+                        }
+                        
+                        HStack {
+                            Spacer()
 
-                        VStack (alignment: .center){
-                            QRCodeView(url: team.teamRef)
-                            
-                            Button(action: {
-                                UIPasteboard.general.string = team.teamRef
-                            }) {
-                                VStack {
-                                    HStack {
-                                        Text("Copy to clipboard")
-                                        Image(systemName: "doc.on.doc")
+                            VStack (alignment: .center){
+                                QRCodeView(url: team.teamRef)
+                                
+                                Button(action: {
+                                    UIPasteboard.general.string = team.teamRef
+                                }) {
+                                    ZStack {
+                                        Rectangle()
+                                            .fill(ColorManager.accent.opacity(0.05))
+                                            .cornerRadius(12)
+                                        HStack {
+                                            Image(systemName: "doc.on.doc")
+                                            Text("Copy Code to clipboard")
+                                        }.padding(14)
+                                    }
+                                }
+                                
+                                Button(action: {
+                                    UIPasteboard.general.string = team.teamRef
+                                }) {
+                                    VStack {
+                                        HStack {
+                                            Text("Copy to clipboard")
+                                            Image(systemName: "doc.on.doc")
+                                        }
                                     }
                                 }
                             }
                             
-                            Text("Invite others to your Team with this code").font(Font.callout)
+                            
+                            Spacer()
                         }
-                        
-                        
-                        Spacer()
-                    }
+                    }.padding(32.00)
+
                 }
-                .padding(32.00)
                 .background(ColorManager.primaryLight)
-                .border(Color.black.opacity(0.05))
-                .cornerRadius(8)
+                .addBorder(Color.black.opacity(0.15), width: 0.5, cornerRadius: 12)
+                .cornerRadius(12)
                 .shadow(color: Color(red: 0.00, green: 0.00, blue: 0.00).opacity(0.15),
                          radius: 8.68, x: 0.00, y: 7.35)
             }

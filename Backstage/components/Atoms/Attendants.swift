@@ -22,7 +22,7 @@ struct Attendants: View {
                      .clipShape(Circle())
                      .shadow(radius: 6)
                      .overlay(
-                        Circle().stroke(ColorManager.primaryLight, lineWidth: 2)
+                        Circle().stroke(ColorManager.responsiveWhite, lineWidth: 2)
                      )
                      .frame(width: 42.00, height: 56.00)
                } else if(index == attendants.endIndex - 1) {
