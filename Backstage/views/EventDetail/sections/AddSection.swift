@@ -21,8 +21,9 @@ struct AddSection: View {
     
     @State var activeSheet: ActiveSheetCreate?
     
-    @EnvironmentObject var eventStore: EventStore
-    @EnvironmentObject var venueStore: VenueStore
+    @EnvironmentObject var eventStore       : EventStore
+    @EnvironmentObject var checklistStore   : ChecklistStore
+    @EnvironmentObject var venueStore       : VenueStore
     
     @State var sheetHasBeenFinished : Bool = false
     
@@ -56,14 +57,18 @@ struct AddSection: View {
             
             Divider()
             
-            let featureStrings = ["Übernachtung", "Transport", "Kontakte" , "Timetable", "Flug", "Setlist", "Technical Notes", "Notizen"]
-            let featureIcons = ["bed.double.fill", "car.2.fill", "person.2.fill", "timer.square", "airplane", "music.note.list", "cpu", "note.text.badge.plus"]
-            let featureToggles: [ActiveSheetCreate] = [.settlement, .transport, .contact, .placeholder, .placeholder, .placeholder, .placeholder, .placeholder]
+            let featureStrings = ["Übernachtung", "Transport", "Kontakte" , "Checklist", "Flug", "Setlist", "Technical Notes", "Notizen"]
+            let featureIcons = ["bed.double.fill", "car.2.fill", "person.2.fill", "checkmark", "airplane", "music.note.list", "cpu", "note.text.badge.plus"]
+            let featureToggles: [ActiveSheetCreate] = [.settlement, .transport, .contact, .checklist, .placeholder, .placeholder, .placeholder, .placeholder]
             
             GridStack(rows: 4, columns: 4) { row, col in
                 let currentIndex = (row * 4 + col)
                 if(currentIndex < featureStrings.count) {
                     Button(action: {
+                        if(featureToggles[currentIndex] == .checklist) {
+                            self.createChecklist()
+                            return;
+                        }
                         self.activeSheet = featureToggles[currentIndex]
                     }) {
                         VStack {
@@ -121,10 +126,22 @@ struct AddSection: View {
             Spacer()
         }
     }
+    
+    func createChecklist() {
+        mode.wrappedValue.dismiss()
+        
+        let id = UUID().hashValue
+        
+        checklistStore.create(id: id, name: "")
+        
+        guard let checklist = checklistStore.findByID(id: id) else {
+            return
+        }
+        
+        guard let event = eventStore.findByID(id: eventReference) else {
+            return
+        }
+        
+        eventStore.addChecklist(event: event, checklist: checklist)
+    }
 }
-
-//struct AddSection_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AddSection()
-//    }
-//}

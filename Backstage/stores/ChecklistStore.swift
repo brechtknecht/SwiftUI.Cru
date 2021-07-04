@@ -109,5 +109,44 @@ extension ChecklistStore {
             print(err.localizedDescription)
         }
     }
+    
+    func addChecklistItem (checklist: ChecklistDB? = nil, checklistInput: String) {
+        if(checklist == nil) { print("Cannot add Checklist Input to Chechlist, checklist parameter was not provided");  return }
 
+        do {
+            let partitionValue = "all-the-data"
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try! Realm(configuration: configuration)
+            try! realm.write {
+                let checklistItem = ChecklistItem()
+                
+                checklistItem.label = checklistInput
+                
+                checklistItem.assignedUser = nil
+                
+                checklist!.items.append(checklistItem)
+            }
+        }
+    }
+    
+    func updateChecklistItem (checklist: ChecklistDB? = nil, checklistInput: String) {
+        if(checklist == nil) { print("Cannot add Checklist Input to Chechlist, checklist parameter was not provided");  return }
+
+        do {
+            let partitionValue = "all-the-data"
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try! Realm(configuration: configuration)
+            try! realm.write {
+            
+                // Irgendwie so, das gleiche gilt auch fürs löschen
+                //checklist?.items.index(of: <#T##ChecklistItem#>)
+            }
+        }
+    }
 }

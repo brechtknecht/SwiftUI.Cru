@@ -42,6 +42,7 @@
 		995EEEFD25AFC15C00012D39 /* SettlementMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 995EEEFC25AFC15C00012D39 /* SettlementMap.swift */; };
 		99646D852677ACBA00112593 /* NewTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99646D842677ACBA00112593 /* NewTeam.swift */; };
 		997318A52691F25D00A281F0 /* AddChecklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997318A42691F25D00A281F0 /* AddChecklist.swift */; };
+		997C43702692056D00B80762 /* Checklists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997C436F2692056D00B80762 /* Checklists.swift */; };
 		998779C026639D9600A0DFB2 /* TeamSignifierCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998779BF26639D9600A0DFB2 /* TeamSignifierCard.swift */; };
 		998779C42663C2C300A0DFB2 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 998779C32663C2C300A0DFB2 /* CodeScanner */; };
 		998779C72663D03600A0DFB2 /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998779C62663D03600A0DFB2 /* QRCodeView.swift */; };
@@ -133,6 +134,7 @@
 		995EEEFC25AFC15C00012D39 /* SettlementMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettlementMap.swift; sourceTree = "<group>"; };
 		99646D842677ACBA00112593 /* NewTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTeam.swift; sourceTree = "<group>"; };
 		997318A42691F25D00A281F0 /* AddChecklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChecklist.swift; sourceTree = "<group>"; };
+		997C436F2692056D00B80762 /* Checklists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklists.swift; sourceTree = "<group>"; };
 		998779BF26639D9600A0DFB2 /* TeamSignifierCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSignifierCard.swift; sourceTree = "<group>"; };
 		998779C62663D03600A0DFB2 /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		9988B44025B600C600D36BA4 /* Timetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timetable.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				99C9837225AF80FC0093FF19 /* Contacts.swift */,
 				992AA13225AF7E21005B1061 /* Settlements.swift */,
 				990C201225B736A80040861C /* AddSection.swift */,
+				997C436F2692056D00B80762 /* Checklists.swift */,
 			);
 			path = sections;
 			sourceTree = "<group>";
@@ -317,12 +320,12 @@
 			path = Transport;
 			sourceTree = "<group>";
 		};
-		996EB85E2635F82500893E6E /* Band */ = {
+		996EB85E2635F82500893E6E /* Team */ = {
 			isa = PBXGroup;
 			children = (
 				9990A42F26778E4F00403C24 /* UserPreferencesView.swift */,
 			);
-			path = Band;
+			path = Team;
 			sourceTree = "<group>";
 		};
 		9988B43E25B600AA00D36BA4 /* Timetable */ = {
@@ -460,7 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				992025CB268B1A1C00055EB1 /* Crew */,
-				996EB85E2635F82500893E6E /* Band */,
+				996EB85E2635F82500893E6E /* Team */,
 				992AA13025AF7DEC005B1061 /* EventDetail */,
 				998FA76F257D89DC000468BE /* DataInputs */,
 				99BCF531257D4D9B00F2A7BC /* EventList.swift */,
@@ -640,6 +643,7 @@
 				99B099F3265C20AC002FA63A /* UserStore.swift in Sources */,
 				99646D852677ACBA00112593 /* NewTeam.swift in Sources */,
 				99B099E9265C1F91002FA63A /* User.swift in Sources */,
+				997C43702692056D00B80762 /* Checklists.swift in Sources */,
 				99381F1A2691EC6E0053DD1C /* Transport.swift in Sources */,
 				992AA13325AF7E21005B1061 /* Settlements.swift in Sources */,
 				99A965F0257E677900B8B2D7 /* RealmPersistentInitializer.swift in Sources */,

@@ -11,6 +11,7 @@ import SwiftUI
 import Combine
 
 class EventDB: Object, ObjectKeyIdentifiable {
+    @objc dynamic var partition             = "all-the-data"
     @objc dynamic var _id                   = 0
     @objc dynamic var id                    = 0
     @objc dynamic var name                  = ""

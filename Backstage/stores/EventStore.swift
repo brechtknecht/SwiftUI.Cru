@@ -168,6 +168,8 @@ extension EventStore {
         }
     }
     
+    
+    // MARK: - Adding Functions for Lists
     func addSettlementToList (eventID: Int, settlement: SettlementDB) {
         let event = self.findByID(id: eventID)
         
@@ -219,6 +221,23 @@ extension EventStore {
                 }
                 
                 event!.attendants.remove(at: index)
+            }
+        }
+    }
+    
+    func addChecklist (event: EventDB? = nil, checklist: ChecklistDB? = nil) {
+        if(event == nil) { print("Cannot add Checklist to Event, event parameter was not provided");  return }
+        if(checklist == nil) { print("Cannot add Checklist to Event, checklist parameter was not provided");  return }
+        
+        do {
+            let partitionValue = "all-the-data"
+            
+            let user = app.currentUser!
+            let configuration = user.configuration(partitionValue: partitionValue)
+            
+            let realm = try! Realm(configuration: configuration)
+            try! realm.write {
+                event!.checklists.append(checklist!)
             }
         }
     }

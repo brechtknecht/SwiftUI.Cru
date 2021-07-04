@@ -10,6 +10,7 @@ import SwiftUI
 import RealmSwift
 
 struct Event: Identifiable, Hashable {
+    let partition           : String
     let _id                 : Int
     let id                  : Int
     let name                : String
@@ -31,6 +32,7 @@ struct Event: Identifiable, Hashable {
 
 extension Event {
     init(eventDB: EventDB) {
+        partition           = eventDB.partition
         _id                 = eventDB._id
         id                  = eventDB.id
         assignedTeam        = eventDB.assignedTeam

@@ -9,17 +9,14 @@
 import Foundation
 import SwiftUI
 import RealmSwift
+import Combine
 
-@objcMembers class ChecklistItem : Object {
+@objcMembers class ChecklistItem : EmbeddedObject {
     dynamic var _id                 = 0
-    dynamic var id                  = 0
     dynamic var label               = ""
     dynamic var isDone              = false
     dynamic var assignedUser        : UserDB? = UserDB()
-    
-    override static func primaryKey() -> String? {
-        "_id"
-    }
+    let checklist = LinkingObjects(fromType: ChecklistDB.self, property: "items")
 }
 
 

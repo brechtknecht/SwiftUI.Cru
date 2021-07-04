@@ -161,6 +161,8 @@ struct EventDetail: View {
                 .background(ColorManager.backgroundForm)
                 
                 Settlements(sheetIsActive: $activeSheet, currentEvent: currentEvent)
+                
+                Checklists(eventID: $eventID)
 
                 Transportation(sheetIsActive: $activeSheet, eventID: $eventID)
 
