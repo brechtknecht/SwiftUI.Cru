@@ -25,7 +25,8 @@ struct Attendants: View {
                             .offset(x: (-32.00 * CGFloat(index)), y: 0)
                     )
                     .frame(width: 54.00, height: 54.00)
-            }.offset(x: 12.00, y: 0)
+                }
+                .offset(x: 12.00, y: 0)
             }
         }
 }

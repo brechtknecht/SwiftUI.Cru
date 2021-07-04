@@ -25,8 +25,6 @@ struct Crew: View {
     @State private var userSheet = false
     @State private var sheetNewTeam: Bool = false
     
-    @State private var username: String = ""
-    
     @EnvironmentObject var teamStore : TeamStore
     @EnvironmentObject var realmSync : RealmSync
     
@@ -36,25 +34,9 @@ struct Crew: View {
         NavigationView {
             ScrollView {
                 if(realmSync.getCurrentUser() == 0) {
-                    TextField("Enter your name", text: $username)
-                    Button("Create new User") {
-                        let id = UUID().hashValue
-                        // Creates User first to then ref the UserID
-                        // @Hook:userStore:create
-                        userStore.create(userID: id, name: username)
-                        
-                        realmSync.setCurrentUser(value: id)
-                        
-                        let user = userStore.findByID(id: id)
-                        
-                        realmSync.setCurrentUserData(user: user ?? UserDB())
-                    }
+                    UserCreation()
                 } else {
-                    
-                    
                     TeamList()
-                        
-                        
                         .navigationBarItems(
                             leading: Menu("Deine Gruppen") {
                                 let user = realmSync.user

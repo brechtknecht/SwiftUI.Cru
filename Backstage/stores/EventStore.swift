@@ -256,7 +256,8 @@ extension EventStore {
     }
     
     func convertImageToData(imageUUID: String) -> Data {
-        let image = Utilities.helpers.loadImageFromUUID(imageUUID: imageUUID, compression: 0.0)
+        var image = Utilities.helpers.loadImageFromUUID(imageUUID: imageUUID, compression: 0.0)
+        image = image.resized(toWidth: 600.00) ?? UIImage()
         let data = image.pngData()
         return data ?? Data.init()
     }

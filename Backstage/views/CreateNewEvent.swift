@@ -194,6 +194,7 @@ struct CreateNewEvent: View {
     func saveImageAndCreateUUID () -> UUID {
         let imageData = inputImage?.png() as NSData?
         
+        
         let uuid = UUID()
         
         let documentsPath = Utilities.helpers.getDocumentsDirectory()
