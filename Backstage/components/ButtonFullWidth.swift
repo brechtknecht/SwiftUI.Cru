@@ -20,7 +20,7 @@ struct ButtonFullWidth: View {
             Text("\(label)")
                 .fontWeight(.semibold)
         }
-        .frame(minWidth: 0, maxWidth: .infinity)
+        .frame(maxWidth: .infinity)
         .padding(14)
         .foregroundColor(ColorManager.primaryLight)
         .background(ColorManager.primaryDark)

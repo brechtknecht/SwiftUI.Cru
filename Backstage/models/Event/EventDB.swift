@@ -22,7 +22,7 @@ class EventDB: Object, ObjectKeyIdentifiable {
     let attendants            = RealmSwift.List<UserDB>()
     @objc dynamic var timetable             = 0
     @objc dynamic var fee                   = 0
-    @objc dynamic var type                  = ""
+    @objc dynamic var type                  = ""    
     
     private let assignedTeams = LinkingObjects(fromType: TeamDB.self, property: "events")
     var assignedTeam: TeamDB {
@@ -33,6 +33,7 @@ class EventDB: Object, ObjectKeyIdentifiable {
     
     let settlements                         = RealmSwift.List<SettlementDB>()
     let persons                             = RealmSwift.List<PersonDB>()
+    let checklists                          = RealmSwift.List<ChecklistDB>()
     
     // Defines the standard key — realm needs this for identication
     override static func primaryKey() -> String? {

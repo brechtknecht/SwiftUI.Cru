@@ -9,24 +9,29 @@ import SwiftUI
 import RealmSwift
 
 struct Attendants: View {
-    @State var attendants : RealmSwift.List<UserDB>
-    
-    var body: some View {
-        ForEach(Array(attendants.enumerated()), id: \.offset) { index, attendant in
-            HStack {
-                Image("_placeholder-person")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(Circle())
-                    .shadow(radius: 10)
-                    .offset(x: (-32.00 * CGFloat(index)), y: 0)
-                    .overlay(
+   @State var attendants : RealmSwift.List<UserDB>
+   
+   var body: some View {
+      
+         HStack(spacing: 0){
+            ForEach(Array(attendants.enumerated()), id: \.offset) { index, attendant in
+               if(index < 5) {
+                  Image("_placeholder-person")
+                     .resizable()
+                     .aspectRatio(contentMode: .fit)
+                     .clipShape(Circle())
+                     .shadow(radius: 6)
+                     .overlay(
                         Circle().stroke(ColorManager.primaryLight, lineWidth: 2)
-                            .offset(x: (-32.00 * CGFloat(index)), y: 0)
-                    )
-                    .frame(width: 54.00, height: 54.00)
-                }
-                .offset(x: 12.00, y: 0)
+                     )
+                     .frame(width: 42.00, height: 72.00)
+               } else if(index == attendants.endIndex - 1) {
+                  Text("+ \(attendants.count - 5) Personen")
+                     .padding(.leading, 16)
+               }
             }
-        }
+         }
+         .padding(.horizontal, 16)
+         .frame(width: .infinity)
+      }
 }

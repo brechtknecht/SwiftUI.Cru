@@ -32,7 +32,7 @@ struct EventListElementPoster: View {
             NavigationLink(destination:
                 EventDetail(
                     eventID: .constant(event._id)
-                )
+                ).environmentObject(ChecklistStore(realm: RealmPersistent.initializer()))
             ) {
                 ZStack {
                     Image(uiImage: Utilities.helpers.loadImageFromCDN(imageUUID: event.imageUUID, imageData: event.imageData))

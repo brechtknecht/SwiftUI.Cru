@@ -12,8 +12,8 @@ struct AddPerson: View {
     @State var personRole           : String = ""
     @State var personPhoneNumber    : String = ""
     
-    @EnvironmentObject var personStore : PersonStore
-    @EnvironmentObject var eventStore : EventStore
+    @EnvironmentObject var personStore  : PersonStore
+    @EnvironmentObject var eventStore   : EventStore
     
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     

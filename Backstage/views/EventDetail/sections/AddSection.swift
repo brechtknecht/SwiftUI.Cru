@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum ActiveSheetCreate: Identifiable {
-    case settlement, transport, contact, placeholder
+    case settlement, transport, contact, placeholder, checklist
     
     var id: Int {
         hashValue 
@@ -107,6 +107,10 @@ struct AddSection: View {
                         )
                     case .contact:
                         AddPerson(
+                            eventReference: eventReference
+                        )
+                    case .checklist:
+                        AddChecklist(
                             eventReference: eventReference
                         )
                     case .placeholder:

@@ -139,6 +139,7 @@ struct EventDetail: View {
                     
                     HStack {
                         Attendants(attendants: viewModel.getAttendants())
+                            .frame(maxWidth: .infinity)
                     }
                     
                     if(!viewModel.userIsAttendant()) {
