@@ -88,7 +88,7 @@ struct EventList: View {
                         {
                         // Displays the actual Event
                             ForEach(events.value, id: \.id) { event in
-                                EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID) ?? VenueDB())
+                                EventListElement(event: event, venue: venueStore.findByID(id: event.venueID) ?? VenueDB())
                             }
                         }
                         
@@ -102,7 +102,7 @@ struct EventList: View {
                 // INITIAL STATE and fallback if there is only one Event and it could lead to a crash
                 VStack(spacing: 0){
                     ForEach(eventStore.events, id: \.self.id) { event in
-                        EventListElementPoster(event: event, venue: venueStore.findByID(id: event.venueID) ?? VenueDB())
+                        EventListElement(event: event, venue: venueStore.findByID(id: event.venueID) ?? VenueDB())
                     }
                     .onDelete(perform: onDelete)
                     .environment(\.editMode, editMode)

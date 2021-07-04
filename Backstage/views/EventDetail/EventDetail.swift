@@ -45,12 +45,12 @@ struct EventDetail: View {
                         let geometryFrame = geometry.frame(in: .global).minY
                         
                         ZStack {
-                            Image(uiImage: Utilities.helpers.loadImageFromCDN(imageUUID: currentEvent.imageUUID, imageData: currentEvent.imageData))
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: geometryWidth, height: geometryHeight + geometryFrame)
-                                .clipped()
-                                .offset(y: -geometryFrame)
+//                            Image(uiImage: Utilities.helpers.loadImageFromCDN(imageUUID: currentEvent.imageUUID, imageData: currentEvent.imageData))
+//                                .resizable()
+//                                .aspectRatio(contentMode: .fill)
+//                                .frame(width: geometryWidth, height: geometryHeight + geometryFrame)
+//                                .clipped()
+//                                .offset(y: -geometryFrame)
                             Rectangle()
                                 .frame(width: geometryWidth, height: geometryHeight + geometryFrame)
                                 .clipped()
@@ -139,7 +139,7 @@ struct EventDetail: View {
                     
                     HStack {
                         Attendants(attendants: viewModel.getAttendants())
-                            .frame(maxWidth: .infinity)
+                            .frame(maxWidth: nil)
                     }
                     
                     if(!viewModel.userIsAttendant()) {

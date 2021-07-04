@@ -72,7 +72,7 @@ struct NewTeam: View {
             }
             .navigationTitle(Text("Create new Team"))
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: nil, maxHeight: nil)
         .edgesIgnoringSafeArea(.all)
     }
 }

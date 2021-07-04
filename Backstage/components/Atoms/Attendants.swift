@@ -24,7 +24,7 @@ struct Attendants: View {
                      .overlay(
                         Circle().stroke(ColorManager.primaryLight, lineWidth: 2)
                      )
-                     .frame(width: 42.00, height: 72.00)
+                     .frame(width: 42.00, height: 56.00)
                } else if(index == attendants.endIndex - 1) {
                   Text("+ \(attendants.count - 5) Personen")
                      .padding(.leading, 16)
@@ -32,6 +32,6 @@ struct Attendants: View {
             }
          }
          .padding(.horizontal, 16)
-         .frame(width: .infinity)
+         .frame(maxWidth: nil)
       }
 }
