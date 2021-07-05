@@ -105,7 +105,7 @@ struct CreateNewEvent: View {
                     .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     
                     // Custom Selection scraped from stackoverflow
-                    Section(header: Text("Veranstaltungsort")) {
+                    Section(header: Text("Treffpunkt")) {
                         NavigationLink(destination:
                                 SelectionItemView(
                                     selection: $selectVenueViewModel.selectedOption,
@@ -212,7 +212,7 @@ struct CreateNewEvent: View {
 
 
 class SelectVenueViewModel: ObservableObject {
-        @Published var selectedOption: String = "Veranstaltungsort" {
+        @Published var selectedOption: String = "Treffpunkt" {
             didSet {
                 print("new option selected: \(selectedOption.description)")
             }

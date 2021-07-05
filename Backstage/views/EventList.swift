@@ -34,7 +34,7 @@ struct EventList: View {
     var body: some View {
         VStack {
             HStack {
-                Text("Alle kommenden Events")
+                Text("Alle kommenden Verabredungen")
                     .font(.headline)
                 Spacer()
             }
@@ -87,8 +87,10 @@ struct EventList: View {
                             )
                         {
                         // Displays the actual Event
-                            ForEach(events.value, id: \.id) { event in
-                                EventListElement(event: event, venue: venueStore.findByID(id: event.venueID) ?? VenueDB())
+                            VStack (spacing: 0){
+                                ForEach(events.value, id: \.id) { event in
+                                    EventListElement(event: event, venue: venueStore.findByID(id: event.venueID) ?? VenueDB())
+                                }
                             }
                         }
                         

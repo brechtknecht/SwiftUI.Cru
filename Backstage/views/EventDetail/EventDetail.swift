@@ -83,7 +83,7 @@ struct EventDetail: View {
                 VStack (alignment: .leading){
                     let adress = "\(viewModel.getVenue().street) \(viewModel.getVenue().location)"
                     
-                    Text("Veranstaltungsort")
+                    Text("Treffpunkt")
                         .foregroundColor(.gray)
                         .font(.body)
                         .textCase(.uppercase)

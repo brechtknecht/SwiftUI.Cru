@@ -134,8 +134,7 @@ struct EventListElementPoster: View {
                 }
             }
         }
-    
-    
+
     struct ToggleEditModeEffect: GeometryEffect {
         var y: CGFloat = 0
         
@@ -154,6 +153,8 @@ struct EventListElementPoster: View {
         print("IndexSet : \(id)")
         eventStore.deleteWithID(id: id)
     }
+    
+    
 }
 
 extension EventListElementPoster {

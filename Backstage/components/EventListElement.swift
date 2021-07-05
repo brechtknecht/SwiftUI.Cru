@@ -62,7 +62,7 @@ struct EventListElement: View {
                         .shadow(color: Color(red: 0.00, green: 0.00, blue: 0.00).opacity(0.15),
                                  radius: 8.68, x: 0.00, y: 7.35)
                 }
-                .padding(EdgeInsets(top: 16.00, leading: 12, bottom: 16.00, trailing: 12))
+                .padding(EdgeInsets(top: 8.00, leading: 12, bottom: 8.00, trailing: 12))
 
             }
             .buttonStyle(PlainButtonStyle())

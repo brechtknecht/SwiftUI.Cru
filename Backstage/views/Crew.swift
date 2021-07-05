@@ -73,7 +73,7 @@ struct Crew: View {
                         )
                 }
             }
-            .navigationTitle(Text("Your Groups"))
+            .navigationTitle(Text("Deine Cru"))
         }.sheet(item: $activeSheet) { item in
             switch item {
             case .teams:
