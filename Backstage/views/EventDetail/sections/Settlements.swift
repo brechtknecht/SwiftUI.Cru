@@ -25,7 +25,7 @@ struct Settlements: View {
         VStack (alignment: .leading){
             
             if(currentEvent.settlements.count > 0) {
-                Text("Übernachtungemöglichkeit")
+                Text("Ort hinzufügen")
                     .foregroundColor(.gray)
                     .font(.body)
                     .textCase(.uppercase)
@@ -68,12 +68,12 @@ struct Settlements: View {
                                             .padding(EdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8))
                                             .frame(width: 250, alignment: .leading)
                                         
-                                        Text("\(settlementPrice)\(Characters.hairSpace)€\(Characters.thinSpace)/\(Characters.thinSpace)Person")
-                                            .font(.title2)
-                                            .fontWeight(.bold)
-                                            .foregroundColor(ColorManager.primaryDark)
-                                            .padding(EdgeInsets(top: 0, leading: 8, bottom: 16, trailing: 8))
-                                            .frame(width: 250, alignment: .leading)
+//                                        Text("\(settlementPrice)\(Characters.hairSpace)€\(Characters.thinSpace)/\(Characters.thinSpace)Person")
+//                                            .font(.title2)
+//                                            .fontWeight(.bold)
+//                                            .foregroundColor(ColorManager.primaryDark)
+//                                            .padding(EdgeInsets(top: 0, leading: 8, bottom: 16, trailing: 8))
+//                                            .frame(width: 250, alignment: .leading)
                                     }
                                     .frame(width: 250, height: 220)
                                 }
@@ -96,7 +96,7 @@ struct Settlements: View {
                                         .frame(width: 32, height: 32)
                                         .padding(EdgeInsets(top: 64, leading: 16, bottom: 8, trailing: 16))
                                         .foregroundColor(ColorManager.success)
-                                    Text("Übernachtungsmöglichkeit hinzufügen")
+                                    Text("Ort hinzufügen")
                                         .padding(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(ColorManager.primaryDark)
