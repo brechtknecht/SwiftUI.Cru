@@ -43,20 +43,7 @@ struct TeamList: View {
                                         }.padding(14)
                                     }
                                 }
-                                
-                                Button(action: {
-                                    UIPasteboard.general.string = team.teamRef
-                                }) {
-                                    VStack {
-                                        HStack {
-                                            Text("Copy to clipboard")
-                                            Image(systemName: "doc.on.doc")
-                                        }
-                                    }
-                                }
                             }
-                            
-                            
                             Spacer()
                         }
                     }.padding(32.00)

@@ -36,7 +36,7 @@ struct EventListElement: View {
                 ZStack {
                  
                     Rectangle()
-                        .fill(ColorManager.responsiveBlack)
+                        .fill(ColorManager.primaryLight)
                         .cornerRadius(12)
                     
                  
@@ -46,15 +46,22 @@ struct EventListElement: View {
                                     DateTag(date: event.date)
                                         .shadow(color: Color.black.opacity(0.15), radius: 2, x: 0, y: 2)
                                         .padding(.all, 8.00)
-                
-                                    Text(event.name)
-                                        .font(.title)
-                                        .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                        .foregroundColor(ColorManager.responsiveWhite)
-                                        .multilineTextAlignment(.leading)
-                                    Spacer()
+                                    VStack (alignment: .center) {
+                                        HStack {
+                                            Text(event.name)
+                                                .font(.title)
+                                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                                .foregroundColor(ColorManager.responsiveBlack)
+                                                .multilineTextAlignment(.leading)
+                                            Spacer()
+                                        }
+                                        HStack {
+                                            AttendantsSmall(attendants: event.attendants)
+                                                .frame(maxHeight: 28.00)
+                                            Spacer()
+                                        }
+                                    }
                                 }
-                                Attendants(attendants: event.attendants)
                             }
                             TeamIcon(teamName: event.assignedTeam.name, cornerRadius: "bottom")
                         }

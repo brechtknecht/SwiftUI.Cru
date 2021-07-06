@@ -83,6 +83,7 @@
 		99BCF536257D4E9E00F2A7BC /* EventDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF535257D4E9E00F2A7BC /* EventDetail.swift */; };
 		99BCF539257D4FA100F2A7BC /* CreateNewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99BCF538257D4FA100F2A7BC /* CreateNewEvent.swift */; };
 		99C0222D258573720031538C /* CEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C0222C258573720031538C /* CEditButton.swift */; };
+		99C326B1269379CD00AB1CAE /* AttendantsSmall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C326B0269379CD00AB1CAE /* AttendantsSmall.swift */; };
 		99C6F43B2665016800534CA6 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C6F43A2665016800534CA6 /* Team.swift */; };
 		99C6F43F266501CA00534CA6 /* TeamDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C6F43E266501CA00534CA6 /* TeamDB.swift */; };
 		99C6F4422665022300534CA6 /* TeamDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C6F4412665022300534CA6 /* TeamDBKeys.swift */; };
@@ -174,6 +175,7 @@
 		99BCF535257D4E9E00F2A7BC /* EventDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetail.swift; sourceTree = "<group>"; };
 		99BCF538257D4FA100F2A7BC /* CreateNewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEvent.swift; sourceTree = "<group>"; };
 		99C0222C258573720031538C /* CEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CEditButton.swift; sourceTree = "<group>"; };
+		99C326B0269379CD00AB1CAE /* AttendantsSmall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendantsSmall.swift; sourceTree = "<group>"; };
 		99C6F43A2665016800534CA6 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		99C6F43E266501CA00534CA6 /* TeamDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDB.swift; sourceTree = "<group>"; };
 		99C6F4412665022300534CA6 /* TeamDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamDBKeys.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 				992025D4268B259B00055EB1 /* TeamIcon.swift */,
 				992025D8268B292200055EB1 /* DateTag.swift */,
 				99E098B4268B31840092056C /* Attendants.swift */,
+				99C326B0269379CD00AB1CAE /* AttendantsSmall.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -694,6 +697,7 @@
 				9988B45325B605C200D36BA4 /* TimeslotDBKeys.swift in Sources */,
 				990301B725A0A7F9004E4BD5 /* EventListElement.swift in Sources */,
 				9951C12225AE6E0D001E8F95 /* LocationService.swift in Sources */,
+				99C326B1269379CD00AB1CAE /* AttendantsSmall.swift in Sources */,
 				99BCF52D257D4B4700F2A7BC /* Crew.swift in Sources */,
 				99A96603257EB31600B8B2D7 /* EventDB.swift in Sources */,
 				99A96609257EB4F900B8B2D7 /* EventStore.swift in Sources */,

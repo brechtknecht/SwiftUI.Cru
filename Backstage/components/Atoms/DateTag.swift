@@ -18,6 +18,7 @@ struct DateTag: View {
             VStack {
                 Text("\(stringDay)")
                     .font(.body)
+                    .foregroundColor(ColorManager.responsiveLight)
                 Text("\(stringMonth)")
                     .font(.caption)
                     .textCase(.uppercase)
@@ -40,7 +41,7 @@ struct DateTag: View {
         }
         .padding(.horizontal, 12.00)
         .padding(.vertical, 17.00)
-        .background(ColorManager.primaryLight)
+        .background(ColorManager.responsiveDark)
         .cornerRadius(8)
     }
 }

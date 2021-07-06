@@ -122,10 +122,10 @@ struct EventDetail: View {
                                     .fill(ColorManager.responsiveLight)
                                     .cornerRadius(12)
                                 VStack {
-                                    Image(systemName: "phone.fill")
+                                    Image(systemName: "calendar.badge.plus")
                                         .resizable()
                                         .frame(width: 22, height: 22)
-                                    Text("Veranstalter anrufen")
+                                    Text("Kalender öffnen")
                                 }
                                 .padding(.vertical, 16)
                             }

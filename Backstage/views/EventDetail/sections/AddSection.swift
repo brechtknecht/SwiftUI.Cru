@@ -57,9 +57,9 @@ struct AddSection: View {
             
             Divider()
             
-            let featureStrings = ["Übernachtung", "Transport", "Kontakte" , "Checklist", "Flug", "Setlist", "Technical Notes", "Notizen"]
-            let featureIcons = ["bed.double.fill", "car.2.fill", "person.2.fill", "checkmark", "airplane", "music.note.list", "cpu", "note.text.badge.plus"]
-            let featureToggles: [ActiveSheetCreate] = [.settlement, .transport, .contact, .checklist, .placeholder, .placeholder, .placeholder, .placeholder]
+            let featureStrings = ["Ankündigung", "Linkliste" , "Checklist", "Kontakte", "Transport", "Übernachtung", "Abstimmung", "Notizen"]
+            let featureIcons = ["plus.message", "link", "checkmark", "person.2.fill", "car.2.fill" ,"bed.double.fill" , "list.bullet", "note.text.badge.plus"]
+            let featureToggles: [ActiveSheetCreate] = [.placeholder, .placeholder, .checklist, .contact, .transport, .settlement, .placeholder, .placeholder]
             
             GridStack(rows: 4, columns: 4) { row, col in
                 let currentIndex = (row * 4 + col)
