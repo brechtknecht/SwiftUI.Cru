@@ -21,7 +21,7 @@ struct ContentView: View {
             }
             .tabItem({
                 TabLabel(
-                    imageName: "guitars.fill",
+                    imageName: "rectangle.stack.fill.badge.person.crop",
                     label: "Events"
                 )
             })

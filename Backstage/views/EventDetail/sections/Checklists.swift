@@ -32,8 +32,6 @@ struct Checklists: View {
                     
                     ForEach (checklists, id: \.self) { checklist in
                         ForEach(checklist.items, id: \.self._id) { item in
-                            
-                            
                             Button {
                                 updateAndCheckListElement(checklistID: checklist.id, checklistItemID: item._id)
                             } label: {

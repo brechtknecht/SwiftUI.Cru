@@ -28,6 +28,7 @@
 		99381F1C2691EC6E0053DD1C /* TransportDBKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99381F192691EC6E0053DD1C /* TransportDBKeys.swift */; };
 		993BD7B9257ED2C80014CA4C /* EventListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993BD7B8257ED2C80014CA4C /* EventListItem.swift */; };
 		993EAD3325AE7EC700531A67 /* Paddings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993EAD3225AE7EC700531A67 /* Paddings.swift */; };
+		9940E57F26944B4200C908CC /* Announcements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9940E57E26944B4200C908CC /* Announcements.swift */; };
 		9941965E257FB3E30090AD0F /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9941965D257FB3E30090AD0F /* ImagePicker.swift */; };
 		9951C11F25AE6065001E8F95 /* VenueMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951C11E25AE6065001E8F95 /* VenueMap.swift */; };
 		9951C12225AE6E0D001E8F95 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9951C12125AE6E0D001E8F95 /* LocationService.swift */; };
@@ -121,6 +122,7 @@
 		99381F192691EC6E0053DD1C /* TransportDBKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportDBKeys.swift; sourceTree = "<group>"; };
 		993BD7B8257ED2C80014CA4C /* EventListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListItem.swift; sourceTree = "<group>"; };
 		993EAD3225AE7EC700531A67 /* Paddings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paddings.swift; sourceTree = "<group>"; };
+		9940E57E26944B4200C908CC /* Announcements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announcements.swift; sourceTree = "<group>"; };
 		9941965D257FB3E30090AD0F /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		9951C11E25AE6065001E8F95 /* VenueMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueMap.swift; sourceTree = "<group>"; };
 		9951C12125AE6E0D001E8F95 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 				992025D8268B292200055EB1 /* DateTag.swift */,
 				99E098B4268B31840092056C /* Attendants.swift */,
 				99C326B0269379CD00AB1CAE /* AttendantsSmall.swift */,
+				9940E57E26944B4200C908CC /* Announcements.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				99E098B5268B31840092056C /* Attendants.swift in Sources */,
 				99BCF532257D4D9B00F2A7BC /* EventList.swift in Sources */,
 				99B099F3265C20AC002FA63A /* UserStore.swift in Sources */,
+				9940E57F26944B4200C908CC /* Announcements.swift in Sources */,
 				99646D852677ACBA00112593 /* NewTeam.swift in Sources */,
 				99B099E9265C1F91002FA63A /* User.swift in Sources */,
 				997C43702692056D00B80762 /* Checklists.swift in Sources */,

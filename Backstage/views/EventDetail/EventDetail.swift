@@ -161,6 +161,24 @@ struct EventDetail: View {
                     
                     
                 }
+                
+                
+                Text("Ankündigungen")
+                    .foregroundColor(.gray)
+                    .font(.body)
+                    .textCase(.uppercase)
+                    .padding(EdgeInsets(top: 22, leading: 16, bottom: 0, trailing: 16))
+                
+                VStack (spacing: 16.00) {
+                    Announcements(name: "Frederik", text: "Moin Tadeus, wir wollten ja gemeinsam unsere Bikes wieder flott kriegen. Hier können wir alles organisieren, sodass wir alles am Start haben 😉", imageName: "person-tadeus")
+                        .padding(.horizontal, 16.00)
+                        .cornerRadius(12.00)
+                    
+                    Announcements(name: "Tadeus", text: "Für danach würde ich gerne Grillen, wenn du Bock hast. Grill hab ich da, wir sollten nur vorher noch Grillgut organisieren", imageName: "person-frederik")
+                        .padding(.horizontal, 16.00)
+                        .cornerRadius(12.00)
+                }.padding(.vertical, 12.00)
+                
                 .background(ColorManager.backgroundForm)
                 
                 Settlements(sheetIsActive: $activeSheet, currentEvent: currentEvent)
