@@ -109,7 +109,7 @@ struct AddSettlement: View {
                     }
                     
                 }
-                .navigationTitle("Übernachtungsmöglichkeit hinzufügen").font(.subheadline)
+                .navigationTitle("Ort hinzufügen").font(.subheadline)
                 .navigationBarItems(trailing:  Button(action: {
                     if !settlementName.isEmpty {
                         
