@@ -21,61 +21,68 @@ struct TeamSignifierCard: View {
     @EnvironmentObject var realmSync : RealmSync
     
     var body: some View {
-        VStack {
-            Text("Create new team").font(.title3).fontWeight(Font.Weight.semibold)
-            Spacer(minLength: 16)
-            Button(action: {
-                self.sheetNewTeam = true
-            }) {
-                ButtonFullWidth(label: "Register your team");
-            }
-            .sheet(isPresented: $sheetNewTeam,
-                    onDismiss: { print("finished!") },
-                    content: { NewTeam() })
-        }
-        .padding(.all, 8)
-        .background(ColorManager.backgroundForm)
-        .cornerRadius(8.0)
-        
-        Spacer(minLength: 32)
-        
-        VStack {
-            Text("Join existing Team").font(.title3).fontWeight(Font.Weight.semibold)
-            Spacer(minLength: 16)
-            Button(action: {
-                self.isShowingScanner = true
-                
-            }) {
-                ButtonFullWidth(label: "Scan Team Code", icon: "qrcode.viewfinder");
-            }
-            .sheet(isPresented: $isShowingScanner) {
-                // Team ID: 5176337727020190607
-                // TeamRef: Mhf3bzunY9Q1zNr9JfaIU8Rh
-                CodeScannerView(codeTypes: [.qr], simulatedData: "zYLwudCKMgVEouQGTnj1tUZp", completion: self.handleScan)
-            }
-            Text("or enter manually").font(Font.callout)
-            
-            TextField(LocalizedStringKey("Enter existing Team Code"),
-                      text: $teamID,
-                      onEditingChanged: { changing in
-                        if !changing {
-                            self.teamID = self.teamID.trimmingCharacters(in: .whitespacesAndNewlines)
-                        } else {
-                            self.invalid = false
-                        }},
-                      onCommit: self.setTeamID)
+        NavigationView {
+            Form {
+                HStack (alignment: .center) {VStack {
+                    Text("Create new team").font(.title3).fontWeight(Font.Weight.semibold)
+                    Spacer(minLength: 16)
+                    Button(action: {
+                        self.sheetNewTeam = true
+                    }) {
+                        ButtonFullWidth(label: "Register your team");
+                    }
+                    .sheet(isPresented: $sheetNewTeam,
+                            onDismiss: { print("finished!") },
+                            content: { NewTeam() })
+                }
                 .padding(.all, 8)
-                .background(ColorManager.primaryLight)
-                .cornerRadius(8.0)
-                .font(.system(size: 14, design: .monospaced))
-                .multilineTextAlignment(.center)
-                .autocapitalization(.none)
-            
-            Text("This is your unique Team ID, share it to let your other team-members come on board").font(Font.caption2)
+                .background(ColorManager.backgroundForm)
+                .cornerRadius(8.0)}
+                    
+                    
+                    Spacer(minLength: 32)
+                    
+                    VStack {
+                        Text("Join existing Team").font(.title3).fontWeight(Font.Weight.semibold)
+                        Spacer(minLength: 16)
+                        Button(action: {
+                            self.isShowingScanner = true
+                            
+                        }) {
+                            ButtonFullWidth(label: "Scan Team Code", icon: "qrcode.viewfinder");
+                        }
+                        .sheet(isPresented: $isShowingScanner) {
+                            // Team ID: 5176337727020190607
+                            // TeamRef: Mhf3bzunY9Q1zNr9JfaIU8Rh
+                            CodeScannerView(codeTypes: [.qr], simulatedData: "zYLwudCKMgVEouQGTnj1tUZp", completion: self.handleScan)
+                        }
+                        Text("or enter manually").font(Font.callout)
+                        
+                        TextField(LocalizedStringKey("Enter existing Team Code"),
+                                  text: $teamID,
+                                  onEditingChanged: { changing in
+                                    if !changing {
+                                        self.teamID = self.teamID.trimmingCharacters(in: .whitespacesAndNewlines)
+                                    } else {
+                                        self.invalid = false
+                                    }},
+                                  onCommit: self.setTeamID)
+                            .padding(.all, 8)
+                            .background(ColorManager.primaryLight)
+                            .cornerRadius(8.0)
+                            .font(.system(size: 14, design: .monospaced))
+                            .multilineTextAlignment(.center)
+                            .autocapitalization(.none)
+                        
+                        Text("This is your unique Team ID, share it to let your other team-members come on board").font(Font.caption2)
+                    }
+                    .padding(.all, 8)
+                    .background(ColorManager.backgroundForm)
+                    .cornerRadius(8.0)
+                    
+                
+            }
         }
-        .padding(.all, 8)
-        .background(ColorManager.backgroundForm)
-        .cornerRadius(8.0)
     }
     
     func handleScan (result: Result<String, CodeScannerView.ScanError>) {
