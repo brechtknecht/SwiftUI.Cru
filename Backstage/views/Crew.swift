@@ -65,9 +65,10 @@ struct Crew: View {
                             trailing: Button(action: {
                                 activeSheet = .userPreferences
                             }) {
+                                let user = realmSync.user
                                 HStack {
                                     Image(systemName: "person.circle")
-                                    Text("Profil")
+                                    Text("\(user.name)")
                                 }
                             }
                         )

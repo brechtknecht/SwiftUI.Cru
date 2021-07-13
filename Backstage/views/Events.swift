@@ -25,8 +25,7 @@ struct Events: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                EventList()
-                
+                EventList()                
                 
                 #if DEBUG
                     Button("Show Current UserData") {

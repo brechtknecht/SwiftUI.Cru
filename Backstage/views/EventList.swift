@@ -29,7 +29,6 @@ struct EventList: View {
         formatter.dateFormat = "yyyy"
         return formatter
     }()
-
     
     var body: some View {
         VStack {
