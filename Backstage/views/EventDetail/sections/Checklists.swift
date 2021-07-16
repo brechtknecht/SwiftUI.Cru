@@ -68,13 +68,19 @@ struct Checklists: View {
                     .padding(.vertical, 16)
                     
                     if(isEditing) {
+                        ZStack {
+                            Rectangle().fill(ColorManager.responsiveLight).cornerRadius(12)
+                            TextField("Weiterer Eintrag",
+                                      text: $checklistItemInput,
+                                      onCommit: {
+                                        commitChecklistItem(checklistID: checklist.id)
+                                      }
+                                      
+                            )
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 16)
+                        }.padding(.horizontal, 16)
                         
-                        TextField("Eintrag",
-                                  text: $checklistItemInput,
-                                  onCommit: {
-                                    commitChecklistItem(checklistID: checklist.id)
-                                  }
-                        )
                     } else {
                         Button(action: {
                             isEditing = true
@@ -100,6 +106,8 @@ struct Checklists: View {
         let id = UUID().hashValue
         
         checklistStore.addChecklistItem(checklist: checklist, checklistInput: checklistItemInput, id: id)
+        
+        self.checklistItemInput = String.init()
     }
     
     func updateAndCheckListElement (checklistID: Int, checklistItemID: Int) {
@@ -110,5 +118,18 @@ struct Checklists: View {
         let user = realmSync.user
         
         checklistStore.updateChecklistItem(checklist: checklist, checklistItemID: checklistItemID, currentUser: user)
+    }
+}
+
+struct Checklists_Previews: PreviewProvider {
+    @EnvironmentObject var eventStore : EventStore
+    @EnvironmentObject var checklistStore : ChecklistStore
+    
+    static var previews: some View {
+        Checklists(
+            eventID: .constant(0),
+            checklistItemInput: "Nothing",
+            isEditing: false
+        )
     }
 }
