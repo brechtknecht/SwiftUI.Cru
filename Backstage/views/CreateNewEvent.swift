@@ -63,12 +63,12 @@ struct CreateNewEvent: View {
                         }
                         DatePicker("Zeit", selection: $eventTime, displayedComponents: .hourAndMinute)
                         
-                        Picker(selection: $eventType, label: Text("")) {
-                            ForEach(EventType.allCases, id: \.self) { value in
-                                Text(value.localizedName)
-                                    .tag(value)
-                            }
-                        }.pickerStyle(SegmentedPickerStyle())
+//                        Picker(selection: $eventType, label: Text("")) {
+//                            ForEach(EventType.allCases, id: \.self) { value in
+//                                Text(value.localizedName)
+//                                    .tag(value)
+//                            }
+//                        }.pickerStyle(SegmentedPickerStyle())
                         .padding(.vertical, 8)
                     }
                     
@@ -82,27 +82,27 @@ struct CreateNewEvent: View {
                         }
                     }
                     
-                    Section(
-                        header: Text("Veranstaltungsbild"),
-                        footer: Text("Wenn du kein Veranstaltungsbild auswählst, bekommst du das Standardbild")
-                                .padding(.vertical, 8)
-                    ) {
-                        Button(action: {
-                            self.showingImagePicker = true
-                        }) {
-                            if image != nil {
-                                image?
-                                    .resizable()
-                                    .scaledToFit()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(height: 250)
-                            } else {
-                                Text("Bitte Bild auswählen")
-                                    .padding(.horizontal, 16)
-                            }
-                        }
-                    }
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+//                    Section(
+//                        header: Text("Veranstaltungsbild"),
+//                        footer: Text("Wenn du kein Veranstaltungsbild auswählst, bekommst du das Standardbild")
+//                                .padding(.vertical, 8)
+//                    ) {
+//                        Button(action: {
+//                            self.showingImagePicker = true
+//                        }) {
+//                            if image != nil {
+//                                image?
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .aspectRatio(contentMode: .fill)
+//                                    .frame(height: 250)
+//                            } else {
+//                                Text("Bitte Bild auswählen")
+//                                    .padding(.horizontal, 16)
+//                            }
+//                        }
+//                    }
+//                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
                     
                     // Custom Selection scraped from stackoverflow
                     Section(header: Text("Treffpunkt")) {

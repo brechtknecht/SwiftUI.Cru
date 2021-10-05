@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import RealmSwift
 
-struct Timetable: Identifiable, Hashable {
+struct Timetable: Identifiable {
     let _id             : Int
     let id              : Int
     let timeslots       : RealmSwift.List<Int>

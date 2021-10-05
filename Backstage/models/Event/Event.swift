@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import RealmSwift
 
-struct Event: Identifiable, Hashable {
+struct Event: Identifiable {
     let partition           : String
     let _id                 : Int
     let id                  : Int

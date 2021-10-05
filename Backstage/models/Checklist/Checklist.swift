@@ -21,7 +21,7 @@ import Combine
 
 
 
-struct Checklist: Identifiable, Hashable, Equatable {
+struct Checklist: Identifiable, Equatable {
     let _id         : Int
     let id          : Int
     let name        : String

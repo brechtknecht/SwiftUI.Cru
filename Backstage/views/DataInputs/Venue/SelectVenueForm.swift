@@ -11,7 +11,7 @@ struct SelectionItemView: View {
     @ObservedResults(VenueDB.self) var venues
     @Environment(\.realm) var venueRealm
 
-    @State var actionText = "Neuen Veranstalter hinzufügen"
+    @State var actionText = "Neuen Treffpunkt hinzufügen"
     
     @State var addNewVenue = false
     
@@ -30,7 +30,7 @@ struct SelectionItemView: View {
                 VStack {
                     Form {
                         Section(
-                            header: Text("VERGANENGE VERANSTALTER"),
+                            header: Text("VERGANENE TREFFPUNKTE"),
                             footer: Text("Here is a detailed description of the setting.")
                         ) {
                             List {

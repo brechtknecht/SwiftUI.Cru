@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import RealmSwift
 
-struct User: Identifiable, Hashable {
+struct User: Identifiable {
     let partition : String
     
     let id      : Int
